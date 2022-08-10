@@ -1,0 +1,30 @@
+# Top Menu
+topmenu:
+
+- title: Home
+  url: https://www.trainindata.com/
+  external: true
+
+- title: Our books
+  url: https://www.trainindata.com/p/books
+  external: true
+
+- title: Our courses
+  url: https://www.trainindata.com/courses
+  class: "ml-2 btn btn-dark text-white px-3"
+  external: true
+
+# Footer Menu
+footermenu:
+
+- title: Privacy Policy
+  url: https://www.trainindata.com/p/privacy
+  external: true
+
+- title: Terms of use
+  url: https://www.trainindata.com/p/terms
+  external: true
+
+- title: Impressum
+  url: https://www.trainindata.com/p/impressum  
+  external: true

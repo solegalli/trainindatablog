@@ -1,0 +1,44 @@
+title: "Train in Data blog"
+email: solegalli@trainindata.com
+timezone: UTC
+baseurl: "/"
+permalink: "/:title/"
+logo: 'assets/images/logo_letras.png'
+favicon: 'assets/images/favicon.ico'
+author: Sole
+paginate: 30
+locale: en_us
+lang: en_us
+feed_items: 10
+feed_update_period: daily
+feed_update_frequency: 1
+markdown: kramdown
+kramdown:
+  syntax_highlighter_opts:
+    disable: true
+sass:
+  sass_dir: _sass
+  style: :compressed
+
+# Authors
+authors:
+  sole:
+    name: Sole
+    display_name: Sole
+    avatar: 'assets/images/sole.jpeg'
+    email: solegalli@trainindata.com
+    web: https://www.entrenaendatos.teachable.com/
+    twitter: https://twitter.com/Soledad_Galli
+    
+# Social
+social:
+  linkedin: https://de.linkedin.com/in/soledad-galli
+  twitter: https://twitter.com/Soledad_Galli
+
+# Plugins
+plugins: 
+- jekyll-paginate
+- jekyll-sitemap
+- jekyll-feed
+- jekyll-seo-tag
+- jekyll-archives
