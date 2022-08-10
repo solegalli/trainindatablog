@@ -1,5 +1,7 @@
 *.gem
+*.db
 .bundle
+.idea
 .jekyll-cache
 .sass-cache
 _site
