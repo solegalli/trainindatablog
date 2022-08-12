@@ -3,16 +3,16 @@ topmenu:
 
 - title: Home
   url: https://www.trainindata.com/
-  external: true
+  external: false
 
 - title: Our books
   url: https://www.trainindata.com/p/books
-  external: true
+  external: false
 
 - title: Our courses
   url: https://www.trainindata.com/courses
   class: "ml-2 btn btn-dark text-white px-3"
-  external: true
+  external: false
 
 # Footer Menu
 footermenu:
