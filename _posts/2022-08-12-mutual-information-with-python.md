@@ -440,7 +440,7 @@ If you made it this far, thank you for reading.
 *Don't forget to check out our course [Feature Selection for Machine Learning](https://www.trainindata.com/p/feature-selection-for-machine-learning) and our 
 book [Feature Selection in Machine Learning with Python](https://leanpub.com/feature-selection-in-machine-learning/).*
 
-### Refereces
+### References
 
 - Cover, Thomas, Elements of information theory, John Wiley & Sons, Ltd. Chapter 2, 2005 
 - Ross, Mutual Information between Discrete and Continuous Data Sets, PLoS ONE 9(2): e87357, 2014.
