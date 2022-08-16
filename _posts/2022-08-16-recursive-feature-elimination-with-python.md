@@ -3,7 +3,7 @@ layout: post
 title:  "Recursive feature elimination with Python"
 author: sole
 categories: [ Feature selection, Python, Machine learning ]
-image: assets/images/posts/rfe_python.png
+image: assets/images/posts/rfe/rfe_python.png
 ---
 
 Recursive feature elimination (RFE) is the process of selecting features sequentially, in which 
@@ -232,10 +232,10 @@ model = GradientBoostingRegressor(
 ```
 
 Let's set up a recursive feature elimination search, that uses the previous gradient 
-boosting machine and the R^2 to evaluate the feature subsets using 2-fold cross-validation. 
+boosting machine and the R2 to evaluate the feature subsets using 2-fold cross-validation. 
 Cross-validation helps improve the generalization of the feature subset.
 
-We will remove those features that cause a decrease in R^2 greater than 0.001. With `fit()`, 
+We will remove those features that cause a decrease in R2 greater than 0.001. With `fit()`, 
 we start the search:
 
 ```
@@ -270,7 +270,7 @@ the regression model:
 
 ![]({{ site.baseurl }}/assets/images/posts/rfe/fig1.png)   
 
-We can also plot the changes in the R^2 caused by the elimination of features:
+We can also plot the changes in the R2 caused by the elimination of features:
 
 ```
 pd.Series(RFE_model.performance_drifts_).plot.bar(figsize=(10, 5))
@@ -279,7 +279,7 @@ plt.ylabel('R2 change when feature was removed')
 plt.show()
 ```
 
-In the following plot, we see the change in the value of R^2 caused by the elimination of each feature:
+In the following plot, we see the change in the value of R2 caused by the elimination of each feature:
 
 ![]({{ site.baseurl }}/assets/images/posts/rfe/fig2.png)   
    
