@@ -20,7 +20,7 @@ data to train classifiers or regression models. Feature selection helps produce 
 and faster models and can help prevent overfitting. Feature selection is an important 
 aspect of any data science project.
 
-![]({{ site.baseurl }}/assets/images/posts/rfe/fe-gif.gif)   
+![feature selection in machine learning]({{ site.baseurl }}/assets/images/posts/rfe/fe-gif.gif)   
 
 A number of feature selection methods have been developed over the years to select relevant 
 features in machine learning. Some methods run fast but do not consider feature 
@@ -268,7 +268,7 @@ plt.show()
 The output of the preceding code block shows the importance of the features derived from 
 the regression model:
 
-![]({{ site.baseurl }}/assets/images/posts/rfe/fig1.png)   
+![feature importance derived from the regression model]({{ site.baseurl }}/assets/images/posts/rfe/fig1.png)   
 
 We can also plot the changes in the R2 caused by the elimination of features:
 
@@ -281,7 +281,7 @@ plt.show()
 
 In the following plot, we see the change in the value of R2 caused by the elimination of each feature:
 
-![]({{ site.baseurl }}/assets/images/posts/rfe/fig2.png)   
+![change in feature importance by recursive feature elimination]({{ site.baseurl }}/assets/images/posts/rfe/fig2.png)   
    
 By executing `sel.features_to_drop_` we obtain the features that will be removed from 
 the data: `['HouseAge', 'AveBedrms', 'Population', 'Latitude', 'Longitude']`.

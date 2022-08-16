@@ -19,7 +19,7 @@ Lasso was designed to improve the interpretability of machine learning models by
 the number of features. Other regularization methods, like Ridge regression or elastic net, 
 do not share this property.
 
-![]({{ site.baseurl }}/assets/images/posts/lasso/gradient-descent.gif)   
+![lasso feature selection]({{ site.baseurl }}/assets/images/posts/lasso/gradient-descent.gif)   
 
 Let’s do a short recap on linear models and regularization.
 
@@ -33,12 +33,12 @@ book [Feature Selection in Machine Learning with Python](https://leanpub.com/fea
 Linear regression models aim to predict the outcome based on a linear combination of the 
 predictor variables given by:
 
-![]({{ site.baseurl }}/assets/images/posts/lasso/fig1.png)   
+![linear regression model equation]({{ site.baseurl }}/assets/images/posts/lasso/fig1.png)   
 
 The values of the regression coefficients are usually determined by minimizing the squared 
 difference between the real and the predicted value of y:
 
-![]({{ site.baseurl }}/assets/images/posts/lasso/fig2.png)
+![ordinary least-square function]({{ site.baseurl }}/assets/images/posts/lasso/fig2.png)
 
 This is called the "ordinary least-square" (OLS) loss.
 
@@ -49,14 +49,14 @@ is done with regularization.
 There are two main regularization procedures: the Ridge and the Lasso regularization. With 
 the Lasso regression, the coefficients are estimated by minimizing the following equation:
 
-![]({{ site.baseurl }}/assets/images/posts/lasso/fig3.png)
+![lasso regularization equation]({{ site.baseurl }}/assets/images/posts/lasso/fig3.png)
 
 where the last term is the regularization constrain, and lambda is the regularization parameter 
 that governs the strength of the constraint.
 
 The Ridge regression estimates the regression coefficients by minimizing:
 
-![]({{ site.baseurl }}/assets/images/posts/lasso/fig4.png)
+![ridge regularization equation]({{ site.baseurl }}/assets/images/posts/lasso/fig4.png)
 
 where the constraint on the coefficients is given by the sum of the squared values of beta 
 instead of their module.
@@ -72,14 +72,14 @@ the plot are called penalties. As the value of the penalty increases, more and m
 coefficients are set to zero.
 
 
-![]({{ site.baseurl }}/assets/images/posts/lasso/fig5.png)
+![feature selection by lasso]({{ site.baseurl }}/assets/images/posts/lasso/fig5.png)
 
 
 In contrast, the Ridge regularization does not have that property, or at least not until 
 the penalty term is very large, as can be witnessed in the following image:
 
 
-![]({{ site.baseurl }}/assets/images/posts/lasso/fig6.png)
+![change in coefficient value by ridge regression]({{ site.baseurl }}/assets/images/posts/lasso/fig6.png)
 
 
 Lasso feature selection is known as an embedded feature selection method because the feature 
