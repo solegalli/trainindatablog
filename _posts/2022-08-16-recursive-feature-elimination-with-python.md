@@ -29,6 +29,10 @@ and a new machine learning model would be trained using the remaining features.
 After this point, there are 2 different implementations of RFE. One by Scikit-learn and one by Feature-engine. Let’s see 
 what they are about.
 
+<p class="callout success">For tutorials on feature selection, check out our course 
+[Feature Selection for Machine Learning](https://www.trainindata.com/p/feature-selection-for-machine-learning) or our 
+book [Feature Selection in Machine Learning with Python](https://leanpub.com/feature-selection-in-machine-learning/).</p>
+
 ## RFE in Scikit-learn
 
 In the Scikit-learn implementation, features continue to be removed based on feature importance. That means that steps 
@@ -71,7 +75,7 @@ embedded methods.
 
 ### Python implementation
 
-Recursive feature elimination is available in Scikit-learn through the [RFE](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFE.html#sklearn.feature_selection.RFE) 
+Recursive feature elimination is available in Scikit-learn through the [RFE](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFE.html) 
 or [RFECV](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFECV.html#sklearn.feature_selection.RFECV) classes. 
 Let’s see how we can carry out RFE with Python. In particular, we can use these classes with any algorithm that returns the attributes `coef_` 
 or `feature_importance_`, which means that it can be used with linear and logistic regression, all decision tree-based models, 
