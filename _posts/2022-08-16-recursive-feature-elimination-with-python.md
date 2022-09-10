@@ -13,8 +13,8 @@ Given a machine learning model, the goal of recursive feature elimination is to 
 smaller and smaller sets of features.
 
 In RFE, first an estimator is trained using all features, and then the importance of each variable is obtained. If using 
-Scikit-learn, these would be obtained either from the coefficients of a linear regression model (coef_) or the importance 
-derived from decision trees (feature_importances_). Then, the least important feature or group of features would be removed, 
+Scikit-learn, these would be obtained either from the coefficients of a linear regression model (`coef_`) or the importance 
+derived from decision trees (`feature_importances_`). Then, the least important feature or group of features would be removed, 
 and a new machine learning model would be trained using the remaining features.
 
 #### RFE initial steps:
@@ -37,8 +37,6 @@ final features.
 
 #### RFE in Scikit-learn
 
-1.Train a machine learning model
-
 1. Train a machine learning model
 2. Derive feature importance
 3. Remove least important feature(s)
@@ -46,7 +44,7 @@ final features.
 5. Repeat 2 to 4 until the desired number of features is reached
 
 
-![recursive feature elimination procedure]({{ site.baseurl }}/assets/images/posts/rfe/rfesklearn.png)   
+![recursive feature elimination in Sklearn]({{ site.baseurl }}/assets/images/posts/rfe/rfesklearn.png)   
 
 This implementation of recursive feature elimination accommodates the changes in feature importance induced by changing 
 feature subsets. This is important because when there is colinearity, both the coefficients of linear models and the importance 
@@ -59,20 +57,24 @@ degradation.
 
 ### How does RFE by feature importance compare to embedded feature selection methods?
 
-When using Lasso regularization or just training decision tree based models, we automatically obtain feature importance. 
-And we could use this importance to select the features straightaway. So how does RFE compare to these selection methods?
+When using [Lasso regularization](https://www.blog.trainindata.com/lasso-feature-selection-with-python/) or just training 
+decision tree based models, we automatically obtain feature importance. And we could use this importance to select the 
+features straightaway. So how does RFE compare to these selection methods?
 
 Compared to selecting features based on feature importance, this method has the advantage that it considers the re-adjustments 
 in importance after a feature or a small subset of features is removed. Thus, it is better suited to handling features that 
 are highly correlated. On the downside, as it trains several predictive models, it is more computationally costly than 
 embedded methods.
 
+![recursive feature elimination vs feature importance]({{ site.baseurl }}/assets/images/posts/rfe/rfevsembedded.png)   
+
 
 ### Python implementation
 
-Recursive feature elimination is available in Scikit-learn through the RFE or RFECV classes. Let’s see how we can carry 
-out RFE with Python. In particular, we can use these classes with any algorithm that returns the attributes coef or 
-feature_importance, which means that it can be used with linear and logistic regression, all decision tree-based models, 
+Recursive feature elimination is available in Scikit-learn through the [RFE](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFE.html#sklearn.feature_selection.RFE) 
+or [RFECV](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFECV.html#sklearn.feature_selection.RFECV) classes. 
+Let’s see how we can carry out RFE with Python. In particular, we can use these classes with any algorithm that returns the attributes `coef_` 
+or `feature_importance_`, which means that it can be used with linear and logistic regression, all decision tree-based models, 
 and SVMs.
 
 We will carry out recursive feature elimination based on feature importance utilizing the breast cancer dataset.
@@ -86,7 +88,6 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 
 import sklearn.feature_selection.RFE as RFE
-
 ```
 
 Let's load the dataset and separate it into a training and testing set:
@@ -143,8 +144,9 @@ that support the estimation of feature importance intrinsically, like decision t
 There is an alternative implementation of RFE in which the features are ranked based on the performance of the machine 
 learning model trained on the progressively smaller feature subsets.
 
-In the Feature-engine implementation, features are removed based on a drop in the performance of the classifier or 
-regression model. The performance is measured by any model performance metric of interest.
+In the [Feature-engine implementation](https://feature-engine.readthedocs.io/en/latest/user_guide/selection/RecursiveFeatureElimination.html), 
+features are removed based on a drop in the performance of the classifier or regression model. The performance is 
+measured by any model performance metric of interest.
 
 
 ### RFE in Feature-engine:
@@ -163,11 +165,11 @@ There are a number of differences between Feature-engine’s and Scikit-learn’
 2. In Scikit-learn, the least important feature would be removed at the end of each round. In Feature-engine, the feature would be removed if the performance did not drop. Otherwise, it would be retained, therefore providing an additional test for the feature's importance.
 3. In Scikit-learn, the procedure continues until a certain number of features is reached. In Feature-engine, the procedure continues until all features have been evaluated.
 
-![recursive feature elimination procedure]({{ site.baseurl }}/assets/images/posts/rfe/comparison.png)   
+![recursive feature elimination comparison sklearn and feature-engine]({{ site.baseurl }}/assets/images/posts/rfe/comparison.png)   
 
 
 In short, in the Scikit-learn RFE implementation, we would remove the feature of the least importance. With Feature-engine, 
-we would remove a feature if its removal reduced the performance of the machine learning model.In Feature-engine, the 
+we would remove a feature if its removal reduced the performance of the machine learning model. In Feature-engine, the 
 feature importance is used only to determine the order in which the features will be eliminated and therefore evaluated.
 
 ### Python implementation
@@ -183,7 +185,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.datasets import fetch_california_housing
 from sklearn.ensemble import GradientBoostingRegressor
-from sklearn.metrics import r2_score
 from sklearn.model_selection import train_test_split
 from feature_engine.selection import RecursiveFeatureElimination
 ```
