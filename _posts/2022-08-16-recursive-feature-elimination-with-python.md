@@ -29,9 +29,8 @@ and a new machine learning model would be trained using the remaining features.
 After this point, there are 2 different implementations of RFE. One by Scikit-learn and one by Feature-engine. Let’s see 
 what they are about.
 
-<p class="callout success">For tutorials on feature selection, check out our course 
-[Feature Selection for Machine Learning](https://www.trainindata.com/p/feature-selection-for-machine-learning) or our 
-book [Feature Selection in Machine Learning with Python](https://leanpub.com/feature-selection-in-machine-learning/).</p>
+*For tutorials on feature selection, check out our course [Feature Selection for Machine Learning](https://www.trainindata.com/p/feature-selection-for-machine-learning) or our 
+book [Feature Selection in Machine Learning with Python](https://leanpub.com/feature-selection-in-machine-learning/).*
 
 ## RFE in Scikit-learn
 
