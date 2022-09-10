@@ -3,7 +3,7 @@ layout: post
 title:  "Recursive feature elimination with Python"
 author: sole
 categories: [ Feature selection, Python, Machine learning ]
-image: assets/images/posts/rfe/rfe_python.png
+image: assets/images/posts/rfe/rfe_python.gif
 ---
 
 Recursive feature elimination (RFE) is the process of selecting features sequentially, in which features are removed 

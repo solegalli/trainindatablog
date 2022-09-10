@@ -6,8 +6,6 @@ categories: [ Feature selection, Python, Machine learning ]
 image: assets/images/posts/psi/psi.gif
 ---
 
-![population stability index]({{ site.baseurl }}/assets/images/posts/psi/1.gif)   
-
 If you worked in credit scoring, you probably heard about the **Population Stability Index**, or PSI.
 
 The PSI is a metric that quantifies the changes in a variable distribution and it is commonly used to assess the risk of 
@@ -20,6 +18,10 @@ risk scorecards.
 In this article, we will discuss what the Population Stability Index is, its uses in credit scoring and data science, 
 and how we can select features based on their PSI values with the Python open-source package 
 [Feature-engine](https://feature-engine.readthedocs.io/en/latest/index.html).
+
+*For tutorials on feature selection, check out our course 
+[Feature Selection for Machine Learning](https://www.trainindata.com/p/feature-selection-for-machine-learning) or our 
+book [Feature Selection in Machine Learning with Python](https://leanpub.com/feature-selection-in-machine-learning/).*
 
 ## Population Stability Index: What is it?
 
@@ -272,7 +274,8 @@ transformer.psi_values_
 Which results in:
 
 ```
-{'A2': 0.1059045985405272,'A3': 0.4547839756788118,'A8': 0.2959469283080945,'A11': 0.9635236290505808,'A14': 0.2145456167378388,'A15': 0.10929706991455773}
+{'A2': 0.1059045985405272,'A3': 0.4547839756788118,'A8': 0.2959469283080945,
+'A11': 0.9635236290505808, 'A14': 0.2145456167378388,'A15': 0.10929706991455773}
 ```
 
 If the PSI values are above the threshold that we entered when initializing the transformer, they will be dropped. We can 
@@ -295,7 +298,9 @@ data. The `DropHighPSIFeatures` stores the value that was used to separate the d
 attribute to split the training data manually, and then plot the cumulative distribution of a variable, say A3, in each data set:
 
 ```
-tmp = X_train[‘A13’].isin(transformer.cut_off_)sns.ecdfplot(data=X_train, x=’A3', hue=tmp)
+tmp = X_train[‘A13’].isin(
+    transformer.cut_off_)sns.ecdfplot(data=X_train, x=’A3', hue=tmp,
+    )
 ```
 
 We obtain the following plot, where we appreciate that the distribution is quite different, in line with the high PSI value:
@@ -305,7 +310,8 @@ We obtain the following plot, where we appreciate that the distribution is quite
 Now we can go ahead and remove the variables with high PSI from the training set and also the test set, utilizing the transform() method:
 
 ```
-X_train = transformer.transform(X_train)X_test = transformer.transform(X_test)
+X_train = transformer.transform(X_train)
+X_test = transformer.transform(X_test)
 ```
 
 And that’s it. The variables have been removed.
@@ -346,7 +352,9 @@ transformer.psi_values_
 Which results in:
 
 ```
-{'A2': 0.042897461606348365,'A3': 0.12454277821334697,'A8': 0.3103787266508977,'A11': 0.18886985933386097,'A14': 0.031337238449971605,'A15': 0.05807864506797143}
+{'A2': 0.042897461606348365,'A3': 0.12454277821334697,
+ 'A8': 0.3103787266508977,'A11': 0.18886985933386097,
+ 'A14': 0.031337238449971605,'A15': 0.05807864506797143}
 ```
 
 And the transformer also stores, separately, the variables that will be dropped based on their PSI value:
@@ -365,7 +373,8 @@ To assess the value of the PSI for each feature against its cumulative distribut
 manually split the data into the reference and test sets, and then plot the cumulative distribution of one variable:
 
 ```
-tmp = X_train[‘A13’].isin(transformer.cut_off_)sns.ecdfplot(data=X_train, x=’A3', hue=tmp)
+tmp = X_train[‘A13’].isin(
+    transformer.cut_off_)sns.ecdfplot(data=X_train, x=’A3', hue=tmp)
 ```
 
 ![Expected and Actual distribution based on time split.]({{ site.baseurl }}/assets/images/posts/psi/6.png)   
@@ -386,7 +395,8 @@ As expected, the cumulative distribution before and after does not change for th
 We can go ahead and remove those variables from the training and test sets as follows:
 
 ```
-X_train = transformer.transform(X_train)X_test = transformer.transform(X_test)
+X_train = transformer.transform(X_train)
+X_test = transformer.transform(X_test)
 ```
 
 And that is it. Now, our datasets do not contain numerical features whose distribution changes in time.
