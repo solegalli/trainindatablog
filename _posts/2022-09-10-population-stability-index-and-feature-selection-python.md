@@ -206,7 +206,8 @@ That will identify the features with high PSI.
 We can now go ahead and remove those features from training and test sets.
 
 ```
-X_train = transformer.transform(X_train)X_test = transformer.transform(X_test)
+X_train = transformer.transform(X_train)
+X_test = transformer.transform(X_test)
 ```
 
 The beauty of the DropHighFeatures resides in its versatility. We have the option to:
