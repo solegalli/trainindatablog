@@ -14,9 +14,13 @@ There are also various implementations of feature selection algorithms in Python
 Covering all of them in an article, is almost impossible. Instead, in this blog, I will introduce the Python libraries 
 for feature selection, highlight which selection methods are available in each of them, and then demo some of the feature selection implementations.
 
-For tutorials and step by step code implementations on additional feature selection methods, check out our course 
+*For tutorials and step by step code implementations on additional feature selection methods, check out our course 
 [Feature Selection for Machine Learning](https://www.trainindata.com/p/feature-selection-for-machine-learning) or our 
-book [Feature Selection in Machine Learning with Python](https://leanpub.com/feature-selection-in-machine-learning/).
+book [Feature Selection in Machine Learning with Python](https://leanpub.com/feature-selection-in-machine-learning/)*.
+
+You may also like my talk at DataTalks.Club:
+
+<p><iframe style="width:100%;" height="315" src="https://www.youtube.com/watch?v=blvmNWbcPDo" frameborder="0" allowfullscreen></iframe></p>
 
 So how can we do feature selection in Python?
 
@@ -66,20 +70,20 @@ Feature-engine contains alternative feature selection methods based on machine l
 and also feature selection techniques that support categorical variables.
 
 ![feature selection methods]({{ site.baseurl }}/assets/images/posts/fspython/table.png)
+**Feature selection implementations by the different libraries.**
 
 In this article, we will implement various feature selection techniques with Scikit-learn and Feature-engine.
 
 ### Feature selection with Scikit-learn
 
 Scikit-learn contains algorithms for filter methods, wrapper methods and embedded methods, including recursive feature 
-elimination. Among the filter methods, we can select features using their variance, based on the chi-square test, or 
-ANOVA. Let’s explore these procedures.
+elimination. Among the filter methods, we can select features using their variance or based on ANOVA. Let’s explore these procedures.
 
 
 #### Variance
 
 With Scikit-learn, we can remove irrelevant features by looking at feature variability. Features whose standard 
-deviation is zero are otherwise constant and can be removed. In this example, we will create a toy dataset with 3 constant 
+deviation is zero are constant and can be removed. In this example, we will create a toy dataset with 3 constant 
 variables, and then we will remove them with Scikit-learn.
 
 ```
@@ -116,9 +120,7 @@ The chi-square test is suitable for selecting categorical variables when the tar
 features based on the p-values returned by the test and then selects the top-ranked features.
 
 Note that Scikit-learn’s chi-square function does not carry out the intended procedure. This is a known 
-[issue](https://github.com/scikit-learn/scikit-learn/issues/21455). Instead, use `scipy.stats` as shown in this 
-[Github repository](https://github.com/solegalli/feature-selection-in-machine-learning-book/blob/main/04-Filter-methods/01-Chi-square-test.ipynb).
-
+[issue](https://github.com/scikit-learn/scikit-learn/issues/21455). Instead, use `scipy.stats.chi_contingency`.
 
 #### ANOVA
 
@@ -196,7 +198,7 @@ selector = SelectFromModel(
 selector.fit(scaler.transform(X_train), y_train)
 ```
 
-By executing selector.get_support() we obtain a boolean vector with True for the features that have non-zero coefficients:
+By executing `selector.get_support()` we obtain a boolean vector with True for the features that have non-zero coefficients:
 
 ```
 array([False,  True, False, False, False, False, False,  True,  True,
@@ -284,7 +286,7 @@ for more details.
 
 #### Univariate feature selection
 
-The feature engine includes univariate feature selection methods based on the target variable mean value per category or 
+Feature-engine includes univariate feature selection methods based on the target variable mean value per category or 
 bin and a single feature classifier or regressor performance metric.
 
 In single feature model performance, a machine learning model is trained for each feature, with only that feature as input, 
@@ -339,11 +341,11 @@ plt.title('Univariate performance')
 When training linear models like linear or logistic regression, multicollinearity may affect model performance. Thus, it 
 might be useful to remove correlated features.
 
-The feature engine contains algorithms that select features based on the feature correlation. The `SmartCorrelationSelector`
+Feature-engine contains algorithms that select features based on the feature correlation. The `SmartCorrelationSelector`
 finds groups of correlated features and then retains the one with fewer missing data points, higher cardinality or variability, 
 or greater model derived importance.
 
-How can we find correlated features? We can use the pandas.corr method.
+How can we find correlated features? We can use the `pandas.corr` method.
 
 ```
 import pandas as pd
