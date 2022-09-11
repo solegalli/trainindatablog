@@ -65,41 +65,7 @@ MLXtend contains transformers to implement forward, backward and exhaustive sear
 Feature-engine contains alternative feature selection methods based on machine learning model performance, feature shuffling 
 and also feature selection techniques that support categorical variables.
 
-| Method        | Scikti-learn | MLXtend | Feature-engine |
-
-|————— |:----———:|:--—-------:|:——————--:|
-
-| Filter           |  Variance   |                   |  Cardinality       |
-
-| Filter | ANOVA | | Duplicated  |
-
-| Filter | Correlation with target| |Correlation among features |
-
-| Filter | Mutual information | | |
-
-| Wrapper | Forward search |Forward search | |
-
-| Wrapper | Backward search |Backward search | |
-
-| Wrapper |  |Exhaustive search | |
-
-|Embedded|Lasso|||
-
-|Embedded|Linear coefficients|||
-
-|Embedded|Tree importance|||
-
-|Other|Recursive feature elimination||Recursive feature elimination|
-
-|Other|||Recursive feature addition|
-
-|Other|||Permutation importance|
-
-|Other|||Single feature classifier or regression|
-
-|Other|||Target encoding|
-
-|Other|||Population Stability Index|
+![feature selection methods]({{ site.baseurl }}/assets/images/posts/fspython/table.png)
 
 In this article, we will implement various feature selection techniques with Scikit-learn and Feature-engine.
 
