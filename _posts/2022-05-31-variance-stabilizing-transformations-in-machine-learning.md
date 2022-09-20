@@ -25,7 +25,7 @@ learning at the following links:
 - Categorical variable encoding
 - **Variable transformation (you are here)**
 - [Discretization](https://trainindata.medium.com/variable-discretization-in-machine-learning-7b09009915c2)
-- Feature Scaling
+- Feature scaling
 - Feature creation
 - [Python libraries for feature engineering](https://towardsdatascience.com/practical-code-implementations-of-feature-engineering-for-machine-learning-with-python-f13b953d4bcd)
 - [Excellent resources for learning about feature engineering](https://trainindata.medium.com/best-resources-to-learn-feature-engineering-for-machine-learning-6b4af690bae7)
@@ -326,8 +326,9 @@ result. I know, I sound like grandma.
 Take a look for example at the following figure taken from the scikit-learn documentation:
 
 ![Box-Cox and Yeo-Johnson transformation of various theoretical distributions.]({{ site.baseurl }}/assets/images/posts/var_stab/figure_15.png)
-**Box-Cox and Yeo-Johnson transformation of various theoretical distributions — 
-Image from [Scikit-learn’s documentation](https://scikit-learn.org/stable/auto_examples/preprocessing/plot_map_data_to_normal.html)**
+
+
+**Box-Cox and Yeo-Johnson transformation of various theoretical distributions — Image from [Scikit-learn’s documentation](https://scikit-learn.org/stable/auto_examples/preprocessing/plot_map_data_to_normal.html)**
 
 Applying transformations to variables that are already normally distributed does not really change the 
 distribution (see the lilac plots), so there is no need to do that.
@@ -414,4 +415,4 @@ the following resources:
 - [Feature-engine documentation](https://feature-engine.readthedocs.io/en/latest/user_guide/transformation/index.html)
 - [Transformations: an introduction](https://www.stata.com/users/njc/topichlp/transint.hlp)
 
-Check out our courses at [Train in Data](https://www.trainindata.com/) | Subscribe to our [newsletter](http://eepurl.com/hdzffv).
+Check out our courses at [Train in Data](https://www.trainindata.com/) - Subscribe to our [newsletter](http://eepurl.com/hdzffv).
