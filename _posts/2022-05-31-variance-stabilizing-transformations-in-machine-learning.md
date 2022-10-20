@@ -402,7 +402,7 @@ discuss in [this article](https://towardsdatascience.com/practical-code-implemen
 
 I also highlight the differences between Numpy, scipy.stats, Scikit-learn and Feature-engine 
 in [our online](https://www.courses.trainindata.com/p/feature-engineering-for-machine-learning) course 
-and [book](https://packt.link/python).
+and [book](https://packt.link/0ewSo).
 
 ## References
 
@@ -410,7 +410,7 @@ For more information on variable transformation and variance stabilizing transfo
 the following resources:
 
 - [Feature Engineering for Machine Learning](https://www.courses.trainindata.com/p/feature-engineering-for-machine-learning) - Online course
-- [Python Feature Engineering Cookbook](https://packt.link/python)
+- [Python Feature Engineering Cookbook](https://packt.link/0ewSo)
 - [Scikit-learn documentation](https://scikit-learn.org/stable/modules/preprocessing.html#mapping-to-a-gaussian-distribution)
 - [Feature-engine documentation](https://feature-engine.readthedocs.io/en/latest/user_guide/transformation/index.html)
 - [Transformations: an introduction](https://www.stata.com/users/njc/topichlp/transint.hlp)
