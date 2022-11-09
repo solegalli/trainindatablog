@@ -1,9 +1,7 @@
 ---
 layout: post
-title:  "Feature selection in machine learning with Python"
+title: "Feature selection in machine learning with Python"
 author: sole
-description: Discover how to select features for machine learning utilizing three popular open-source Python libraries: Scikit-learn, Feature-engine and MLXtend.
-excerpt: Discover how to select features for machine learning utilizing three popular open-source Python libraries.
 categories: [ Feature selection, Python, Machine learning ]
 image: assets/images/posts/fspython/cover.png
 ---
