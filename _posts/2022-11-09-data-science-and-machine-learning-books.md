@@ -2,9 +2,10 @@
 layout: post
 title:  "Data science and machine learning books"
 author: sole
+description: Discover five books that expose the controversial policies and surveillance abuses of companies that use AI at the core of their products.
+excerpt: Discover five books that expose the controversial policies and surveillance abuses of companies that use AI at the core of their products.
 categories: [Data science for social good ]
 image: assets/images/posts/mlmovies/mlmovies.gif
-tagline: This article highlights 5 books that expose the controversial policies and surveillance abuses of companies that use ai at the core of their products.
 ---
 
 Did you come here expecting to find the "Hundred-page machine learning book" or "Elements of statistical learning"?

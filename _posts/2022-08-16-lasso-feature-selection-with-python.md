@@ -2,6 +2,8 @@
 layout: post
 title:  "Feature selection with Lasso in Python"
 author: sole
+description: The Lasso regularization can be used to select features in machine learning since it has the capacity to set some coefficients to zero.
+excerpt: The Lasso regularization can be used to select features in machine learning since it has the capacity to set some coefficients to zero.
 categories: [ Feature selection, Python, Machine learning ]
 image: assets/images/posts/lasso/lasso.png
 ---

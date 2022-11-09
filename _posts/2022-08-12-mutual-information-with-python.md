@@ -2,6 +2,8 @@
 layout: post
 title:  "Mutual information with Python"
 author: sole
+description: What is the mutual information, how can we calculate it in Python, and how do we use it to select features for machine learning?
+excerpt: Mutual information measures the information we know from one variable by observing the values of the second variable.
 categories: [ Feature selection, Python, Machine learning ]
 image: assets/images/posts/mutual_info_cover.png
 ---

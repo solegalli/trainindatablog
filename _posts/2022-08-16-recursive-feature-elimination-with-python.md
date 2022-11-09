@@ -2,6 +2,8 @@
 layout: post
 title:  "Recursive feature elimination with Python"
 author: sole
+description: Recursive feature elimination is the process of selecting features sequentially, in which features are removed one at a time or a few at a time.
+excerpt: Recursive feature elimination is the process of selecting features sequentially, in which features are removed one at a time or a few at a time.
 categories: [ Feature selection, Python, Machine learning ]
 image: assets/images/posts/rfe/rfe_python.gif
 ---

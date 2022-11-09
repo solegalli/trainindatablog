@@ -2,6 +2,8 @@
 layout: post
 title:  "Population Stability Index and feature selection in Python"
 author: sole
+description: Find out what the Population Stability Index is and how to use it to monitor or select features based on their distribution changes over time.
+excerpt: The Population Stability Index quantifies changes in a variable’s distribution over time, and it is commonly used in finance to monitor or select features.
 categories: [ Feature selection, Python, Machine learning ]
 image: assets/images/posts/psi/psi.gif
 ---
