@@ -4,6 +4,7 @@ title:  "Data science and machine learning books"
 author: sole
 categories: [Data science for social good ]
 image: assets/images/posts/mlmovies/mlmovies.gif
+description: This article highlights 5 books that expose the controversial policies and surveillance abuses of companies that use ai at the core of their products.
 ---
 
 Did you come here expecting to find the "Hundred-page machine learning book" or "Elements of statistical learning"?
