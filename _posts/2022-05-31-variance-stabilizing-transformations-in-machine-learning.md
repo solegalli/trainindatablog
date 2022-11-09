@@ -6,7 +6,6 @@ description: The logarithm, power, and square root are variance stabilizing tran
 excerpt: Why do we transform variables with the logarithm or a power function before training a machine learning model? Find out more about variance stabilizing transformations and their use in machine learning.
 categories: [ Feature engineering, Python, Machine learning ]
 image: assets/images/posts/var_stab/cover.png
-description: 
 ---
 
 You’ve probably heard that before training machine learning models, data scientists transform 
