@@ -153,7 +153,7 @@ objective, and neutral. Yet, money made from advertising has a lot to say about 
 In fact, as I am writing this article, I am using a natural language processing (NLP) tool that helps me select the right 
 keywords to make the article land on the first page of the search for "data science movies."
 
-But coming back to the book, **"Algorithm of opression"** explains how private interests, along with the monopoly status of a 
+But coming back to the book, **"Algorithm of oppression"** explains how private interests, along with the monopoly status of a 
 relatively small number of internet search engines, lead to a biased set of search algorithms that privilege whiteness 
 and discriminate against people of color.
 
