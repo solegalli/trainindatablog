@@ -2,6 +2,7 @@
 layout: post
 title: "One-hot encoding categorical variables"
 author: sole
+excerpt: Find out how to encode categorical variables using one-hot.
 categories: [ Feature engineering, Python, Machine learning, categorical encoding ]
 image: assets/images/posts/ohe/cover.gif
 ---
@@ -12,13 +13,13 @@ is categorical.
 
 Categorical data is a common occurrence in many data science projects. To train machine 
 learning algorithms like linear regression, decision trees, or random forests, in particular 
-if we are utilizing Scikit-learn, or even for deep learning, all predictor variables must 
-be numerical. Hence, we need to encode categorical values into numerical values. The act 
-of replacing categories with numbers is called categorical encoding.
+if we are utilizing Scikit-learn, all predictor variables must be numerical. Even for 
+deep learning models we need numerical features. Hence, we need to encode categorical 
+values into numerical values. The act of replacing categories with numbers is called 
+categorical encoding.
 
-
-There are many categorical encoding strategies, like ordinal encoding (sometimes called l
-abel encoding), target or mean encoding, encoding with counts or frequencies, and one hot encoding.
+There are many categorical encoding strategies, like ordinal encoding (sometimes called 
+label encoding), target or mean encoding, encoding with counts or frequencies, and one hot encoding.
 
 In this article, we will discuss one hot encoding and its variations. So let’s get started!
 
@@ -35,7 +36,7 @@ where each binary variable represents one category. The binary variable takes th
 value 1 if the category is present, or 0 otherwise.
 
 The following table shows the one hot encoded representation of the categorical variable 
-Color with the values of red, blue, and green:
+**Color** with the values of **red**, **blue**, and **green**:
 
 ![one hot encoding]({{ site.baseurl }}/assets/images/posts/ohe/color-ohe.png)
 
@@ -52,12 +53,14 @@ blue, and green), we need to create two (k - 1 = 2) binary variables.
 
 ![one hot encoding into k minus 1 variables]({{ site.baseurl }}/assets/images/posts/ohe/ohe-keminus1.png)
 
-Encoding into k-1 binary variables is well suited for linear models. There are, however, a 
-few occasions in which we may prefer to encode the categorical variables with k binary variables:
+Encoding into k-1 binary variables is well suited for linear models. 
 
-- When training decision trees, they do not evaluate the entire feature space at the same time.
-- When selecting features recursively
-- When determining the importance of each category within a variable
+There are, however, a few occasions in which we may prefer to encode the categorical variables 
+with k binary variables:
+
+- When training decision trees, since they do not evaluate the entire feature space at the same time.
+- When selecting features recursively.
+- When determining the importance of each category within a variable.
 
  
 ## Special case: binary variables
@@ -152,7 +155,7 @@ Let's set up the transformer to encode into k-1 binary variables and return a da
 encoder = OneHotEncoder(drop=”first”, sparse=False)
 ```
 
-We need to set sparse to False, so that the encoder returns and array instead of a sparse matrix. 
+We need to set `sparse` to `False`, so that the encoder returns and array instead of a sparse matrix. 
 This is also necessary if we want to return dataframes as outputs.
 
 ```
@@ -164,8 +167,9 @@ ohe = ColumnTransformer(
 ohe.set_output(transform="pandas")
 ```
 
-See the recently released set_output API for more information about how to make Scikit-learn 
-transformers return pandas dataframes instead of arrays.
+See the recently released [set_output API](https://scikit-learn.org/stable/auto_examples/miscellaneous/plot_set_output.html)
+for more information about how to make Scikit-learn transformers return pandas dataframes 
+instead of arrays.
 
 Let’s now fit the encoder to the training data and then transform the variables:
 
@@ -186,7 +190,7 @@ that were not transformed.
 
 ### Feature-engine
 
-Let’s now see the advantage of using the OneHotEncoder from Feature-engine. Let's 
+Let’s now see the advantage of using the `OneHotEncoder` from Feature-engine. Let's 
 import the encoder:
 
 ```
@@ -240,7 +244,7 @@ X_train_enc = ohe_enc.transform(X_train)
 X_test_enc = ohe_enc.transform(X_test)
 ```
 
-Category Encoders' OneHotEncoder() returns a copy of the original dataset plus the binary 
+Category Encoders' `OneHotEncoder()` returns a copy of the original dataset plus the binary 
 variables and without the original categorical variables. Thus, this data is ready to train 
 machine learning models.
 
@@ -251,7 +255,7 @@ Category Encoders. Each implementation has advantages and shortcomings.
 
 Let’s summarize the main characteristics of each library:
 
-The pandas, Feature-engine and Category Encoders can automatically identify and encode categorical 
+Pandas, Feature-engine and Category Encoders can automatically identify and encode categorical 
 variables, that is, those of type object or categorical. Scikit-learn’s `OneHotEncoder()`, on 
 the other hand, will encode all variables in the dataset.
 
@@ -259,6 +263,8 @@ With pandas, Feature-engine and Category Encoders, we can encode only a subset o
 indicating their names in a list when calling the methods or transformers. With Scikit-learn 
 we need to use an additional class, the ColumnTransformer(), to slice the data before the 
 transformation.
+
+![Comparing the one hot encoding implementations]({{ site.baseurl }}/assets/images/posts/ohe/table.png)
 
 With Feature-engine and Category Encoders, the dummy variables are added to the original 
 dataset and the categorical variables are removed after the encoding. With Scikit-learn, we 
@@ -268,13 +274,13 @@ manually.
 Finally, using the `OneHotEncoder()` from Scikit-learn, Feature-engine and Category Encoders, we 
 can perform the encoding step within a Scikit-learn Pipeline, which is more convenient if we 
 have various feature engineering steps or want to put the Pipelines into production. Pandas 
-get_dummies() is otherwise well suited for data analysis and visualization.
+`get_dummies()` is otherwise well suited for data analysis and visualization.
 
 
 ## Encoding a subset of categories using one-hot
 
 Oftentimes, we are only interested in a subset of the values of a categorical variable. For 
-example, for the variable City, we may be interested only in the big capitals. Therefore, we 
+example, for the variable **City**, we may be interested only in the big capitals. Therefore, we 
 can create binary variables to represent only those categories.
 
 Let’s see how to encode only a subset of the categories of categorical variables utilizing 
@@ -337,7 +343,7 @@ X_test.head()
 
 We can see the binary variables at the right of the dataframe in the output of the precedent command:
 
-![One hot encoding of specific categories]({{ site.baseurl }}/assets/images/posts/ohe/subset-pandas.png)
+![One hot encoding of specific categories]({{ site.baseurl }}/assets/images/posts/ohe/subsets-pandas.png)
 
 Now, let’s automate the procedure utilizing scikit-learn. Let’s import the `OneHotEncoder()`
 and the `ColumnTransformer()`:
@@ -439,6 +445,8 @@ We can see the resulting dataframe in the return of the precedent command:
 4              t              g          276.0              1 
 ```
 
+Remember that now, instead of this workaround to transform the numpy array into a dataframe
+we can just set the output to pandas with the `set_ouput` method.
 
 ## One-hot encoding of frequent categories
 
