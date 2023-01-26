@@ -2,6 +2,8 @@
 layout: post
 title: "Feature selection in machine learning with Python"
 author: sole
+description: Discover multiple algorithms for feature selection and implement them in Python.
+excerpt: Discover multiple algorithms for feature selection and implement them in Python.
 categories: [ Feature selection, Python, Machine learning ]
 image: assets/images/posts/fspython/cover.png
 ---

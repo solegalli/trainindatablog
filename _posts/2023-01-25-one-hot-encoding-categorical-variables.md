@@ -2,6 +2,7 @@
 layout: post
 title: "One-hot encoding categorical variables"
 author: sole
+description: Find out how to encode categorical variables using one-hot.
 excerpt: Find out how to encode categorical variables using one-hot.
 categories: [ Feature engineering, Python, Machine learning, categorical encoding ]
 image: assets/images/posts/ohe/cover.gif
