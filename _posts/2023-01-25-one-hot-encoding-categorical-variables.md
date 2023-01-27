@@ -189,6 +189,9 @@ The binary vectors corresponding to the one hot encoded variable are shown to th
 the dataframe. After that, the column transformer appended the original numerical variables, 
 that were not transformed.
 
+Note that the `ColumnTransformer` changes both the variable name and the variable order
+in the output dataframe.
+
 ### Feature-engine
 
 Let’s now see the advantage of using the `OneHotEncoder` from Feature-engine. Let's 
@@ -230,7 +233,9 @@ Finally, let’s carry out one hot encoding with Category encoders. Let’s impo
 from category_encoders.one_hot import OneHotEncoder
 ```
 
-Let's set up the encoder to return k-1 binary variables adding the categories as column names:
+Let's set up the encoder. We set `use_cat_names` to `True` to return the variable names
+plus the category as the dummy variable names. Category encoder's `OneHotEncoder` does 
+not seem to have the option to encode into k-1 dummies.
 
 ```
 ohe_enc = OneHotEncoder(use_cat_names=True)
@@ -246,7 +251,7 @@ X_test_enc = ohe_enc.transform(X_test)
 ```
 
 Category Encoders' `OneHotEncoder()` returns a copy of the original dataset plus the binary 
-variables and without the original categorical variables. Thus, this data is ready to train 
+variables and without the original categorical variables. Thus, this data is also ready to train 
 machine learning models.
 
 ## Comparing the Python implementations
@@ -364,7 +369,7 @@ encoder = OneHotEncoder(
 )
 ```
 
-Let’s set up the ColumnTransformer() to encode the variables A6 and A7 and to return all 
+Let’s set up the `ColumnTransformer()` to encode the variables A6 and A7 and to return all 
 variables in the final output:
 
 ```
