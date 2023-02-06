@@ -8,22 +8,26 @@ categories: [ Feature selection, Python, Machine learning ]
 image: assets/images/posts/lasso/lasso.png
 ---
 
-Lasso is a regularization constraint introduced to the objective function of linear models 
-in order to prevent overfitting of the predictive model to the data. The name Lasso stands 
-for Least Absolute Shrinkage and Selection Operator.
+Lasso is a regularization constraint introduced to the objective function of linear 
+models in order to prevent overfitting of the predictive model to the data. The name 
+Lasso stands for Least Absolute Shrinkage and Selection Operator.
 
-It turns out that the Lasso regularization has the ability to set some coefficients 
-to zero. This means that Lasso can be used for variable selection in machine learning. If 
-the coefficients that multiply some features are 0, we can safely remove those 
-features from the data. The remaining are the important features in the data.
+It turns out that the Lasso regularization has the ability to set some coefficients to 
+zero. This means that Lasso can be used for variable selection in machine learning. If 
+the coefficients that multiply some features are 0, we can safely remove those features 
+from the data. The remaining are the important features in the data.
 
 Lasso was designed to improve the interpretability of machine learning models by reducing 
-the number of features. Other regularization methods, like Ridge regression or elastic net, 
-do not share this property.
+the number of features. People can better understand the decisions made by a linear model, 
+if they are based on fewer variables.
+
+Other regularization methods, like Ridge regression or elastic net, do not share this 
+property of setting the coefficients to zero, and therefore do not have the intrinsic 
+capability to select features.
 
 ![lasso feature selection]({{ site.baseurl }}/assets/images/posts/lasso/gradient-descent.gif)   
 
-Let’s do a short recap on linear models and regularization.
+Let’s begin by doing a short recap on linear models and regularization.
 
 *For tutorials on feature selection check out our course 
 [Feature Selection for Machine Learning](https://www.trainindata.com/p/feature-selection-for-machine-learning) or our 
@@ -64,9 +68,9 @@ where the constraint on the coefficients is given by the sum of the squared valu
 instead of their module.
 
 In both regularization procedures, the absolute value of the coefficients of the linear 
-model is shrunk to reduce bias, or in other words, to prevent overfitting. However, only 
-Lasso can reduce the coefficients value to zero and, as such, help reduce the number of 
-features in the data as an integral part of the optimization algorithm.
+model is shrunk to decrease bias, or in other words, to prevent overfitting. However, 
+only Lasso can reduce the coefficients value to zero and, as such, help reduce the 
+number of features in the data as an integral part of the optimization algorithm.
 
 In the following image, we see the values of the coefficients for 15 features of the 
 breast cancer dataset, estimated by a Lasso regression with varying constraints, which in 
@@ -86,6 +90,10 @@ the penalty term is very large, as can be witnessed in the following image:
 
 Lasso feature selection is known as an embedded feature selection method because the feature 
 selection occurs during model fitting.
+
+Finally, it is worth highlighting that because Lasso optimizes the OLS, this feature 
+selection procedure is independent of the performance metric that we are going to use to 
+evaluate the performance of the final model.
 
 
 Let’s see how we can select features with Python and the open source library Scikit-learn.
@@ -110,8 +118,9 @@ from sklearn.preprocessing import StandardScaler
 ```
 
 We will next import the breast cancer dataset from Scikit-learn with the aim of predicting 
-if a tumor is benign or malignant. This is a classification dataset. Next, we will split 
-the data into a training and a testing set:
+if a tumor is benign or malignant. This is a classification dataset. 
+
+We will split the data into a training and a testing set:
 
 ```
 breast_cancer = load_breast_cancer()
@@ -127,7 +136,8 @@ scaler = StandardScaler()
 scaler.fit(X_train)
 ```
 
-Next, we will select features utilizing logistic regression as a classifier, with the Lasso regularization:
+Next, we will select features utilizing logistic regression as a classifier, with the 
+Lasso regularization:
 
 ```
 sel_ = SelectFromModel(
@@ -135,7 +145,8 @@ sel_ = SelectFromModel(
 sel_.fit(scaler.transform(X_train), y_train)
 ```
 
-By executing sel_.get_support() we obtain a boolean vector with True for the features that have non-zero coefficients:
+By executing `sel_.get_support()` we obtain a boolean vector with `True` for the features 
+that have non-zero coefficients:
 
 ```
 array([False,  True, False, False, False, False, False,  True,  True,
@@ -144,13 +155,13 @@ array([False,  True, False, False, False, False, False,  True,  True,
         True,  True, False])
 ```
 
-We can identify the names of the set of features that will be removed like this:
+We can find the names of the set of features that will be removed like this:
 
 ```
 removed_feats = X_train.columns[(sel_.estimator_.coef_ == 0).ravel().tolist()]
 ```
 
-If we execute removed_feats we obtain the following array with the features that will be removed:
+If we execute `removed_feats` we obtain the following array with the features that will be removed:
 
 ```
 Index(['mean radius', 'mean perimeter', 'mean area', 'mean smoothness',
@@ -168,8 +179,8 @@ X_train_selected = sel_.transform(scaler.transform(X_train))
 X_test_selected = sel_.transform(scaler.transform(X_test))
 ```
 
-If we now execute X_train_selected.shape, X_test_selected.shape, we obtain the shapes of the 
-reduced datasets: ((426, 14), (143, 14)).
+If we now execute `X_train_selected.shape, X_test_selected.shape`, we obtain the shapes of the 
+reduced datasets: `((426, 14), (143, 14))`.
 
 Go ahead and change the value of the penalty (C) to see if the result changes. The best 
 value of C, and thus, the best feature subset, can be determined with cross-validation.
@@ -196,13 +207,14 @@ sel_ = SelectFromModel(Lasso(alpha=0.001, random_state=10))
 sel_.fit(scaler.transform(X_train), y_train)
 ```
 
-By executing sel_.get_support() we obtain a boolean vector with True for the features that will be selected:
+By executing `sel_.get_support()` we obtain a boolean vector with True for the features 
+that will be selected:
 
 ```
 array([ True,  True,  True,  True,  True,  True,  True,  True])
 ```
 
-We can obtain the name of the selected features by executing sel_.get_feature_names_out(). 
+We can obtain the name of the selected features by executing `sel_.get_feature_names_out()`. 
 
 We can reduce the datasets as follows:
 
@@ -221,9 +233,9 @@ book [Feature Selection in Machine Learning with Python](https://leanpub.com/fea
 
 ## References
 
-- Tibshirani R, Regression Shrinkage and Selection via the Lasso, J. R. Statistics Society, 58: 267-288, 1996.
+- Tibshirani R, [Regression Shrinkage and Selection via the Lasso](https://rss.onlinelibrary.wiley.com/doi/10.1111/j.2517-6161.1996.tb02080.x), J. R. Statistics Society, 58: 267-288, 1996.
 
-- Hastie, Tibshirani, Wainwright, Statistical Learning with Sparsity, The Lasso and Generalizations, CRC Press, Taylor and Francis Group, 2015.
+- Hastie, Tibshirani, Wainwright, [Statistical Learning with Sparsity, The Lasso and Generalizations](https://www.routledge.com/Statistical-Learning-with-Sparsity-The-Lasso-and-Generalizations/Hastie-Tibshirani-Wainwright/p/book/9780367738334), CRC Press, Taylor and Francis Group, 2015.
 
 - For a mathematical demonstration of the Lasso property visit [this link](https://bit.ly/3zWBO8L)
 
