@@ -8,9 +8,10 @@ categories: [ Feature selection, Python, Machine learning ]
 image: assets/images/posts/fspython/cover.png
 ---
 
-An essential step in any data science project is to select the most predictive variables. There are various methods of 
-feature selection. Some scale well but consider only features individually, some are extremely computationally costly and 
-thus applicable only to relatively small datasets, and some others fall somewhere in the middle.
+An essential step in any data science project is to select the most predictive variables. 
+There are various methods of feature selection. Some scale well but consider only features 
+individually. Some are extremely computationally costly and thus applicable only to 
+relatively small datasets. Some others fall somewhere in the middle.
 
 There are also various implementations of feature selection algorithms in Python, utilizing open-source libraries. 
 Covering all of them in an article, is almost impossible. Instead, in this blog, I will introduce the Python libraries 
@@ -34,7 +35,8 @@ find the best feature subsets.
 
 In feature selection, we select a subset of features from the data set to train machine learning algorithms. Feature 
 selection techniques differ from dimensionality reduction in that they do not alter the original representation of the 
-variables but merely select a smaller set of features.
+variables but merely select a smaller set of features. Remember that methods like PCA create new features by combining 
+the existing ones into the principal components.
 
 By reducing the number of features, we can improve the performance of the machine learning models (i.e., avoid overfitting), 
 while reducing training time and creating more interpretable machine learning models.
@@ -88,6 +90,8 @@ With Scikit-learn, we can remove irrelevant features by looking at feature varia
 deviation is zero are constant and can be removed. In this example, we will create a toy dataset with 3 constant 
 variables, and then we will remove them with Scikit-learn.
 
+Let’s begin by creating a toy dataset with 3 constant features:
+
 ```
 import pandas as pd
 from sklearn.datasets import make_classification
@@ -105,13 +109,24 @@ X = pd.DataFrame(X)
 
 # Add constant features
 X[[0, 5, 9]] = 1
+```
 
+In the previous code snippet, we created a toy dataset with the function `make_classification` 
+from Scikit-learn. You will most likely load your own dataset with pandas `read_csv`.
+
+Now, we will remove the constant features with the `VarianceThreshold` class from Scikit-learn:
+
+```
 # To remove constant features
 sel = VarianceThreshold(threshold=0)
 
 # fit finds the features with zero variance
 X_t = sel.fit_transform(X)  
 ```
+
+In the previous code snippet, we first set up the transformer, and then applied the 
+method fit, followed by transform. The transformer discovered the constant features using 
+`fit()`. With `transform()`, it removed them from the data.
 
 `X_t` contains predictors whose variability is greater than 0.
 
@@ -127,7 +142,9 @@ Note that Scikit-learn’s chi-square function does not carry out the intended p
 #### ANOVA
 
 ANOVA is suitable for selecting continuous variables when the target variable is categorical. Let’s explore how we can 
-select features using ANOVA and Scikit-learn. We will use the breast cancer dataset:
+select features using ANOVA and Scikit-learn. We will use the breast cancer dataset.
+
+Let’s load the dataset and separate it into a train and a test set:
 
 ```
 import pandas as pd
@@ -144,7 +161,14 @@ y = breast_cancer.target
 
 # Separate data into train and test sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)
+```
 
+I like using the train_test_split function from Scikit-learn to separate the data. You 
+could also use pandas iloc utilizing index values extracted at random.
+
+Now, we will select the 10 features with the lowest p-value for ANOVA:
+
+```
 # Rank and select features
 sel = SelectKBest(score_func = f_classif, k=10).fit(X_train, y_train)
 
@@ -396,3 +420,12 @@ Both the course and the book contain a great amount of information regarding:
 - code examples using real world datasets
 
 Course and book are suitable for beginner and intermediate data scientists alike.
+
+## Additional reading resources
+
+Check also:
+
+- [Scikit-learn feature selection](https://scikit-learn.org/stable/modules/feature_selection.html)
+- [Feature selection with Feature-engine](https://feature-engine.trainindata.com/en/latest/user_guide/selection/index.html)
+- [Feature selection with MLXtend](http://rasbt.github.io/mlxtend/api_subpackages/mlxtend.feature_selection/)
+- [Lasso feature selection](https://www.blog.trainindata.com/lasso-feature-selection-with-python/)
