@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Mastering Data Preprocessing: Techniques and Best Practices"
+title: "Mastering data preprocessing: Techniques and best practices"
 author: sole
 description: Discover how to preprocess your data to make it suitable for machine learning.
 excerpt: Discover how to preprocess your data to make it suitable for machine learning.
