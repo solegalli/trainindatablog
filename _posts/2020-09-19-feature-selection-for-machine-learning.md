@@ -240,7 +240,8 @@ p-value depending on how different the distributions are.
 
 With this value, it ranks the features. And then the top ranking features are selected.
 
-**Mutual information** measures the mutual dependence between two variables, in this case, the 
+**[Mutual information](https://www.blog.trainindata.com/mutual-information-with-python/)** 
+measures the mutual dependence between two variables, in this case, the 
 feature and the target. Mutual information is similar to correlation, but more general; 
 it doesn’t strictly represent linear association. It measures how much knowing one of 
 these variables reduces uncertainty in the other.
@@ -367,9 +368,10 @@ will overfit and the better it will generalize to unseen data.
 During the Lasso fitting algorithm, the model tries to minimize the difference between the 
 predicted and estimated value of the observation with the penalty.
 
-Lasso can shrink some coefficients of the linear regression to zero. This indicates that 
-the predictor can essentially be multiplied by zero to estimate the target and consequently 
-doesn’t add to the overall prediction of the output.
+[Lasso](https://www.blog.trainindata.com/lasso-feature-selection-with-python/) can shrink 
+some coefficients of the linear regression to zero. This indicates that the predictor can 
+essentially be multiplied by zero to estimate the target and consequently doesn’t add to 
+the overall prediction of the output.
 
 In this way, Lasso regularization helps determine which features can be removed from the model.
 
@@ -445,7 +447,8 @@ Some common hybrid methods are recursive feature elimination and recursive featu
 
 ### Recursive feature elimination
 
-Recursive feature elimination (RFE) consists of the following steps:
+[Recursive feature elimination](https://www.blog.trainindata.com/recursive-feature-elimination-with-python/)
+(RFE) consists of the following steps:
 
 ![Recursive feature elimination procedure]({{ site.baseurl }}/assets/images/posts/featsel/FS_10.png)
 
