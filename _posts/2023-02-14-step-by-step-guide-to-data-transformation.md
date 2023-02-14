@@ -5,7 +5,7 @@ author: sole
 description: Data is the lifeblood of any organization. Learn how to transform it to unlock its full potential.
 excerpt: Data is the lifeblood of any organization. Learn how to transform it to unlock its full potential.
 categories: [ Feature engineering, Python, Machine learning, data preprocessing]
-image: assets/images/posts/dataptransf/cover.png
+image: assets/images/posts/dataptransf/cover.gif
 ---
 
 Data is the lifeblood of any organization, but raw data on its own is not enough. To unlock 
