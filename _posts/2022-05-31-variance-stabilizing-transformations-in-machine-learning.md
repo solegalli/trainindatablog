@@ -16,24 +16,6 @@ we use? And, do we need to transform variables to train any machine learning alg
 
 These are the questions that we will address throughout this article. Let’s get started.
 
-## Feature engineering for machine learning
-
-This article is the fourth in a series of articles on feature engineering for machine 
-learning. You can learn more about how data scientists preprocess their data for machine 
-learning at the following links:
-
-- [Feature engineering for machine learning](https://trainindata.medium.com/feature-engineering-for-machine-learning-a-comprehensive-overview-a7ad04c896f8)
-- Missing data imputation
-- Categorical variable encoding
-- **Variable transformation (you are here)**
-- [Discretization](https://trainindata.medium.com/variable-discretization-in-machine-learning-7b09009915c2)
-- Feature scaling
-- Feature creation
-- [Python libraries for feature engineering](https://towardsdatascience.com/practical-code-implementations-of-feature-engineering-for-machine-learning-with-python-f13b953d4bcd)
-- [Excellent resources for learning about feature engineering](https://trainindata.medium.com/best-resources-to-learn-feature-engineering-for-machine-learning-6b4af690bae7)
-
-Let’s crack on with random variable transformation in machine learning.
-
 ## Why do we transform random variables?
 
 Many statistical methods used in data analysis and supervised machine learning models make 
