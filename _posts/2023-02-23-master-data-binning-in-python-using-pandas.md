@@ -20,7 +20,7 @@ Binning data, sometimes also referred to as bucketing, is also useful in data sc
 machine learning projects, as it reduces the training time of decision tree-based algorithms 
 by reducing the number of cut-points they examine during the induction (training process).
 
-In this tutorial, we'll look into binning data in Python using the cut and qcut functions 
+In this tutorial, we'll look into binning data in Python using the `cut` and `qcut` functions 
 from the open-source library pandas. We will discuss three basic types of binning: arbitrary 
 binning, equal-frequency binning, and equal-width binning.
 
@@ -76,7 +76,7 @@ the variable is skewed, it will still be skewed after the discretization.
 
 ### Equal-Width Binning with Pandas cut()
 
-Let’s see how to perform equal-width binning using Pandas `cut()`. We will use the California 
+Let’s see how to perform equal-width binning using pandas `cut()`. We will use the California 
 housing dataset from Scikit-learn.
 
 Let’s import pandas and load the dataset into a pandas dataframe:
@@ -97,7 +97,7 @@ In the following image, we see a snapshot of the variables in the pandas datafra
 Note that we loaded the data directly from Scikit-learn. You’ll probably have to use pandas 
 `read_csv` to load data from your computer.
 
-Let’s now use pandas cut() to sort the variable Medinc into 10 bins of equal-width. We will 
+Let’s now use pandas `cut()` to sort the variable Medinc into 10 bins of equal-width. We will 
 capture the binned variable in a new column in the dataset.
 
 ```
@@ -124,9 +124,9 @@ Name: income_binned, Length: 20640, dtype: category
 Categories (10, interval[float64, right]): [(0.485, 1.95] < (1.95, 3.4] < (3.4, 4.85] < (4.85, 6.3] ... (9.2, 10.65] < (10.65, 12.1] < (12.1, 13.55] < (13.55, 15.0]]
 ```
 
-Here, dtype is the data type. Note that pandas cut() returns a categorical variable by default.
+Here, `dtype` is the data type. Note that pandas `cut()` returns a categorical variable by default.
 
-Note that the values of the variable are now the intervals. The method cut() has the parameter 
+Note that the values of the variable are now the intervals. The method `cut()` has the parameter 
 labels. Its default value is None, which returns the bin edges. If we set it to False instead, 
 it returns integer indicators of the bins.
 
@@ -212,7 +212,7 @@ The beauty of equal-frequency binning is that it improves the value spread of sk
 
 ### Equal-Frequency Binning with Pandas qcut()
 
-Let’s carry out equal-frequency binning in Python using Pandas `qcut()` using the California 
+Let’s carry out equal-frequency binning in Python using pandas `qcut()` using the California 
 housing dataset. Let’s import the libraries and load the data:
 
 ```
@@ -222,7 +222,7 @@ from sklearn.datasets import fetch_california_housing
 data, y = fetch_california_housing(return_X_y=True, as_frame=True)
 ```
 
-We will use pandas qcut() to create ten intervals with equal-frequency. Just like in the previous 
+We will use pandas `qcut()` to create ten intervals with equal-frequency. Just like in the previous 
 example, we will capture the discretized variable in a new column:
 
 ```
@@ -231,7 +231,7 @@ data["income_binned"] = pd.qcut(data["MedInc"], q=10)
 print(data["income_binned"])
 ```
 
-By defining the number of quantiles using the q argument, we utilize qcut() to conduct 
+By defining the number of quantiles using the q argument, we utilize `qcut()` to conduct 
 equal-frequency binning of the variable. In this instance, we set the quantiles to 10, which 
 separated the data into 10 equal-frequency groups.
 
@@ -259,7 +259,7 @@ Let’s check if there are the same number of elements in each interval:
 data["income_binned"].value_counts()
 ```
 
-As expected, every bin has the same amount of observations because the qcut() method divides 
+As expected, every bin has the same amount of observations because the `qcut()` method divides 
 the data into bins of equal frequency. The output is shown below:
 
 ```
@@ -343,7 +343,7 @@ and the bin boundaries are not determined by any statistical criteria.
 
 ### Arbitrary Binning with Python
 
-Here's an example of how to use pandas cut() to perform arbitrary binning. First, we import 
+Here's an example of how to use pandas `cut()` to perform arbitrary binning. First, we import 
 the necessary libraries and load the California housing dataset as shown below:
 
 ```
