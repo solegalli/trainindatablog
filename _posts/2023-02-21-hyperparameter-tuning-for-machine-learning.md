@@ -115,7 +115,7 @@ training a model for each combination, and comparing the performance of the mode
 validation set or test set. Once these processes are complete, we can arrive at the set 
 of hyperparameters that work best for the final model.
 
-A hyperparameters search consist of:
+A hyperparameters search consists of:
 
 - Defining the hyperparameter space: the range of values to test for each hyperparameter
 
