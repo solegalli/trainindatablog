@@ -324,8 +324,8 @@ specific requirements of the problem. Unlike equal-width or equal-frequency binn
 boundary values are not determined by the data itself but rather by the data analyst or the 
 problem domain.
 
-Arbitrary binning is useful when the data has a specific meaning or context that cannot be c
-aptured by other binning methods. For example, on an e-commerce website, we might group 
+Arbitrary binning is useful when the data has a specific meaning or context that cannot be 
+captured by other binning methods. For example, on an e-commerce website, we might group 
 customers into different categories based on their shopping habits or purchase history. This 
 would involve creating custom bins that are relevant to the problem rather than relying on 
 statistical criteria to determine the bin boundaries.
