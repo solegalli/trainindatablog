@@ -269,9 +269,9 @@ they are about.
 
 SMOTE is suitable only for continuous variables. There are therefore extensions of SMOTE 
 that tackle datasets with both numerical and categorical variables, or just categorical variables. 
-There are also other oversampling techniques like ADASYN, where samples that are harder to 
-learn, such as outliers or noisy samples, are given more weight. You can learn more about 
-alternative oversampling methods in our course "[Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data)."
+There are also other oversampling techniques like ADASYN, where samples in the feature space 
+that are harder to learn are given more weight. You can learn more about alternative oversampling 
+methods in our course "[Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data)."
 
 Let’s assess the pros and cons of oversampling methodologies:
 
@@ -363,7 +363,7 @@ trained on the same dataset, and their predictions are aggregated to produce a f
 The classical ensemble models are random forests and gradient-boosting machines, which combine 
 the output of several decision trees to make the final predictions. However, these models 
 share the characteristics of all other traditional machine learning algorithms in that they 
-optimize for a balanced metric, overall accuracy.
+optimize for a balanced metric, the overall accuracy.
 
 Some scientists have, however, designed specific ensemble models that are geared to better 
 classify imbalanced datasets, and therefore tackle the class problem out-of-the-box. Let’s 
@@ -371,9 +371,9 @@ explore some of them.
 
 ### Examples of Ensemble Models for Imbalanced Data
 
-- Balanced Bagging (Bootstrap Aggregating): Several models are trained on different subsets of the training data, which are sampled randomly with replacement. These models are then combined through a weighted average to make a final prediction.
+- Balanced Bagging (Bootstrap Aggregating): Several models are trained on different subsets of the training data, which are sampled randomly with replacement. The resampling rebalances the class distribution. These models are then combined through a weighted average to make a final prediction.
 
-- RUSBoost: It combines data sampling and boosting to improve classification performance for imbalanced training data.
+- RUSBoost: It combines data (re)sampling and boosting to improve classification performance for imbalanced training data.
 
 - Balancing Cascade: A cascade of classifiers is trained, each of which learns to distinguish between a balanced subset of the majority class and the minority class. Misclassified majority class samples are discarded in each step to prevent them from dominating the classifier.
 
