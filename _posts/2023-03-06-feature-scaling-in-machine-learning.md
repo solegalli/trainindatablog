@@ -3,7 +3,7 @@ layout: post
 title: "Feature scaling in machine learning: Standardization, MinMaxScaling and more..."
 author: sole
 description: Discover why and how we scale variables in Python for machine learning.
-excerpt: FDiscover why and how we scale variables in Python for machine learning.
+excerpt: Discover why and how we scale variables in Python for machine learning.
 categories: [ Feature engineering, Python, Machine learning]
 image: assets/images/posts/scaling/cover.gif
 ---
@@ -42,7 +42,7 @@ Features with bigger value ranges tend to dominate over features with smaller ra
 scale allows us to get a better view of data points that are more similar to each other when using distance metrics.
 
 
-![machine learning algorithms sensitive to feature magnitud]({{ site.baseurl }}/assets/images/posts/scaling/algos.png)   
+![machine learning algorithms sensitive to feature magnitude]({{ site.baseurl }}/assets/images/posts/scaling/algos.png)   
 
 
 In summary, having features on a similar scale lets us compare feature importance, allows us to train better models, and also 
