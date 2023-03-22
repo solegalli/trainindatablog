@@ -33,13 +33,13 @@ of time series data include stock prices over time; sales figures over months or
 consumption for each hour; the number of visitors to a website throughout the day; temperature 
 readings for each hour; etc.
 
+![examples of time series]({{ site.baseurl }}/assets/images/posts/forecasting/timeseries.png)   
+
 Time series can be divided into two categories:
 
 - A univariate (single variable) time series consists of observations of one variable over some time.
 
 - A multivariate (multiple variables) time series consists of observations from multiple variables recorded in the same period.
-
-![examples of time series]({{ site.baseurl }}/assets/images/posts/forecasting/timeseries.png)   
 
 Time series data is commonly used in various industries to make decisions and predict future 
 trends, which brings us to forecasting. 
@@ -316,11 +316,11 @@ smoothing.
 
 Some other challenges include: 
 
-- Data leakage: Traditional machine learning models can be prone to data leakage, where information from the future is inadvertently used in the training process. This can lead to overfitting and inaccurate predictions.
+- **Data leakage**: Traditional machine learning models can be prone to data leakage, where information from the future is inadvertently used in the training process. This can lead to overfitting and inaccurate predictions.
 
-- Trend & seasonality: Time series data often exhibit trend and seasonality, making it difficult for traditional machine learning models to capture and incorporate into the forecasting model.
+- **Trend & seasonality**: Time series data often exhibit trend and seasonality, making it difficult for traditional machine learning models to capture and incorporate into the forecasting model.
 
-- Multistep forecasting: Traditional machine learning models are generally designed for single-step forecasting, where the model predicts the value of the next time step based on the current time step. However, we may need to make multi-step forecasts in many real-world applications, where the model predicts several future time steps. This can be challenging for traditional machine-learning models to handle.
+- **Multistep forecasting**: Traditional machine learning models are generally designed for single-step forecasting, where the model predicts the value of the next time step based on the current time step. However, we may need to make multi-step forecasts in many real-world applications, where the model predicts several future time steps. This can be challenging for traditional machine-learning models to handle.
 
 Suitable feature engineering techniques and frameworks for multistep forecasting can help us 
 overcome these challenges. We can incorporate time-related features into the model by using 
