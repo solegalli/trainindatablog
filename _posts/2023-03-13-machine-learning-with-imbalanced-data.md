@@ -4,7 +4,7 @@ title: "Dealing with Imbalanced Datasets in Machine Learning: Techniques and Bes
 author: sole
 description: Methods to improve the performance of models trained on imbalanced datasets.
 excerpt: Methods to improve the performance of models trained on imbalanced datasets.
-categories: [ Feature engineering, Python, Machine learning]
+categories: [Imbalanced data, Python, Machine learning]
 image: assets/images/posts/imbalanced/cover.gif
 ---
 
