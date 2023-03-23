@@ -22,8 +22,8 @@ and cost-sensitive learning.
 Undersampling involves removing samples from the majority class to balance the dataset. Today, 
 we'll review some undersampling methods and tutorials and provide valuable resources. 
 
-For more information about undersampling and oversampling methods, algorithms, and step-by-step 
-tutorials for implementing them in Python, check out our course 
+For more information about undersampling and oversampling methods, and step-by-step 
+tutorials to implement them in Python, check out our course 
 [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
 
 ## What is Undersampling?
@@ -65,8 +65,8 @@ also resample the minority class with replacement.
 
 ### When to Use Oversampling?
 
-The choice between oversampling and undersampling techniques depends on the problem and the 
-data. Oversampling can be helpful when we have limited data and can’t afford to discard observations.
+The choice between oversampling and undersampling techniques depends on the data at hand. 
+Oversampling can be helpful when we have limited data and can’t afford to discard observations.
 
 However, oversampling can also result in overfitting, where the model learns the noise and 
 variability of the minority class and performs poorly on new examples.
@@ -93,7 +93,7 @@ A complete list of undersampling methods includes:
 
 - One Sided Selection
 
-- Edited Nearest Neighbours
+- Edited Nearest Neighbours (ENN)
 
 - Repeated ENN
 
@@ -114,7 +114,7 @@ Random undersampling randomly removes instances from the majority class to balan
 dataset. It eliminates a subset of data points from the majority class to create a more balanced 
 dataset.
 
-Let’s implement random undersampling utilizing the RandomUnderSampler from imbalanced learn. 
+Let’s implement random undersampling utilizing the `RandomUnderSampler` from imbalanced learn. 
 We’ll begin by importing the necessary libraries, classes, and functions:
 
 ```
@@ -131,8 +131,8 @@ from imblearn.under_sampling import RandomUnderSampler
 ```
 
 Let’s now create a toy dataset for the demonstration using the `make_classification` function 
-from Scikit-learn. The code snippet returns the dataframe X with the features and the Series 
-y with the labels:
+from Scikit-learn. The code following snippet returns the dataframe X with the features and 
+the Series y with the labels:
 
 ```
 X, y = make_classification(n_samples=1000,
@@ -162,8 +162,8 @@ indicate the minority class. Of 1,000 samples, 983 are blue dots, and 17 are ora
 
 ![toy dataset with imbalanced classes]({{ site.baseurl }}/assets/images/posts/imbalanced/sample_raw_us_blog.png)   
 
-Now we’ll apply the RandomUnderSampler to obtain a final class distribution of 50:50. We need 
-to set the parameter sampling_strategy to auto for this purpose. 
+Now we’ll use the `RandomUnderSampler` to obtain a final class distribution of 50:50. We need 
+to set the parameter `sampling_strategy` to auto for this purpose. 
 
 ```
 rus = RandomUnderSampler(
@@ -174,10 +174,11 @@ rus = RandomUnderSampler(
 X_resampled, y_resampled = rus.fit_resample(X, y)
 ```
 
-`X_resampled` will contain the resampled dataset, and y_resampled will have the target.
+From the previous output, `X_resampled` contains the resampled dataset, and `y_resampled` 
+has the resampled target.
 
-Let’s go ahead and compare the size of the original and resample datasets. The following code 
-will identify the original data size. 
+Let’s go ahead and compare the size of the original and resampled datasets. The following code 
+will identify the original data size:
 
 ```
 X.shape, y.shape
@@ -189,15 +190,16 @@ The output indicates that the original data has 1000 samples with two features.
 ((1000, 2), (1000,))
 ```
 
-At this stage, we want to know the size of undersampled data. 
+We want to know the size of undersampled data:
 
 ```
 X_resampled.shape, y_resampled.shape
 ```
 
 The below output indicates that after applying random undersampling to the original dataset, the 
-undersampled dataset has 34 observations, ensuring a 50:50 balancing ratio as we expected. We 
-originally had 17 observations from the minority class. We, therefore, obtained a dataset 
+undersampled dataset has 34 observations, ensuring a 50:50 balancing ratio as we expected. 
+
+We originally had 17 observations from the minority class. We, therefore, obtained a dataset 
 containing only 17 observations of the majority class.
 
 ```
@@ -214,20 +216,20 @@ plt.title('Undersampled dataset')
 plt.show()
 ```
 
-![toy dataset with re-balanced classes]({{ site.baseurl }}/assets/images/posts/imbalanced/sample_rus.png)   
-
 Here you can see an equal number of blue and orange dots resulting from random undersampling. 
 
-In our GitHub repository of random undersampling, you’ll find a few more advanced applications, 
-such as changing the balancing ratio, loading data, handling imbalanced targets, and comparing 
-machine learning performance.
+![toy dataset with re-balanced classes]({{ site.baseurl }}/assets/images/posts/imbalanced/sample_rus.png)   
+
+In our [GitHub repository](https://github.com/solegalli/machine-learning-imbalanced-data/blob/master/Section-04-Undersampling/04-01-Random-Undersampling.ipynb) 
+of random undersampling, you’ll find a few more advanced applications, such as changing the 
+balancing ratio, loading data, handling imbalanced targets, and comparing machine learning performance.
 
 ## Tomek Links
 
 Tomek Links focuses on cleaning up data at the decision boundary. So what is a Tomek Link? If two 
 samples are nearest neighbors and from a different class, they are Tomek Links. 
 
-The Tomek Links undersampling removes the Tomek Link from the majority class in its more 
+Tomek Links undersampling removes the Tomek Link from the majority class in its more 
 conservative form. In its more aggressive variant, it removes the entire Tomek Link. The underlying 
 assumption is that samples that are closest neighbors yet from a different class contribute 
 noise to the training data.
@@ -264,8 +266,8 @@ X = pd.DataFrame(X, columns =['varA', 'varB'])
 y = pd.Series(y)
 ```
 
-Next, we set up the TomekLinks() to remove samples identified as Tomek Links. By setting the 
-parameter sampling_strategy to ‘auto,’ we will remove only the observations from the majority 
+Next, we set up the `TomekLinks()` to remove samples identified as Tomek Links. By setting the 
+parameter `sampling_strategy` to ‘auto,’ we will remove only the observations from the majority 
 class in the Tomek Link: 
 
 ```
@@ -361,28 +363,29 @@ will be removed with Tomek Links.
 
 ## Edited Nearest Neighbors (ENN) Undersampling
 
-Unlike random undersampling or cluster centroid undersampling, Edited Nearest Neighbors (ENN) 
-is a selective method that removes examples misclassified by the k-nearest neighbor (k-NN) algorithm. 
+Unlike random undersampling, Edited Nearest Neighbors (ENN) is a selective method that removes 
+examples from the majority class whose neighbours, identified by the k-nearest neighbor (k-NN) 
+algorithm, belong to a different class. 
 
-Here are a few points to remember about KNN before we proceed to explore the ENN method: 
+The ENN algorithm works as follows: 
 
-- Traditional distances between discrete or categorical variables (euclidean) are not ideal. We can use other distances for the KNNs.
+- First, the k-NN algorithm is used to identify examples in the majority class whose neighbours are from a different class
+- Next, it removes these examples.
 
-- Algorithms that train several rounds of KNNs do not scale. It may take long run times when using cross-validation or massive datasets. 
-
-- The Nearest neighbors algorithms are distance-based algorithms. Thus, the dataset requires scaling.
-
-The ENN algorithm works as follows: first, the k-NN algorithm is used to identify examples 
-in the minority class that has majority class neighbors. These minority examples are removed 
-from the dataset, as the classifier will likely misclassify them. 
+In other words, ENN removes observations from the majority class if the majority of their neighbours
+are from a different class. These are data points likely to be missclassified by a classifier.
 
 ENN can reduce noise in the data by eliminating overlapping data points often present at the 
 decision boundary between the classes. The resulting dataset is then used for training the 
 machine learning model.
 
-To further improve performance, we can iterate the ENN algorithm multiple times. We’ve applied 
-the k-NN algorithm to the current dataset in each iteration to remove the misclassified minority 
-examples. This process continues until no more minority examples are misclassified.
+There are a few things to consider when using the KNN algorithm though:
+
+- Traditional distances like the Euclidean distance, between discrete or categorical variables are not ideal.
+
+- KNNs do not scale. It may take long run times when using cross-validation or massive datasets. 
+
+- The Nearest neighbors algorithms are distance-based algorithms. Thus, the dataset requires scaling.
 
 Let’s implement ENN in Python using imbalanced learn. We’ll begin by importing the necessary 
 libraries, functions, and classes:
