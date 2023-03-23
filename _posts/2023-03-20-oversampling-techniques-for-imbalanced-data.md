@@ -5,7 +5,7 @@ author: sole
 description: Oversampling techniques for imbalanced datasets in Python.
 excerpt: Oversampling techniques for imbalanced datasets in Python.
 categories: [Imbalanced data, Python, Machine learning]
-image: assets/images/posts/imbalanced/cover_ovrsampling.gif
+image: assets/images/posts/imbalanced/cover_ovrsampling.png
 ---
 
 Data drives the world of machine learning and neural networks, yet data quality can make or 
