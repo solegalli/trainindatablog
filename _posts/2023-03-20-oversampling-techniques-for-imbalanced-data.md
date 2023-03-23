@@ -5,7 +5,7 @@ author: sole
 description: Oversampling techniques for imbalanced datasets in Python.
 excerpt: Oversampling techniques for imbalanced datasets in Python.
 categories: [Imbalanced data, Python, Machine learning]
-image: assets/images/posts/imbalanced/cover_ovrsampling.png
+image: assets/images/posts/imbalanced/cover_oversampling.png
 ---
 
 Data drives the world of machine learning and neural networks, yet data quality can make or 
@@ -58,8 +58,8 @@ Oversampling and undersampling are resampling techniques for balancing imbalance
 therefore resolving the imbalance problem. They are commonly used to generate suitable training 
 data sets.
 
-While oversampling adds new samples of the minority class, undersampling (or downsampling) r
-educes the number of samples in the majority class.
+While oversampling adds new samples of the minority class, undersampling (or downsampling) 
+reduces the number of samples in the majority class.
 
 When deciding between these two approaches for balancing an imbalanced dataset, one should 
 consider their advantages and limitations.
@@ -97,7 +97,7 @@ from imblearn.over_sampling import RandomOverSampler
 ```
 
 Now we create a toy dataset with 2 classes, where 80% of the observations belong to the majority 
-class and 20% to the minority class. We use the make_blobs function from Scikit-learn:
+class and 20% to the minority class. We use the `make_blobs` function from Scikit-learn:
 
 ```
 X, y = make_blobs(
@@ -130,9 +130,7 @@ plt.show()
 The blue dots in the toy dataset represents the majority class, whereas the orange dots 
 represent the minority class:
 
-
-[Picture of original dataset]
-
+!toy dataset with two imbalanced classes]({{ site.baseurl }}/assets/images/posts/imbalanced/sample_raw_two_classes.png)   
 
 We’ll use the following code to select instances from the minority class in a random manner 
 with replacement until the number of observations in the minority class equals the number 
@@ -207,13 +205,13 @@ plt.show()
 
 Below is our oversampled data set. 
 
-[Picture of oversampled data set]
+!toy dataset with two re-balanced classes]({{ site.baseurl }}/assets/images/posts/imbalanced/sample_ros.png)   
 
 Although there are more instances of the minority class after random oversampling, they may 
 not appear more prominent when displayed because of the overlapping. However, you can see darker 
 orange tones now for the minority class, which correspond to the duplicated instances.
 
-We can now use the resampled dataset, X_res to train our machine learning classifiers. It is 
+We can now use the resampled dataset, `X_res` to train our machine learning classifiers. It is 
 important to remember that while we train the models on the balanced dataset, we should test 
 their performance on a test set with the original class distribution.
 
@@ -248,7 +246,7 @@ the model from relying too heavily on the exactly replicated minority class inst
 quickly implement it using Python libraries such as imbalanced-learn.
 
 For a Jupyter notebook with the full implementation, visit our 
-GitHub repository](https://github.com/solegalli/machine-learning-imbalanced-data/blob/master/Section-05-Oversampling/05-01-Random-Oversampling.ipynb).
+[GitHub repository](https://github.com/solegalli/machine-learning-imbalanced-data/blob/master/Section-05-Oversampling/05-01-Random-Oversampling.ipynb).
 
 ## SMOTE (Synthetic Minority Oversampling Technique)
 
@@ -366,7 +364,7 @@ plt.title('Over-sampled dataset')
 plt.show()
 ```
 
-[Picture of oversampled data set]
+!toy dataset with two re-balanced classes]({{ site.baseurl }}/assets/images/posts/imbalanced/sample_smote.png)   
 
 So you can notice that there are now new observations in between the original data points 
 of the minority class. 
