@@ -130,7 +130,7 @@ plt.show()
 The blue dots in the toy dataset represents the majority class, whereas the orange dots 
 represent the minority class:
 
-!toy dataset with two imbalanced classes]({{ site.baseurl }}/assets/images/posts/imbalanced/sample_raw_two_classes.png)   
+![toy dataset with two imbalanced classes]({{ site.baseurl }}/assets/images/posts/imbalanced/sample_raw_two_classes.png)   
 
 We’ll use the following code to select instances from the minority class in a random manner 
 with replacement until the number of observations in the minority class equals the number 
@@ -205,7 +205,7 @@ plt.show()
 
 Below is our oversampled data set. 
 
-!toy dataset with two re-balanced classes]({{ site.baseurl }}/assets/images/posts/imbalanced/sample_ros.png)   
+![toy dataset with two re-balanced classes]({{ site.baseurl }}/assets/images/posts/imbalanced/sample_ros.png)   
 
 Although there are more instances of the minority class after random oversampling, they may 
 not appear more prominent when displayed because of the overlapping. However, you can see darker 
@@ -364,7 +364,7 @@ plt.title('Over-sampled dataset')
 plt.show()
 ```
 
-!toy dataset with two re-balanced classes]({{ site.baseurl }}/assets/images/posts/imbalanced/sample_smote.png)   
+![toy dataset with two re-balanced classes]({{ site.baseurl }}/assets/images/posts/imbalanced/sample_smote.png)   
 
 So you can notice that there are now new observations in between the original data points 
 of the minority class. 
