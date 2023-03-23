@@ -369,7 +369,7 @@ algorithm, belong to a different class.
 
 The ENN algorithm works as follows: 
 
-- First, the k-NN algorithm is used to identify examples in the majority class whose neighbours are from a different class
+- First, the k-NN algorithm is used to identify examples in the majority class whose neighbours are from a different class.
 - Next, it removes these examples.
 
 In other words, ENN removes observations from the majority class if the majority of their neighbours
@@ -419,7 +419,7 @@ X = pd.DataFrame(X, columns =['varA', 'varB'])
 y = pd.Series(y)
 ```
 
-Next, we set up the EditedNearestNeighbours(). By setting the sampling strategy to ‘auto,’ 
+Next, we set up the `EditedNearestNeighbours()`. By setting the sampling strategy to ‘auto,’ 
 we will remove only the observations from the majority class:
 
 ```
@@ -479,7 +479,7 @@ Let’s repeat the procedure for the resampled data:
 y.value_counts()
 ```
 
-As expected, we have six fewer samples in the majority class:
+As expected, we have five fewer samples in the majority class:
 
 ```
 0    978
@@ -487,7 +487,8 @@ As expected, we have six fewer samples in the majority class:
 dtype: int64
 ```
 
-After applying EditedNearestNeighbours, let’s plot both data sets. First, we plot the original training set:
+After applying Edited Nearest Neighbours, let’s plot both data sets. First, we plot the original 
+training set:
 
 ```
 sns.scatterplot(
@@ -514,8 +515,8 @@ plt.show()
 
 ![toy dataset after applying Edited nearest neighbors]({{ site.baseurl }}/assets/images/posts/imbalanced/sample_enn2.png)   
 
-The closer the samples from the majority class to the decision boundary, it’ll remove more observations from the 
-EditedNearestNeighbours.
+We can now see more orange examples among the blue dots, corresponding to those that
+were previously covered by examples from the majority class.
 
 ENN also has multiple variants: repeated ENN (RENN) and AllKNN.
 
@@ -527,7 +528,8 @@ AllKNN is another ENN variation that repeats the ENN algorithm several times. Th
 examines only the closest neighbor of each observation from the majority class. Then, it increases 
 the number of neighbors examined at each iteration by 1. Afterward, the algorithm stops at the round corresponding to the user-determined number of neighbors  or when one of the majority classes becomes the minority — whichever happens first. 
 
-Want to find out more on RENN and AllKNN? Visit our course on Machine Learning with Imbalanced Data.
+Want to find out more on RENN and AllKNN? Visit our course on 
+[Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
 
 ## NearMiss Undersampling
 
@@ -559,14 +561,15 @@ to another. Therefore, it is crucial to evaluate the performance of each method 
 the best approach for a specific task.
 
 We’ve reviewed only a handful of undersampling methods from the above list in this article. 
-Check out our Machine Learning with Imbalanced Data course. You’ll find detailed discussions 
-and tutorials on other methods and comprehensive applications of Python open-source libraries 
-for handling imbalanced data.
+Check out our [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data) 
+course. You’ll find detailed discussions and tutorials on other methods and comprehensive 
+applications of Python open-source libraries for handling imbalanced data.
 
 The data science community is yet to reach a consensus on which technique is the most effective 
 or suitable for any given dataset. So, take this opportunity to learn more about these techniques 
 and determine what works best for you.
 
-You can always practice using our GitHub repository of undersampling examples or learn more
-from our [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data)
+You can always practice using our [GitHub repository](https://github.com/solegalli/machine-learning-imbalanced-data/tree/master/Section-04-Undersampling) 
+of undersampling examples or learn more from our 
+[Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data)
 course.
