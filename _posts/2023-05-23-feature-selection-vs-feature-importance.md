@@ -90,6 +90,8 @@ There are various methods to infer the feature importance:
 
 1. Importance derived from linear models: linear models like linear regression and logistic regression assign a coefficient to each feature. The magnitude of these coefficients determines the importance of the corresponding feature. Larger coefficients indicate a stronger influence on the target variable.
 
+![linear regression model equation]({{ site.baseurl }}/assets/images/posts/lasso/fig1.png)   
+
 2. Importance derived from tree-based models: In decision tree-based algorithms such as Random Forest and XGBoost, feature importance can be calculated by analyzing the number of times a feature is used to split the data across multiple decision trees, as well as the degree o reduction in the impurity. The more frequently a feature is utilized for splitting, and the higher the impurity reduction, the higher its importance score.
 
 3. Importance derived from statistical tests: Statistical tests like chi-square, ANOVA, and correlation assign a probability value that informs how likely the null hypothesis is. The null hypothesis is that there is no difference in the feature distribution among the target classes in classification and that the predictor and the target are not correlated for regression. The smaller the probability of the null hypothesis, the more important the feature is.
@@ -98,7 +100,6 @@ There are various methods to infer the feature importance:
 
 5. Importance derived from single feature classifiers or regressors. This procedure involves training a single-feature machine learning model and then obtaining a performance metric value. These values are related to the importance of the feature for this classification or regression task.
 
-![linear regression model equation]({{ site.baseurl }}/assets/images/posts/lasso/fig1.png)   
 
 
 ## Feature Selection and Feature Importance with Python
@@ -151,4 +152,4 @@ help us understand what drives the model's decisions in local areas.
 
 - Book: [Feature Selection for Machine Learning with Python](https://leanpub.com/feature-selection-in-machine-learning/)
 
-- Article: [Feature selection and feature impotance, how are they related](https://mindfulmodeler.substack.com/p/feature-selection-or-feature-importance)
+- Article: [Feature selection and feature impotance](https://mindfulmodeler.substack.com/p/feature-selection-or-feature-importance)
