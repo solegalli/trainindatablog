@@ -146,7 +146,7 @@ help us understand what drives the model's decisions in local areas.
 
 - Course: [Feature Selection for Machine Learning](https://www.trainindata.com/p/feature-selection-for-machine-learning)
 
-- Course: [Interpreting Machine Learning Models](https://www.trainindata.com/p/interpreting-machine-learning-models)
+- Course: [Machine Learning Interpretability](https://www.trainindata.com/p/machine-learning-interpretability)
 
 - Book: [Feature Selection for Machine Learning with Python](https://leanpub.com/feature-selection-in-machine-learning/)
 
