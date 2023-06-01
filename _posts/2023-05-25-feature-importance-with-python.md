@@ -80,7 +80,7 @@ from sklearn.linear_model import LinearRegression
 from yellowbrick.model_selection import FeatureImportances
 ```
 
-Now, we load the house price data set, and to follow best practices, we split the data into train 
+Now, we load the house price data set as a dataframe. To follow best practices, we split the data into train 
 and test. The importance of the features should be assessed only using the training data, so if 
 we select features based on it, we have a completely naive test set for a fair evaluation.
 
@@ -118,8 +118,8 @@ model.fit(
 )
 ```
 
-And now, let’s make a bar chart with the feature importance, which is nothing else than the 
-absolute value of the regression coefficients:
+And now, let’s make a bar chart with the feature importance for visualization. The 
+feature importance is the absolute value of the regression coefficients:
 
 ```
 importance = pd.Series(
@@ -248,8 +248,8 @@ from sklearn.ensemble import RandomForestRegressor
 from feature_engine.selection import RecursiveFeatureElimination
 ```
 
-We load and split the data as per the previous section, so I will skip those steps here and jump 
-directly to estimating feature importance by recursive feature elimination.
+We load and split the data as per the previous section, so I will skip those steps here and directly 
+compute the feature importance by recursive feature elimination.
 
 The RecursiveFeatureElimination from Feature-engine is designed to select features based on the 
 performance drop. But here, we will only use it to determine the feature's importance. Through 
