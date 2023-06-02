@@ -135,7 +135,7 @@ plt.show()
 
 In the following image, we see the features sorted by their coefficient magnitude:
 
-![feature selection methods]({{ site.baseurl }}/assets/images/posts/importance/linear-importance.png)
+![logistic regression coefficients as feature importance values]({{ site.baseurl }}/assets/images/posts/importance/linear-importance.png)
 
 We can go 1 step further, and automate plotting the variable importance with yellowbrick. 
 [Yellowbrick](https://www.scikit-yb.org/en/latest/api/model_selection/importances.html)
@@ -156,7 +156,7 @@ viz.show()
 
 In the following image we see the features ordered by their importance.
 
-![feature selection methods]({{ site.baseurl }}/assets/images/posts/importance/linear-importance-yb.png)
+![bar plot with the feature importances]({{ site.baseurl }}/assets/images/posts/importance/linear-importance-yb.png)
 
 In this example, we did not use regularization, but that is always an option. The contribution, 
 that is, the importance of each feature, will change depending on the strength of the regularization 
@@ -209,7 +209,7 @@ plt.show()
 
 In the following image, we see the importance of the features in decreasing order:
 
-![feature selection methods]({{ site.baseurl }}/assets/images/posts/importance/random-forest-importance.png)
+![bar plot with the feature importance derived from decision trees]({{ site.baseurl }}/assets/images/posts/importance/random-forest-importance.png)
 
 We can go 1 step further and automate plotting with yellowbrick:
 
@@ -225,7 +225,7 @@ viz.show()
 
 In the following image we see the importance of the different features:
 
-![feature selection methods]({{ site.baseurl }}/assets/images/posts/importance/random-forest-importance-yb.png)
+![plot with the feature importance derived from decision trees]({{ site.baseurl }}/assets/images/posts/importance/random-forest-importance-yb.png)
 
 
 ### Performance drop-derived feature importance
@@ -278,7 +278,7 @@ plt.show()
 
 In the following image, we see the drop in performance that occurs when dropping each of the features:
 
-![feature selection methods]({{ site.baseurl }}/assets/images/posts/importance/rfe-importance.png)
+![feature importance derived by the drop in performance]({{ site.baseurl }}/assets/images/posts/importance/rfe-importance.png)
 
 
 If we now want to reduce the number of features in the dataset, we can do:
@@ -345,7 +345,7 @@ plt.show()
 
 In the following image, we see the drop in performance caused by feature permutation:
 
-![feature selection methods]({{ site.baseurl }}/assets/images/posts/importance/permutation-importance.png)
+![bar plot with the permutation feature importance]({{ site.baseurl }}/assets/images/posts/importance/permutation-importance.png)
 
 The importance score is given by the R-squared which is the default parameter. But we can change 
 it through the permutation_importance function to other metrics like mean squared error (mse).
