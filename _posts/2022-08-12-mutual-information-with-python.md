@@ -1,28 +1,18 @@
 ---
 layout: post
-title:  "Mutual information with Python"
+title: "Mutual information with Python"
 author: sole
-description: What is the mutual information, how can we calculate it in Python, and how do we use it to select features for machine learning?
-excerpt: Mutual information measures the information we know from one variable by observing the values of the second variable.
-categories: [ Feature selection, Python, Machine learning ]
-image: assets/images/posts/mutual_info_cover.png
+description: "What is the mutual information, how can we calculate it in Python, and how do we use it to select features for machine learning?"
+excerpt: "What is the mutual information, how can we calculate it in Python, and how do we use it to select features for machine learning?"
+categories: [Feature Selection, Machine Learning]
+image: assets/images/posts/mutual-information-with-python/mutual_info_cover.png
 ---
 
-Mutual information (MI) is a non-negative value that measures the mutual dependence between two random variables. The 
-mutual information measures the amount of information we can know from one variable by observing the values of the 
-second variable.
+Mutual information (MI) is a non-negative value that measures the mutual dependence between two random variables. The mutual information measures the amount of information we can know from one variable by observing the values of the second variable.
 
+The mutual information is a good alternative to Pearson’s correlation coefficient, because it is able to measure any type of relationship between variables, not just linear associations. In addition, it is suitable for both continuous and discrete variables, unlike Pearson’s correlation coefficient.
 
-The mutual information is a good alternative to Pearson’s correlation coefficient, because it is able to measure any 
-type of relationship between variables, not just linear associations. And also, it is suitable for both continuous and 
-discrete variables, unlike Pearson’s correlation coefficient.
-
-
-MI is closely related to the concept of entropy. Thus, I will first introduce the entropy, then show how we compute the 
-entropy of a discrete variable. Next, I  will show how to compute the MI between discrete variables. I will extend the 
-definition of MI for continuous variables. And finally, I will finish with a Python implementation of feature selection 
-based on MI.
-
+MI is closely related to the concept of entropy. Thus, I will first introduce the entropy, then show how we compute the entropy of a discrete variable. Next, I will show how to compute the MI between discrete variables. I will extend the definition of MI for continuous variables. And finally, I will finish with a Python implementation of feature selection based on MI.
 
 In summary, in the following paragraphs we will discuss:
 
@@ -32,28 +22,23 @@ In summary, in the following paragraphs we will discuss:
 - Mutual information of continuous variables.
 - Feature selection based on MI with Python.
 
-*For tutorials on feature selection using the mutual information and other methods, check out our course 
-[Feature Selection for Machine Learning](https://www.trainindata.com/p/feature-selection-for-machine-learning) or our 
-book [Feature Selection in Machine Learning with Python](https://leanpub.com/feature-selection-in-machine-learning/).*
+*To master feature selection using the mutual information and other methods, enroll in our course [Feature Selection for Machine Learning](https://www.trainindata.com/p/feature-selection-for-machine-learning) or read our book [Feature Selection in Machine Learning with Python](https://www.trainindata.com/p/feature-selection-in-machine-learning-book).*
+
+[![Feature Selection for Machine Learning, online course.]({{ site.baseurl }}/assets/images/posts/feature-selection-with-filter-methods/feature-selection-course-1024x576.png)](https://www.trainindata.com/p/feature-selection-for-machine-learning)
 
 ## Entropy
 
-The entropy of a variable is a measure of the information, or alternatively, the "uncertainty," of the variable's possible values.
-
+The entropy of a variable is a measure of the information, or alternatively, the “uncertainty,” of the variable’s possible values.
 
 Entropy is defined as:
 
-![entropy]({{ site.baseurl }}/assets/images/posts/mi_eq.png)
+![Entropy equation]({{ site.baseurl }}/assets/images/posts/mutual-information-with-python/mi_eq.png)
 
-
-where H(X) is the Shannon entropy of X and p(x) is the probability of the values of X. If the logarithm base is 2, then 
-the unit of the entropy is a bit. If the logarithm base is e, then the unit is the nat. If the logarithm base is 10, the 
-unit is the hartley.
-
+where H(X) is the Shannon entropy of X and p(x) is the probability of the values of X. If the logarithm base is 2, then the unit of the entropy is a bit. If the logarithm base is e, then the unit is the nat. If the logarithm base is 10, the unit is the hartley.
 
 To illustrate with an example, the entropy of a fair coin toss is 1 bit:
 
-![entropy computation]({{ site.baseurl }}/assets/images/posts/mi_eq2.png)
+![entropy of a fair coin toss]({{ site.baseurl }}/assets/images/posts/mutual-information-with-python/mi_eq2.png)
 
 Note that the log in base 2 of 0.5 is -1.
 
@@ -70,67 +55,53 @@ which returns 1.
 
 ## Relative entropy
 
+The relative entropy measures the distance between two distributions and it is also called Kullback-Leibler distance. It is given by:
 
-The relative entropy measures the distance between two distributions and it is also called Kullback-Leibler distance. 
-It is given by:
-
-
-![relative entropy]({{ site.baseurl }}/assets/images/posts/mi_eq3.png)
+![Relative entropy equation]({{ site.baseurl }}/assets/images/posts/mutual-information-with-python/mi_eq3.png)
 
 where p(x) and q(x) are two probability distributions.
 
 ## Mutual information
 
-Utilizing the relative entropy, we can now define the MI. We define the MI as the relative entropy between the joint 
-distribution of the two variables and the product of their marginal distributions.
+Utilizing the relative entropy, we can now define the MI. We define the MI as the relative entropy between the joint distribution of the two variables and the product of their marginal distributions.
 
 Thus, the MI is given by:
 
-![mutual information]({{ site.baseurl }}/assets/images/posts/mi_eq4.png)
+![]({{ site.baseurl }}/assets/images/posts/mutual-information-with-python/mi_eq4.png)
 
-where I(X,Y) is the MI between variables x and y, the joint probability of the two variables is p(x,y), and their marginal 
-probabilities are p(x) and p(y).
+where I(X,Y) is the MI between variables x and y, the joint probability of the two variables is p(x,y), and their marginal probabilities are p(x) and p(y).
 
+Note that the MI can be equal or greater than 0. When p(x,y) = p(x) p(y), the MI is 0. The joint probability is equal to the product of the marginals when there is no association between the variables. When the MI is 0, then knowing the values of x does not tells us anything about y, and vice versa, that is knowing y, does not tell us anything about x.
 
-Note that the MI can be equal or greater than 0. When p(x,y) = p(x) p(y), the MI is 0. The joint probability is equal to 
-the product of the marginals when there is no association between the variables. When the MI is 0, then knowing the 
-values of x does not tells us anything about y, and vice versa, that is knowing y, does not tell us anything about x. 
+> *Master feature selection with our course [Feature Selection for Machine Learning](https://www.trainindata.com/p/feature-selection-for-machine-learning) or our book [Feature Selection in Machine Learning with Python](https://www.trainindata.com/p/feature-selection-in-machine-learning-book).*
 
 ### MI between discrete variables
 
-To illustrate the calculation of the MI with an example, let's say we have the following contingency table of survival 
-on the Titanic based on gender:
+To illustrate the calculation of the MI with an example, let’s say we have the following contingency table of survival on the Titanic based on gender:
 
-
-| | Female | Male | Total |
-| -| ------- | ----- | -----|
+|  | Female | Male | Total |
+| --- | --- | --- | --- |
 | Not survived | 89 | 483 | 571 |
-| Survived | 230| 112 | 342 |
+| Survived | 230 | 112 | 342 |
 | Total | 319 | 595 | 914 |
 
-With the table frequencies, we can create probability estimates by dividing the counts in each cell by the total number 
-of passengers, which is 914:
+With the table frequencies, we can create probability estimates by dividing the counts in each cell by the total number of passengers, which is 914:
 
-
-| | Female | Male | Total |
-| -| ------- | ----- | -----|
+|  | Female | Male | Total |
+| --- | --- | --- | --- |
 | Not survived | 0.09 | 0.52 | 0.62 |
-| Survived | 0.25| 0.12 | 0.37 |
+| Survived | 0.25 | 0.12 | 0.37 |
 | Total | 0.34 | 0.65 | 1 |
-
 
 The MI for the variables survival and gender is:
 
-![mutual information example]({{ site.baseurl }}/assets/images/posts/ch4-eq4.png)
+![Mutual information calculation for the variables survival and gender]({{ site.baseurl }}/assets/images/posts/mutual-information-with-python/ch4-eq4.png)
 
 Thus, I(X,Y) = 0.2015.
 
-The MI of 0.2015, which is bigger than 0, indicates that by knowing the gender of the passenger, we know more about 
-their probability of survival.
+The MI of 0.2015, which is bigger than 0, indicates that by knowing the gender of the passenger, we know more about their probability of survival.
 
-
-To calculate the MI between discrete variables in Python, we can use the mutual_info_score from Scikit-learn. We can 
-provide the vectors with the observations like this:
+To calculate the MI between discrete variables in Python, we can use the mutual_info_score from Scikit-learn. We can provide the vectors with the observations like this:
 
 ```
 from sklearn.metrics import mutual_info_score
@@ -141,8 +112,7 @@ mi = mutual_info_score(a,x)
 
 which will return mi = 0.5021929300715018.
 
-For the `mutual_info_score`, a and x should be array-like vectors, i.e., lists, numpy arrays or pandas series, of n_samples 
-each, where n_samples is the number of observations. Alternatively, we can pass a contingency table as follows:
+For the `mutual_info_score`, a and x should be array-like vectors, i.e., lists, numpy arrays or pandas series, of n_samples each, where n_samples is the number of observations. Alternatively, we can pass a contingency table as follows:
 
 ```
 from scipy.stats.contingency import crosstab
@@ -155,47 +125,31 @@ mutual_info_score(labels_true=None, labels_pred=None, contingency = c[1])
 
 which will return the same value of mi.
 
+> *Become a pro at selecting features with Python with our course [Feature Selection for Machine Learning](https://www.trainindata.com/p/feature-selection-for-machine-learning) or our book [Feature Selection in Machine Learning with Python](https://www.trainindata.com/p/feature-selection-in-machine-learning-book). Each method is described in detail and followed by a Python code demo, so you can easily apply what you learned directly in your projects.*
 
 ### MI estimation for continuous variables
 
-We can extend the definition of the MI to continuous variables by changing the sum over the values of x and y by the 
-integrals:
+We can extend the definition of the MI to continuous variables by changing the sum over the values of x and y by the integrals:
 
-![mutual information in continuous variables]({{ site.baseurl }}/assets/images/posts/mi_eq5.png)
+![Mutual information equation for continuous variables]({{ site.baseurl }}/assets/images/posts/mutual-information-with-python/mi_eq5.png)
 
 With continuous variables, the problem is how to estimate the probability densities for each one of the variable values.
 
-When the variable was discrete, we created a contingency table, estimated the marginal and joint probabilities, and then 
-used those to compute the MI. With continuous variables, this is not possible for 2 reasons: first, the variables can take infinite values, and second, in any dataset, we will only have a few of those probable values. Thus, how can we calculate the MI?
+When the variable was discrete, we created a contingency table, estimated the marginal and joint probabilities, and then used those to compute the MI. With continuous variables, this is not possible for 2 reasons: first, the variables can take infinite values, and second, in any dataset, we will only have a few of those probable values. Thus, how can we calculate the MI?
 
-The most obvious approach is to discretize the continuous variables, often into intervals of equal frequency, and then 
-proceed as if they were discrete variables. But how do we find the optimal number of intervals? It's been shown that an 
-incorrect number of intervals results in poor estimates of the MI.
+The most obvious approach is to discretize the continuous variables, often into intervals of equal frequency, and then proceed as if they were discrete variables. But how do we find the optimal number of intervals? It’s been shown that an incorrect number of intervals results in poor estimates of the MI.
 
-
-Alternatively, a nearest-neighbour method was introduced to estimate the MI between 2 continuous variables, or between 
-a continuous and a discrete variable. These methods have been shown to provide far better estimates of the MI for 
-continuous data.
+Alternatively, a nearest-neighbour method was introduced to estimate the MI between 2 continuous variables, or between a continuous and a discrete variable. These methods have been shown to provide far better estimates of the MI for continuous data.
 
 ### Nearest-neighbours method to estimate the MI
 
-We have a series of data points in our data sets that contain values for the continuous variables x and y, with a joint 
-probability p(x,y) that we do not know but must estimate from the observed data. The nearest neighbour methods estimate 
-the joint probability of these 2 continuous variables, and, as well, the joint probability of a continuous and discrete 
-variable.
+We have a series of data points in our data sets that contain values for the continuous variables x and y, with a joint probability p(x,y) that we do not know but must estimate from the observed data. The nearest neighbour methods estimate the joint probability of these 2 continuous variables, and, as well, the joint probability of a continuous and discrete variable.
 
+The following figure (Figure 1A) illustrates the joint distribution of the discrete variable x, which takes 3 values: red, green, or blue; and the continuous variable y. In this example, we see that the different values of x are associated with different values of y; for example, y is generally lower when x is green or red than when x is blue. Therefore, there is a relation between x and y, implying that MI is some positive number.
 
-The following figure (Figure 1A) illustrates the joint distribution of the discrete variable x, which takes 3 values: 
-red, green, or blue; and the continuous variable y. In this example, we see that the different values of x are associated 
-with different values of y; for example, y is generally lower when x is green or red than when x is blue. Therefore, 
-there is a relation between x and y, implying that MI is some positive number.
+![Mutual information estimated using k-nearest neighbours]({{ site.baseurl }}/assets/images/posts/mutual-information-with-python/ch-mi-knn.png)
 
-![mutual information estimation by nearest neighbours]({{ site.baseurl }}/assets/images/posts/ch-mi-knn.png)
-
-**Nearest-neighbor approach to estimate the MI. Taken from Ross, 2014, PLoS ONE 9(2): e87357.**
-
-From the joint distribution (Figure 1A), we sample some observations, which represent the available data (Figure 1B). 
-The challenge is to estimate the MI between x and y given those few observations.
+From the joint distribution (Figure 1A), we sample some observations, which represent the available data (Figure 1B). The challenge is to estimate the MI between x and y given those few observations.
 
 The nearest-neighbour approach works as follows:
 
@@ -205,33 +159,25 @@ The nearest-neighbour approach works as follows:
 
 3- We count the total number of observations (`m_i`), red and otherwise, within d of the observation in question.
 
+Based on `N_xi`, `m_i`, k (the number of neighbours) and N (the total number of observations), we calculate the MI for that particular observation as:
 
-Based on `N_xi`, `m_i`, k (the number of neighbours) and N (the total number of observations), we calculate the MI for that 
-particular observation as:
-
-
-![mutual information estimation]({{ site.baseurl }}/assets/images/posts/mi_eq6.png)
+![Mutual information for an observation based on the KN approximation ]({{ site.baseurl }}/assets/images/posts/mutual-information-with-python/mi_eq6.png)
 
 where phi is the digamma function. To estimate the MI from the data set, we average I_i over all data points:
 
-![mutual information estimation]({{ site.baseurl }}/assets/images/posts/mi_eq7.png)
+![]({{ site.baseurl }}/assets/images/posts/mutual-information-with-python/mi_eq7.png)
 
 To evaluate the association between 2 continuous variables the MI is calculated as:
 
-![mutual information estimation]({{ site.baseurl }}/assets/images/posts/mi_eq8.png)
+![]({{ site.baseurl }}/assets/images/posts/mutual-information-with-python/mi_eq8.png)
 
-where N_x and N_y are the number of neighbours of the same value and different values found within the sphere 
-generated by the distance determined in step 3.
+where N_x and N_y are the number of neighbours of the same value and different values found within the sphere generated by the distance determined in step 3.
 
-The demonstration of how these equations were derived and how this method compares with the binning approach is beyond 
-the scope of this article. You can find all the details in the references at the end of this article.
-
+The demonstration of how these equations were derived and how this method compares with the binning approach is beyond the scope of this article. You can find all the details in the references at the end of this article.
 
 ### Python implementation of the mutual information
 
-
-Let’s calculate the mutual information between discrete, continuous and discrete and continuous variables. We’ll use the 
-titanic dataset as an example.
+Let’s calculate the mutual information between discrete, continuous and discrete and continuous variables. We’ll use the titanic dataset as an example.
 
 Let’s make some imports:
 
@@ -282,10 +228,9 @@ data.head()
 
 Below we see the first 5 rows of the resulting dataframe:
 
-![View of the Titanic dataset.]({{ site.baseurl }}/assets/images/posts/ch4-fig20.png)
+![Dataframe showing the first five rows of the titanic dataset]({{ site.baseurl }}/assets/images/posts/mutual-information-with-python/ch4-fig20.png)
 
-Let’s begin by computing the mutual information between 2 discrete variables. We can use the mutual_info_score as we 
-did previously:
+Let’s begin by computing the mutual information between 2 discrete variables. We can use the mutual_info_score as we did previously:
 
 ```
 mutual_info_score(data["sex"], data["pclass"])
@@ -297,8 +242,7 @@ Or we can use the mutual_info_classif indicating that the random variable is dis
 mutual_info_classif(data["sex"].to_frame(), data["pclass"], discrete_features=[True])
 ```
 
-To determine the mutual information between a continuous and a discrete variable, we use again the mutual_info_classif, 
-but this time, we indicate that the random variable is continuous:
+To determine the mutual information between a continuous and a discrete variable, we use again the mutual_info_classif, but this time, we indicate that the random variable is continuous:
 
 ```
 mutual_info_classif(data["fare"].to_frame(), data["pclass"], discrete_features=[False])
@@ -310,21 +254,17 @@ And finally, to estimate the mutual information between 2 continuous variables w
 mutual_info_regression(data["fare"].to_frame(), data["age"], discrete_features=[False])
 ```
 
-That’s it for the computation of the MI. 
+That’s it for the computation of the MI.
 
 ### Feature selection in machine learning using MI
 
-Selecting features with the MI is straightforward. First, we determine the MI between each feature and the target. 
-Next, we rank the features based on the MI: higher values of MI mean stronger association between the variables. 
-Finally, we select the top ranking features.
+Selecting features with the MI is straightforward. First, we determine the MI between each feature and the target. Next, we rank the features based on the MI: higher values of MI mean stronger association between the variables. Finally, we select the top ranking features.
 
 #### Python implementation of feature selection
 
-The scikit-learn algorithm for MI treats discrete features differently from continuous features. Consequently, as we did 
-previously, we need to flag discrete features. In other words, we need to inform the functions mutual_info_classif or 
-mutual_info_regression if the variables are continuous or discrete. 
+The scikit-learn algorithm for MI treats discrete features differently from continuous features. Consequently, as we did previously, we need to flag discrete features. In other words, we need to inform the functions mutual_info_classif or mutual_info_regression if the variables are continuous or discrete.
 
-We will work with the Titanic dataset, which has continuous and discrete variables. Let's begin by making the necessary imports:
+We will work with the Titanic dataset, which has continuous and discrete variables. Let’s begin by making the necessary imports:
 
 ```
 import pandas as pd
@@ -335,8 +275,7 @@ from sklearn.feature_selection import mutual_info_classif
 from feature_engine.encoding import RareLabelEncoder, OrdinalEncoder
 ```
 
-Let's load and prepare the Titanic dataset:
-
+Let’s load and prepare the Titanic dataset:
 
 ```
 variables = [
@@ -371,10 +310,10 @@ encoder = OrdinalEncoder(
 data = encoder.fit_transform(data)
 ```
 
-Let's separate the data into train and test sets:
+Let’s separate the data into train and test sets:
 
 ```
-X_train, X_test, y_train, y_test = train_test_split( 
+X_train, X_test, y_train, y_test = train_test_split(
     data.drop('survived', axis=1),
     data['survived'],
     test_size=0.3,
@@ -382,7 +321,7 @@ X_train, X_test, y_train, y_test = train_test_split(
     )
 ```
 
-Let's print out the variable names:
+Let’s print out the variable names:
 
 ```
 X_train.columns
@@ -394,13 +333,13 @@ We obtain the following array:
 Index(['pclass', 'sex', 'age', 'sibsp', 'parch', 'fare', 'cabin', 'embarked'], dtype='object')
 ```
 
-Let's create a mask flagging discrete variables:
+Let’s create a mask flagging discrete variables:
 
 ```
 discrete_vars = [True, True, False, True, True, False, True, True]
 ```
 
-Now, let's calculate the mutual information of these discrete or continuous variables against the target, which is discrete:
+Now, let’s calculate the mutual information of these discrete or continuous variables against the target, which is discrete:
 
 ```
 mi = mutual_info_classif(X_train, y_train, discrete_features=discrete_vars)
@@ -412,8 +351,7 @@ If we execute mi we obtain the MI of the features and the target:
 array([0.05762333, 0.13060906, 0.02407659, 0.01505698, 0.01739128, 0.15711667, 0.04897479, 0.01454174])
 ```
 
-Now, let's capture the array in a pandas series, add the variable names in the index, sort the features based on the MI 
-and make a bar plot:
+Now, let’s capture the array in a pandas series, add the variable names in the index, sort the features based on the MI and make a bar plot:
 
 ```
 mi = pd.Series(mi)
@@ -425,7 +363,7 @@ plt.title("Mutual information between predictors and target")
 
 We obtain the following plot with the MI of each feature and the target:
 
-![mutual information between features and target]({{ site.baseurl }}/assets/images/posts/ch4-fig21.png)
+![Bar plot showing the mutual information between predictor variables and the target]({{ site.baseurl }}/assets/images/posts/mutual-information-with-python/ch4-fig21.png)
 
 In this case, all features show MI greater than 0, so we could select them all.
 
@@ -437,13 +375,14 @@ X_train = sel.transform(X_train)
 X_test = sel.transform(X_test)
 ```
 
-If you made it this far, thank you for reading. 
+If you made it this far, thank you for reading.
 
-*Don't forget to check out our course [Feature Selection for Machine Learning](https://www.trainindata.com/p/feature-selection-for-machine-learning) and our 
-book [Feature Selection in Machine Learning with Python](https://leanpub.com/feature-selection-in-machine-learning/).*
+*Check out our course [Feature Selection for Machine Learning](https://www.trainindata.com/p/feature-selection-for-machine-learning) and our book [Feature Selection in Machine Learning with Python,](https://www.trainindata.com/p/feature-selection-in-machine-learning-book) the most comprehensive resources on feature selection in Python. Stop the guesswork, and start building simpler, faster and more interpretable models today.*
+
+[![Feature Selection in Machine Learning with Python, book cover]({{ site.baseurl }}/assets/images/posts/machine-learning-books-for-beginners/book-cover-1024x1024.png)](https://www.trainindata.com/p/feature-selection-in-machine-learning-book)
 
 ### References
 
-- Cover, Thomas, Elements of information theory, John Wiley & Sons, Ltd. Chapter 2, 2005 
+- Cover, Thomas, Elements of information theory, John Wiley & Sons, Ltd. Chapter 2, 2005
 - Ross, Mutual Information between Discrete and Continuous Data Sets, PLoS ONE 9(2): e87357, 2014.
 - Kraskov, Stoegbauer, Grassberger, Estimating mutual information. Physical Review E 69: 066138, 2004.
