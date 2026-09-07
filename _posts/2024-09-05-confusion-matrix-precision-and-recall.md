@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Confusion Matrix, Precision, and Recall"
-author: sole
+author: priyansh
 description: "Find out what the confusion matrix is and how it relates to other classification metrics like precision, recall and f1-score."
 excerpt: "Find out what the confusion matrix is and how it relates to other classification metrics like precision, recall and f1-score."
 categories: [Machine Learning]

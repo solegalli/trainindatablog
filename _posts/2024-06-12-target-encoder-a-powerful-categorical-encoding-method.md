@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Target Encoder: A powerful categorical encoding method"
-author: sole
+author: cmcouto
 description: "Target encoder is Python implementation of the target encoding method for highly cardinal categorical variables."
 excerpt: "Target encoder is Python implementation of the target encoding method for highly cardinal categorical variables."
 categories: [Categorical Encoding, Data Preprocessing, Feature Engineering]
@@ -105,7 +105,7 @@ One should keep in mind that while target encoding was originally designed for h
 
 So, what’s the best option? Well, as you’ve probably heard countless times in your data science journey (and if not, you will), it depends! It depends on your data and the machine learning algorithms you’re using. Give them a try and see what works best for your situation!
 
-[![14 Common Feature Engineering Questions]({{ site.baseurl }}/assets/images/posts/winsorization-handling-outliers-in-machine-learning/Want-a-quick-feature-engineering-reference-Download-our-free-booklet-14-Common-Feature-Engineering-Questions-covering-encoding-scaling-missing-data-outliers-and-more.-👉-Get-the-free-bookle.png)](https://www.trainindata.com/p/14-common-feature-engineering-questions)
+[![14 Common Feature Engineering Questions]({{ site.baseurl }}/assets/images/posts/winsorization-handling-outliers-in-machine-learning/Want-a-quick-feature-engineering-reference-Download-our-free-booklet-14-Common-Feature-Engineering-Questions-covering-encoding-scaling-missing-data-outliers-and-more-Get-the-free-bookle.png)](https://www.trainindata.com/p/14-common-feature-engineering-questions)
 
 ## Target Encoding in Python
 

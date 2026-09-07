@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Machine Learning Forecasting of Time Series"
-author: sole
+author: ruben
 description: "Discover how to implement machine learning forecasting of time series data with Python, by using recursive and direct forecasting."
 excerpt: "Discover how to implement machine learning forecasting of time series data with Python, by using recursive and direct forecasting."
 categories: [Time Series Forecasting]

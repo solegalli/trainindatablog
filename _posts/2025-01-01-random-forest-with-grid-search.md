@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Tuning Random Forest with Grid Search"
-author: sole
+author: priyansh
 description: "Learn how Grid Search improves Random Forest performance by optimizing its hyperparameters, including key hyperparameters and python examples."
 excerpt: "Learn how Grid Search improves Random Forest performance by optimizing its hyperparameters, including key hyperparameters and python examples."
 categories: [Data Science, Hyperparameter Optimization, Machine Learning]

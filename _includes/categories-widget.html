@@ -1,0 +1,11 @@
+<ul class="category-pills">
+  {% assign sorted_categories = site.categories | sort %}
+  {% for category in sorted_categories %}
+  <li>
+    <a href="{{ '/categories' | relative_url }}#{{ category[0] | slugify }}">
+      <span class="category-pill-name">{{ category[0] }}</span>
+      <span class="category-pill-count">{{ category[1] | size }}</span>
+    </a>
+  </li>
+  {% endfor %}
+</ul>

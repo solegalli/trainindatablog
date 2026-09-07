@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Machine Learning for Beginners. Your roadmap to success."
-author: sole
+author: priyansh
 description: "A roadmap with the best resources on machine learning for beginners, including courses, articles, tutorials, and books, all from scratch."
 excerpt: "A roadmap with the best resources on machine learning for beginners, including courses, articles, tutorials, and books, all from scratch."
 categories: [Machine Learning]

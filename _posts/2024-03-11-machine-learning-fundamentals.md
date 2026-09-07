@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Machine Learning Fundamentals"
-author: sole
+author: priyansh
 description: "Machine learning fundamentals help to tackle real-world problems, enabling accurate model selection, evaluation, troubleshooting."
 excerpt: "Machine learning fundamentals help to tackle real-world problems, enabling accurate model selection, evaluation, troubleshooting."
 categories: [Machine Learning]

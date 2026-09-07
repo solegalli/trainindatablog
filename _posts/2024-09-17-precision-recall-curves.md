@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Precision Recall Curves"
-author: sole
+author: noor
 description: "The ultimate guide to Precision-Recall curves—what they are, when to use them, and how to plot and interpret them with Python."
 excerpt: "The ultimate guide to Precision-Recall curves—what they are, when to use them, and how to plot and interpret them with Python."
 categories: [Data Science, Imbalanced Data, Machine Learning]

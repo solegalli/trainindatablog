@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "A Comprehensive Guide to Complete Case Analysis"
-author: sole
+author: cmcouto
 description: "Learn Complete Case Analysis (CCA) for handling missing data in machine learning, including advantages and limitations and Python examples."
 excerpt: "Learn Complete Case Analysis (CCA) for handling missing data in machine learning, including advantages and limitations and Python examples."
 categories: [Data Preprocessing, Data Science, Feature Engineering, Machine Learning]
@@ -65,7 +65,7 @@ In scenarios like these, removing incomplete cases can lead to **selection bias*
 
 Furthermore, when removing missing values from the training set without using any imputation, the model pipeline won’t learn how to deal with missing values in the inference data. This means that your model **won’t be able to predict any new data containing missing values**, which may be necessary in many cases.
 
-[![14 Common Feature Engineering Questions]({{ site.baseurl }}/assets/images/posts/winsorization-handling-outliers-in-machine-learning/Want-a-quick-feature-engineering-reference-Download-our-free-booklet-14-Common-Feature-Engineering-Questions-covering-encoding-scaling-missing-data-outliers-and-more.-👉-Get-the-free-bookle.png)](https://www.trainindata.com/p/14-common-feature-engineering-questions)
+[![14 Common Feature Engineering Questions]({{ site.baseurl }}/assets/images/posts/winsorization-handling-outliers-in-machine-learning/Want-a-quick-feature-engineering-reference-Download-our-free-booklet-14-Common-Feature-Engineering-Questions-covering-encoding-scaling-missing-data-outliers-and-more-Get-the-free-bookle.png)](https://www.trainindata.com/p/14-common-feature-engineering-questions)
 
 ## Exploring CCA with Python Examples
 

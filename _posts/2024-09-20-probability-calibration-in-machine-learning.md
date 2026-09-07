@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Probability Calibration in Machine Learning: Enhancing Model Usability"
-author: sole
+author: cmcouto
 description: "Learn probability calibration in machine learning: importance, methods, and best practices for more reliable probability estimates."
 excerpt: "Learn probability calibration in machine learning: importance, methods, and best practices for more reliable probability estimates."
 categories: [Data Science, Imbalanced Data, Machine Learning]

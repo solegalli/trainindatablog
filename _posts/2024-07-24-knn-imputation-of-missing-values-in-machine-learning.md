@@ -34,7 +34,7 @@ KNN imputation replaces missing values as the weighted average of the closest ne
 
 In addition, the nearest neighbor algorithm computes distances between observations, hence, it is only suitable for numeric data. If your dataset contains variables with other data types, such us datetime or categorical variables, you’ll need to encode them first, or try a different missing value imputation technique.
 
-[![14 Common Feature Engineering Questions]({{ site.baseurl }}/assets/images/posts/winsorization-handling-outliers-in-machine-learning/Want-a-quick-feature-engineering-reference-Download-our-free-booklet-14-Common-Feature-Engineering-Questions-covering-encoding-scaling-missing-data-outliers-and-more.-👉-Get-the-free-bookle.png)](https://www.trainindata.com/p/14-common-feature-engineering-questions)
+[![14 Common Feature Engineering Questions]({{ site.baseurl }}/assets/images/posts/winsorization-handling-outliers-in-machine-learning/Want-a-quick-feature-engineering-reference-Download-our-free-booklet-14-Common-Feature-Engineering-Questions-covering-encoding-scaling-missing-data-outliers-and-more-Get-the-free-bookle.png)](https://www.trainindata.com/p/14-common-feature-engineering-questions)
 
 ## KNN imputation with Python
 

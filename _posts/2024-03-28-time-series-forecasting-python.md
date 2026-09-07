@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Time Series Forecasting with Python"
-author: sole
+author: traindata
 description: "Find out how to implement time series forecasting in Python, from statistical models, to machine learning and deep learning."
 excerpt: "Find out how to implement time series forecasting in Python, from statistical models, to machine learning and deep learning."
 categories: [Time Series Forecasting]

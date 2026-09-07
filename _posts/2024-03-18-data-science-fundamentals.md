@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Data Science Fundamentals: A beginner’s guide"
-author: sole
+author: noor
 description: "In this article, we lay out the data science fundamentals, so you know exactly what you need to get started and advance in this field."
 excerpt: "In this article, we lay out the data science fundamentals, so you know exactly what you need to get started and advance in this field."
 categories: [Data Science]

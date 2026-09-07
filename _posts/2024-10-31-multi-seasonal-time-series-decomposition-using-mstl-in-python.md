@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Multi-Seasonal Time Series Decomposition Using MSTL in Python"
-author: sole
+author: kishan
 description: "Masterclass on multi-seasonal time series decomposition using MSTL in Python. Discover how it works and see in action on real world data."
 excerpt: "Masterclass on multi-seasonal time series decomposition using MSTL in Python. Discover how it works and see in action on real world data."
 categories: [Time Series Forecasting]

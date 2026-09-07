@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Advanced Machine Learning Projects for data science"
-author: sole
+author: shri
 description: "Check out this curated list of advanced machine learning projects that will help you take your data science skills to new heights."
 excerpt: "Check out this curated list of advanced machine learning projects that will help you take your data science skills to new heights."
 categories: [Data Science, Machine Learning]

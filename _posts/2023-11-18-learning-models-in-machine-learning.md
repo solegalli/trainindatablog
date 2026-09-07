@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Exploring the World of Machine Learning Models, An Expert Overview"
-author: sole
+author: traindata
 description: "Get the latest insights on learning models in machine learning. Enhance your skills and knowledge in AI and ML with our experts."
 excerpt: "Get the latest insights on learning models in machine learning. Enhance your skills and knowledge in AI and ML with our experts."
 categories: [Machine Learning]

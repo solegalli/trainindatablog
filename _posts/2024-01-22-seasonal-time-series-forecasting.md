@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Seasonal Forecasting Techniques for Time Series Analysis"
-author: sole
+author: traindata
 description: "Explore the essentials of seasonal time series forecasting. Learn to predict market trends and plan effectively with our expert guide."
 excerpt: "Explore the essentials of seasonal time series forecasting. Learn to predict market trends and plan effectively with our expert guide."
 categories: [Time Series Forecasting]

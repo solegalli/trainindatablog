@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Winsorization: Handling Outliers in Machine Learning"
-author: sole
+author: cmcouto
 description: "Handle outliers with Winsorization, a powerful data preprocessing technique. Includes Python code examples."
 excerpt: "Handle outliers with Winsorization, a powerful data preprocessing technique. Includes Python code examples."
 categories: [Data Preprocessing, Data Science, Feature Engineering, Machine Learning]
@@ -274,7 +274,7 @@ Keep in mind that the resulting averages can be lower or higher depending on the
 
 > The observed differences in original vs winsorized data might be MUCH HIGHER in real-world data due to the impact of extreme values. Remember that this is a simple simulated data for didactic purposes.
 
-[![14 Common Feature Engineering Questions]({{ site.baseurl }}/assets/images/posts/winsorization-handling-outliers-in-machine-learning/Want-a-quick-feature-engineering-reference-Download-our-free-booklet-14-Common-Feature-Engineering-Questions-covering-encoding-scaling-missing-data-outliers-and-more.-👉-Get-the-free-bookle.png)](https://www.trainindata.com/p/14-common-feature-engineering-questions)
+[![14 Common Feature Engineering Questions]({{ site.baseurl }}/assets/images/posts/winsorization-handling-outliers-in-machine-learning/Want-a-quick-feature-engineering-reference-Download-our-free-booklet-14-Common-Feature-Engineering-Questions-covering-encoding-scaling-missing-data-outliers-and-more-Get-the-free-bookle.png)](https://www.trainindata.com/p/14-common-feature-engineering-questions)
 
 ### Comparing “winsorization” methods
 

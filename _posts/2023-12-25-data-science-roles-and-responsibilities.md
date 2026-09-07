@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Breaking Down Data Science: Roles and Responsibilities Explained"
-author: sole
+author: traindata
 description: "Explore data science roles and responsibilities in our detailed guide, offering insights into key positions and skills in this dynamic field."
 excerpt: "Explore data science roles and responsibilities in our detailed guide, offering insights into key positions and skills in this dynamic field."
 categories: [Data Science]

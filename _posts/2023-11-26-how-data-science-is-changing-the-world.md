@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "How Data Science is Changing the World, a Revolutionary Impact"
-author: sole
+author: traindata
 description: "Explore how Data Science is changing the world, revolutionizing industries, healthcare, and governance with groundbreaking insights."
 excerpt: "Explore how Data Science is changing the world, revolutionizing industries, healthcare, and governance with groundbreaking insights."
 categories: [Data Science]

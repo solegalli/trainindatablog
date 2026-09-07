@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "How to Detect Outliers in Python: A Comprehensive Guide"
-author: sole
+author: priyansh
 description: "Learn to detect outliers in Python. We discuss outlier detection and handling methods using Python open-source libraries."
 excerpt: "Learn to detect outliers in Python. We discuss outlier detection and handling methods using Python open-source libraries."
 categories: [Data Science, Feature Engineering, Machine Learning]
@@ -125,7 +125,7 @@ In summary, outliers can have a far-reaching impact on the reliability of statis
 
 Therefore, to ensure accurate analysis and optimal model performance, it is crucial to detect and handle outliers effectively in our data. Various techniques allow you to detect outliers, ranging from simple visualizations to the application of machine learning models.
 
-[![14 Common Feature Engineering Questions]({{ site.baseurl }}/assets/images/posts/winsorization-handling-outliers-in-machine-learning/Want-a-quick-feature-engineering-reference-Download-our-free-booklet-14-Common-Feature-Engineering-Questions-covering-encoding-scaling-missing-data-outliers-and-more.-👉-Get-the-free-bookle.png)](https://www.trainindata.com/p/14-common-feature-engineering-questions)
+[![14 Common Feature Engineering Questions]({{ site.baseurl }}/assets/images/posts/winsorization-handling-outliers-in-machine-learning/Want-a-quick-feature-engineering-reference-Download-our-free-booklet-14-Common-Feature-Engineering-Questions-covering-encoding-scaling-missing-data-outliers-and-more-Get-the-free-bookle.png)](https://www.trainindata.com/p/14-common-feature-engineering-questions)
 
 ## Methods for Outlier Detection
 

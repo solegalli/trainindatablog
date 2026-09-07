@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "The Complete Guide to Platt Scaling"
-author: sole
+author: shri
 description: "Learn about calibration in machine learning using Platt scaling. Find out how it works and how to apply it in Python using Scikit-learn."
 excerpt: "Learn about calibration in machine learning using Platt scaling. Find out how it works and how to apply it in Python using Scikit-learn."
 categories: [Data Science, Imbalanced Data, Machine Learning]

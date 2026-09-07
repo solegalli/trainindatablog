@@ -175,7 +175,7 @@ And that’s it, we’ve not replaced missing data in numerical variables with t
 
 **Tip**: You can also perform median imputation using Feature-engine’s [MeanMedianImputer](https://feature-engine.trainindata.com/en/latest/api_doc/imputation/MeanMedianImputer.html). Unlike SimpleImputer, Feature-engine’s MeanMedianImputation allows you to restrict the imputation to selected variables from within the transformer, so you don’t need supporting classes like the ColumnTransformer.
 
-[![14 Common Feature Engineering Questions]({{ site.baseurl }}/assets/images/posts/winsorization-handling-outliers-in-machine-learning/Want-a-quick-feature-engineering-reference-Download-our-free-booklet-14-Common-Feature-Engineering-Questions-covering-encoding-scaling-missing-data-outliers-and-more.-👉-Get-the-free-bookle.png)](https://www.trainindata.com/p/14-common-feature-engineering-questions)
+[![14 Common Feature Engineering Questions]({{ site.baseurl }}/assets/images/posts/winsorization-handling-outliers-in-machine-learning/Want-a-quick-feature-engineering-reference-Download-our-free-booklet-14-Common-Feature-Engineering-Questions-covering-encoding-scaling-missing-data-outliers-and-more-Get-the-free-bookle.png)](https://www.trainindata.com/p/14-common-feature-engineering-questions)
 
 ## Most frequent category imputation
 

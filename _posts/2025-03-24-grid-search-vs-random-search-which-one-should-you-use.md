@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Grid Search vs Random Search: Which One Should You Use?"
-author: sole
+author: priyansh
 description: "Discover the power of hyperparameter tuning with Grid Search and Random Search. Learn which technique to use for different ML models."
 excerpt: "Discover the power of hyperparameter tuning with Grid Search and Random Search. Learn which technique to use for different ML models."
 categories: [Data Science, Hyperparameter Optimization, Machine Learning]

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Best Machine Learning Books for Beginners"
-author: sole
+author: noor
 description: "Explore our recommendation of machine learning books for beginners, curated to provide foundational knowledge and practical insights."
 excerpt: "Explore our recommendation of machine learning books for beginners, curated to provide foundational knowledge and practical insights."
 categories: [Data Science, Machine Learning]

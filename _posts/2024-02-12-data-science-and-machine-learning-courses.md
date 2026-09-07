@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Data science and machine learning courses"
-author: sole
+author: noor
 description: "Discover the best data science and machine learning courses that will get you started in your career on ai."
 excerpt: "Discover the best data science and machine learning courses that will get you started in your career on ai."
 categories: [Data Science, Machine Learning]

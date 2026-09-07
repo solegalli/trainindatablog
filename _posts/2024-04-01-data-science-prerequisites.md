@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Data Science Prerequisites: The Door to Data Mastery"
-author: sole
+author: traindata
 description: "Discover the data science prerequisites that'll smooth your transition into this fascinating field that combines technical with soft skills."
 excerpt: "Discover the data science prerequisites that'll smooth your transition into this fascinating field that combines technical with soft skills."
 categories: [Data Science]

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Remote Data Science Jobs: A Comprehensive Guide for the Digital Age"
-author: sole
+author: traindata
 description: "Explore trends and tips for remote data science jobs. Master strategies for a successful career in this growing field."
 excerpt: "Explore trends and tips for remote data science jobs. Master strategies for a successful career in this growing field."
 categories: [Data Science]

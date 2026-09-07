@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "What is the Difference between Machine Learning and Deep Learning?"
-author: sole
+author: traindata
 description: "Do you know exactly what is the difference between Machine Learning and Deep Learning. We explain it here to you. Let´s start!"
 excerpt: "Do you know exactly what is the difference between Machine Learning and Deep Learning. We explain it here to you. Let´s start!"
 categories: [Machine Learning]

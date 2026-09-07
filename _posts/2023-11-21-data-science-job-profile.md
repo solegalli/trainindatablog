@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Decoding the Data Science Job Profile, Roles, Skills, and Opportunities"
-author: sole
+author: traindata
 description: "Dive into the data science job profile, understanding what it takes to succeed and grow in the dynamic world of Data Science."
 excerpt: "Dive into the data science job profile, understanding what it takes to succeed and grow in the dynamic world of Data Science."
 categories: [Data Science]

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Data Science Courses for Working Professionals"
-author: sole
+author: ruben
 description: "Discover top-notch data science courses for working professionals, handpicked to enhance your skills and propel your career in the field."
 excerpt: "Discover top-notch data science courses for working professionals, handpicked to enhance your skills and propel your career in the field."
 categories: [Data Science]

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Algorithms of Machine Learning: From Basics to Advanced Applications"
-author: sole
+author: traindata
 description: "Dive deep into algorithms of machine learning and discover their impact on AI and data science. A must-read for tech enthusiasts."
 excerpt: "Dive deep into algorithms of machine learning and discover their impact on AI and data science. A must-read for tech enthusiasts."
 categories: [Machine Learning]

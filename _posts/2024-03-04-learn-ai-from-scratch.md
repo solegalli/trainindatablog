@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Learn AI from Scratch: A Complete Guide"
-author: sole
+author: shri
 description: "A complete guide to help you learn AI from scratch. Starting by what AI is, the career options in the field and how to master it."
 excerpt: "A complete guide to help you learn AI from scratch. Starting by what AI is, the career options in the field and how to master it."
 categories: [Data Science, Machine Learning]

@@ -21,3 +21,5 @@ group :jekyll_plugins do
     gem 'tzinfo-data'
     gem 'tzinfo'
 end
+
+gem "jekyll", "~> 4.3"

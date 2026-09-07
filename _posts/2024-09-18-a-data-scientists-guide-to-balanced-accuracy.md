@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "A Data Scientist’s Guide to Balanced Accuracy"
-author: sole
+author: cmcouto
 description: "Discover the balanced accuracy's advantages over traditional accuracy and learn how to implement it in Python."
 excerpt: "Discover the balanced accuracy's advantages over traditional accuracy and learn how to implement it in Python."
 categories: [Data Science, Imbalanced Data, Machine Learning]

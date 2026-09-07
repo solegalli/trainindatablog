@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "ROC-AUC Analysis – A Deep Dive"
-author: sole
+author: priyansh
 description: "Ultimate guide for mastering ROC-AUC analysis—learn to create, interpret, and apply it in Python with practical examples."
 excerpt: "Ultimate guide for mastering ROC-AUC analysis—learn to create, interpret, and apply it in Python with practical examples."
 categories: [Data Science, Imbalanced Data, Machine Learning]

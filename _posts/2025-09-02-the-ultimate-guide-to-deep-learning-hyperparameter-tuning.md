@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "The Ultimate Guide to Deep Learning Hyperparameter Tuning"
-author: sole
+author: priyansh
 description: "Master hyperparameter tuning in deep learning with practical techniques, examples, and tips. Explore methods to boost a model's performance."
 excerpt: "Master hyperparameter tuning in deep learning with practical techniques, examples, and tips. Explore methods to boost a model's performance."
 categories: [Data Science, Hyperparameter Optimization, Machine Learning]

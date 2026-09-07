@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Hyperparameters in Machine Learning Explained"
-author: sole
+author: priyansh
 description: "Learn what hyperparameters are in machine learning, why they matter, and how to tune them using popular optimization techniques."
 excerpt: "Learn what hyperparameters are in machine learning, why they matter, and how to tune them using popular optimization techniques."
 categories: [Data Science, Hyperparameter Optimization, Machine Learning]

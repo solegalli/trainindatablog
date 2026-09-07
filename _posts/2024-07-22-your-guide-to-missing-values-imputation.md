@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Your Guide to Missing Values Imputation"
-author: sole
+author: shri
 description: "Find out more about missing values, how they appear in the data, and how you can replace them with unbiased estimates for machine learning."
 excerpt: "Find out more about missing values, how they appear in the data, and how you can replace them with unbiased estimates for machine learning."
 categories: [Data Preprocessing, Feature Engineering]
@@ -154,7 +154,7 @@ X_test_imputed = imputer.transform(X_test)
 
 **Limitations:** It can distort the data distribution, and it can mask outlier values. We need to be cautious that the arbitrary value is not close to either the mean or the median, otherwise, we’d be carrying out mean or median imputation instead.
 
-[![14 Common Feature Engineering Questions]({{ site.baseurl }}/assets/images/posts/winsorization-handling-outliers-in-machine-learning/Want-a-quick-feature-engineering-reference-Download-our-free-booklet-14-Common-Feature-Engineering-Questions-covering-encoding-scaling-missing-data-outliers-and-more.-👉-Get-the-free-bookle.png)](https://www.trainindata.com/p/14-common-feature-engineering-questions)
+[![14 Common Feature Engineering Questions]({{ site.baseurl }}/assets/images/posts/winsorization-handling-outliers-in-machine-learning/Want-a-quick-feature-engineering-reference-Download-our-free-booklet-14-Common-Feature-Engineering-Questions-covering-encoding-scaling-missing-data-outliers-and-more-Get-the-free-bookle.png)](https://www.trainindata.com/p/14-common-feature-engineering-questions)
 
 ### **End Tail imputation**
 

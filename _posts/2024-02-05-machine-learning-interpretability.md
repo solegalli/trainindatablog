@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Interpretability in Machine Learning. An Overview"
-author: sole
+author: shri
 description: "Discover what machine learning interpretability is and why it matters. Learn various interpretable machine learning methods and apply them in Python."
 excerpt: "Discover what machine learning interpretability is and why it matters. Learn various interpretable machine learning methods and apply them in Python."
 categories: [Interpretable Machine Learning, Machine Learning]

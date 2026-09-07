@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Class Imbalance in Machine Learning"
-author: sole
+author: gurjinder
 description: "Contrary to what you'll read online or get from ChatGPT, class imbalance is NOT the problem. How you handle it is."
 excerpt: "Contrary to what you'll read online or get from ChatGPT, class imbalance is NOT the problem. How you handle it is."
 categories: [Imbalanced Data, Machine Learning]

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Best Way to Learn Data Science"
-author: sole
+author: ruben
 description: "Discover the best way to learn data science, with the most effective strategies, resources, and methods to accelerate your learning journey."
 excerpt: "Discover the best way to learn data science, with the most effective strategies, resources, and methods to accelerate your learning journey."
 categories: [Data Science, Machine Learning]

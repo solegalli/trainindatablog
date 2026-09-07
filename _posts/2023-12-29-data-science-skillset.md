@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Data Science Skillset Essentials, What You Need to Succeed"
-author: sole
+author: traindata
 description: "Discover the key data science skillset for career growth in this insightful guide. Essential skills for aspiring data scientists."
 excerpt: "Discover the key data science skillset for career growth in this insightful guide. Essential skills for aspiring data scientists."
 categories: [Data Science]

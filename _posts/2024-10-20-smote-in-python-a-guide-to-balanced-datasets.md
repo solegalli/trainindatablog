@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "SMOTE in Python and whether you should still use it in 2025"
-author: sole
+author: noor
 description: "Learn how to implement SMOTE in Python and whether you should still be using it to work with imbalanced datasets in 2025."
 excerpt: "Learn how to implement SMOTE in Python and whether you should still be using it to work with imbalanced datasets in 2025."
 categories: [Data Science, Imbalanced Data, Machine Learning]

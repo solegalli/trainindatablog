@@ -17,7 +17,7 @@
     
 {% if jekyll.environment == "production" %}
 <!-- Plausible Analytics -->
-<script defer data-domain="blog.trainindata.com" src="https://plausible.io/js/plausible.js"></script>
+<script defer data-domain="blog.trainindata.com" src="https://plausible.io/js/script.js"></script>
 
 {% endif %}
    
@@ -70,7 +70,9 @@
 
 <!-- Footer
 ================================================== -->    
-<footer class="footer container text-center">  
+<footer class="footer container text-center">
+
+  {% include follow-us.html %}
 
   <ul class="p-0 mb-1 small">
     {% for item in site.data.menus.footermenu %}
@@ -86,10 +88,12 @@
 
 <!-- JavaScript
 ================================================== -->    
-<script src="{{ site.baseurl }}/assets/js/jquery.min.js"></script>   
-<script src="{{ site.baseurl }}/assets/js/bootstrap.min.js"></script>   
-<script src="{{ site.baseurl }}/assets/js/theme.js"></script>    
-    
+<script src="{{ site.baseurl }}/assets/js/jquery.min.js"></script>
+<script src="{{ site.baseurl }}/assets/js/bootstrap.min.js"></script>
+<script src="{{ site.baseurl }}/assets/js/theme.js"></script>
+
+{% include promo-banner.html %}
+
 </body>
     
 </html>

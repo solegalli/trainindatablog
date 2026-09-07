@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "What is Machine Learning? Definition, Types and Applications"
-author: sole
+author: traindata
 description: "Discover what is machine learning, its impact on various industries, and the exciting future it holds. Pay attention."
 excerpt: "Discover what is machine learning, its impact on various industries, and the exciting future it holds. Pay attention."
 categories: [Machine Learning]

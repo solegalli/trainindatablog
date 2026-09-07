@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Kickstart Your Data Science Path, Entry-Level Positions Explored"
-author: sole
+author: traindata
 description: "Unlock success in data science entry level positions with expert tips, skills insights, and career guidance in this essential guide."
 excerpt: "Unlock success in data science entry level positions with expert tips, skills insights, and career guidance in this essential guide."
 categories: [Data Science]

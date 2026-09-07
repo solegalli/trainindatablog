@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Moving Average Forecasting: What You Need to Know"
-author: sole
+author: priyansh
 description: "Learn moving average forecasting with clear examples, practical applications, and accuracy tips for better time series predictions."
 excerpt: "Learn moving average forecasting with clear examples, practical applications, and accuracy tips for better time series predictions."
 categories: [Data Science, Machine Learning, Time Series Forecasting]

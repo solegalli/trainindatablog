@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "ADASYN: Adaptive Synthetic Sampling for Imbalanced Datasets"
-author: sole
+author: shri
 description: "Find out why you should NOT use ADASYN to handle data imbalance, what the hype was, and what to do instead to boost model performance."
 excerpt: "Find out why you should NOT use ADASYN to handle data imbalance, what the hype was, and what to do instead to boost model performance."
 categories: [Data Science, Imbalanced Data, Machine Learning]

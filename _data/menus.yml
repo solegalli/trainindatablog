@@ -1,17 +1,21 @@
 # Top Menu
 topmenu:
 
-- title: School
+- title: Home
   url: https://www.trainindata.com/
   external: true
 
-- title: Our books
+- title: Books
   url: https://www.trainindata.com/p/books
   external: true
 
-- title: Our courses
+- title: Specializations
+  url: https://www.trainindata.com/p/specializations
+  external: true
+
+- title: Courses
   url: https://www.trainindata.com/courses
-  class: "ml-2 btn btn-dark text-white px-3"
+  class: "ml-2 btn btn-primary-orange text-white px-3"
   external: true
 
 # Footer Menu

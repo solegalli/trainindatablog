@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "An Overview of Feature Selection"
-author: sole
+author: brett
 description: "Learn how feature selection improves machine learning models by reducing noise, preventing overfitting, and boosting performance."
 excerpt: "Learn how feature selection improves machine learning models by reducing noise, preventing overfitting, and boosting performance."
 categories: [Data Science, Feature Selection, Hyperparameter Optimization, Machine Learning]
