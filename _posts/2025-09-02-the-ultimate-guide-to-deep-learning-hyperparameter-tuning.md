@@ -240,7 +240,7 @@ df.head()
 
 In the following output, we see a few rows of the dataset:
 
-![dataset preview]({{ site.baseurl }}/assets/images/posts/the-ultimate-guide-to-deep-learning-hyperparameter-tuning/Screenshot-2025-09-02-at-9.27.18-PM.png)
+![dataset preview]({{ site.baseurl }}/assets/images/posts/the-ultimate-guide-to-deep-learning-hyperparameter-tuning/dataset-preview.png)
 
 ### Data preprocessing
 

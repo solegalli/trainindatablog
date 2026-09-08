@@ -44,7 +44,7 @@ But… do these methods really work?
 
 In 2022, a scientific article came out, making a systematic comparison of the performance of various machine learning models, including weak and strong learners, trained to classify various imbalanced datasets, with and without the use of random oversampling and SMOTE.
 
-![To SMOTE or Not to SMOTE]({{ site.baseurl }}/assets/images/posts/should-you-use-imbalanced-learn-in-2025/Screenshot-2025-07-18-at-09-27-06-To-SMOTE-or-not-to-SMOTE-To-SMOTE-or-not-to-SMOTE-2201.08528v3.pdf.png)
+![To SMOTE or Not to SMOTE]({{ site.baseurl }}/assets/images/posts/should-you-use-imbalanced-learn-in-2025/to-smote-or-not-to-smote-paper.png)
 
 Weak learners included decision trees, support vector machines and adaboost, and strong learners included xgboost and catboost.
 
@@ -216,7 +216,7 @@ plt.show()
 
 In the following image, we compare the original classes distribution, with the data distribution after applying random oversampling. Note that we see exactly the same data points for the minority class, just in darker orange, due to the overlay of points on themselves:
 
-![Image comparing the distribution of the majority class before and after applying random oversampling with imbalanced learn.]({{ site.baseurl }}/assets/images/posts/should-you-use-imbalanced-learn-in-2025/Screenshot-2025-07-18-at-09-18-01-JupyterLab.png)
+![Image comparing the distribution of the majority class before and after applying random oversampling with imbalanced learn.]({{ site.baseurl }}/assets/images/posts/should-you-use-imbalanced-learn-in-2025/random-oversampling-before-after-distribution.png)
 
 **Synthetic Minority Over-sampling Technique (SMOTE)**: SMOTE generates new data resembling the minority class by interpolating between existing instances of the minority class.
 
@@ -251,7 +251,7 @@ plt.show()
 
 In the following image, we compare the distribution of the minority class after creating synthetic examples. Note that we are not simply duplicating points, there are newer data examples:
 
-![Image comparing the distribution of the majority class before and after applying SMOTE with imbalanced learn.]({{ site.baseurl }}/assets/images/posts/should-you-use-imbalanced-learn-in-2025/Screenshot-2025-07-18-at-09-18-16-JupyterLab.png)
+![Image comparing the distribution of the majority class before and after applying SMOTE with imbalanced learn.]({{ site.baseurl }}/assets/images/posts/should-you-use-imbalanced-learn-in-2025/smote-before-after-distribution.png)
 
 #### 2. Undersampling
 
@@ -290,7 +290,7 @@ plt.show()
 
 In the following image, we compare the class distributions before and after undersampling the majority class:
 
-![Image comparing the distribution of the majority class before and after applying random undersampling with imbalanced learn.]({{ site.baseurl }}/assets/images/posts/should-you-use-imbalanced-learn-in-2025/Screenshot-2025-07-18-at-09-18-33-JupyterLab.png)
+![Image comparing the distribution of the majority class before and after applying random undersampling with imbalanced learn.]({{ site.baseurl }}/assets/images/posts/should-you-use-imbalanced-learn-in-2025/random-undersampling-before-after-distribution.png)
 
 **Edited Nearest Neighbours (ENN)**: ENN is an undersampling method that removes instances in the majority class if their nearest neighbors belong to a different class. This technique improves model accuracy by focusing on samples near the decision boundary.
 
@@ -363,7 +363,7 @@ pipeline.fit(X, y)
 
 Below, the evidence that the pipeline worked ;)
 
-![Pipeline combining resampling with imbalanced-learn with training a classifier from scikit-learn.]({{ site.baseurl }}/assets/images/posts/should-you-use-imbalanced-learn-in-2025/Screenshot-2025-07-18-at-09-19-09-JupyterLab.png)
+![Pipeline combining resampling with imbalanced-learn with training a classifier from scikit-learn.]({{ site.baseurl }}/assets/images/posts/should-you-use-imbalanced-learn-in-2025/imbalanced-learn-resampling-pipeline.png)
 
 ### Conclusion
 

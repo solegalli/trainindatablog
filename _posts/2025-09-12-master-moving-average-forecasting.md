@@ -297,7 +297,7 @@ plt.show()
 
 In the following output, we see the training data trend along with the actual stock prices for the test period. The moving average forecast appears as a flat line, showing the constant mean of the last 5 observed values.
 
-![Python output from using the library sktime to predict the future 10 time points with simple moving averages.]({{ site.baseurl }}/assets/images/posts/master-moving-average-forecasting/Screenshot-2025-09-12-at-3.01.47-PM.png)
+![Python output from using the library sktime to predict the future 10 time points with simple moving averages.]({{ site.baseurl }}/assets/images/posts/master-moving-average-forecasting/sktime-moving-average-forecast-output.png)
 
 ## **Evaluating Forecast Performance**
 

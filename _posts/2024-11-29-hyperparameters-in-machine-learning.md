@@ -5,7 +5,7 @@ author: priyansh
 description: "Learn what hyperparameters are in machine learning, why they matter, and how to tune them using popular optimization techniques."
 excerpt: "Learn what hyperparameters are in machine learning, why they matter, and how to tune them using popular optimization techniques."
 categories: [Data Science, Hyperparameter Optimization, Machine Learning]
-image: assets/images/posts/hyperparameters-in-machine-learning/4.png
+image: assets/images/posts/hyperparameters-in-machine-learning/hyperparameters-in-machine-learning-cover.png
 ---
 
 Hyperparameters play a critical role in machine learning—they guide how a model learns and directly affect its accuracy and efficiency. Set them well, and performance improves; set them poorly, and results suffer.
@@ -353,4 +353,4 @@ In conclusion, hyperparameters are crucial to optimizing the performance of mach
 
 Master the use of hyperparameters and the different optimization strategies with our course [Hyperparamater Optimization in Machine Learning](https://www.trainindata.com/p/master-hyperparameter-optimization-for-tabular-learning)
 
-![Hyperparamater in ML course]({{ site.baseurl }}/assets/images/posts/grid-search-vs-random-search-which-one-should-you-use/Screenshot-2024-11-29-at-4.04.03-PM.png)
+![Hyperparamater in ML course]({{ site.baseurl }}/assets/images/posts/grid-search-vs-random-search-which-one-should-you-use/hyperparameter-optimization-course.png)

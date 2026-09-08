@@ -184,7 +184,7 @@ plt.show()
 
 In the following plot we see that the variables are discrete:
 
-![variable distribution before applying MICE imputation]({{ site.baseurl }}/assets/images/posts/multiple-imputation-with-chained-equations-mice-what-is-it/img1.png)
+![variable distribution before applying MICE imputation]({{ site.baseurl }}/assets/images/posts/multiple-imputation-with-chained-equations-mice-what-is-it/variable-distribution-before-mice-imputation.png)
 
 We’ll use MICE and together with Poission Regression as an estimator, to obtain values for the imputation. The iterative imputer has several parameters. With `initial_strategy`, we choose how to set up the missing data to a numeric value in the first round. Here, we replace missing values with the variable mean. With `imputation_order`, we set up the order in which the variable’s missing data points will be estimated. We start by estimating the values of those variables with less missing data.
 
@@ -262,7 +262,7 @@ plt.show()
 
 in the following plot we see the distribution of the variables in the complete dataset:
 
-![Variable distribution after applying MICE imputation]({{ site.baseurl }}/assets/images/posts/multiple-imputation-with-chained-equations-mice-what-is-it/img2.png)
+![Variable distribution after applying MICE imputation]({{ site.baseurl }}/assets/images/posts/multiple-imputation-with-chained-equations-mice-what-is-it/variable-distribution-after-mice-imputation.png)
 
 IterativeImputer accepts any machine learning model for regression, like for example, linear regression, logistic regression (for discrete variables) and random forest, among others.
 
@@ -277,7 +277,7 @@ plt.show()
 
 In the following image, we see the variable distrubution after univariate imputation.
 
-![variable distribution after mean imputation]({{ site.baseurl }}/assets/images/posts/multiple-imputation-with-chained-equations-mice-what-is-it/img3.png)
+![variable distribution after mean imputation]({{ site.baseurl }}/assets/images/posts/multiple-imputation-with-chained-equations-mice-what-is-it/variable-distribution-after-mean-imputation.png)
 
 MICE, through iterative updates of imputed values using conditional distributions, offers a robust and flexible framework. It outperforms simpler imputation methods in obtaining better estimates of the missing values, making it especially valuable for datasets with complex missing data patterns, leading to more accurate and reliable statistical analyses.
 

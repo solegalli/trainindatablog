@@ -40,7 +40,7 @@ Some of these changes are unexpected, like the shut down of a credit data source
 
 With the PSI, we can monitor the model variable distribution in real time and therefore detect these changes as soon as they occur.
 
-![population distribution in time]({{ site.baseurl }}/assets/images/posts/population-stability-index-and-feature-selection-python/2.png)
+![population distribution in time]({{ site.baseurl }}/assets/images/posts/population-stability-index-and-feature-selection-python/population-distribution-in-time.png)
 
 ## PSI: How is it calculated?
 
@@ -119,7 +119,7 @@ If the PSI values of the features changed in recent data, then the development s
 
 After the machine leaning model is put into production, the PSI values can be used to monitor and detect changes in the variable distribution that may compromise the model performance. If the PSI values of the variables is small, then we can, in principle, continue using the existing model safely.
 
-![monitoring machine learning models]({{ site.baseurl }}/assets/images/posts/population-stability-index-and-feature-selection-python/3.png)
+![monitoring machine learning models]({{ site.baseurl }}/assets/images/posts/population-stability-index-and-feature-selection-python/monitoring-machine-learning-models.png)
 
 ### In summary
 

@@ -107,7 +107,7 @@ X.head()
 
 In the following image, we see the dataset:
 
-![training data for grid search vs random search]({{ site.baseurl }}/assets/images/posts/grid-search-vs-random-search-which-one-should-you-use/Screenshot-2025-01-28-at-6.52.38-PM.png)
+![training data for grid search vs random search]({{ site.baseurl }}/assets/images/posts/grid-search-vs-random-search-which-one-should-you-use/grid-search-vs-random-search-training-data.png)
 
 ### 2. Defining the Hyperparameter Grid
 
@@ -290,7 +290,7 @@ plt.show()
 
 These heatmaps show the distribution of hyperparameter combinations explored during Grid Search and Random Search. The color intensity indicates how frequently a particular combination was evaluated, with darker shades representing higher frequencies:
 
-![heatmap representing the exploration of the search space by grid search and random search]({{ site.baseurl }}/assets/images/posts/grid-search-vs-random-search-which-one-should-you-use/Screenshot-2025-01-28-at-6.53.23-PM.png)
+![heatmap representing the exploration of the search space by grid search and random search]({{ site.baseurl }}/assets/images/posts/grid-search-vs-random-search-which-one-should-you-use/grid-search-vs-random-search-heatmap.png)
 
 For example, max_depth=10 in Grid Search was explored 162 times, whereas the same was explored only 3 times in Random Search. We can clearly see the exhaustive search process in Grid Search, where every possible combination of hyperparameters is explored almost more than 200 times.
 
@@ -328,4 +328,4 @@ From traditional machine learning algorithms to deep learning and neural network
 
 To learn more about the optimal use of hyperparameters and their tuning techniques, check out our course on [Hyperparamater Optimisation in Machine Learning:](https://www.trainindata.com/p/master-hyperparameter-optimization-for-tabular-learning)
 
-![course on hyperparameter optimization in machine learning]({{ site.baseurl }}/assets/images/posts/grid-search-vs-random-search-which-one-should-you-use/Screenshot-2024-11-29-at-4.04.03-PM.png)
+![course on hyperparameter optimization in machine learning]({{ site.baseurl }}/assets/images/posts/grid-search-vs-random-search-which-one-should-you-use/hyperparameter-optimization-course.png)
