@@ -196,7 +196,7 @@ BNP Paribas Cardif has provided an anonymized [database](https://www.kaggle.com/
 
 ### **Machine Learning skills**
 
-This project will help you grasp fundamental concepts of binary classification, such as feature selection, model evaluation metrics (e.g., accuracy, precision, recall, F1-score), handling class imbalance, and [hyperparameter tuning](https://www.trainindata.com/p/hyperparameter-optimization-for-machine-learning).
+This project will help you grasp fundamental concepts of binary classification, such as feature selection, model evaluation metrics (e.g., accuracy, precision, recall, F1-score), handling class imbalance, and [hyperparameter tuning](https://www.trainindata.com/p/master-hyperparameter-optimization-for-tabular-learning).
 
 Challenges to tackle include dealing with imbalanced data in the insurance claims dataset, selecting the most suitable algorithms and features for classification, and optimizing model performance while considering the balance between interpretability and accuracy.
 

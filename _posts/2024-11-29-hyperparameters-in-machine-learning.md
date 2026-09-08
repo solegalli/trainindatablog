@@ -12,7 +12,7 @@ Hyperparameters play a critical role in machine learning—they guide how a mode
 
 In this article, we’ll break down what hyperparameters in machine learning are, why tuning them matters, and explore practical techniques to optimize them. By the end, you’ll understand how even small tweaks can make a big difference in your model’s performance. Let’s get started!
 
-> Master hyperparameter optimization with our course [Hyperparameter optimization in machine learning](https://www.trainindata.com/p/hyperparameter-optimization-for-machine-learning).
+> Master hyperparameter optimization with our course [Hyperparameter optimization in machine learning](https://www.trainindata.com/p/master-hyperparameter-optimization-for-tabular-learning).
 
 ## What are Hyperparameters
 
@@ -44,7 +44,7 @@ In summary, the parameters—intercept and slope—are learned by the model duri
 
 All machine learning models have hyperparameters that can be tuned manually to achieve the desired model performance based on specific goals and data characteristics. Some of the most common hyperparameters in machine learning are the **learning rate, regularization strength, maximum depth in tree-based models, kernel type, batch size, and number of iterations**.
 
-> Ready to tune models like a pro? Our course on [Hyperparameter Tuning for Machine Learning](https://www.trainindata.com/p/hyperparameter-optimization-for-machine-learning) will show you how—fast, practical, and hands-on.
+> Ready to tune models like a pro? Our course on [Hyperparameter Tuning for Machine Learning](https://www.trainindata.com/p/master-hyperparameter-optimization-for-tabular-learning) will show you how—fast, practical, and hands-on.
 
 Understanding how these hyperparameters affect a machine learning model and its performance can help us select and tune them effectively.
 
@@ -66,7 +66,7 @@ Hyperparameters play a pivotal role in shaping how machine learning models learn
 
 In this section, we’ll explore some of the most important and widely tuned hyperparameters for various machine learning algorithms. We’ll use Python and scikit learn for code demonstration.
 
-> Want to nail hyperparameter optimization with Python? Our course on [Hyperparameter Tuning for Machine Learning](https://www.trainindata.com/p/hyperparameter-optimization-for-machine-learning) shows you how—scikit-learn, Hyperopt, Optuna, all frameworks at your fingertips.
+> Want to nail hyperparameter optimization with Python? Our course on [Hyperparameter Tuning for Machine Learning](https://www.trainindata.com/p/master-hyperparameter-optimization-for-tabular-learning) shows you how—scikit-learn, Hyperopt, Optuna, all frameworks at your fingertips.
 
 ### Tree Based Algorithms
 
@@ -263,7 +263,7 @@ Best Score: 0.934
 
 Grid Search can be **computationally** **expensive** as it requires evaluating every combination, especially when the number of possible combinations is large. Therefore, Grid Search is particularly effective when you have a relatively small set of hyperparameters to tune and want to ensure you explore every possible combination to find the most suitable one for your model.
 
-> Master the use of the different hyperparameter optimization strategies with our course [Hyperparamater Optimization in Machine Learning](https://www.trainindata.com/p/hyperparameter-optimization-for-machine-learning)
+> Master the use of the different hyperparameter optimization strategies with our course [Hyperparamater Optimization in Machine Learning](https://www.trainindata.com/p/master-hyperparameter-optimization-for-tabular-learning)
 
 ### Random Search
 
@@ -351,6 +351,6 @@ In conclusion, hyperparameters are crucial to optimizing the performance of mach
 
 ## More resources for Hyperparamater Optimization
 
-Master the use of hyperparameters and the different optimization strategies with our course [Hyperparamater Optimization in Machine Learning](https://www.trainindata.com/p/hyperparameter-optimization-for-machine-learning)
+Master the use of hyperparameters and the different optimization strategies with our course [Hyperparamater Optimization in Machine Learning](https://www.trainindata.com/p/master-hyperparameter-optimization-for-tabular-learning)
 
 ![Hyperparamater in ML course]({{ site.baseurl }}/assets/images/posts/grid-search-vs-random-search-which-one-should-you-use/Screenshot-2024-11-29-at-4.04.03-PM.png)

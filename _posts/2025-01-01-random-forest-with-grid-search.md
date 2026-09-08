@@ -14,7 +14,7 @@ Random Forest, a versatile and robust algorithm, excels in both **classificatio
 
 In this article, we’ll discuss how to find the best set of hyperparameters for Random Forests using Grid Search. Along the way, we’ll show practical examples in **Python** using **sklearn**.
 
-> Master hyperparameter optimization with grid search (and other methods), with our course [Hyperparameter Optimization for Machine Learning](https://www.trainindata.com/p/hyperparameter-optimization-for-machine-learning).
+> Master hyperparameter optimization with grid search (and other methods), with our course [Hyperparameter Optimization for Machine Learning](https://www.trainindata.com/p/master-hyperparameter-optimization-for-tabular-learning).
 
 Let’s start by discussing what hyperparameter tuning is, and the methods commonly used to optimize machine learning models.
 
@@ -33,7 +33,7 @@ Some common methods for hyperparameter tuning are:
 - **Randomized Search**: In a randomized search, we evaluate random hyperparameter combinations, which are sampled from distributions of hyperparameter values, offering faster results while still covering a broad parameter space.
 - **Bayesian Optimization**: This method tries to predict the best hyperparameters using probability models, making it efficient for larger and more complex algorithms, that take longer to train.
 
-> Watch detailed tutorials about the various hyperparameter tuning techniques, in our course [Hyperparameter Optimization for Machine Learning](https://www.trainindata.com/p/hyperparameter-optimization-for-machine-learning).
+> Watch detailed tutorials about the various hyperparameter tuning techniques, in our course [Hyperparameter Optimization for Machine Learning](https://www.trainindata.com/p/master-hyperparameter-optimization-for-tabular-learning).
 
 Grid Search is a widely used hyperparameter optimization method due to its simplicity and comprehensive exploration of the **hyperparameter grid.** It is particularly useful for relatively simple models like Random Forest.
 
@@ -76,7 +76,7 @@ For instance, **max_depth=3** will be combined in the following way with the oth
 
 The same combinations are repeated for the other values of max_depth (i.e. 5, 10 and None). Using **cross-validation**, all these combinations are trained and tested on different subsets of the training data**.**
 
-> Master Grid Search with our tutorials at [Hyperparameter Optimization for Machine Learning](https://www.trainindata.com/p/hyperparameter-optimization-for-machine-learning).
+> Master Grid Search with our tutorials at [Hyperparameter Optimization for Machine Learning](https://www.trainindata.com/p/master-hyperparameter-optimization-for-tabular-learning).
 
 ### Cross-validation
 
@@ -344,7 +344,7 @@ The output of the previous code is:
 
 These plots highlight the impact of different hyperparameters on model performance. Parameters like **max_depth** show consistent improvement in the accuracy, indicating its critical role in enhancing model performance. On the other hand, hyperparameters like **n_estimator,** **min_samples_split** and **min_samples_leaf** exhibit gradual changes upon certain thresholds after which the model performance changes drastically.
 
-> Overwhelmed with the amount of information? Discover how to find which hyperparameters matter most with our course [Hyperparameter Optimization for Machine Learning](https://www.trainindata.com/p/hyperparameter-optimization-for-machine-learning).
+> Overwhelmed with the amount of information? Discover how to find which hyperparameters matter most with our course [Hyperparameter Optimization for Machine Learning](https://www.trainindata.com/p/master-hyperparameter-optimization-for-tabular-learning).
 
 By observing these trends, we can identify which hyperparameters, like **n_estimators** and  **max_depth**, significantly influence model performance. In contrast, parameters like **min_samples_leaf** and **max_features** show smaller impact, indicating that they can be safely left “untuned” in time-sensitive scenarios.
 
@@ -358,6 +358,6 @@ Other models, including Support Vector Machines, Logistic Regression, and XGBoos
 
 ## More resources for Hyperparamater Optimization
 
-Master the use of hyperparameters and their tuning techniques with our course [Hyperparamater Optimisation in Machine Learning.](https://www.trainindata.com/p/hyperparameter-optimization-for-machine-learning)
+Master the use of hyperparameters and their tuning techniques with our course [Hyperparamater Optimisation in Machine Learning.](https://www.trainindata.com/p/master-hyperparameter-optimization-for-tabular-learning)
 
 ![Hyperparamater in ML course]({{ site.baseurl }}/assets/images/posts/grid-search-vs-random-search-which-one-should-you-use/Screenshot-2024-11-29-at-4.04.03-PM.png)

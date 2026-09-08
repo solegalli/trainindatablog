@@ -14,9 +14,9 @@ Hyperparameters are user-defined configuration settings that guide the learning 
 
 Discover various techniques for finding the optimal hyperparameters, including grid search, random search, and Bayesian Optimization, as we delve into their strengths and limitations in this article.
 
-For a comprehensive tutorial and Python code implementations on hyperparameter optimization for machine learning, explore our course [*Hyperparameter Optimization for Machine Learning*](https://www.trainindata.com/p/hyperparameter-optimization-for-machine-learning)*.*
+For a comprehensive tutorial and Python code implementations on hyperparameter optimization for machine learning, explore our course [*Hyperparameter Optimization for Machine Learning*](https://www.trainindata.com/p/master-hyperparameter-optimization-for-tabular-learning)*.*
 
-[![Hyperparameter optimization for machine learning course]({{ site.baseurl }}/assets/images/posts/hyperparameter-tuning-for-machine-learning/hyperparameter-tuning-course-1024x576.png)](https://www.trainindata.com/p/hyperparameter-optimization-for-machine-learning)
+[![Hyperparameter optimization for machine learning course]({{ site.baseurl }}/assets/images/posts/hyperparameter-tuning-for-machine-learning/hyperparameter-tuning-course-1024x576.png)](https://www.trainindata.com/p/master-hyperparameter-optimization-for-tabular-learning)
 
 ## Model Parameters
 
@@ -214,4 +214,4 @@ I hope this article helped you better understand what hyperparameter tuning in m
 
 Learning to optimize the hyperparameters of your models takes time, effort, and several practical implementations to master properly.
 
-If you’re looking for a more detailed tutorial on how to use these tools, check out our online course [Hyperparameter Optimization for Machine Learning](https://www.trainindata.com/p/hyperparameter-optimization-for-machine-learning).
+If you’re looking for a more detailed tutorial on how to use these tools, check out our online course [Hyperparameter Optimization for Machine Learning](https://www.trainindata.com/p/master-hyperparameter-optimization-for-tabular-learning).

@@ -192,7 +192,7 @@ The first step is to learn the most basic skills. You can do this with books, AI
 Once you’ve mastered the basics, you can build up your skills with more advanced courses on specific topics. Check out courses and books that are relevant to your specialization like:
 
 - [Feature Engineering with Python](https://www.trainindata.com/p/books)
-- [Hyper Parameter Optimization for ML algorithms](https://www.trainindata.com/p/hyperparameter-optimization-for-machine-learning)
+- [Hyper Parameter Optimization for ML algorithms](https://www.trainindata.com/p/master-hyperparameter-optimization-for-tabular-learning)
 - [Machine Learning Interpretability](https://www.trainindata.com/p/machine-learning-interpretability)
 - [Mathematics for ML and DL Specialization](https://www.deeplearning.ai/courses/mathematics-for-machine-learning-and-data-science-specialization/)
 - [Time Series Forecasting](https://www.trainindata.com/p/forecasting-specialization)

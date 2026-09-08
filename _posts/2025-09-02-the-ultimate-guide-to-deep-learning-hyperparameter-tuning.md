@@ -28,9 +28,9 @@ Hyperparameters govern how the model learns, significantly influencing its perfo
 
 Optimizing hyperparameters involves navigating a vast space of potential hyperparameter value combinations and finding the best possible combination for our application.
 
-To master hyperparameter optimization, check out our course [Hyperparameter Tuning for machine Learning](https://www.trainindata.com/p/hyperparameter-optimization-for-machine-learning).
+To master hyperparameter optimization, check out our course [Hyperparameter Tuning for machine Learning](https://www.trainindata.com/p/master-hyperparameter-optimization-for-tabular-learning).
 
-[![Hyperparameter optimization for machine learning course]({{ site.baseurl }}/assets/images/posts/the-ultimate-guide-to-deep-learning-hyperparameter-tuning/hyperparameter-tuning-course.png)](https://www.trainindata.com/p/hyperparameter-optimization-for-machine-learning)
+[![Hyperparameter optimization for machine learning course]({{ site.baseurl }}/assets/images/posts/the-ultimate-guide-to-deep-learning-hyperparameter-tuning/hyperparameter-tuning-course.png)](https://www.trainindata.com/p/master-hyperparameter-optimization-for-tabular-learning)
 
 ## Why Tune Hyperparameters in Deep Learning?
 
@@ -152,7 +152,7 @@ A key difference between Grid or Random Search and Bayesian optimization is that
 
 **Example:** Suppose you’re tuning a deep learning model for image classification and want to find the best learning rate. You start by trying a few random values like `0.001`, `0.01`, and `0.1`, and note their validation accuracies. Bayesian optimization builds a model based on these results and predicts that `0.005` is likely to perform better. It tries that next, then updates its prediction based on the outcome. This cycle continues, helping you find optimal values without testing every possible option.
 
-*Tuning deep learning hyperparameters is challenging. If you’re feeling overwhelmed, we offer a comprehensive* [*hyperparameter optimization course*](https://www.trainindata.com/p/hyperparameter-optimization-for-machine-learning) *that discusses each optimization technique in detail and shows you how to leverage the power of the best Python open source hyperparameter tuning libraries.* [*Enroll today*](https://www.trainindata.com/p/hyperparameter-optimization-for-machine-learning) *to see how to boost your deep learning model’s performance.*
+*Tuning deep learning hyperparameters is challenging. If you’re feeling overwhelmed, we offer a comprehensive* [*hyperparameter optimization course*](https://www.trainindata.com/p/master-hyperparameter-optimization-for-tabular-learning) *that discusses each optimization technique in detail and shows you how to leverage the power of the best Python open source hyperparameter tuning libraries.* [*Enroll today*](https://www.trainindata.com/p/master-hyperparameter-optimization-for-tabular-learning) *to see how to boost your deep learning model’s performance.*
 
 ### **Hyperband**
 
@@ -170,7 +170,7 @@ This method is powerful for complex or long training processes, such as reinforc
 
 **Example:** Imagine you’re training an LSTM for sequence prediction over several days. PBT would allow some models to adjust their learning rate, dropout, or optimizer mid-training if another model is performing better. Over time, the population evolves towards the best-performing configuration, without restarting training from scratch.
 
-*Choosing the right hyperparameter tuning technique depends on factors like available computing resources, model size, training time, and project goals. While simpler methods like random search offer quick wins, more advanced approaches like Bayesian optimization or Hyperband can uncover deeper performance gains with fewer trials. For more details about the pros and cons of each strategy, enroll in our course* [*Hyperparameter Optimization in Machine Learning*](https://www.trainindata.com/p/hyperparameter-optimization-for-machine-learning)*.*
+*Choosing the right hyperparameter tuning technique depends on factors like available computing resources, model size, training time, and project goals. While simpler methods like random search offer quick wins, more advanced approaches like Bayesian optimization or Hyperband can uncover deeper performance gains with fewer trials. For more details about the pros and cons of each strategy, enroll in our course* [*Hyperparameter Optimization in Machine Learning*](https://www.trainindata.com/p/master-hyperparameter-optimization-for-tabular-learning)*.*
 
 ### **Python Tuning Frameworks**
 
@@ -370,7 +370,7 @@ print(f"Basline ROC-AUC: {roc_auc:.4f}")
 print(f"Baseline Average Precision: {avg_precision:.4f}")
 ```
 
-*Not sure which metric to use to evaluate your model’s performance? Struggling specifically with multi-class models? Learn how to appropriately set up metrics for regression, binary, and multi-class classification in our* [*Hyperparameter Optimization in Machine Learning course*](https://www.trainindata.com/p/hyperparameter-optimization-for-machine-learning)*.*
+*Not sure which metric to use to evaluate your model’s performance? Struggling specifically with multi-class models? Learn how to appropriately set up metrics for regression, binary, and multi-class classification in our* [*Hyperparameter Optimization in Machine Learning course*](https://www.trainindata.com/p/master-hyperparameter-optimization-for-tabular-learning)*.*
 
 In the following output, we see the ROC-AUC macro averaged across all labels and the Average Precision for the trained model:
 
@@ -561,7 +561,7 @@ Even better, combining Hyperband with Bayesian methods—as done in modern Pytho
 
 Ultimately, while the choice of tuning technique depends on your constraints and goals, in most practical deep learning workflows, leveraging more intelligent and resource-aware methods like Bayesian optimization or Hyperband or a hybrid of both, will give you a significant edge—especially in deep learning workflows where efficiency and precision matter most.
 
-*Tuning deep learning hyperparameters might seem challenging. In our comprehensive* [*hyperparameter optimization course*](https://www.trainindata.com/p/hyperparameter-optimization-for-machine-learning) *we take you step-by-step into the practical implementation of hyperparamter tuning for deep learning. Stop the guesswork –* [*Enroll today*](https://www.trainindata.com/p/hyperparameter-optimization-for-machine-learning)*!*
+*Tuning deep learning hyperparameters might seem challenging. In our comprehensive* [*hyperparameter optimization course*](https://www.trainindata.com/p/master-hyperparameter-optimization-for-tabular-learning) *we take you step-by-step into the practical implementation of hyperparamter tuning for deep learning. Stop the guesswork –* [*Enroll today*](https://www.trainindata.com/p/master-hyperparameter-optimization-for-tabular-learning)*!*
 
 Let’s explore some best practices that can help you make the most out of your deep learning hyperparameter tuning efforts.
 

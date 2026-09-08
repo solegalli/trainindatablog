@@ -274,7 +274,7 @@ Some model-building techniques are:
   - [Hyperparameter Tuning for Machine learning – **Train in Data**](https://www.blog.trainindata.com/hyperparameter-tuning-for-machine-learning/)
   - [Hyperparameter Tuning in Python – **neptune.ai**](https://neptune.ai/blog/hyperparameter-tuning-in-python-complete-guide)
   - [Introduction to hyperparameter tuning – **pyimagesearch**](https://pyimagesearch.com/2021/05/17/introduction-to-hyperparameter-tuning-with-scikit-learn-and-python/)
-  - [Hyperparameter Tuning for Machine learning – **Train in Data**](https://www.trainindata.com/p/hyperparameter-optimization-for-machine-learning)**, online course**
+  - [Hyperparameter Tuning for Machine learning – **Train in Data**](https://www.trainindata.com/p/master-hyperparameter-optimization-for-tabular-learning)**, online course**
 - **Cross-Validation** – This involves splitting the dataset into multiple subsets, training the model on different subsets, and evaluating its performance on the remaining subsets to ensure robustness and reliability.
   - [Cross Validation in machine learning – **JavaTPoint**](https://www.javatpoint.com/cross-validation-in-machine-learning)
   - [Cross Validation in machine learning – **GeeksForGeeks**](https://www.geeksforgeeks.org/cross-validation-machine-learning/)

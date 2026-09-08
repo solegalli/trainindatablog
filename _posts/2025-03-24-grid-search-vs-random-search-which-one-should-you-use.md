@@ -16,7 +16,7 @@ This question often sparks confusion, especially when balancing accuracy, comput
 
 In this article, we’ll break down these two popular approaches, explore their trade-offs, and help you decide which method works best for your dataset, model, and goals.
 
-> Master grid and random search with our course [Hyperparameter Optimization for Machine Learning](https://www.trainindata.com/p/hyperparameter-optimization-for-machine-learning).
+> Master grid and random search with our course [Hyperparameter Optimization for Machine Learning](https://www.trainindata.com/p/master-hyperparameter-optimization-for-tabular-learning).
 
 ## Understanding Grid Search and Random Search
 
@@ -69,7 +69,7 @@ The procedure to test the hyperparameter combinations is similar to that of Grid
 
 Due to random sampling of hyperparameters from a distribution, Random Search is **computationally efficient** in large hyperparameter spaces.
 
-> Confused about the difference between Grid Search and Random Search? Our course, [*Hyperparameter Optimization for Machine Learning*](https://www.trainindata.com/p/hyperparameter-optimization-for-machine-learning), breaks it down with hands-on tutorials and real code examples—so you can apply these techniques with confidence.
+> Confused about the difference between Grid Search and Random Search? Our course, [*Hyperparameter Optimization for Machine Learning*](https://www.trainindata.com/p/master-hyperparameter-optimization-for-tabular-learning), breaks it down with hands-on tutorials and real code examples—so you can apply these techniques with confidence.
 
 ## Grid Search and Random Search: Application
 
@@ -326,6 +326,6 @@ From traditional machine learning algorithms to deep learning and neural network
 
 ## Master Hyperparamater Optimization
 
-To learn more about the optimal use of hyperparameters and their tuning techniques, check out our course on [Hyperparamater Optimisation in Machine Learning:](https://www.trainindata.com/p/hyperparameter-optimization-for-machine-learning)
+To learn more about the optimal use of hyperparameters and their tuning techniques, check out our course on [Hyperparamater Optimisation in Machine Learning:](https://www.trainindata.com/p/master-hyperparameter-optimization-for-tabular-learning)
 
 ![course on hyperparameter optimization in machine learning]({{ site.baseurl }}/assets/images/posts/grid-search-vs-random-search-which-one-should-you-use/Screenshot-2024-11-29-at-4.04.03-PM.png)

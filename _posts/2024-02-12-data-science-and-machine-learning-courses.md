@@ -194,7 +194,7 @@ The “Advanced Data Science Capstone” course, part of the Advanced Data Scien
 
 You will apply their knowledge to real-world practical use cases, justifying architectural decisions and understanding the characteristics of different algorithms, frameworks, and technologies and how they impact model performance and scalability. This is definitely a good option for you if you are fully equipped with beginner level skills and now wanna step into a more advanced world.
 
-**Course link:** <https://www.coursera.org/learn/advanced-data-science-capstone>
+**Course link:** https://www.coursera.org/learn/advanced-data-science-capstone
 
 **Course Duration:** 8 hours (approximately)
 
