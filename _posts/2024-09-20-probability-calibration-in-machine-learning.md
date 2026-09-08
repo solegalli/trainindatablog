@@ -40,7 +40,7 @@ Several factors influence how well a model’s predicted probabilities align wit
   - Oversampling may inflate minority class probabilities.
   - Undersampling might underestimate majority class probabilities.
 
-- **Cost-Sensitive Learning**: When different misclassification costs are assigned to different classes, it can skew probability estimates. The model adjusts its decision boundary during training to minimize overall cost — the same effect you could get by calibrating and then adjusting the threshold on a model trained without cost weighting — which can lead to uncalibrated probabilities.
+- **Cost-Sensitive Learning**: When different misclassification costs are assigned to different classes, it can skew probability estimates. The model adjusts its decision boundary during training to minimize overall cost — the same effect you could get by adjusting the threshold on a model trained without cost weighting — which can lead to uncalibrated probabilities.
 
 Understanding these influences is crucial for developing models that provide reliable probability estimates in applications where prediction confidence is as important as overall prediction.
 
