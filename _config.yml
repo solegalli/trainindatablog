@@ -1,5 +1,6 @@
 title: "Train in Data Blog"
 email: solegalli@trainindata.com
+url: "https://blog.trainindata.com"
 timezone: UTC
 baseurl: ""
 permalink: "/:title/"
