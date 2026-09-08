@@ -2,65 +2,43 @@
 layout: post
 title: "Feature selection in machine learning with Python"
 author: sole
-description: Discover multiple algorithms for feature selection and implement them in Python.
-excerpt: Discover multiple algorithms for feature selection and implement them in Python.
-categories: [ Feature selection, Python, Machine learning ]
-image: assets/images/posts/fspython/cover.png
+description: "Discover multiple algorithms for feature selection in machine learning and how to implement them in Python."
+excerpt: "Discover multiple algorithms for feature selection in machine learning and how to implement them in Python."
+categories: [Feature Selection, Machine Learning]
+image: assets/images/posts/feature-selection-machine-learning-with-python/cover-2.png
 ---
 
-An essential step in any data science project is to select the most predictive variables. 
-There are various methods of feature selection. Some scale well but consider only features 
-individually. Some are extremely computationally costly and thus applicable only to 
-relatively small datasets. Some others fall somewhere in the middle.
+An essential step in any data science project is to select the most predictive variables. There are various methods of feature selection. Some scale well but consider only features individually. Some are extremely computationally costly and thus applicable only to relatively small datasets. Some others fall somewhere in the middle.
 
-There are also various implementations of feature selection algorithms in Python, utilizing open-source libraries. 
-Covering all of them in an article, is almost impossible. Instead, in this blog, I will introduce the Python libraries 
-for feature selection, highlight which selection methods are available in each of them, and then demo some of the feature selection implementations.
+There are also various implementations of feature selection algorithms in Python, utilizing open-source libraries. Covering all of them in an article, is almost impossible. Instead, in this blog, I will introduce the Python libraries for feature selection, highlight which selection methods are available in each of them, and then demo some of the feature selection implementations.
 
-*For tutorials and step by step code implementations on additional feature selection methods, check out our course 
-[Feature Selection for Machine Learning](https://www.trainindata.com/p/feature-selection-for-machine-learning) or our 
-book [Feature Selection in Machine Learning with Python](https://leanpub.com/feature-selection-in-machine-learning/)*.
+*For tutorials and step by step code implementations on additional feature selection methods, check out our course [Feature Selection for Machine Learning](https://www.trainindata.com/p/feature-selection-for-machine-learning) or our book [Feature Selection in Machine Learning with Python](https://www.trainindata.com/p/feature-selection-in-machine-learning-book)*.
 
 You may also like my talk at DataTalks.Club:
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/blvmNWbcPDo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/blvmNWbcPDo" title="YouTube video player" width="560" height="315" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
 
 So how can we do feature selection in Python?
 
-Before we jump onto the demos, let’s do a short recap on feature selection and the different methods that we can use to 
-find the best feature subsets.
-
+Before we jump onto the demos, let’s do a short recap on feature selection and the different methods that we can use to find the best feature subsets.
 
 ## Feature selection methods
 
-In feature selection, we select a subset of features from the data set to train machine learning algorithms. Feature 
-selection techniques differ from dimensionality reduction in that they do not alter the original representation of the 
-variables but merely select a smaller set of features. Remember that methods like PCA create new features by combining 
-the existing ones into the principal components.
+In feature selection, we select a subset of features from the data set to train machine learning algorithms. Feature selection techniques differ from dimensionality reduction in that they do not alter the original representation of the variables but merely select a smaller set of features. Remember that methods like PCA create new features by combining the existing ones into the principal components.
 
-By reducing the number of features, we can improve the performance of the machine learning models (i.e., avoid overfitting), 
-while reducing training time and creating more interpretable machine learning models.
+By reducing the number of features, we can improve the performance of the machine learning models (i.e., avoid overfitting), while reducing training time and creating more interpretable machine learning models.
 
-Feature selection methods have been traditionally grouped into filter methods, wrapper methods, and embedded methods.
+Feature selection methods have been traditionally grouped into [filter methods](https://www.blog.trainindata.com/feature-selection-with-filter-methods/), [wrapper methods](https://www.blog.trainindata.com/feature-selection-with-wrapper-methods/), and [embedded methods](https://www.blog.trainindata.com/feature-selection-with-embedded-methods/).
 
-![feature selection methods]({{ site.baseurl }}/assets/images/posts/fspython/ch1-fig3.png)
-**Image taken from [Feature Selection in Machine Learning with Python](https://leanpub.com/feature-selection-in-machine-learning/)**
+[![Diagram showing the 3 umbrella groups of feature selection methods: filter, wrapper and embedded methods]({{ site.baseurl }}/assets/images/posts/feature-selection-machine-learning-with-python/ch1-fig3.png)](https://leanpub.com/feature-selection-in-machine-learning/) Image taken from Feature Selection in Machine Learning with Python
 
-Filter methods select the best features based on the feature characteristics, ignoring their interaction with the machine 
-learning model. They rank the features and then select the top-ranking ones. Ranking methods normally use statistical 
-tests like chi-square, ANOVA, correlation, and mutual information.
+Filter methods select the best features based on the feature characteristics, ignoring their interaction with the machine learning model. They rank the features and then select the top-ranking ones. Ranking methods normally use statistical tests like chi-square, ANOVA, correlation, and mutual information.
 
-Wrapper methods wrap the search for the most relevant features around a predictive model. They generate multiple feature 
-subsets and then evaluate their performance based on the classifier or regression model. The selected features are those 
-from the subset that returned the best performing model.
+Wrapper methods wrap the search for the most relevant features around a predictive model. They generate multiple feature subsets and then evaluate their performance based on the classifier or regression model. The selected features are those from the subset that returned the best performing model.
 
-Embedded methods "embed" the selection procedure in the training of the predictive model. Lasso and feature importance 
-from decision trees are the classical examples of embedded methods. The coefficients of linear models can also be used 
-to select important features.
+Embedded methods “embed” the selection procedure in the training of the predictive model. Lasso and feature importance from decision trees are the classical examples of embedded methods. The coefficients of linear models can also be used to select important features.
 
-Feature selection and feature engineering are widely used in data science during the preprocessing of the data. So how 
-can we do that in Python?
-
+Feature selection and feature engineering are widely used in data science during the preprocessing of the data. So how can we do that in Python?
 
 ## Python libraries for feature selection
 
@@ -70,25 +48,19 @@ Scikit-learn contains algorithms for filter methods, wrapper methods and embedde
 
 MLXtend contains transformers to implement forward, backward and exhaustive search.
 
-Feature-engine contains alternative feature selection methods based on machine learning model performance, feature shuffling 
-and also feature selection techniques that support categorical variables.
+Feature-engine contains alternative feature selection methods based on machine learning model performance, feature shuffling and also feature selection techniques that support categorical variables.
 
-![feature selection methods]({{ site.baseurl }}/assets/images/posts/fspython/table.png)
-**Feature selection implementations by the different libraries.**
+![Table showing the feature selection methods supported by the three main Python libraries, Scikit-learn, MLXtend and Feature-engine.]({{ site.baseurl }}/assets/images/posts/feature-selection-machine-learning-with-python/Table-Feature-selection-in-machine-learning-with-Python.png)
 
 In this article, we will implement various feature selection techniques with Scikit-learn and Feature-engine.
 
 ### Feature selection with Scikit-learn
 
-Scikit-learn contains algorithms for filter methods, wrapper methods and embedded methods, including recursive feature 
-elimination. Among the filter methods, we can select features using their variance or based on ANOVA. Let’s explore these procedures.
-
+Scikit-learn contains algorithms for filter methods, wrapper methods and embedded methods, including recursive feature elimination. Among the filter methods, we can select features using their variance or based on ANOVA. Let’s explore these procedures.
 
 #### Variance
 
-With Scikit-learn, we can remove irrelevant features by looking at feature variability. Features whose standard 
-deviation is zero are constant and can be removed. In this example, we will create a toy dataset with 3 constant 
-variables, and then we will remove them with Scikit-learn.
+With Scikit-learn, we can remove irrelevant features by looking at feature variability. Features whose standard deviation is zero are constant and can be removed. In this example, we will create a toy dataset with 3 constant variables, and then we will remove them with Scikit-learn.
 
 Let’s begin by creating a toy dataset with 3 constant features:
 
@@ -111,38 +83,31 @@ X = pd.DataFrame(X)
 X[[0, 5, 9]] = 1
 ```
 
-In the previous code snippet, we created a toy dataset with the function `make_classification` 
-from Scikit-learn. You will most likely load your own dataset with pandas `read_csv`.
+In the previous code snippet, we created a toy dataset with the function `make_classification` from Scikit-learn. You will most likely load your own dataset with pandas `read_csv`.
 
-Now, we will remove the constant features with the `VarianceThreshold` class from Scikit-learn:
+Now, we will remove the constant features with the `VarianceThreshold` class from Scikit-learn:
 
 ```
 # To remove constant features
 sel = VarianceThreshold(threshold=0)
 
 # fit finds the features with zero variance
-X_t = sel.fit_transform(X)  
+X_t = sel.fit_transform(X)
 ```
 
-In the previous code snippet, we first set up the transformer, and then applied the 
-method fit, followed by transform. The transformer discovered the constant features using 
-`fit()`. With `transform()`, it removed them from the data.
+In the previous code snippet, we first set up the transformer, and then applied the method fit, followed by transform. The transformer discovered the constant features using `fit()`. With `transform()`, it removed them from the data.
 
-`X_t` contains predictors whose variability is greater than 0.
-
+`X_t` contains predictors whose variability is greater than 0.
 
 #### Chi-square test
 
-The chi-square test is suitable for selecting categorical variables when the target variable is also categorical. It ranks 
-features based on the p-values returned by the test and then selects the top-ranked features.
+The chi-square test is suitable for selecting categorical variables when the target variable is also categorical. It ranks features based on the p-values returned by the test and then selects the top-ranked features.
 
-Note that Scikit-learn’s chi-square function does not carry out the intended procedure. This is a known 
-[issue](https://github.com/scikit-learn/scikit-learn/issues/21455). Instead, use `scipy.stats.chi_contingency`.
+Note that Scikit-learn’s chi-square function does not carry out the intended procedure. This is a known [issue](https://github.com/scikit-learn/scikit-learn/issues/21455). Instead, use `scipy.stats.chi_contingency`.
 
 #### ANOVA
 
-ANOVA is suitable for selecting continuous variables when the target variable is categorical. Let’s explore how we can 
-select features using ANOVA and Scikit-learn. We will use the breast cancer dataset.
+ANOVA is suitable for selecting continuous variables when the target variable is categorical. Let’s explore how we can select features using ANOVA and Scikit-learn. We will use the breast cancer dataset.
 
 Let’s load the dataset and separate it into a train and a test set:
 
@@ -163,8 +128,7 @@ y = breast_cancer.target
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)
 ```
 
-I like using the train_test_split function from Scikit-learn to separate the data. You 
-could also use pandas iloc utilizing index values extracted at random.
+I like using the train_test_split function from Scikit-learn to separate the data. You could also use pandas iloc utilizing index values extracted at random.
 
 Now, we will select the 10 features with the lowest p-value for ANOVA:
 
@@ -177,15 +141,13 @@ X_train_t = sel.transform(X_train)
 X_test_t = sel.transform(X_test)
 ```
 
- With `SelectKBest` we indicate the number of features we want to select. This is an arbitrary value, but can be optimized
-with cross-validation.
+With `SelectKBest` we indicate the number of features we want to select. This is an arbitrary value, but can be optimized with cross-validation.
 
 ### Lasso regularization
 
-Lasso can shrink some of the coefficients of a linear model to 0, therefore selecting features out-of-the-box. Here, I’ll 
-show how to select features using Lasso using a classification and a regression dataset.
+Lasso can shrink some of the coefficients of a linear model to 0, therefore selecting features out-of-the-box. Here, I’ll show how to select features using Lasso using a classification and a regression dataset.
 
-Let's begin by importing the libraries, functions, and classes:
+Let’s begin by importing the libraries, functions, and classes:
 
 ```
 import numpy as np
@@ -197,9 +159,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 ```
 
-We will next import the breast cancer dataset from Scikit-learn with the aim of predicting 
-if a tumor is benign or malignant. This is a classification dataset. Next, we will split 
-the data into a training and a testing set:
+We will next import the breast cancer dataset from Scikit-learn with the aim of predicting if a tumor is benign or malignant. This is a classification dataset. Next, we will split the data into a training and a testing set:
 
 ```
 breast_cancer = load_breast_cancer()
@@ -208,23 +168,23 @@ y = breast_cancer.target
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)
 ```
 
-Let's set up the standard scaler from Scikit-learn:
+Let’s set up the standard scaler from Scikit-learn:
 
 ```
 scaler = StandardScaler()
 scaler.fit(X_train)
 ```
 
-Next, we will select features utilizing logistic regression as a classifier, with the Lasso regularization:  
+Next, we will select features utilizing logistic regression as a classifier, with the Lasso regularization:
 
-``` 
+```
 selector = SelectFromModel(
     LogisticRegression(C=0.5, penalty='l1', solver='liblinear', random_state=10))
 
 selector.fit(scaler.transform(X_train), y_train)
 ```
 
-By executing `selector.get_support()` we obtain a boolean vector with True for the features that have non-zero coefficients:
+By executing `selector.get_support()` we obtain a boolean vector with True for the features that have non-zero coefficients:
 
 ```
 array([False,  True, False, False, False, False, False,  True,  True,
@@ -257,21 +217,15 @@ X_train_selected = selector.transform(scaler.transform(X_train))
 X_test_selected = selector.transform(scaler.transform(X_test))
 ```
 
-If we now execute X_train_selected.shape, X_test_selected.shape, we obtain the shapes of the 
-reduced datasets: ((426, 14), (143, 14)).
+If we now execute X_train_selected.shape, X_test_selected.shape, we obtain the shapes of the reduced datasets: ((426, 14), (143, 14)).
 
-Go ahead and change the value of the penalty (C) to see if the result changes. The best 
-value of C, and thus, the best feature subset, can be determined with cross-validation.
+Go ahead and change the value of the penalty (C) to see if the result changes. The best value of C, and thus, the best feature subset, can be determined with cross-validation.
 
-####  Recursive feature elimination
+#### Recursive feature elimination
 
-Recursive feature elimination is a sequential process where a feature is removed after each iteration, and the importance 
-of the features is reassessed after each elimination. In Scikit-learn, we can implement recursive feature elimination
-with the [RFE](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFE.html) 
-or [RFECV](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFECV.html#sklearn.feature_selection.RFECV).
+Recursive feature elimination is a sequential process where a feature is removed after each iteration, and the importance of the features is reassessed after each elimination. In Scikit-learn, we can implement recursive feature elimination with the [RFE](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFE.html) or [RFECV](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFECV.html#sklearn.feature_selection.RFECV).
 
-Let’s select features recursively using the importance of random forests. We will use the breast cancer data set, and 
-separate the data into a train and a test data set. Features should be selected based on the training data only.
+Let’s select features recursively using the importance of random forests. We will use the breast cancer data set, and separate the data into a train and a test data set. Features should be selected based on the training data only.
 
 ```
 import pandas as pd
@@ -306,17 +260,13 @@ The result consists of Numpy arrays with the selected features.
 
 ### Feature selection with Feature-engine
 
-Feature-engine contains many classes to select features based on recursive feature elimination or addition, feature shuffling,
-population stability index, mean target value, cardinality and more. Check out [Feature-engine's documentation](https://feature-engine.readthedocs.io/en/latest/api_doc/selection/index.html#)
-for more details.
+Feature-engine contains many classes to select features based on recursive feature elimination or addition, feature shuffling, population stability index, mean target value, cardinality and more. Check out [Feature-engine’s documentation](https://feature-engine.readthedocs.io/en/latest/api_doc/selection/index.html#) for more details.
 
 #### Univariate feature selection
 
-Feature-engine includes univariate feature selection methods based on the target variable mean value per category or 
-bin and a single feature classifier or regressor performance metric.
+Feature-engine includes univariate feature selection methods based on the target variable mean value per category or bin and a single feature classifier or regressor performance metric.
 
-In single feature model performance, a machine learning model is trained for each feature, with only that feature as input, 
-and the features are ranked based on this model performance.
+In single feature model performance, a machine learning model is trained for each feature, with only that feature as input, and the features are ranked based on this model performance.
 
 Let’s select features based on single feature model performance utilizing cross-validation:
 
@@ -357,21 +307,20 @@ pd.Series(sel.feature_performance_).sort_values(
 
 plt.ylabel('roc-auc')
 plt.title('Univariate performance')
+
 ```
 
-![feature importance based on a single feature classifier]({{ site.baseurl }}/assets/images/posts/fspython/singleperformance.png)
-**Image taken from [Feature Selection in Machine Learning with Python](https://leanpub.com/feature-selection-in-machine-learning/)**
+![Diagram showing the feature importance obtained from single feature models.]({{ site.baseurl }}/assets/images/posts/feature-selection-machine-learning-with-python/singleperformance.png)
+
+Feature importance based on a single feature classifier Image taken from Feature Selection in Machine Learning with Python
 
 #### Correlation
 
-When training linear models like linear or logistic regression, multicollinearity may affect model performance. Thus, it 
-might be useful to remove correlated features.
+When training linear models like linear or logistic regression, multicollinearity may affect model performance. Thus, it might be useful to remove correlated features.
 
-Feature-engine contains algorithms that select features based on the feature correlation. The `SmartCorrelationSelector`
-finds groups of correlated features and then retains the one with fewer missing data points, higher cardinality or variability, 
-or greater model derived importance.
+Feature-engine contains algorithms that select features based on the feature correlation. The `SmartCorrelationSelector` finds groups of correlated features and then retains the one with fewer missing data points, higher cardinality or variability, or greater model derived importance.
 
-How can we find correlated features? We can use the `pandas.corr` method.
+How can we find correlated features? We can use the `pandas.corr` method.
 
 ```
 import pandas as pd
@@ -400,18 +349,16 @@ corrmat = X_train.corr(method='pearson')
 # we can make a heatmap with seaborn
 sns.heatmap(corrmat, annot=True)
 plt.show()
+
+![Heatmap showing the correlation among all the variables in the dataframe.]({{ site.baseurl }}/assets/images/posts/feature-selection-machine-learning-with-python/correlation.png)
 ```
-
-![feature correlation]({{ site.baseurl }}/assets/images/posts/fspython/correlation.png)
-**Image taken from [Feature Selection in Machine Learning with Python](https://leanpub.com/feature-selection-in-machine-learning/)**
-
 
 ## More feature selection in Python
 
 If you want to learn more about feature selection and how to carry it out in Python, check out our course and book:
 
-- course: [Feature Selection for Machine Learning](https://www.trainindata.com/p/feature-selection-for-machine-learning)
-- book: [Feature Selection in Machine Learning with Python](https://leanpub.com/feature-selection-in-machine-learning/)
+- course: [Feature Selection for Machine Learning](https://www.trainindata.com/p/feature-selection-for-machine-learning)
+- book: [Feature Selection in Machine Learning with Python](https://www.trainindata.com/p/feature-selection-in-machine-learning-book)
 
 Both the course and the book contain a great amount of information regarding:
 

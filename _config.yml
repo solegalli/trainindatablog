@@ -1,12 +1,12 @@
 title: "Train in Data Blog"
 email: solegalli@trainindata.com
 timezone: UTC
-baseurl: "/"
+baseurl: ""
 permalink: "/:title/"
 logo: 'assets/images/logo_letras.png'
 favicon: 'assets/images/favicon.ico'
-author: Sole
-paginate: 30
+author: Sole Galli
+paginate: 8
 locale: en_us
 lang: en_us
 feed_items: 10
@@ -23,17 +23,65 @@ sass:
 # Authors
 authors:
   sole:
-    name: Sole
-    display_name: Sole
+    name: Sole Galli
+    display_name: Sole Galli
     avatar: 'assets/images/sole.jpg'
     email: solegalli@trainindata.com
     web: https://www.trainindata.com/
     twitter: https://twitter.com/Soledad_Galli
-    
+  traindata:
+    name: Train in Data
+    display_name: Train in Data
+    avatar: 'assets/images/authors/traindata.jpg'
+    web: https://www.trainindata.com/
+  brett:
+    name: Brett Kennedy
+    display_name: Brett Kennedy
+    avatar: 'assets/images/authors/brett.jpg'
+    web: https://www.trainindata.com/
+  cmcouto:
+    name: Cainã Max Couto da Silva
+    display_name: Cainã Max Couto da Silva
+    avatar: 'assets/images/authors/cmcouto.jpg'
+    web: https://www.trainindata.com/
+  gurjinder:
+    name: Gurjinder Kaur
+    display_name: Gurjinder Kaur
+    avatar: 'assets/images/authors/gurjinder.jpg'
+    web: https://www.trainindata.com/
+  kishan:
+    name: Kishan Manani
+    display_name: Kishan Manani
+    avatar: 'assets/images/authors/kishan.jpg'
+    web: https://www.trainindata.com/
+  noor:
+    name: Noor Ul Huda
+    display_name: Noor Ul Huda
+    avatar: 'assets/images/authors/noor.jpg'
+    web: http://linkedin.com/in/noor-ul-huda9/
+  priyansh:
+    name: Priyansh Soni
+    display_name: Priyansh Soni
+    avatar: 'assets/images/authors/priyansh.jpg'
+    web: https://linkedin.com/in/priyanshsoni0312
+  ruben:
+    name: Ruben Winastwan
+    display_name: Ruben Winastwan
+    avatar: 'assets/images/authors/ruben.jpg'
+    web: https://www.linkedin.com/in/marcellusrubenwinastwan/
+  shri:
+    name: Shri Varsheni R
+    display_name: Shri Varsheni R
+    avatar: 'assets/images/authors/shri.jpg'
+    web: https://www.linkedin.com/in/shri-varsheni/
+
 # Social
 social:
-  linkedin: https://de.linkedin.com/in/soledad-galli
-  twitter: https://twitter.com/Soledad_Galli
+  linkedin: https://linkedin.com/in/soledad-galli
+  youtube: https://www.youtube.com/@TraininData
+  github: https://github.com/solegalli
+  twitter: https://x.com/Soledad_Galli
+  tiktok: https://www.tiktok.com/@soledadgalli_
 
 # Plugins
 plugins: 

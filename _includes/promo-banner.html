@@ -1,0 +1,33 @@
+<div id="tid-banner" class="tid-banner" hidden>
+  <div class="tid-banner-brand">Train in Data</div>
+  <h3>Boost Your Data Science Skills</h3>
+  <p>Become the expert companies are desperate to hire.</p>
+  <p>Learn feature engineering, feature selection, forecasting and much more.</p>
+  <p><strong>10% discount</strong> for our blog readers.<br>Use code <b>BLOGREADERS26</b> at checkout.</p>
+  <div>
+    <button type="button" class="tid-banner-btn tid-banner-primary" onclick="window.open('https://www.trainindata.com/courses', '_blank')">View Courses</button>
+    <button type="button" id="tid-banner-close" class="tid-banner-btn tid-banner-secondary">Close</button>
+  </div>
+</div>
+<script>
+(function () {
+  function triggerTidBanner() {
+    if (!sessionStorage.getItem('bannerClosed')) {
+      setTimeout(function () {
+        var banner = document.getElementById('tid-banner');
+        if (banner) { banner.hidden = false; }
+      }, 5000);
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    triggerTidBanner();
+    var closeBtn = document.getElementById('tid-banner-close');
+    if (closeBtn) {
+      closeBtn.onclick = function () {
+        document.getElementById('tid-banner').hidden = true;
+        sessionStorage.setItem('bannerClosed', 'true');
+      };
+    }
+  });
+})();
+</script>
