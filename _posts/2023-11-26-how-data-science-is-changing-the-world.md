@@ -90,7 +90,7 @@ The ethical use of data is a broad and complex issue that encompasses various as
 
 #### **Managing the Impact on Employment**
 
-The automation and efficiency gains brought about by data science and related technologies also present challenges in terms of employment. While data science creates new job opportunities, it can also lead to job displacement in certain sectors. Navigating this transition requires **thoughtful strategies** to manage the impact on the workforce, such as re-skilling and up-skilling programs, and exploring ways to harness the power of data science to create more [job opportunities](http://data science job profile).
+The automation and efficiency gains brought about by data science and related technologies also present challenges in terms of employment. While data science creates new job opportunities, it can also lead to job displacement in certain sectors. Navigating this transition requires **thoughtful strategies** to manage the impact on the workforce, such as re-skilling and up-skilling programs, and exploring ways to harness the power of data science to create more [job opportunities](https://www.blog.trainindata.com/data-science-job-profile/).
 
 While data science offers immense potential for positive change, it is accompanied by significant **challenges and ethical considerations**. Addressing these issues requires a multidisciplinary approach involving technologists, ethicists, policymakers, and the public. As we forge ahead in this data-driven era, balancing the benefits of data science with responsible and ethical practices will be key to maximizing its positive impact on society.
 

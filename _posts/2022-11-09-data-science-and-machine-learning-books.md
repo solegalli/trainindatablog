@@ -51,7 +51,7 @@ It explores their exploitative data mining and algorithmic practices, including:
 - predatory algorithms targeting the weak and vulnerable.
 - products engineered to manipulate our desires.
 
-![Don't be evil, book](https://www.blog.trainindata.com/assets/images/posts/mlmovies/donbeevil.jpg)
+![Don't be evil, book]({{ site.baseurl }}/assets/images/posts/data-science-and-machine-learning-books/donbeevil.jpg)
 
 “Don’t be evil” was written by the acclaimed Financial Times columnist and CNN analyst, Rana Foroohar. In this book, she tells us the true extent to which big tech companies like Google, Facebook, Apple, and Amazon are monetizing both our data and our attention, without us seeing a penny of those exorbitant profits.
 
@@ -64,7 +64,7 @@ You can find the book at these links:
 
 **“Weapons of Math Destruction”** explores how practical applications of machine learning are increasingly used in ways that reinforce preexisting inequality. It explores how biases in machine learning models utilized in various fields, such as insurance, advertising, education, and policing, can lead to decisions that harm the poor, reinforce discrimination, and amplify inequality.
 
-![Weapons of Math Destruction, book](https://www.blog.trainindata.com/assets/images/posts/mlmovies/weapons.jpg)
+![Weapons of Math Destruction, book]({{ site.baseurl }}/assets/images/posts/data-science-and-machine-learning-books/weapons.jpg)
 
 Algorithms learn from past data. And therefore, they propagate decisions made based on past patterns, which may or may not reflect current behavior or ideology. For example, if we create a linear regression or decision tree model to determine success in the workplace based on historical data, the model will end up discriminating against women because, in the past, women were less likely to obtain high-ranking positions.
 
@@ -91,7 +91,7 @@ Companies claim our private human experience as their free source of raw materia
 
 As an example of the misuse of computer vision and supervised learning, the author tells us how big companies have claimed their right to our faces through video cameras placed in the streets in the US. With our faces, they can create models using pattern recognition and machine learning, to identify our emotions. And by identifying how we are feeling, they can anticipate our behavior. With our private feelings in sight, they can then present us with products that we are more likely to buy.
 
-![The age of surveillance capitalism, book](https://www.blog.trainindata.com/assets/images/posts/mlmovies/surv.jpg)
+![The age of surveillance capitalism, book]({{ site.baseurl }}/assets/images/posts/data-science-and-machine-learning-books/surv.jpg)
 
 More generally, this book covers the fundamentals of surveillance capitalism, how it works, how it is spreading, and how it affects our livelihoods as well as our democracies, offering an in-depth analysis of the new economic order that has come to dominate our societies.
 
@@ -116,7 +116,7 @@ The book exposes how machine learning techniques, including neural networks and 
 
 As the author describes in her book, the optimization of search algorithms is done through a combination of natural language processing to find sets of keywords relevant for the search term and also the user’s click behavior. Thus, so the algorithm goes, if the user clicks on a link that is shown to them, the content must be relevant to what they are looking for. This is how, back in 2011, searches for “black girls” returned porn images. A (big) bunch of users searching for that term clicked on those images, and thus the algorithm thought the content was relevant to the terms in question.
 
-![Algorithms of oppression, book](https://www.blog.trainindata.com/assets/images/posts/mlmovies/oppre.jpg)
+![Algorithms of oppression, book]({{ site.baseurl }}/assets/images/posts/data-science-and-machine-learning-books/oppre.jpg)
 
 The author discusses the need for search engines that are not driven by advertising and private profit, as a source of fair, neutral, and diverse results.
 

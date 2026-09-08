@@ -196,7 +196,7 @@ In this technique, instead of selecting exact replicas of the minority class ins
 
 Adding noise can help diversify the minority class instances and reduce overfitting, preventing the model from relying too heavily on the exactly replicated minority class instances. You can quickly implement it using Python libraries such as imbalanced-learn.
 
-For a Jupyter notebook with the full implementation, visit our [GitHub repository](https://github.com/solegalli/machine-learning-imbalanced-data/blob/master/Section-05-Oversampling/05-01-Random-Oversampling.ipynb).
+For a Jupyter notebook with the full implementation, visit our [GitHub repository](https://github.com/solegalli/machine-learning-imbalanced-data/blob/master/Section-06-Oversampling/01-Random-Oversampling.ipynb).
 
 ## SMOTE (Synthetic Minority Oversampling Technique)
 

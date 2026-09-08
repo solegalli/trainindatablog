@@ -137,7 +137,7 @@ X_test_imputed = imputer.transform(X_test)
 
 Arbitrary number imputation consists in replacing missing values in a numeric variable with an arbitrary number like 0, 999, -999, or -1. This method is used to flag missing values explicitly.
 
-We can apply arbitrary number imputation with Feature-engine. The [ArbitraryNumberImputer()](http://arbitrarynumberimputer()/) class can be imported from this package, which is used for imputation as shown below.
+We can apply arbitrary number imputation with Feature-engine. The [ArbitraryNumberImputer()](https://feature-engine.trainindata.com/en/latest/api_doc/imputation/ArbitraryNumberImputer.html) class can be imported from this package, which is used for imputation as shown below.
 
 ```
 

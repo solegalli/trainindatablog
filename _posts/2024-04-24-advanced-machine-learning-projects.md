@@ -296,7 +296,7 @@ Some of the tasks you’ll work on in this project are topic modeling, sentiment
 
 ### **Dataset**
 
-The [Employee Job Satisfaction Insights](nlp: https://www.kaggle.com/datasets/nikhilraj7700/amazon-employee-reviews) dataset is a collection of employee reviews across various job roles and locations, obtained through web scraping from AmbitionBox. It includes attributes such as job title, text reviews, geographical location, employment status, department, and ratings on aspects like work-life balance, skill development, salary, and job security.
+The [Employee Job Satisfaction Insights](https://www.kaggle.com/datasets/nikhilraj7700/amazon-employee-reviews) dataset is a collection of employee reviews across various job roles and locations, obtained through web scraping from AmbitionBox. It includes attributes such as job title, text reviews, geographical location, employment status, department, and ratings on aspects like work-life balance, skill development, salary, and job security.
 
 ### **Machine Learning skills**
 

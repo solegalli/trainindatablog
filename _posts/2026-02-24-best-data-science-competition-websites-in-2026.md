@@ -48,11 +48,11 @@ DrivenData enables data scientists to **apply their skills to real-world problem
 
 ### Solafune
 
-[**Solafune**](https://solafune.com/competitions) is a platform that hosts **global data science competitions using satellite and geospatial data** to address real-world challenges such as **environmental monitoring, land use analysis, and climate change**. It provides participants with **access to rich datasets, evaluation metrics, and leaderboards**, enabling data scientists and researchers to **develop, test, and benchmark models** while contributing to impactful solutions for pressing global issues.
+[**Solafune**](https://community.solafune.com/competitions) is a platform that hosts **global data science competitions using satellite and geospatial data** to address real-world challenges such as **environmental monitoring, land use analysis, and climate change**. It provides participants with **access to rich datasets, evaluation metrics, and leaderboards**, enabling data scientists and researchers to **develop, test, and benchmark models** while contributing to impactful solutions for pressing global issues.
 
 ### MachineHack
 
-[**MachineHack**](https://machinehack.com/hackathons#hackathon-listings) is a platform that hosts **AI and machine learning hackathons** where data scientists and developers can compete on **real-world challenges** using provided datasets. It offers **leaderboards, evaluation metrics, and prizes**, enabling participants to **build, test, and benchmark models**, sharpen their skills, and gain practical experience while solving meaningful problems across diverse domains.
+[**MachineHack**](https://machinehack.com/competitions) is a platform that hosts **AI and machine learning hackathons** where data scientists and developers can compete on **real-world challenges** using provided datasets. It offers **leaderboards, evaluation metrics, and prizes**, enabling participants to **build, test, and benchmark models**, sharpen their skills, and gain practical experience while solving meaningful problems across diverse domains.
 
 ### Datacamp Competitions
 

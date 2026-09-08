@@ -170,7 +170,7 @@ Here you can see an equal number of blue and orange dots resulting from random u
 
 ![Scatter plot showing class distribution after random undersampling]({{ site.baseurl }}/assets/images/posts/undersampling-techniques-for-imbalanced-data/sample_rus.png)
 
-In our [GitHub repository](https://github.com/solegalli/machine-learning-imbalanced-data/blob/master/Section-04-Undersampling/04-01-Random-Undersampling.ipynb) of random undersampling, you’ll find a few more advanced applications, such as changing the balancing ratio, loading data, handling imbalanced targets, and comparing machine learning performance.
+In our [GitHub repository](https://github.com/solegalli/machine-learning-imbalanced-data/blob/master/Section-05-Undersampling/01-Random-Undersampling.ipynb) of random undersampling, you’ll find a few more advanced applications, such as changing the balancing ratio, loading data, handling imbalanced targets, and comparing machine learning performance.
 
 ## Tomek Links
 
@@ -462,7 +462,7 @@ To achieve this, NearMiss-2 determines the mean distance of each observation fro
 
 Next, for the remaining majority class examples, it calculates the average distance to its K closest neighbors from the minority class. Finally, the algorithm retains only those majority class examples with the largest average distance.
 
-For a Python implementation of NearMiss with imbalanced learn, visit our [GitHub repository](https://github.com/solegalli/machine-learning-imbalanced-data/blob/master/Section-04-Undersampling/04-09-NearMiss.ipynb) on NearMiss undersampling.
+For a Python implementation of NearMiss with imbalanced learn, visit our [GitHub repository](https://github.com/solegalli/machine-learning-imbalanced-data/blob/master/Section-05-Undersampling/09-NearMiss.ipynb) on NearMiss undersampling.
 
 ## Wrap-up
 
@@ -472,4 +472,4 @@ We’ve reviewed only a handful of undersampling methods from the above list in 
 
 The data science community is yet to reach a consensus on which technique is the most effective or suitable for any given dataset. So, take this opportunity to learn more about these techniques and determine what works best for you.
 
-You can always practice using our [GitHub repository](https://github.com/solegalli/machine-learning-imbalanced-data/tree/master/Section-04-Undersampling) of undersampling examples or learn more from our [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data) course.
+You can always practice using our [GitHub repository](https://github.com/solegalli/machine-learning-imbalanced-data/tree/master/Section-05-Undersampling) of undersampling examples or learn more from our [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data) course.

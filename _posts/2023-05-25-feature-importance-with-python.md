@@ -191,7 +191,7 @@ In the following image we see the importance of the different features:
 
 An alternative way to determine the contribution of a feature to the model’s predictions is to remove the feature, retrain the model, and then assess the drop in performance, if any. This procedure has the advantage that it can be used with models that do not have natural importance scores, like, for example, support vector machines. The variable importance measures are determined by the drop in any performance metric that we are interested in.
 
-[Feature-engine](https://feature-engine.trainindata.com/en/latest/api_doc/selection/RecursiveFeatureElimination.htm), a Python open source library for feature engineering and selection, offers this functionality out of the box, so let’s see how we can implement that.
+[Feature-engine](https://feature-engine.trainindata.com/en/latest/api_doc/selection/RecursiveFeatureElimination.html), a Python open source library for feature engineering and selection, offers this functionality out of the box, so let’s see how we can implement that.
 
 Let’s’ begin by importing the necessary libraries, classes, and functions:
 
