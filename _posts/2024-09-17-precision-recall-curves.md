@@ -22,7 +22,7 @@ A confusion matrix is a tool used in [data science](https://www.blog.trainindata
 
 For example, suppose we have a binary classifier built to predict whether a patient has diabetes or not. The dataset contains medical records where each patient is labeled as either having diabetes (1 – the positive class) or not having diabetes (0 – the negative class). A confusion matrix allows us to assess how accurately the model identifies these classes.
 
-> To master classification metrics in the context of imbalanced data, check out our course [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+> To master classification metrics in the context of imbalanced data, check out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
 ### **Components of a Confusion Matrix**
 
@@ -75,7 +75,7 @@ So, if 15 out of 20 actual diabetics are correctly identified, the recall is:
 
 Recall=15/20 = 0.75 or 75%
 
-> Want to extend precision and recall to multiclass classification? Check out our course [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+> Want to extend precision and recall to multiclass classification? Check out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
 ## **Precision Recall Tradeoff – Striking the right balance**
 
@@ -107,7 +107,7 @@ If the probability score (say 0.7) is lower than the threshold (0.8), the model 
 
 By default, this threshold is usually set at **0.5** (meaning a patient is classified as diabetic if the probability value is greater than 0.5). A threshold of 0.5, however, is rarely useful, in particular when working with imbalanced data, so we can (and must) adjust it. That means that we would move the threshold up or down depending on whether we want to prioritize precision or recall.
 
-> Discover why the classification threshold is crucial to correctly evaluate a model’s performance in our course [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+> Discover why the classification threshold is crucial to correctly evaluate a model’s performance in our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
 ### **How the Threshold Affects Classification**
 
@@ -136,7 +136,7 @@ Therefore, it’s crucial to find a threshold that maximizes recall while mainta
 
 ## **Precision Recall Curve**
 
-A precision recall curve is very useful for visualizing the change in precision and recall values at different classification thresholds. It helps us optimize the 2  metrics by finding the best threshold value.
+A precision recall curve is very useful for visualizing the change in precision and recall values at different classification thresholds. It helps us optimize the 2  metrics by finding the best threshold value.
 
 Here’s why a Precision-Recall curve is useful:
 
@@ -175,7 +175,7 @@ In this step, we load the dataset and prepare it for model training by creating 
 - **X (Feature Matrix)** contains the independent variables or features, such as age, BMI, or glucose level, that will be used by the model to make predictions.
 - **y (Target Vector)** contains the labels, which indicate the outcome we want to predict. In this case, it shows whether a patient is diabetic (1) or not (0).
 
-Once we have defined X and y, we split the dataset into **training** and **testing** sets using an 80-20 split:
+Once we have defined X and y, we split the dataset into **training** and **testing** sets using an 80-20 split:
 
 - **X_train** and **y_train** represent the data used to train the model.
 - **X_test** and **y_test** represent the data used to evaluate the model’s performance after training.
@@ -187,8 +187,8 @@ Finally, we scale the features to standardize the data, which ensures that each 
 df = pd.read_csv("diabetes.csv")
 
 # Create feature matrix and target
-X = df.drop('Outcome', axis=1)  # Features
-y = df['Outcome']               # Target
+X = df.drop('Outcome', axis=1)  # Features
+y = df['Outcome']               # Target
 
 # Split the dataset into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(
@@ -303,7 +303,7 @@ A good model will have a curve that stays close to the top-right corner, which m
 
 ### **Step 7: Evaluating the Model**
 
-To evaluate our trained model, we use the **best threshold** found earlier to make predictions on the test set (y_pred_best). These predictions are then evaluated using common metrics like precision, recall, F1 score, and accuracy.
+To evaluate our trained model, we use the **best threshold** found earlier to make predictions on the test set (y_pred_best). These predictions are then evaluated using common metrics like precision, recall, F1 score, and accuracy.
 
 - We use the **classification report** to display these metrics.
 - We also print the **confusion matrix**, which gives insight into the number of true positives, true negatives, false positives, and false negatives.
@@ -327,6 +327,6 @@ In conclusion, the Precision-Recall Curve is a valuable tool for assessing machi
 
 ## **Additional resources**
 
-To master the use of evaluation metrics for imbalanced datasets, check out our course [“Machine learning with imbalanced data”](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+To master the use of evaluation metrics for imbalanced datasets, check out our book [“Machine learning with imbalanced data”](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
-[![Online course Machine Learning with Imbalanced data.]({{ site.baseurl }}/assets/images/posts/should-you-use-imbalanced-learn-in-2025/imbalanced-data-course.png)](https://www.trainindata.com/p/machine-learning-with-imbalanced-data)
+[![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg)](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)

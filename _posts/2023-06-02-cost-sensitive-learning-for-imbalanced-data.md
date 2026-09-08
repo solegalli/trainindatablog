@@ -18,9 +18,9 @@ In the case of fraud detection, misclassifying a fraudulent transaction as legit
 
 This is where cost-sensitive learning comes into play, allowing us to address the class imbalance problem and enhance the performance of classifiers by considering the varying costs associated with different types of misclassifications.
 
-*To learn more about cost-sensitive learning and other learning techniques to tackle imbalanced data, check out our course [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).*
+*To learn more about cost-sensitive learning and other learning techniques to tackle imbalanced data, check out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).*
 
-[![Online course Machine Learning with Imbalanced data.]({{ site.baseurl }}/assets/images/posts/class-imbalance-in-machine-learning/imbalanced-data-course-1024x576.png)](https://www.trainindata.com/p/machine-learning-with-imbalanced-data)
+[![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg)](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
 
 ## Understanding Cost-Sensitive Learning
 
@@ -71,7 +71,7 @@ Each algorithm has its own loss function to minimize. In logistic regression, th
 -y log(h(x)) – (1-y) log (1- h(x))
 ```
 
-where h is `1/(1+ e^βTx)`.
+where h is `1/(1+ e^βTx)`.
 
 When we introduce the costs, the algorithm will now minimize the following function:
 
@@ -294,7 +294,7 @@ The aim of this demo is to show you how to implement cost-sensitive learning usi
 
 In this article, we implemented cost-sensitive learning by modifying the loss function to introduce a cost to the misclassification of different classes. What if the loss function can’t be modified to introduce costs?
 
-There is an alternative algorithm called Metacost that makes cost-insensitive algorithms cost-sensitive. We are not going to describe it any further because there isn’t, unfortunately, an open-source implementation of this algorithm yet. But you can read more about it in the [original article](https://dl.acm.org/doi/10.1145/312129.312220) or in our course on [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+There is an alternative algorithm called Metacost that makes cost-insensitive algorithms cost-sensitive. We are not going to describe it any further because there isn’t, unfortunately, an open-source implementation of this algorithm yet. But you can read more about it in the [original article](https://dl.acm.org/doi/10.1145/312129.312220) or in our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
 ## Evaluation and Performance Metrics
 
@@ -312,10 +312,10 @@ To mitigate class imbalance, techniques like [oversampling](https://www.blog.tra
 
 ## Further Reading and Additional Resources
 
-Elkan, C. (2001). [The foundations of cost-sensitive learning](https://cseweb.ucsd.edu/~elkan/rescale.pdf). In Proceedings of the 17th international joint conference of artificial intelligence (pp. 973–978). Seattle: Morgan Kaufmann.
+Elkan, C. (2001). [The foundations of cost-sensitive learning](https://cseweb.ucsd.edu/~elkan/rescale.pdf). In Proceedings of the 17th international joint conference of artificial intelligence (pp. 973–978). Seattle: Morgan Kaufmann.
 
-Ling, C.X., Sheng, V.S. (2011). [Cost-Sensitive Learning](https://doi.org/10.1007/978-0-387-30164-8_181). In: Sammut, C., Webb, G.I. (eds) Encyclopedia of Machine Learning. Springer, Boston, MA.
+Ling, C.X., Sheng, V.S. (2011). [Cost-Sensitive Learning](https://doi.org/10.1007/978-0-387-30164-8_181). In: Sammut, C., Webb, G.I. (eds) Encyclopedia of Machine Learning. Springer, Boston, MA.
 
-Domingos, P. 1999. [MetaCost: A general method for making classifiers cost-sensitive](https://dl.acm.org/doi/10.1145/312129.312220). In Proceedings of the Fifth International Conference on Knowledge Discovery and Data Mining, 155-164, ACM Press
+Domingos, P. 1999. [MetaCost: A general method for making classifiers cost-sensitive](https://dl.acm.org/doi/10.1145/312129.312220). In Proceedings of the Fifth International Conference on Knowledge Discovery and Data Mining, 155-164, ACM Press
 
-[Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data) – online course
+[Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book) – online book

@@ -20,9 +20,9 @@ Resampling is a data preprocessing step that aims to resolve the class imbalance
 
 In this blog post, we will explore the SMOTE algorithm, how it works, and its benefits, and then see how we can implement it in Python. Let’s crack on!
 
-For tutorials about undersampling, oversampling, and additional ways to work with imbalanced data, check our course [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+For tutorials about undersampling, oversampling, and additional ways to work with imbalanced data, check our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
-[![Online course Machine Learning with Imbalanced data.]({{ site.baseurl }}/assets/images/posts/class-imbalance-in-machine-learning/imbalanced-data-course-1024x576.png)](https://www.trainindata.com/p/machine-learning-with-imbalanced-data)
+[![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg)](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
 
 ## What is SMOTE?
 
@@ -86,9 +86,9 @@ Another potential problem with SMOTE is that it can create synthetic samples tha
 
 ## Implementing SMOTE in Python
 
-Let’s see how we can implement SMOTE with the [SMOTE transformer](https://imbalanced-learn.org/dev/references/generated/imblearn.over_sampling.SMOTE.html) from imbalanced learn. First, we will carry out SMOTE in a toy dataset to visualize the synthetic data. After that, we will compare the performance of models trained after applying SMOTE and other data augmentation algorithms.
+Let’s see how we can implement SMOTE with the [SMOTE transformer](https://imbalanced-learn.org/dev/references/generated/imblearn.over_sampling.SMOTE.html) from imbalanced learn. First, we will carry out SMOTE in a toy dataset to visualize the synthetic data. After that, we will compare the performance of models trained after applying SMOTE and other data augmentation algorithms.
 
-The examples can be found in our [Github repository](https://github.com/solegalli/machine-learning-imbalanced-data).
+The examples can be found in our [Github repository](https://github.com/solegalli/machine-learning-imbalanced-data).
 
 Let’s make the imports:
 
@@ -148,7 +148,7 @@ smote = SMOTE(
 data_res, target_res = smote.fit_resample(data, target)
 ```
 
-With `resample()` we’ve created the synthetic data. Let’s generate a scatter-plot for our new training set:
+With `resample()` we’ve created the synthetic data. Let’s generate a scatter-plot for our new training set:
 
 ```
 sns.scatterplot(
@@ -390,7 +390,7 @@ SMOTE is a powerful technique for learning from imbalanced data. It helps to bal
 
 Despite its limitations, SMOTE is a valuable tool in the machine learning toolkit for dealing with imbalanced datasets, as we saw in our code examples. And should SMOTE not work, there are alternative oversampling methods, as well as undersampling algorithms to choose from to tackle the class imbalance problem.
 
-To know more about how to tackle class imbalance, check out our course [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data) and the references below.
+To know more about how to tackle class imbalance, check out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book) and the references below.
 
 ## Citations
 
@@ -402,7 +402,7 @@ He, Haibo, Yang Bai, Edwardo A. Garcia, and Shutao Li. “ADASYN: Adaptive synth
 
 ## Additional resources
 
-- [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data) online course
+- [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book) online book
 - [The Role of Undersampling in Tackling Imbalanced Datasets in Machine Learning](https://www.blog.trainindata.com/undersampling-techniques-for-imbalanced-data/)
 - [Exploring Oversampling Techniques for Imbalanced Datasets](https://www.blog.trainindata.com/oversampling-techniques-for-imbalanced-data/)
 - [Dealing with Imbalanced Datasets in Machine Learning: Techniques and Best Practices](https://www.blog.trainindata.com/machine-learning-with-imbalanced-data/)
