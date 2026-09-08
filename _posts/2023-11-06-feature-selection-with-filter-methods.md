@@ -136,8 +136,7 @@ We’ve analyzed the association between gender and survival. Similarly, let’s
 chi_ls = []
 
 for feature in X_train.columns:
-    c = pd.crosstab(y_train, X_train
-)
+    c = pd.crosstab(y_train, X_train[feature])
     p_value = chi2_contingency(c)[1]
     chi_ls.append(p_value)
 ```

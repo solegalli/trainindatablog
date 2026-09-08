@@ -241,8 +241,8 @@ from matplotlib import pyplot as plt
 fig, ax =plt.subplots(1,2, figsize=(35,8))
 plt.figure(figsize=(20,8))
 
-sns.histplot(data = data1, x="population", kde=True, ax=ax[0])
-sns.countplot(data=data1, x='bins_cut1', ax=ax[1])
+sns.histplot(data=data, x="MedInc", kde=True, ax=ax[0])
+sns.countplot(data=data, x="income_binned", ax=ax[1])
 fig.show()
 ```
 

@@ -87,12 +87,15 @@ Let’s start by loading the necessary libraries and preparing the data for anal
 # Import necessary libraries
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import RandomizedSearchCV
+from sklearn.metrics import accuracy_score
 
 # Load the dataset
 data = load_breast_cancer()

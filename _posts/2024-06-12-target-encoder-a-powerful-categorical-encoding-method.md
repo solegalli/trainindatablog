@@ -598,7 +598,7 @@ for encoder_name, encoder in categorical_processors.items():
 df_metrics = pd.DataFrame(results).set_index('encoder').round(4)
 
 # Display the results
-display(df_metrics)
+print(df_metrics)
 ```
 
 ![]({{ site.baseurl }}/assets/images/posts/target-encoder-a-powerful-categorical-encoding-method/figure16.png)

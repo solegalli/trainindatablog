@@ -145,6 +145,7 @@ from sklearn.model_selection import train_test_split
 
 X, y = fetch_california_housing(return_X_y=True, as_frame=True)
 X = X.drop(columns=["Latitude", "Longitude"])
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)
 X.head()
 ```
 
@@ -155,14 +156,14 @@ In the following image, we see the different features of the dataset, like age o
 Next, lets train a simple random forest regressor on this dataset.
 
 ```
-model = RandomForestRegressor(
+rf = RandomForestRegressor(
     criterion="squared_error",
     n_estimators=3,
     max_depth=3,
     random_state=3,
 )
 
-model.fit(X_train, y_train)
+rf.fit(X_train, y_train)
 ```
 
 Once the training is completed, we want to interpret the model: we want to find out how each feature affects the house price.

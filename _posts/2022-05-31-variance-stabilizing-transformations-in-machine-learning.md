@@ -235,8 +235,8 @@ I wrote a lot about variance stabilizing transformations, but I haven’t really
 Applying these transformations with Python is really easy. We can do so with Numpy as follows:
 
 ```
-Import numpy as np
-data[“variable_log”] = np.log(data[“variable_original”])
+import numpy as np
+data["variable_log"] = np.log(data["variable_original"])
 ```
 
 For the reciprocal, we would use `np.reciprocal()`, for the square root `np.sqrt()`, and for the Power `np.exp(data[“variable_original”], lambda)`, where lambda is the desired exponent of the transformation.
@@ -245,8 +245,8 @@ For BoxCox and Yeo-Johnson, we would use scipy.stats:
 
 ```
 import scipy.stats as stats
-X_tf[“new_var”], param = stats.boxcox(X[“original_var”])
-X_tf[“new_var”], param = stats.yeojohnson(X[“original_var”])
+X_tf["new_var"], param = stats.boxcox(X["original_var"])
+X_tf["new_var"], param = stats.yeojohnson(X["original_var"])
 ```
 
 where param is the suitable lambda found by the transformation.
@@ -266,7 +266,7 @@ With Scikit-learn we would do:
 
 ```
 from sklearn.preprocessing import PowerTransformer
-transformer = PowerTransformer(method=”box-cox”, standardize=False)
+transformer = PowerTransformer(method="box-cox", standardize=False)
 boxcox.fit(X_train)
 train_transformed = boxcox.transform(X_train)
 test_tranformed = boxcox.transform(X_test)

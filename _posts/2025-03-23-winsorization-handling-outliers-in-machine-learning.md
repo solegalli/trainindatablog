@@ -226,7 +226,7 @@ data = [
 labels = ["Original data", "Winsorized data", "Trimmed data"]
 
 # Bxplot
-plt.boxplot(data,labels=labels)
+plt.boxplot(data, tick_labels=labels)
 # Figure title
 plt.title("Comparison of Original Winsorized, and Trimmed Data Distributions", size=14)
 
@@ -426,7 +426,7 @@ Feature-engine transformers, including Winsorizer, integrate seamlessly with sci
 Let’s first import the required functions:
 
 ```
-from sklearn.datasets import fetch_california_housing
+from sklearn.datasets import load_diabetes
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
@@ -437,7 +437,7 @@ Let’s now load and split the dataset into training and test sets:
 
 ```
 # Load Diabetes dataset
-X, y = datasets.load_diabetes(as_frame=True, return_X_y=True)
+X, y = load_diabetes(as_frame=True, return_X_y=True)
 # Split following data set into train and test
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42)
 ```

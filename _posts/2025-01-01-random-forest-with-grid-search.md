@@ -141,6 +141,7 @@ Let’s load the necessary libraries and prepare the data for our model:
 
 ```
 import pandas as pd
+from sklearn.model_selection import train_test_split
 
 # Load the dataset directly from a URL
 url = "https://raw.githubusercontent.com/Ankit152/Heart-Disease-Prediction/master/heart.csv"
@@ -163,8 +164,9 @@ The output of the above code is:
 Now, that we have loaded the dataset, let’s jump into training the Random Forest Classifier by **manually tuning the hyperparameters**. We will evaluate the **Accuracy** and **ROC-AUC** along with **mean** and **standard error** with Cross-validation and a test set. These would be our **baseline model** metrics, which we will compare with the **Grid Search model**.
 
 ```
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import cross_val_score
-from sklearn.metrics import roc_auc_score, make_scorer
+from sklearn.metrics import roc_auc_score, make_scorer, accuracy_score
 import numpy as np
 
 # Initialize the Random Forest model with default hyperparameters

@@ -102,7 +102,7 @@ from imblearn.over_sampling import ADASYN
 
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import classification_report
+from sklearn.metrics import classification_report, precision_score, recall_score, roc_auc_score, precision_recall_curve
 ```
 
 Now let’s load the dataset from `imblearn.datasets`. This dataset consists of a binary classification problem, where the target (y) indicates if a patient is sick (minority class) or healthy (majority class). In this case, the target (y) has value of -1 for negative class and 1 for the positive class (that is, the minority class). We’ll convert this to the 0 and 1 binary format.
@@ -208,7 +208,7 @@ X_resampled, y_resampled = adasyn.fit_resample(X_train, y_train)
 
 ```
 print("\nOriginal training class distribution:")
-for cls, count in zip(unique_res, counts_res):
+for cls, count in zip(train_unique, train_counts):
     print(f"Class {cls}: {count} samples")
 ```
 
@@ -297,16 +297,12 @@ y_pred_tuned = (y_scores >= best_threshold).astype(int)
 # Recalculate precision and recall
 precision_tuned = precision_score(y_test, y_pred_tuned)
 recall_tuned = recall_score(y_test, y_pred_tuned)
-
-
-# Find best threshold overall
-best_idx = np.argmax(results_df['F1-Score'])
-best_row = results_df.iloc[best_idx]
+f1_tuned = f1_scores[best_idx]
 
 print(f"\nBest threshold by F1: {best_threshold:.4f}")
-print(f"Precision at best threshold: {precision_best:.4f}")
-print(f"Recall at best threshold:    {recall_best:.4f}")
-print(f"F1-Score at best threshold:  {f1_best:.4f}")
+print(f"Precision at best threshold: {precision_tuned:.4f}")
+print(f"Recall at best threshold:    {recall_tuned:.4f}")
+print(f"F1-Score at best threshold:  {f1_tuned:.4f}")
 ```
 
 The output:

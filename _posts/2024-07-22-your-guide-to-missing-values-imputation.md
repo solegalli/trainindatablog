@@ -76,7 +76,7 @@ from sklearn.model_selection import train_test_split
 data = fetch_openml(name='house_prices', as_frame=True)
 data = data.frame
 
-X = data[['LotFrontage','MasVnrArea',BsmtQual','FireplaceQu','GarageYrBlt']]
+X = data[['LotFrontage','MasVnrArea','BsmtQual','FireplaceQu','GarageYrBlt']]
 y = data['SalePrice']
 ```
 
@@ -142,7 +142,9 @@ We can apply arbitrary number imputation with Feature-engine. The [ArbitraryNumb
 ```
 
 # Arbitrary number imputation
-imputer = ArbitraryNumberImputer(arbitrary_number=-999, variables=['Age'])
+from feature_engine.imputation import ArbitraryNumberImputer
+
+imputer = ArbitraryNumberImputer(arbitrary_number=-999, variables=['LotFrontage'])
 imputer.fit(X_train)
 
 # Impute the values
@@ -168,7 +170,7 @@ The [EndTailImputer()](https://feature-engine.trainindata.com/en/latest/api_doc/
 from feature_engine.imputation import EndTailImputer
 
 # Perform imputation
-imputer = EndTailImputer(imputation_method='gaussian', tail='right', fold=3, variables=['Age'])
+imputer = EndTailImputer(imputation_method='gaussian', tail='right', fold=3, variables=['LotFrontage'])
 
 imputer.fit(X_train)
 
@@ -196,7 +198,7 @@ In the following code block, I replace missing data in Age by extracting ages at
 from feature_engine.imputation import RandomSampleImputer
 
 # Random sample imputation
-imputer = RandomSampleImputer(random_state=0, variables=['Age'])
+imputer = RandomSampleImputer(random_state=0, variables=['LotFrontage'])
 
 imputer.fit(X_train)
 
@@ -219,7 +221,7 @@ The [CategoricalImputer()](https://feature-engine.trainindata.com/en/latest/api_
 from feature_engine.imputation import CategoricalImputer
 
 # Mode imputation
-imputer = CategoricalImputer(imputation_method='frequent', variables=['Gender'])
+imputer = CategoricalImputer(imputation_method='frequent', variables=['BsmtQual'])
 
 imputer.fit(X_train)
 
@@ -255,6 +257,8 @@ We can use [AddMissingIndicator()](https://feature-engine.trainindata.com/en/lat
 Using Scikit-learn’s pipeline, we can add the different imputers in series. We use the `variables` parameter in each imputer to specify the variables to impute:
 
 ```
+from sklearn.pipeline import Pipeline
+
 # from feature-engine
 from feature_engine.imputation import (
     AddMissingIndicator,
@@ -319,11 +323,11 @@ from sklearn.impute import IterativeImputer
 # Create an instance of IterativeImputer
 iterative_imputer = IterativeImputer()
 
-# Fit and transform the dataset
-imputed_data = iterative_imputer.fit_transform(X_train)
+# IterativeImputer works with numerical variables only
+numeric_vars = ["LotFrontage", "MasVnrArea", "GarageYrBlt"]
 
 # Fit and transform the dataset
-imputed_data = imputer.fit_transform(X_train)
+imputed_data = iterative_imputer.fit_transform(X_train[numeric_vars])
 ```
 
 **Advantages:** This method accounts for the uncertainty around the missing data by generating multiple imputation rounds to obtained more unbiased estimates of the missing data.

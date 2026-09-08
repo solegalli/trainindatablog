@@ -215,7 +215,9 @@ from statsmodels.tsa.seasonal import MSTL
 The main parameter that we need to specify is `periods` which is the period of each seasonal component in the time series. We expect there to be daily and weekly seasonality, therefore, we set `periods = (24, 24*7)`. We can also set the parameters which are fed to the underlying STL model by passing a dictionary to `stl_kwargs`.
 
 ```
-stl_kwargs = {"seasonal_deg": 0} model = MSTL(data, periods=(24, 24 * 7), stl_kwargs=stl_kwargs)res = model.fit()
+stl_kwargs = {"seasonal_deg": 0}
+model = MSTL(data, periods=(24, 24 * 7), stl_kwargs=stl_kwargs)
+res = model.fit()
 ```
 
 The trend, seasonal, and residual components are all accessible from the results object `res` :

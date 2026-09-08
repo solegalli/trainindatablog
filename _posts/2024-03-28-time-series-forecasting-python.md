@@ -217,11 +217,11 @@ Let’s start with the imports:
 
 ```
 import pandas as pd
-from skforecast.ForecasterAutoreg import ForecasterAutoreg
+from skforecast.recursive import ForecasterRecursive
 from sklearn.linear_model import Lasso
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.svm import SVR
-from sklearn.metrics import mean_squared_error
+from sklearn.metrics import root_mean_squared_error
 ```
 
 Let’s load the data and split it into a training data set and a test set:
@@ -231,6 +231,7 @@ Let’s load the data and split it into a training data set and a test set:
 url = "https://raw.githubusercontent.com/jbrownlee/Datasets/master/airline-passengers.csv"
 data = pd.read_csv(url, header=0, parse_dates=[0], index_col=0)
 data = data.squeeze("columns")
+data = data.asfreq("MS")
 train = data[:-12]
 test = data[-12:]
 ```
@@ -239,17 +240,17 @@ Let’s set up 3 forecasting models: one with lasso, one with random forests and
 
 ```
 # Model 1: Linear Regression
-forecaster_lr = ForecasterAutoreg(regressor=Lasso(random_state=10), lags=12)
+forecaster_lr = ForecasterRecursive(estimator=Lasso(random_state=10), lags=12)
 forecaster_lr.fit(y=train)
 predictions_lr = forecaster_lr.predict(steps=12)
 
 # Model 2: Random Forest
-forecaster_rf = ForecasterAutoreg(regressor=RandomForestRegressor(n_estimators=100, random_state=42), lags=12)
+forecaster_rf = ForecasterRecursive(estimator=RandomForestRegressor(n_estimators=100, random_state=42), lags=12)
 forecaster_rf.fit(y=train)
 predictions_rf = forecaster_rf.predict(steps=12)
 
 # Model 3: Support Vector Machine (SVR)
-forecaster_svr = ForecasterAutoreg(regressor=SVR(kernel='linear'), lags=12)
+forecaster_svr = ForecasterRecursive(estimator=SVR(kernel='linear'), lags=12)
 forecaster_svr.fit(y=train)
 predictions_svr = forecaster_svr.predict(steps=12)
 ```
@@ -257,26 +258,23 @@ predictions_svr = forecaster_svr.predict(steps=12)
 Let’s compare the model performance:
 
 ```
-error_rmse = mean_squared_error(
+error_rmse = root_mean_squared_error(
                 y_true = test.head(12),
                 y_pred = predictions_lr,
-                squared=False,
             )
 
 print(f"Lasso rmse: {error_rmse}")
 
-error_rmse = mean_squared_error(
+error_rmse = root_mean_squared_error(
                 y_true = test.head(12),
                 y_pred = predictions_rf,
-                squared=False,
             )
 
 print(f"Random forests rmse: {error_rmse}")
 
-error_rmse = mean_squared_error(
+error_rmse = root_mean_squared_error(
                 y_true = test.head(12),
                 y_pred = predictions_svr,
-                squared=False,
             )
 
 print(f"SVR rmse: {error_rmse}")
@@ -306,8 +304,8 @@ import numpy as np
 import pandas as pd
 from skforecast.datasets import fetch_dataset
 from lightgbm import LGBMRegressor
-from skforecast.model_selection import backtesting_forecaster
-from skforecast.ForecasterAutoreg import ForecasterAutoreg
+from skforecast.model_selection import backtesting_forecaster, TimeSeriesFold
+from skforecast.recursive import ForecasterRecursive
 ```
 
 Now, we load the data:
@@ -335,8 +333,8 @@ data_test = data.loc[end_validation:, :]
 Next, we set up a recursive forecaster to forecast using lightGBM:
 
 ```
-forecaster = ForecasterAutoreg(
-    regressor = LGBMRegressor(random_state=15926, verbose=-1),
+forecaster = ForecasterRecursive(
+    estimator = LGBMRegressor(random_state=15926, verbose=-1),
     lags = 24
 )
 ```
@@ -344,13 +342,17 @@ forecaster = ForecasterAutoreg(
 Let’s implement backtesting to evaluate the performance of this model:
 
 ```
+cv = TimeSeriesFold(
+    steps = 36,
+    initial_train_size = len(data[:end_validation]),
+    refit = False,
+)
+
 metric, predictions = backtesting_forecaster(
     forecaster = forecaster,
     y = data['users'],
-    steps = 36,
+    cv = cv,
     metric = 'mean_absolute_error',
-    initial_train_size = len(data[:end_validation]),
-    refit = False,
     n_jobs = 'auto',
     verbose = True,
     show_progress = True

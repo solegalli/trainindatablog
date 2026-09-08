@@ -61,19 +61,21 @@ variables = ["A2", "A3", "A8", "A11", "A14", "A15", "target"]
 
 data = pd.read_csv("credit_approval_uci.csv",
 
-    usecols=variables)
+    usecols=variables)
+```
 
 Let’s divide the dataset into a training set and a test set:
 
+```
 X_train, X_test, y_train, y_test = train_test_split(
 
-    data.drop("target", axis=1),
+    data.drop("target", axis=1),
 
-    data["target"],
+    data["target"],
 
-    test_size=0.3,
+    test_size=0.3,
 
-    random_state=0,
+    random_state=0,
 
 )
 ```
@@ -81,7 +83,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 Let’s configure the imputer to replace missing data with the weighted average of its 5 nearest neighbors:
 
 ```
-imputer = KNNImputer(n_neighbors=5,weights="distance").set_output(transform=”pandas”)
+imputer = KNNImputer(n_neighbors=5,weights="distance").set_output(transform="pandas")
 ```
 
 We now apply fit(). That will train the 5-KNN algorithm:
