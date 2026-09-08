@@ -175,7 +175,7 @@ run_Logit(X_train,
           class_weight=None)
 ```
 
-Below, we see the performance of a Logistic regression trained on an imbalanced dataset. Note that we're using ROC-AUC here, which is a threshold-independent metric — so any difference we see reflects an actual change in the model's discrimination ability for this specific dataset, not the decision-boundary-shift effect discussed at the start of this article, which only shows up in threshold-dependent metrics like accuracy, precision, or recall at 0.5:
+Below, we see the performance of a Logistic regression trained on an imbalanced dataset. Note that we're using ROC-AUC here, which is a threshold-independent metric, so unlike accuracy, precision, or recall at 0.5, it isn't affected by the decision-boundary shift discussed at the start of this article. But this is a single train/test split with no standard deviation calculated, so we can't say whether any difference we see below is significant:
 
 ```
 Train set roc-auc: 0.9192043838780551
@@ -219,7 +219,7 @@ Train set roc-auc: 0.9617874072272288
 Test set roc-auc: 0.9445704525089607
 ```
 
-In both cases, we see that implementing cost-sensitive learning does improve the performance of the logistic regression.
+In both cases, the ROC-AUC of the logistic regression trained with costs is higher than that of the baseline model. But we didn't calculate the standard deviation of these metrics, so we can't say whether the difference is significant.
 
 In this example, we optimized the cost of a binary classification task. But we can do the same for multi-class classification. If we set the class_weight to “balanced,” we will be using the imbalance ratio of all classes as the cost. Alternatively, we can pass a dictionary with the cost associated with each class, as we did in the last code block.
 
@@ -282,7 +282,7 @@ run_Logit(X_train,
           sample_weight=np.where(y_train==1,99,1))
 ```
 
-We see that cost-sensitive learning improved the performance of the model:
+We see that the ROC-AUC is higher than that of the baseline model:
 
 ```
 
@@ -290,7 +290,7 @@ Train set roc-auc: 0.992609819428047
 Test set roc-auc: 0.9542450716845878
 ```
 
-The aim of this demo is to show you how to implement cost-sensitive learning using Scikit-learn. I kept it very simple, and I compared only the performance metric given by the ROC-AUC. You’d probably want to carefully select the metric that works best for your use case, and make plots instead of obtaining single values, like plotting a ROC curve and precision and recall curves.
+The aim of this demo is to show you how to implement cost-sensitive learning using Scikit-learn. I kept it very simple, and I compared only the performance metric given by the ROC-AUC, from a single train/test split, without checking whether the differences are statistically significant — so take these results as illustrative, not conclusive. You’d probably want to carefully select the metric that works best for your use case, calculate its standard deviation through cross-validation, and make plots instead of obtaining single values, like plotting a ROC curve and precision and recall curves.
 
 ## More on Cost sensitive learning
 

@@ -300,7 +300,7 @@ for dataset in datasets_ls:
     print()
 ```
 
-The model performance on the different dataset is displayed below. Note that ROC-AUC is a threshold-independent metric, so these differences reflect actual changes in the model's ability to rank observations — not the decision-boundary-shift effect we discussed at the start of this article, which only shows up in threshold-dependent metrics like accuracy, precision, or recall at 0.5.
+The model performance on the different dataset is displayed below. We're using ROC-AUC here, a threshold-independent metric, so unlike accuracy, precision, or recall at 0.5, it isn't affected by the decision-boundary shift we discussed at the start of this article. But these are single train/test splits with no standard deviation calculated, so we can't say whether any of the differences below are significant.
 
 In the ecoli dataset, SMOTE showed a higher ROC-AUC than the baseline, and Borderline SMOTE did even better. But, we did not calculate the standard deviation of these metric, so we don't know if these changes are significant. Most likely, they are not.
 
@@ -358,7 +358,7 @@ Test set
 Random Forests roc-auc: 0.9432572167169323
 ```
 
-Finally, SMOTE scored a notably higher ROC-AUC in the arrhythmia dataset, and ADASYN did even better. But borderline SMOTE scored lower than the baseline.
+Finally, SMOTE scored a notably higher ROC-AUC in the arrhythmia dataset, and ADASYN did even better. But borderline SMOTE scored lower than the baseline. Again, we didn't calculate the standard deviation of these metrics, so we can't say whether this difference is significant.
 
 ```
 arrhythmia
@@ -390,7 +390,7 @@ Random Forests roc-auc: 0.796875
 
 SMOTE is a powerful technique for learning from imbalanced data. It helps to balance the class distribution of the original dataset by generating synthetic samples for the minority class. However, it has some limitations, such as no consideration for the quality of synthetic samples and computational cost. It is important to choose the right value of k to ensure that the synthetic samples generated are of high quality.
 
-As we saw in our code examples, its effect on ROC-AUC is inconsistent — it helped on some datasets and not on others — so it's worth testing rather than assuming it will help. And remember that, for threshold-dependent metrics, resampling mainly shifts the decision boundary, an effect you can also get by tuning the classification threshold on the original data. Should SMOTE not work, there are alternative oversampling methods, as well as undersampling algorithms to choose from to tackle the class imbalance problem.
+As we saw in our code examples, its effect on ROC-AUC is inconsistent — and since we didn't check whether any of those differences were statistically significant, we can't even say for sure that it helped on the datasets where the score went up. Test it on your own data rather than assuming it will help. And remember that, for threshold-dependent metrics, resampling mainly shifts the decision boundary, an effect you can also get by tuning the classification threshold on the original data. Should SMOTE not work, there are alternative oversampling methods, as well as undersampling algorithms to choose from to tackle the class imbalance problem.
 
 To know more about how to tackle class imbalance, check out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book) and the references below.
 
