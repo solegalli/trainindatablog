@@ -5,7 +5,7 @@ author: cmcouto
 description: "Learn Complete Case Analysis (CCA) for handling missing data in machine learning, including advantages and limitations and Python examples."
 excerpt: "Learn Complete Case Analysis (CCA) for handling missing data in machine learning, including advantages and limitations and Python examples."
 categories: [Data Preprocessing, Data Science, Feature Engineering, Machine Learning]
-image: assets/images/posts/a-comprehensive-guide-to-complete-case-analysis/2.png
+image: assets/images/posts/a-comprehensive-guide-to-complete-case-analysis/complete-case-analysis-cover.png
 ---
 
 Missing data is a common challenge in machine learning and statistical analysis, and handling it appropriately is crucial for obtaining valid inferences. One of the simplest approaches to dealing with missing data is **Complete Case Analysis (CCA)**, also known as **listwise deletion**.

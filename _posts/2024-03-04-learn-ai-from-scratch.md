@@ -149,7 +149,7 @@ The role of a data scientist or business analyst is not just to analyze data, bu
 - **Data visualization****:** Leverage charts, graphs, and other visual elements to make data understandable and visually appealing. You can take the help of BI tools like Power BI or Tableau to create dashboards.
 - **Communication skills:** Present your story with clarity, confidence, and enthusiasm
 
-![Data Storytelling with Visualization and Narrative]({{ site.baseurl }}/assets/images/posts/learn-ai-from-scratch/Screenshot-2024-03-03-at-11.45.32-PM-1024x837.png)
+![Data Storytelling with Visualization and Narrative]({{ site.baseurl }}/assets/images/posts/learn-ai-from-scratch/data-storytelling-visualization-narrative.png)
 
 That covers the main range of skills needed for a career in AI. Whether you’re a researcher, data scientist, or AI engineer, mastering these skills equips you with the skills and tools needed to tackle a wide range of AI tasks effectively. Of course, specific job roles would require expertise in a specific set of tools. In the next section, we’ll be diving into that.
 
@@ -170,7 +170,7 @@ In this section, we’ll see what the main career paths in Artificial Intelligen
 6. **MLOps Engineer:** Is the work done once a model is developed and deployed? Absolutely not! The performance may degrade due to data drift, technical issues, etc. They build automated pipelines for training, testing, and deploying models, ensuring reproducibility, scalability, and reliability.
    Skills: DevOps tools like Docker, Kubernetes, Jenkins, and Git, understanding of CI/CD, familiarity with monitoring, logging, and alerting systems.
 
-![Different AI roles and their responsibilities and interrelationships.]({{ site.baseurl }}/assets/images/posts/learn-ai-from-scratch/Screenshot-2024-02-29-at-1.55.55-AM-1024x727.png)
+![Different AI roles and their responsibilities and interrelationships.]({{ site.baseurl }}/assets/images/posts/learn-ai-from-scratch/ai-roles-and-responsibilities.png)
 
 ## **How to** **learn Artificial Intelligence** **from scratch?**
 

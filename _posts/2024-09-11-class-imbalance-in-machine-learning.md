@@ -46,7 +46,7 @@ Using the right algorithm is key to correctly identify the decision boundaries b
 
 This might sound trivial, but most over- and under-sampling techniques, were introduced and discussed in the context of simpler machine learning models, like linear models, or decision trees. In fact, in a 2022 article, it’s shown that over-sampling does not really improve the performance of stronger classifiers like gradient boosting machines.
 
-![To SMOTE or Not to SMOTE]({{ site.baseurl }}/assets/images/posts/should-you-use-imbalanced-learn-in-2025/Screenshot-2025-07-18-at-09-27-06-To-SMOTE-or-not-to-SMOTE-To-SMOTE-or-not-to-SMOTE-2201.08528v3.pdf.png)
+![To SMOTE or Not to SMOTE]({{ site.baseurl }}/assets/images/posts/should-you-use-imbalanced-learn-in-2025/to-smote-or-not-to-smote-paper.png)
 
 > Check out our views on this and 2 other recent articles that change the discussion around resampling for imbalanced datasets, in our free booklet “[7 Takes on Working with Imbalanced Data](https://www.trainindata.com/p/7-takes-on-working-with-imbalanced-data)“.
 

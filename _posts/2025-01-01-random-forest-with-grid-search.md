@@ -5,7 +5,7 @@ author: priyansh
 description: "Learn how Grid Search improves Random Forest performance by optimizing its hyperparameters, including key hyperparameters and python examples."
 excerpt: "Learn how Grid Search improves Random Forest performance by optimizing its hyperparameters, including key hyperparameters and python examples."
 categories: [Data Science, Hyperparameter Optimization, Machine Learning]
-image: assets/images/posts/random-forest-with-grid-search/3.png
+image: assets/images/posts/random-forest-with-grid-search/random-forest-grid-search-cover.png
 ---
 
 In **machine learning**, models require fine-tuning of their hyperparameters to reach their full potential. This process, known as **hyperparameter tuning**, is essential for enhancing a model’s performance, including for algorithms like **Random Forest**.
@@ -158,7 +158,7 @@ data.head()
 
 The output of the above code is:
 
-![heart disease dataset for gird search random forest]({{ site.baseurl }}/assets/images/posts/random-forest-with-grid-search/Screenshot-2025-01-01-at-9.33.59-AM.png)
+![heart disease dataset for gird search random forest]({{ site.baseurl }}/assets/images/posts/random-forest-with-grid-search/heart-disease-dataset-grid-search-random-forest.png)
 
 Now, that we have loaded the dataset, let’s jump into training the Random Forest Classifier by **manually tuning the hyperparameters**. We will evaluate the **Accuracy** and **ROC-AUC** along with **mean** and **standard error** with Cross-validation and a test set. These would be our **baseline model** metrics, which we will compare with the **Grid Search model**.
 
@@ -340,7 +340,7 @@ plt.show()
 
 The output of the previous code is:
 
-**![Effect of different hyperparameters on the performance of random forests.]({{ site.baseurl }}/assets/images/posts/random-forest-with-grid-search/Screenshot-2025-01-01-at-9.33.41-AM.png)**
+**![Effect of different hyperparameters on the performance of random forests.]({{ site.baseurl }}/assets/images/posts/random-forest-with-grid-search/random-forest-hyperparameters-effect.png)**
 
 These plots highlight the impact of different hyperparameters on model performance. Parameters like **max_depth** show consistent improvement in the accuracy, indicating its critical role in enhancing model performance. On the other hand, hyperparameters like **n_estimator,** **min_samples_split** and **min_samples_leaf** exhibit gradual changes upon certain thresholds after which the model performance changes drastically.
 
@@ -360,4 +360,4 @@ Other models, including Support Vector Machines, Logistic Regression, and XGBoos
 
 Master the use of hyperparameters and their tuning techniques with our course [Hyperparamater Optimisation in Machine Learning.](https://www.trainindata.com/p/master-hyperparameter-optimization-for-tabular-learning)
 
-![Hyperparamater in ML course]({{ site.baseurl }}/assets/images/posts/grid-search-vs-random-search-which-one-should-you-use/Screenshot-2024-11-29-at-4.04.03-PM.png)
+![Hyperparamater in ML course]({{ site.baseurl }}/assets/images/posts/grid-search-vs-random-search-which-one-should-you-use/hyperparameter-optimization-course.png)

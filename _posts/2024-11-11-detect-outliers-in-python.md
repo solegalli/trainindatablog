@@ -209,7 +209,7 @@ plt.show()
 
 Below is the output of the code block:
 
-![Detect outliers in Python using Boxplot, Scatterplot and Histograms.]({{ site.baseurl }}/assets/images/posts/detect-outliers-in-python/Image-3.png)
+![Detect outliers in Python using Boxplot, Scatterplot and Histograms.]({{ site.baseurl }}/assets/images/posts/detect-outliers-in-python/detect-outliers-boxplot-scatterplot-histogram.png)
 
 In the boxplot, points beyond the whiskers are considered outliers. The scatter plot offers insights into the **relationship between the two features,** and outliers often stand out as points far from the general trend line. A histogram provides a **visual representation of the distribution of values** within a single feature, where outliers are typically represented as **bars that are distant from the main cluster of data.**
 
@@ -336,7 +336,7 @@ plt.show()
 
 The following image results from the previous code block:
 
-![Scatterplot for isolation forest]({{ site.baseurl }}/assets/images/posts/detect-outliers-in-python/Image-5.png)
+![Scatterplot for isolation forest]({{ site.baseurl }}/assets/images/posts/detect-outliers-in-python/isolation-forest-scatterplot.png)
 
 The contamination parameter in the Isolation Forest specifies the expected proportion of outliers in the data. By setting **contamination = 0.05**, we indicate that we expect approximately 5% of the data points to be outliers. If it’s set too low, the model may not flag many points as outliers.
 
@@ -439,7 +439,7 @@ X.head()
 
 Below, we se the transformed dataframe:
 
-![Caped Dataframe]({{ site.baseurl }}/assets/images/posts/detect-outliers-in-python/Screenshot-2024-11-09-at-4.09.39-PM.png)
+![Caped Dataframe]({{ site.baseurl }}/assets/images/posts/detect-outliers-in-python/capped-dataframe.png)
 
 And that’s a wrap!
 

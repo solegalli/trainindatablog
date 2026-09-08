@@ -195,7 +195,7 @@ I refer to this method as *History-based Feature Selection (HBFS)*, as it learn
 
 The following is the main algorithm, presented as pseudo-code:
 
-![pseudo-code]({{ site.baseurl }}/assets/images/posts/an-overview-of-feature-selection/Screenshot-2026-04-20-125959.png)
+![pseudo-code]({{ site.baseurl }}/assets/images/posts/an-overview-of-feature-selection/pseudo-code.png)
 
 We can see, this is a bit simpler than with Bayesian Optimization, as the first iteration is completely focused on exploration (the candidates are generated randomly) and all subsequent iterations focus entirely on exploitation — there is not a gradual trend towards more exploitation.
 
@@ -207,7 +207,7 @@ HBFS executes reasonably quickly. It’s of course slower then methods that eval
 
 HBFS is designed to let users understand the feature-selection process it performs as it executes. For example, one of the visualizations provided plots the scores (both the estimated scores, and the actual-evaluated scores) for all feature sets that are evaluated, which helps us understand how well it’s able to estimate the the score that would be given for an arbitrary candidate feature set).
 
-![estimated scores, and the actual-evaluated scores]({{ site.baseurl }}/assets/images/posts/an-overview-of-feature-selection/Screenshot-2026-04-20-130114.png)
+![estimated scores, and the actual-evaluated scores]({{ site.baseurl }}/assets/images/posts/an-overview-of-feature-selection/estimated-vs-actual-evaluated-scores.png)
 
 HBFS also includes some functionality not common with feature selection methods, such as allowing users to either: 1) simply maximize accuracy, or 2) to balance the goals of maximizing accuracy with minimizing computational costs. These are described in the next article.
 

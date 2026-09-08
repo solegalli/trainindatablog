@@ -39,7 +39,7 @@ We define TPR as the ratio between the actual positives predicted by the model a
 
 The **False Positive Rate (FPR)** measures how often a model incorrectly classifies a negative instance as positive. It is defined as the ratio of false positives to the total number of actual negative cases:
 
-![Formula for False Positive Rate]({{ site.baseurl }}/assets/images/posts/auc-roc-analysis/Image-2.png)
+![Formula for False Positive Rate]({{ site.baseurl }}/assets/images/posts/auc-roc-analysis/false-positive-rate-formula.png)
 
 TPR and FPR provide insight into the trade-offs between correctly identifying positive cases and minimizing false alarms. In real-world problems, the trade-off between **Sensitivity** and **Specificity** gives a clearer vision of how the model performs.
 
@@ -94,7 +94,7 @@ In the ROC curve, the X-axis represents the False Positive Rate (FPR) and the Y-
 
 Here’s how a typical ROC curve looks like :
 
-![A typical ROC curve for ROC AUC analysis of model performance]({{ site.baseurl }}/assets/images/posts/auc-roc-analysis/Screenshot-2024-09-24-at-7.03.54-PM.png)
+![A typical ROC curve for ROC AUC analysis of model performance]({{ site.baseurl }}/assets/images/posts/auc-roc-analysis/typical-roc-curve.png)
 
 Each point on the ROC curve corresponds to a specific threshold setting, showing the trade-off between the TPR and FPR.
 
