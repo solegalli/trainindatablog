@@ -70,7 +70,7 @@ SMOTE might generate a synthetic example by taking a random value between these 
 
 - (Age: 27.5, Income: $32,500)
 
-> For video tutorials on how SMOTE works and who to apply SMOTE in Python, check out our course [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+> For detailed explanations on how SMOTE works and how to apply SMOTE in Python, check out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
 ### STEP 3: Repeat Until the Dataset is Balanced
 
@@ -282,7 +282,7 @@ plt.show()
 
 ![Confusion matrix after applying SMOTE]({{ site.baseurl }}/assets/images/posts/smote-in-python-a-guide-to-balanced-datasets/CM_after_Smote.png)
 
-> Want to know how to correctly evaluate your imbalanced datasets? Check out our course [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data) – clear tutorials, practical python implementations.
+> Want to know how to correctly evaluate your imbalanced datasets? Check out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book) – clear explanations, practical python implementations.
 
 ### Overall Impact
 
@@ -313,6 +313,6 @@ Within the realm of data resampling, we discussed SMOTE which is an oversampling
 
 To steer away from rebalancing, we could simply use [cost-sensitive learning](https://www.blog.trainindata.com/cost-sensitive-learning-for-imbalanced-data/), or specific ensemble methods that have been designed for imbalanced datasets, like BalancingCascade or Balanced random forests.
 
-For more details, check out our course [Machine Learning with Imbalanced Data.](https://www.trainindata.com/p/machine-learning-with-imbalanced-data)
+For more details, check out our book [Machine Learning with Imbalanced Data.](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
 
-[![Online course Machine Learning with Imbalanced data.]({{ site.baseurl }}/assets/images/posts/should-you-use-imbalanced-learn-in-2025/imbalanced-data-course.png)](https://www.trainindata.com/p/machine-learning-with-imbalanced-data)
+[![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg)](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)

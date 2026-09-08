@@ -28,9 +28,9 @@ For a quick summary of current practices as of 2024, check out this video:
 
 <div class="video-embed"><iframe src="https://www.youtube.com/embed/blcOOheXNoQ?feature=oembed" title="Working with Imbalanced Data in 2024 - Machine Learning with Imbalanced Data" width="560" height="315" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
 
-For practical Python examples of how to work with imbalanced data, check out our course [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+For practical Python examples of how to work with imbalanced data, check out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
-[![Online course Machine Learning with Imbalanced data.]({{ site.baseurl }}/assets/images/posts/class-imbalance-in-machine-learning/imbalanced-data-course-1024x576.png)](https://www.trainindata.com/p/machine-learning-with-imbalanced-data)
+[![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg)](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
 
 ## What is Imbalanced Data?
 
@@ -121,11 +121,11 @@ One practical approach to overcome the model generalization issue is to add more
 
 Adjusting the classification threshold to achieve the optimal separation of two classes is essential when working with imbalanced datasets, where the default threshold of 0.5 may not be effective.
 
-You can use ROC curves and Precision-Recall curves to determine the optimal threshold for the classifier. Also, the area under the curve (AUC) can be used as a metric to evaluate the performance of different thresholds. Find examples of how to calculate the roc_auc in our [GitHub code repository for imbalanced data](https://github.com/solegalli/machine-learning-imbalanced-data).
+You can use ROC curves and Precision-Recall curves to determine the optimal threshold for the classifier. Also, the area under the curve (AUC) can be used as a metric to evaluate the performance of different thresholds. Find examples of how to calculate the roc_auc in our [GitHub code repository for imbalanced data](https://github.com/solegalli/machine-learning-imbalanced-data).
 
 ### Designing a Custom Classifier
 
-Creating a custom classification model tailored explicitly to handle imbalanced classification can be very effective. This involves directly incorporating measures that address class imbalance into the model’s architecture, parameters, and hyperparameters. [Hyperparameter tuning and optimization](https://www.blog.trainindata.com/hyperparameter-tuning-for-machine-learning/) can help you significantly.
+Creating a custom classification model tailored explicitly to handle imbalanced classification can be very effective. This involves directly incorporating measures that address class imbalance into the model’s architecture, parameters, and hyperparameters. [Hyperparameter tuning and optimization](https://www.blog.trainindata.com/hyperparameter-tuning-for-machine-learning/) can help you significantly.
 
 For example, support vector machines (SVMs) include a cost parameter (class_weight) that helps adjust the relative importance of different classes to handle class imbalance.
 
@@ -145,7 +145,7 @@ Undersampling, or downsampling, is a common technique to address the class imbal
 
 Undersampling methods are divided into undersampling and cleaning methodologies. In undersampling, we remove samples until a certain class balance ratio is reached. In cleaning, we remove observations that are closer to the decision boundary.
 
-You can learn about the different undersampling methods in more detail in our course “[Machine Learning with Imbalanced Data”](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).” Here we highlight three of the most common ones.
+You can learn about the different undersampling methods in more detail in our book “[Machine Learning with Imbalanced Data”](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).” Here we highlight three of the most common ones.
 
 ### Common Undersampling Techniques
 
@@ -182,7 +182,7 @@ The most common method is random oversampling, which, in essence, just duplicate
 - Random oversampling: This method randomly duplicates samples from the minority class(es) until a balanced class distribution is achieved.
 - SMOTE (Synthetic Minority Over-sampling Technique): It creates synthetic minority class samples by interpolating between existing minority class samples of the training dataset and their k-nearest neighbors. Like this, it avoids data duplication.
 
-SMOTE is suitable only for continuous variables. There are therefore extensions of SMOTE that tackle datasets with both numerical and categorical variables, or just categorical variables. There are also other oversampling techniques like ADASYN, where samples in the feature space that are harder to learn are given more weight. You can learn more about alternative oversampling methods in our course “[Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).”
+SMOTE is suitable only for continuous variables. There are therefore extensions of SMOTE that tackle datasets with both numerical and categorical variables, or just categorical variables. There are also other oversampling techniques like ADASYN, where samples in the feature space that are harder to learn are given more weight. You can learn more about alternative oversampling methods in our book “[Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).”
 
 Let’s assess the pros and cons of oversampling methodologies:
 
@@ -247,7 +247,7 @@ Some scientists have, however, designed specific ensemble models that are geared
 - RUSBoost: It combines data (re)sampling and boosting to improve classification performance for imbalanced training data.
 - Balancing Cascade: A cascade of classifiers is trained, each of which learns to distinguish between a balanced subset of the majority class and the minority class. Misclassified majority class samples are discarded in each step to prevent them from dominating the classifier.
 
-There are additional variations of bagging and boosting with resampling. To learn more about them, check out our course “[Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).”
+There are additional variations of bagging and boosting with resampling. To learn more about them, check out our book “[Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).”
 
 ### Pros
 
@@ -288,4 +288,4 @@ Dealing with imbalanced data is a crucial aspect of machine learning and data sc
 
 Undersampling, oversampling, cost-sensitive learning, and using specific ensemble algorithms are all valuable approaches for addressing class imbalance. The Imbalanced-learn Python package provides a user-friendly and out-of-the-box solution to working with imbalanced datasets.
 
-For tutorials about the different methods to work with imbalanced datasets, how to implement them in Python, and understanding how to better evaluate model performance, check our course [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+For tutorials about the different methods to work with imbalanced datasets, how to implement them in Python, and understanding how to better evaluate model performance, check our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).

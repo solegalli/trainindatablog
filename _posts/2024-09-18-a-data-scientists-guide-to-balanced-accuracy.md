@@ -63,7 +63,7 @@ Accuracy: 90.00%
 
 Despite predicting 0 for all instances, the “dummy” classifier achieved a great accuracy score. However, this classifier is utterly useless for identifying samples of class 1, which might be the class of interest (e.g., fraud detection). It’s “useless” because this model can’t predict the other category (the one we’re interested in). Therefore, there’s no intelligence and no action to be taken.
 
-> To master performance metrics suitable for imbalanced datasets, check out our course [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+> To master performance metrics suitable for imbalanced datasets, check out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
 This scenario demonstrates why accuracy alone can be deceptive when working with imbalanced datasets.
 
@@ -140,7 +140,7 @@ Scikit-learn Balanced Accuracy: 75.00%
 
 In this section, we’ve implemented balanced accuracy from scratch and compared it with scikit-learn’s implementation. Both methods yield the same result (average between the recalls: 1 for class 0 and 0.5 for class 1), confirming the correctness of our implementation.
 
-> Master the use of performance metrics in Python with our course [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data). Straight to the point, full Python code implementations.
+> Master the use of performance metrics in Python with our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book). Straight to the point, full Python code implementations.
 
 ## Comparing Balanced Accuracy with other Performance Metrics
 
@@ -291,6 +291,6 @@ As you continue your journey in data science and machine learning, consider bala
 
 ## Master Classification Metrics for Imbalanced Datasets
 
-To master classification metrics for imbalanced datasets in Python, check out our course [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+To master classification metrics for imbalanced datasets in Python, check out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
-[![Online course Machine Learning with Imbalanced data.]({{ site.baseurl }}/assets/images/posts/should-you-use-imbalanced-learn-in-2025/imbalanced-data-course.png)](https://www.trainindata.com/p/machine-learning-with-imbalanced-data)
+[![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg)](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)

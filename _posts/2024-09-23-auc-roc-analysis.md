@@ -14,7 +14,7 @@ What is the ROC-AUC curve and why is it so important?
 
 In this article, we’ll break down ROC-AUC analysis, explain its core concepts, and show how it helps evaluate machine learning models. You’ll learn how ROC curves and the Area Under the Curve (AUC) work, what they represent, and how they relate to decision thresholds. By the end, you’ll have a solid understanding of this essential evaluation tool.
 
-> To master the use of classification metrics for imbalanced datasets, check out our course [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+> To master the use of classification metrics for imbalanced datasets, check out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
 Before discussing ROC-AUC analysis, we should first introduce a common classification metric on which the ROC curve is based on: The **confusion matrix**, from which we derive the **True Positive Rate** and **False Positive Rate**.
 
@@ -43,7 +43,7 @@ The **False Positive Rate (FPR)** measures how often a model incorrectly classif
 
 TPR and FPR provide insight into the trade-offs between correctly identifying positive cases and minimizing false alarms. In real-world problems, the trade-off between **Sensitivity** and **Specificity** gives a clearer vision of how the model performs.
 
-> TP, TN, FP, and FN are a lot to take in. Understand them better with clear and easy video tutorials in our course [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+> TP, TN, FP, and FN are a lot to take in. Understand them better with clear explanations in our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
 ### Sensitivity and Specificity
 
@@ -61,7 +61,7 @@ FPR gives a clearer picture of the cost of these misclassifications. That’s wh
 
 To generate the **ROC curve**, we calculate TPR and FPR across various classification thresholds. This allows us to evaluate the trade-off between correctly identifying positives and mistakenly flagging negatives.
 
-> TPR, FPR and the lot are a bit of a mouthful. Understand them with clear and easy video tutorials with our course [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+> TPR, FPR and the lot are a bit of a mouthful. Understand them with clear explanations in our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
 ### Decision Threshold
 
@@ -78,7 +78,7 @@ The decision threshold acts as a **cut-off point** for models to classify instan
 Adjusting the decision threshold changes the number of positive and negative predictions, which in turn affects the TPR and FPR.
 
 - **Lowering the threshold** (e.g., from 0.5 to 0.3) makes the model more lenient, increasing the number of instances classified as positive. As a result, the **True Positive Rate (TPR)** rises—since more actual positives are correctly identified—but so does the **False Positive Rate (FPR)**, as more negative instances may be misclassified as positive.
-- **Raising the threshold** (e.g., from 0.5 to 0.7) makes the model more strict, reducing the number of instances classified as positive. As a result, the **False Positive Rate (FPR)** decreases—since fewer negatives are misclassified—but the **True Positive Rate (TPR)** also drops, as more actual positives are missed.
+- **Raising the threshold** (e.g., from 0.5 to 0.7) makes the model more strict, reducing the number of instances classified as positive. As a result, the **False Positive Rate (FPR)** decreases—since fewer negatives are misclassified—but the **True Positive Rate (TPR)** also drops, as more actual positives are missed.
 
 The trade-off between **True Positive Rate (TPR)** and **False Positive Rate (FPR)** is a key factor in assessing a model’s effectiveness. For example, in medical screening, we might lower the threshold to catch as many potential cases as possible—even if it means accepting more false positives. Conversely, in fraud detection, we may prefer to raise the threshold to reduce false positives, even if that means missing some true fraud cases.
 
@@ -122,7 +122,7 @@ Any model above the diagonal line is considered a good model (yellow).
 
 Plotting the ROC curve offers valuable insights into the model’s performance across various thresholds. Moreover, we can summarize its overall performance by measuring the Area Under the Curve (**AUC)**.
 
-> Master the use of ROC curves and ROC-AUC with easy and practical video tutorials. Check out our course [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+> Master the use of ROC curves and ROC-AUC with clear, practical explanations. Check out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
 ## Area Under The Curve (AUC)
 
@@ -272,6 +272,6 @@ The Area Under the Curve (AUC) further simplifies this by offering a single valu
 
 ## Additional Resources
 
-To learn more about Imbalanced Data, how it affects model performance, what modeling techniques are used in the industry to solve data imbalance, and much more, check out our course on [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+To learn more about Imbalanced Data, how it affects model performance, what modeling techniques are used in the industry to solve data imbalance, and much more, check out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
-[![Online course Machine Learning with Imbalanced data.]({{ site.baseurl }}/assets/images/posts/should-you-use-imbalanced-learn-in-2025/imbalanced-data-course.png)](https://www.trainindata.com/p/machine-learning-with-imbalanced-data)
+[![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg)](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)

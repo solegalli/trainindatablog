@@ -12,7 +12,7 @@ In data science and machine learning, the accuracy of a classifier’s predictio
 
 In this article, we’ll explore probability calibration, why it matters, and how to implement it in Python using scikit-learn.
 
-> Master probability calibration with our course [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data) – detailed video tutorials, practical Python implementations, all calibration methods covered.
+> Master probability calibration with our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book) – in-depth explanations, practical Python implementations, all calibration methods covered.
 
 ## What is a Calibrated Probability?
 
@@ -44,7 +44,7 @@ Several factors influence how well a model’s predicted probabilities align wit
 
 Understanding these influences is crucial for developing models that provide reliable probability estimates in applications where prediction confidence is as important as overall prediction.
 
-> With imbalanced datasets calibrating probabilities is hard. Discover how to do it and what to take into account with our course [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+> With imbalanced datasets calibrating probabilities is hard. Discover how to do it and what to take into account with our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
 ## Why is Probability Calibration Important?
 
@@ -315,6 +315,6 @@ The next time you work on a classification problem, consider including probabili
 
 ## Additional resources
 
-Master probability calibration with out our course [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data):
+Master probability calibration with out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book):
 
-[![Online course Machine Learning with Imbalanced data.]({{ site.baseurl }}/assets/images/posts/should-you-use-imbalanced-learn-in-2025/imbalanced-data-course.png)](https://www.trainindata.com/p/machine-learning-with-imbalanced-data)
+[![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg)](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)

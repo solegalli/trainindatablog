@@ -14,9 +14,9 @@ Imbalanced datasets are a common challenge in many real-world scenarios, from fr
 
 Undersampling involves removing samples from the majority class to balance the dataset. Today, we’ll review some undersampling methods and tutorials and provide valuable resources.
 
-For more information about undersampling and oversampling methods, and step-by-step tutorials to implement them in Python, check out our course [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+For more information about undersampling and oversampling methods, and step-by-step tutorials to implement them in Python, check out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
-[![Online course Machine Learning with Imbalanced data.]({{ site.baseurl }}/assets/images/posts/class-imbalance-in-machine-learning/imbalanced-data-course-1024x576.png)](https://www.trainindata.com/p/machine-learning-with-imbalanced-data)
+[![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg)](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
 
 ## What is Undersampling?
 
@@ -73,7 +73,7 @@ We’ll now review various undersampling methods and show how to implement them 
 
 Random undersampling randomly removes instances from the majority class to balance out the dataset. It eliminates a subset of data points from the majority class to create a more balanced dataset.
 
-Let’s implement random undersampling utilizing the `RandomUnderSampler` from imbalanced learn. We’ll begin by importing the necessary libraries, classes, and functions:
+Let’s implement random undersampling utilizing the `RandomUnderSampler` from imbalanced learn. We’ll begin by importing the necessary libraries, classes, and functions:
 
 ```
 import pandas as pd
@@ -88,7 +88,7 @@ from sklearn.model_selection import train_test_split
 from imblearn.under_sampling import RandomUnderSampler
 ```
 
-Let’s now create a toy dataset for the demonstration using the `make_classification` function from Scikit-learn. The code following snippet returns the dataframe X with the features and the Series y with the labels:
+Let’s now create a toy dataset for the demonstration using the `make_classification` function from Scikit-learn. The code following snippet returns the dataframe X with the features and the Series y with the labels:
 
 ```
 X, y = make_classification(n_samples=1000,
@@ -117,7 +117,7 @@ Below is our original dataset, where blue dots indicate the majority class and o
 
 ![Scatterplot showing toy dataset with 2 clusters of imbalanced classes]({{ site.baseurl }}/assets/images/posts/undersampling-techniques-for-imbalanced-data/sample_raw_us_blog.png)
 
-Now we’ll use the `RandomUnderSampler` to obtain a final class distribution of 50:50. We need to set the parameter `sampling_strategy` to auto for this purpose.
+Now we’ll use the `RandomUnderSampler` to obtain a final class distribution of 50:50. We need to set the parameter `sampling_strategy` to auto for this purpose.
 
 ```
 rus = RandomUnderSampler(
@@ -128,7 +128,7 @@ rus = RandomUnderSampler(
 X_resampled, y_resampled = rus.fit_resample(X, y)
 ```
 
-From the previous output, `X_resampled` contains the resampled dataset, and `y_resampled` has the resampled target.
+From the previous output, `X_resampled` contains the resampled dataset, and `y_resampled` has the resampled target.
 
 Let’s go ahead and compare the size of the original and resampled datasets. The following code will identify the original data size:
 
@@ -170,7 +170,7 @@ Here you can see an equal number of blue and orange dots resulting from random u
 
 ![Scatter plot showing class distribution after random undersampling]({{ site.baseurl }}/assets/images/posts/undersampling-techniques-for-imbalanced-data/sample_rus.png)
 
-In our [GitHub repository](https://github.com/solegalli/machine-learning-imbalanced-data/blob/master/Section-05-Undersampling/01-Random-Undersampling.ipynb) of random undersampling, you’ll find a few more advanced applications, such as changing the balancing ratio, loading data, handling imbalanced targets, and comparing machine learning performance.
+In our [GitHub repository](https://github.com/solegalli/machine-learning-imbalanced-data/blob/master/Section-05-Undersampling/01-Random-Undersampling.ipynb) of random undersampling, you’ll find a few more advanced applications, such as changing the balancing ratio, loading data, handling imbalanced targets, and comparing machine learning performance.
 
 ## Tomek Links
 
@@ -209,7 +209,7 @@ X = pd.DataFrame(X, columns =['varA', 'varB'])
 y = pd.Series(y)
 ```
 
-Next, we set up the `TomekLinks()` to remove samples identified as Tomek Links. By setting the parameter `sampling_strategy` to ‘auto,’ we will remove only the observations from the majority class in the Tomek Link:
+Next, we set up the `TomekLinks()` to remove samples identified as Tomek Links. By setting the parameter `sampling_strategy` to ‘auto,’ we will remove only the observations from the majority class in the Tomek Link:
 
 ```
 tl = TomekLinks(sampling_strategy='auto')
@@ -347,7 +347,7 @@ X = pd.DataFrame(X, columns =['varA', 'varB'])
 y = pd.Series(y)
 ```
 
-Next, we set up the `EditedNearestNeighbours()`. By setting the sampling strategy to ‘auto,’ we will remove only the observations from the majority class:
+Next, we set up the `EditedNearestNeighbours()`. By setting the sampling strategy to ‘auto,’ we will remove only the observations from the majority class:
 
 ```
 enn = EditedNearestNeighbours(
@@ -444,7 +444,7 @@ As its name suggests, RENN repeats the process of Edited Nearest Neighbours mult
 
 AllKNN is another ENN variation that repeats the ENN algorithm several times. The first iteration examines only the closest neighbor of each observation from the majority class. Then, it increases the number of neighbors examined at each iteration by 1. Afterward, the algorithm stops at the round corresponding to the user-determined number of neighbors or when one of the majority classes becomes the minority — whichever happens first.
 
-Want to find out more on RENN and AllKNN? Visit our course on [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+Want to find out more on RENN and AllKNN? Visit our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
 ## NearMiss Undersampling
 
@@ -462,14 +462,14 @@ To achieve this, NearMiss-2 determines the mean distance of each observation fro
 
 Next, for the remaining majority class examples, it calculates the average distance to its K closest neighbors from the minority class. Finally, the algorithm retains only those majority class examples with the largest average distance.
 
-For a Python implementation of NearMiss with imbalanced learn, visit our [GitHub repository](https://github.com/solegalli/machine-learning-imbalanced-data/blob/master/Section-05-Undersampling/09-NearMiss.ipynb) on NearMiss undersampling.
+For a Python implementation of NearMiss with imbalanced learn, visit our [GitHub repository](https://github.com/solegalli/machine-learning-imbalanced-data/blob/master/Section-05-Undersampling/09-NearMiss.ipynb) on NearMiss undersampling.
 
 ## Wrap-up
 
 It is important to note that selecting the best undersampling method depends on the specific characteristics of the dataset. Hence, the most effective technique may vary from one dataset to another. Therefore, it is crucial to evaluate the performance of each method to determine the best approach for a specific task.
 
-We’ve reviewed only a handful of undersampling methods from the above list in this article. Check out our [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data) course. You’ll find detailed discussions and tutorials on other methods and comprehensive applications of Python open-source libraries for handling imbalanced data.
+We’ve reviewed only a handful of undersampling methods from the above list in this article. Check out our [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book) book. You’ll find detailed discussions and tutorials on other methods and comprehensive applications of Python open-source libraries for handling imbalanced data.
 
 The data science community is yet to reach a consensus on which technique is the most effective or suitable for any given dataset. So, take this opportunity to learn more about these techniques and determine what works best for you.
 
-You can always practice using our [GitHub repository](https://github.com/solegalli/machine-learning-imbalanced-data/tree/master/Section-05-Undersampling) of undersampling examples or learn more from our [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data) course.
+You can always practice using our [GitHub repository](https://github.com/solegalli/machine-learning-imbalanced-data/tree/master/Section-05-Undersampling) of undersampling examples or learn more from our [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book) book.

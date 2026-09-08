@@ -78,7 +78,7 @@ Forecasting helps in predicting future demand, making it crucial in supply chain
 
 ## Classify Brain tumor MRI images using Deep learning
 
-Computer vision is the field of artificial intelligence that allows us to process and analyze information from digital images, videos, and other visual inputs. Image recognition techniques are used in healthcare to analyze medical images such as X-rays, MRIs, CT scans, and ultrasound images, providing critical insights that may escape the human eye.
+Computer vision is the field of artificial intelligence that allows us to process and analyze information from digital images, videos, and other visual inputs. Image recognition techniques are used in healthcare to analyze medical images such as X-rays, MRIs, CT scans, and ultrasound images, providing critical insights that may escape the human eye.
 
 Image classification is a computer vision technique where we train models to classify images into labels by extracting patterns and features from the images.
 
@@ -102,7 +102,7 @@ As part of image classification, you can also implement object detection to loca
 
 This project is an excellent way to learn image preprocessing techniques like normalization, data augmentation, and feature extraction.
 
-Class imbalance is a big challenge, especially in medical datasets where the fraction of the ‘disease-positive’ class is very low. You can check out our [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data) course if you’d like to learn different approaches to handling imbalanced classes.
+Class imbalance is a big challenge, especially in medical datasets where the fraction of the ‘disease-positive’ class is very low. You can check out our [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book) book if you’d like to learn different approaches to handling imbalanced classes.
 
 I’d also suggest you spend time understanding the different components of deep learning architecture, like convolution, pooling layers, dropout, and fully connected layers. These components will allow you to control overfitting, increase accuracy, and reduce computational expenses.
 

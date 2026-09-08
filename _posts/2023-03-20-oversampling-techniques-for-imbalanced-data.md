@@ -18,9 +18,9 @@ This article will discuss various oversampling techniques, highlighting their ad
 
 So, let’s dive in.
 
-> Discover the use of oversampling and undersampling through step-by-step tutorials, and implement them in Python, with our course [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+> Discover the use of oversampling and undersampling through step-by-step tutorials, and implement them in Python, with our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
-[![Online course Machine Learning with Imbalanced data.]({{ site.baseurl }}/assets/images/posts/class-imbalance-in-machine-learning/imbalanced-data-course-1024x576.png)](https://www.trainindata.com/p/machine-learning-with-imbalanced-data)
+[![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg)](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
 
 ## What is Oversampling?
 
@@ -71,7 +71,7 @@ from sklearn.datasets import make_blobs
 from imblearn.over_sampling import RandomOverSampler
 ```
 
-Now we create a toy dataset with 2 classes, where 80% of the observations belong to the majority class and 20% to the minority class. We use the `make_blobs` function from Scikit-learn:
+Now we create a toy dataset with 2 classes, where 80% of the observations belong to the majority class and 20% to the minority class. We use the `make_blobs` function from Scikit-learn:
 
 ```
 X, y = make_blobs(
@@ -116,7 +116,7 @@ ros = RandomOverSampler(
 X_res, y_res = ros.fit_resample(X, y)
 ```
 
-When we apply `resample()`, the `RandomOverSampler()` duplicates at random data points from the minority class.
+When we apply `resample()`, the `RandomOverSampler()` duplicates at random data points from the minority class.
 
 To better understand the result, let’s display the shape of the original data:
 
@@ -176,7 +176,7 @@ Below is our oversampled data set.
 
 Although there are more instances of the minority class after random oversampling, they may not appear more prominent when displayed because of the overlapping. However, you can see darker orange tones now for the minority class, which correspond to the duplicated instances.
 
-We can now use the resampled dataset, `X_res` to train our machine learning classifiers. It is important to remember that while we train the models on the balanced dataset, we should test their performance on a test set with the original class distribution.
+We can now use the resampled dataset, `X_res` to train our machine learning classifiers. It is important to remember that while we train the models on the balanced dataset, we should test their performance on a test set with the original class distribution.
 
 ### Advantages of Random Sampling
 
@@ -196,7 +196,7 @@ In this technique, instead of selecting exact replicas of the minority class ins
 
 Adding noise can help diversify the minority class instances and reduce overfitting, preventing the model from relying too heavily on the exactly replicated minority class instances. You can quickly implement it using Python libraries such as imbalanced-learn.
 
-For a Jupyter notebook with the full implementation, visit our [GitHub repository](https://github.com/solegalli/machine-learning-imbalanced-data/blob/master/Section-06-Oversampling/01-Random-Oversampling.ipynb).
+For a Jupyter notebook with the full implementation, visit our [GitHub repository](https://github.com/solegalli/machine-learning-imbalanced-data/blob/master/Section-06-Oversampling/01-Random-Oversampling.ipynb).
 
 ## SMOTE (Synthetic Minority Oversampling Technique)
 
@@ -249,7 +249,7 @@ sm = SMOTE(
 X_res, y_res = sm.fit_resample(X, y)
 ```
 
-With `resample()` we’ve created the synthetic data.
+With `resample()` we’ve created the synthetic data.
 
 Let’s now compare the original and new data sizes. Let’s display the size of the original data:
 
@@ -335,7 +335,7 @@ The synthetic data is created by interpolating between each minority class suppo
 
 ### Other SMOTE variants
 
-In addition to the SMOTE variants mentioned above, there are more SMOTE alternatives like K-means SMOTE and variations that are also suitable for discrete and categorical variables, like SMOTE-N and SMOTE-NC. If you want to know more about these methods, as well as, their advantages and limitations and how to implement them in Python, Check out our course [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+In addition to the SMOTE variants mentioned above, there are more SMOTE alternatives like K-means SMOTE and variations that are also suitable for discrete and categorical variables, like SMOTE-N and SMOTE-NC. If you want to know more about these methods, as well as, their advantages and limitations and how to implement them in Python, Check out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
 ## Adaptive Synthetic Sampling (ADASYN)
 
@@ -351,4 +351,4 @@ However, selecting the best oversampling process requires careful consideration 
 
 With the help of Python libraries and frameworks, implementing oversampling techniques has become more accessible.
 
-Need help figuring out where to start? The [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data) course comprehensively guides you through all the methods with step-by-step tutorials!
+Need help figuring out where to start? The [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book) book comprehensively guides you through all the methods with step-by-step tutorials!

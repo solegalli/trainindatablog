@@ -14,7 +14,7 @@ Machine learning models are widely used for decision-making in various fields li
 
 Platt scaling is a technique that can convert the model outputs or scores into well-calibrated probabilities between 0 and 1. In this article, we’ll understand the need for calibration and how Platt scaling works, along with hands-on examples in Python.
 
-> To master probability calibration, enroll in our course [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+> To master probability calibration, check out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
 ## **Why Is Calibration Essential in Machine Learning?**
 
@@ -34,9 +34,9 @@ If a dataset is skewed towards one class or category, classifier models may ofte
 
 We can use calibration techniques like Platt scaling or Isotonic Regression to adjust the model scores and correct for the skewness in classification tasks.
 
-To master probability recalibration, check out our course on how to [work with imbalanced datasets](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+To master probability recalibration, check out our book on how to [work with imbalanced datasets](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
-[![Online course Machine Learning with Imbalanced data.]({{ site.baseurl }}/assets/images/posts/should-you-use-imbalanced-learn-in-2025/imbalanced-data-course.png)](https://www.trainindata.com/p/machine-learning-with-imbalanced-data)
+[![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg)](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
 
 ### **3. Enhanced Model Interpretability**[**:**](https://www.blog.trainindata.com/class-imbalance-in-machine-learning/)
 
@@ -50,7 +50,7 @@ In data science projects, we often need to compare various models to choose the 
 
 **Platt scaling** is a **probability calibration technique** that trains a logistic regression model with the classifier’s scores as the input and the actual dependent variable as the output, to learn the relation between them.
 
-Researchers originally developed Platt scaling to transform the outputs of SVMs (Support Vector Machines). An SVM is a large-margin classifier algorithm that separates data into different classes using a hyperplane. The algorithm bases its output scores on the distance from the margin — the farther a data point is from the margin, the more confident the prediction. However, these scores do not map well to probabilities, so Platt scaling was introduced to address this issue. Since then, it has been extended to various classifier models like XGBoost, Random Forest, and neural networks.
+Researchers originally developed Platt scaling to transform the outputs of SVMs (Support Vector Machines). An SVM is a large-margin classifier algorithm that separates data into different classes using a hyperplane. The algorithm bases its output scores on the distance from the margin — the farther a data point is from the margin, the more confident the prediction. However, these scores do not map well to probabilities, so Platt scaling was introduced to address this issue. Since then, it has been extended to various classifier models like XGBoost, Random Forest, and neural networks.
 
 Though Platt scaling was originally designed for binary classifiers, it can also be used for multi-class classification problems using the OVR (One vs Rest) technique. The sklearn Python library provides a `CalibratedClassifierCV` function that automatically takes care of this when you are training a calibration model. We’ll cover how to use it in the later sections.
 
@@ -66,7 +66,7 @@ Let’s understand how Platt scaling works step-by-step:
 
 During training, the parameters A and B will be learnt through **maximum likelihood estimation** (usually by minimizing log loss).
 
-3. Now, the logistic regression model has learned how to **map its raw scores to actual probabilities** based on the patterns. This mapping can be applied to all the new predictions of the classifier model.
+3. Now, the logistic regression model has learned how to **map its raw scores to actual probabilities** based on the patterns. This mapping can be applied to all the new predictions of the classifier model.
 
 ## **Implement Platt scaling in Python**
 
@@ -82,7 +82,7 @@ from sklearn.datasets import make_classification
 
 **1. Create Training & Testing sets**
 
-For this example, let’s create a synthetic dataset for binary classification and train a Random Forest Classifier. We’ll use the `make_classification`  utility to generate a random dataset by providing the number of samples and class balance.
+For this example, let’s create a synthetic dataset for binary classification and train a Random Forest Classifier. We’ll use the `make_classification`  utility to generate a random dataset by providing the number of samples and class balance.
 
 ```
 def create_dataset(weights):
@@ -187,7 +187,7 @@ The previous code returns the following plot:
 
 ![Random Forest Model's Calibration Curve]({{ site.baseurl }}/assets/images/posts/complete-guide-to-platt-scaling/RandomForest_Calibration_Curve-1024x587.png)
 
-In the previous plot, the blue curve represents the calibration curve of the Random Forest, where the probability predictions represent the model’s predictions, and the “Fraction of positive examples”  indicates the actual proportion of positive samples in each bin of predicted probabilities.
+In the previous plot, the blue curve represents the calibration curve of the Random Forest, where the probability predictions represent the model’s predictions, and the “Fraction of positive examples”  indicates the actual proportion of positive samples in each bin of predicted probabilities.
 
 Look at the graph when the Probability prediction is 0.4, then, check out that the fraction of positive examples is approximately 0.8. This means that the model predicted a 40% chance of positive class for samples in that bin, but in reality, **80% were positive**.
 
@@ -233,7 +233,7 @@ plot_calibration_curve(y_test, prob_sigmoid, bins=8, strategy='uniform')
 
 ![Calibration Curve after Platt scaling]({{ site.baseurl }}/assets/images/posts/complete-guide-to-platt-scaling/Platt_scaling_Calibration_Curve-1024x543.png)
 
-In the previous plot, the calibration curve (blue)  is more aligned with the reference line than what we had seen previously. Hence, the probability distribution is significantly more aligned with the actual outputs using the calibrated classifier.
+In the previous plot, the calibration curve (blue)  is more aligned with the reference line than what we had seen previously. Hence, the probability distribution is significantly more aligned with the actual outputs using the calibrated classifier.
 
 This concludes our example use case of Platt scaling on Random Forest. Similarly, we can apply a sigmoid classifier to the outputs of other decision tree models like XGBoost or use it with SVM models.
 
@@ -248,7 +248,7 @@ In addition to Platt scaling, data scientists commonly use other calibration met
 Platt scaling has many advantages over other methods, such as:
 
 - Best suited for smaller-sized datasets due to the low risk of overfitting
-- It uses a sigmoid function and has low  training complexity
+- It uses a sigmoid function and has low  training complexity
 - Easy to interpret
 
 It also faces certain limitations:
@@ -256,7 +256,7 @@ It also faces certain limitations:
 - Limited flexibility: As Platt scaling is a parametric model, it may not be able to handle more complex probability mappings like non-monotonic trends.
 - It can be slower and less accurate with multi-class problems compared to beta or temperature scaling methods
 
-To learn additional calibration methods, check out our course [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+To learn additional calibration methods, check out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
 ## **Conclusion**
 

@@ -16,9 +16,9 @@ When training weak learners, oversampling the minority class has been shown to h
 
 This article will provide an insightful read on how ADASYN works. We’ll show how to implement ADASYN in Python. More importantly, we’ll discuss what we need to do **before** attempting any resampling method.
 
-To master ADASYN these and other resampling methods, check out our course [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+To master ADASYN these and other resampling methods, check out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
-[![Online course Machine Learning with Imbalanced data.]({{ site.baseurl }}/assets/images/posts/should-you-use-imbalanced-learn-in-2025/imbalanced-data-course.png)](https://www.trainindata.com/p/machine-learning-with-imbalanced-data)
+[![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg)](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
 
 ## **What is ADASYN?**
 
@@ -89,7 +89,7 @@ This section demonstrates how to handle an imbalanced dataset, specifically the 
 
 ### **Part 1: Importing Libraries and Data Preparation**
 
-The first step is to import the required libraries to fetch the dataset, build classification models, and apply ADASYN.
+The first step is to import the required libraries to fetch the dataset, build classification models, and apply ADASYN.
 
 ```
 # Import required libraries
@@ -387,4 +387,4 @@ However, our discussion emphasizes the importance of experimenting with differen
 
 To learn more about Adasyn, check the paper published in the 2008 IEEE International Joint Conference on Neural Networks (IEEE World Congress on Computational Intelligence), [here](https://ieeexplore.ieee.org/document/4633969).
 
-To learn more about Working with Imbalanced Data, what modeling techniques are used in the industry to solve data imbalance, and much more, check out our course on [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+To learn more about Working with Imbalanced Data, what modeling techniques are used in the industry to solve data imbalance, and much more, check out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).

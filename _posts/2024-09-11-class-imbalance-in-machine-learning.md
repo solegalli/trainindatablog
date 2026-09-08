@@ -14,7 +14,7 @@ SMOTE, once a go-to solution, is frequently misapplied, introducing bias rather 
 
 In this article, I challenge outdated practices and provide rigorous alternatives.
 
-> To find the latest discussions and tools to work with imbalanced data, check out our course [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+> To find the latest discussions and tools to work with imbalanced data, check out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
 ## Class imbalance is not the problem
 
@@ -219,7 +219,7 @@ Accuracy measures the proportion of correct predictions, but it doesn’t accoun
 
 So for imbalanced datasets, it is encouraged to consider important tools such as confusion matrix, precision, recall, F1 score, ROC curve or, even the [balanced accuracy](https://www.blog.trainindata.com/a-data-scientists-guide-to-balanced-accuracy/), which contemplate the model across the different classes, including the minority.
 
-> Master the use of performance metrics for imbalanced data with our course [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+> Master the use of performance metrics for imbalanced data with our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
 Let’s take a look at these evaluation metrics one by one.
 
@@ -329,7 +329,7 @@ This plot highlights the trade-off between the two metrics. We see that a better
 
 However, in our example, recall is more critical, so we can prioritize it, and reduce the threshold even further to ensure a high recall value.
 
-> Master the use of precision, recall and tuning the classification threshold with our course [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+> Master the use of precision, recall and tuning the classification threshold with our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
 ## Cost-sensitive Learning
 
@@ -476,6 +476,6 @@ Besides handling the class imbalance, the optimization of the right performance 
 
 ## Additional Resources
 
-If you want to learn more about class imbalance, check out our course [Machine Learning with Imbalanced Data.](https://www.trainindata.com/p/machine-learning-with-imbalanced-data)
+If you want to learn more about class imbalance, check out our book [Machine Learning with Imbalanced Data.](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
 
-[![Online course Machine Learning with Imbalanced data.]({{ site.baseurl }}/assets/images/posts/class-imbalance-in-machine-learning/imbalanced-data-course-1024x576.png)](https://www.trainindata.com/p/machine-learning-with-imbalanced-data)
+[![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg)](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)

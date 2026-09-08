@@ -89,7 +89,7 @@ Unfortunately, there is not a thorough study comparing the performance of the va
 
 I made a comparison of various fixed and cleaning undersampling methods, including Tomek links and nearmiss, across publicly available datasets in this [github repo](https://github.com/solegalli/machine-learning-imbalanced-data/blob/master/Section-05-Undersampling/14-Under-sampling-method-comparison-w-hyperparameter-tuning.ipynb). I saw that random undersampling and the instance hardness threshold do improve model performance in **SOME** datasets. But in most datasets, undersampling methods did not improve the performance of random forests.
 
-> To master the use of fixed and cleaning undersampling methods, check out my course [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+> To master the use of fixed and cleaning undersampling methods, check out my book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
 ## So, does undersampling work?
 
@@ -142,7 +142,7 @@ For random under- or oversampling, there is not need to use imbalanced-learn, yo
 
 If you are still curious about imbalanced-learn, below I’ll show you how to install and use this library.
 
-> To master the use of imbalanced-learn, check out my course [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+> To master the use of imbalanced-learn, check out my book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
 ## Imbalanced-Learn: A Python Library for Resampling
 
@@ -373,6 +373,6 @@ Later on, stronger classifiers like xgboost came to the field and more thorough 
 
 Still, there are some cases where these techniques can add value, and for that, imbalanced-learn can still be valuable, because it provides a framework that allows you to easily integrate these methods with the Python tools that you are used to work with.
 
-If you want to learn more about working with imbalanced datasets, check out my course”: [Machine learning with Imbalanced Data](https://www.trainindata.com/p/machine-learning-with-imbalanced-data).
+If you want to learn more about working with imbalanced datasets, check out my book”: [Machine learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
-[![Online course Machine Learning with Imbalanced data.]({{ site.baseurl }}/assets/images/posts/should-you-use-imbalanced-learn-in-2025/imbalanced-data-course.png)](https://www.trainindata.com/p/machine-learning-with-imbalanced-data)
+[![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg)](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
