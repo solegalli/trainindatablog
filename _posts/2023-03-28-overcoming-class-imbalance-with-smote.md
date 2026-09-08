@@ -302,7 +302,7 @@ for dataset in datasets_ls:
 
 The model performance on the different dataset is displayed below. Note that ROC-AUC is a threshold-independent metric, so these differences reflect actual changes in the model's ability to rank observations — not the decision-boundary-shift effect we discussed at the start of this article, which only shows up in threshold-dependent metrics like accuracy, precision, or recall at 0.5.
 
-In the ecoli dataset, SMOTE showed a higher ROC-AUC than the baseline, and Borderline SMOTE did even better.
+In the ecoli dataset, SMOTE showed a higher ROC-AUC than the baseline, and Borderline SMOTE did even better. But, we did not calculate the standard deviation of these metric, so we don't know if these changes are significant. Most likely, they are not.
 
 ```
 ecoli
