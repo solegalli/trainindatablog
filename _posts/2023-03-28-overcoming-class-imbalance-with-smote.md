@@ -24,6 +24,8 @@ For tutorials about undersampling, oversampling, and additional ways to work wit
 
 [![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg)](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
 
+**A quick note before we start:** SMOTE does not make a model better at discriminating between classes. What it does is shift the model's decision boundary so that, at the default classification threshold of 0.5, we make more cost-sensitive decisions — that is, we correctly flag a larger proportion of the minority class, which is usually the class we care about the most. You can achieve this exact same effect by training on the original, unmodified data and simply adjusting the classification threshold afterward, without generating any synthetic samples at all. We'll come back to this point throughout the article.
+
 ## What is SMOTE?
 
 SMOTE stands for Synthetic Minority Over-sampling Technique. It is an oversampling technique used to balance the class distribution of a dataset by creating synthetic minority class samples. SMOTE is a type of data augmentation technique that generates new synthetic samples by interpolating between existing minority-class samples.
@@ -62,7 +64,7 @@ This process is repeated for each feature in the template sample to generate a c
 
 There are several benefits to using SMOTE for dealing with imbalanced datasets:
 
-**Improved model performance:** SMOTE helps to balance the class distribution of the dataset, which can improve the performance of machine learning models.
+**Shifts the decision boundary toward the minority class:** SMOTE helps to balance the class distribution of the dataset, which shifts the decision boundary so that more minority class examples get correctly flagged at the default 0.5 threshold — the same trade-off you'd get by adjusting the threshold on the original, unbalanced data.
 
 **Reduced risk of overfitting:** By generating new synthetic samples, instead of simply duplicating existing samples, SMOTE can help to reduce the risk of overfitting which commonly accompanies random oversampling. Hence, SMOTE is meant to be an improvement over random oversampling.
 
@@ -298,9 +300,9 @@ for dataset in datasets_ls:
     print()
 ```
 
-The model performance on the different dataset is displayed below.
+The model performance on the different dataset is displayed below. We're using ROC-AUC here, a threshold-independent metric, so unlike accuracy, precision, or recall at 0.5, it isn't affected by the decision-boundary shift we discussed at the start of this article. But these are single train/test splits with no standard deviation calculated, so we can't say whether any of the differences below are significant.
 
-We see that SMOTE was useful to improve the performance in the ecoli dataset, and Borderline SMOTE was even better.
+In the ecoli dataset, SMOTE showed a higher ROC-AUC than the baseline, and Borderline SMOTE did even better. But, we did not calculate the standard deviation of these metric, so we don't know if these changes are significant. Most likely, they are not.
 
 ```
 ecoli
@@ -328,7 +330,7 @@ Test set
 Random Forests roc-auc: 0.9806763285024154
 ```
 
-On the other hand, neither SMOTE nor ADASYN or Borderline SMOTE improved the model performance in the thyroid dataset.
+On the other hand, neither SMOTE nor ADASYN or Borderline SMOTE improved the ROC-AUC in the thyroid dataset — all three actually scored slightly lower than the baseline on the test set.
 
 ```
 thyroid_sick
@@ -356,7 +358,7 @@ Test set
 Random Forests roc-auc: 0.9432572167169323
 ```
 
-Finally, SMOTE massively improved performance in the arrhythmia dataset, and ADASYN was even better. But borderline SMOTE did not help.
+Finally, SMOTE scored a notably higher ROC-AUC in the arrhythmia dataset, and ADASYN did even better. But borderline SMOTE scored lower than the baseline. Again, we didn't calculate the standard deviation of these metrics, so we can't say whether this difference is significant.
 
 ```
 arrhythmia
@@ -388,7 +390,7 @@ Random Forests roc-auc: 0.796875
 
 SMOTE is a powerful technique for learning from imbalanced data. It helps to balance the class distribution of the original dataset by generating synthetic samples for the minority class. However, it has some limitations, such as no consideration for the quality of synthetic samples and computational cost. It is important to choose the right value of k to ensure that the synthetic samples generated are of high quality.
 
-Despite its limitations, SMOTE is a valuable tool in the machine learning toolkit for dealing with imbalanced datasets, as we saw in our code examples. And should SMOTE not work, there are alternative oversampling methods, as well as undersampling algorithms to choose from to tackle the class imbalance problem.
+As we saw in our code examples, its effect on ROC-AUC is inconsistent — and since we didn't check whether any of those differences were statistically significant, we can't even say for sure that it helped on the datasets where the score went up. Test it on your own data rather than assuming it will help. And remember that, for threshold-dependent metrics, resampling mainly shifts the decision boundary, an effect you can also get by tuning the classification threshold on the original data. Should SMOTE not work, there are alternative oversampling methods, as well as undersampling algorithms to choose from to tackle the class imbalance problem.
 
 To know more about how to tackle class imbalance, check out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book) and the references below.
 

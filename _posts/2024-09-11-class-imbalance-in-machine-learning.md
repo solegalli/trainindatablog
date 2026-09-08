@@ -16,6 +16,8 @@ In this article, I challenge outdated practices and provide rigorous alternative
 
 > To find the latest discussions and tools to work with imbalanced data, check out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
+**A quick note before we start:** undersampling, oversampling, SMOTE, and cost-sensitive learning do not make a model better at discriminating between classes. What they actually do is shift the model's decision boundary so that, at the default classification threshold of 0.5, we make more cost-sensitive decisions — that is, we correctly flag a larger proportion of the minority class, which is usually the class we care about the most. You can get this same effect by training on the original, unmodified data and simply adjusting the classification threshold afterward, without resampling or reweighting anything at all. We'll come back to this point throughout the article.
+
 ## Class imbalance is not the problem
 
 When the classes in a dataset are not uniformly distributed, it is known as class imbalance. Considering a simple case of a binary classification problem, class imbalance occurs when the number of instances representing a “rare” class (also termed a **minority class**) is far less than that representing the other class (i.e. **majority class**).
@@ -368,15 +370,15 @@ We can also try and specify custom class weights to achieve the desired performa
 
 If adjusting probability thresholds or specifying class weights don’t resolve the issue, we can try using random **over-sampling** or random **under-sampling** techniques.
 
-[Over-sampling](https://www.blog.trainindata.com/oversampling-techniques-for-imbalanced-data/) involves increasing the number of examples from the minority class while [under-sampling](https://www.blog.trainindata.com/undersampling-techniques-for-imbalanced-data/) reduces the number of examples from the majority class. These techniques balance the dataset and are said to improve the model’s ability to detect minority class instances
+[Over-sampling](https://www.blog.trainindata.com/oversampling-techniques-for-imbalanced-data/) involves increasing the number of examples from the minority class while [under-sampling](https://www.blog.trainindata.com/undersampling-techniques-for-imbalanced-data/) reduces the number of examples from the majority class. These techniques balance the dataset, which shifts the decision boundary toward the minority class so more of its instances get flagged at the default 0.5 threshold
 
 Undersampling is suitable when we have huge datasets. By removing observations from the majority class, we can speed up training of the model. For smaller datasets, undersampling risks loss of information.
 
-Oversampling has also its sets of problems. Random oversampling simply duplicates data points. To avoid this, methods that “create” data points similar to those of the minority class, have been suggested to improve model performance on class imbalance. The classical method to create synthetic data is [**SMOTE**](https://www.blog.trainindata.com/overcoming-class-imbalance-with-smote/) (**S**ynthetic **M**inority **O**ver-sampling **TE**chnique).
+Oversampling has also its sets of problems. Random oversampling simply duplicates data points. To avoid this, methods that “create” data points similar to those of the minority class, have been suggested to shift the decision boundary further towards the minority class. The classical method to create synthetic data is [**SMOTE**](https://www.blog.trainindata.com/overcoming-class-imbalance-with-smote/) (**S**ynthetic **M**inority **O**ver-sampling **TE**chnique).
 
 Imblearn is a Python package that supports many over- and undersampling methods for class imbalance. Whether we [should still be using imbalanced-learn](https://www.blog.trainindata.com/should-you-use-imbalanced-learn-in-2025/) is becoming a subject of heated debate.
 
-As I said, with SMOTE, instead of simply duplicating the data points by sampling with replacement, we generate **new** synthetic data points. It does so by selecting a data point from the minority class and identifying its k-nearest neighbors (KNN). It then creates new data points by interpolating between the selected data point and one of its neighbors, creating synthetic samples that lie along the line segments between them. This approach increases the size of the minority class in a more meaningful way, improving the model’s ability to learn from dominated data without overfitting.
+As I said, with SMOTE, instead of simply duplicating the data points by sampling with replacement, we generate **new** synthetic data points. It does so by selecting a data point from the minority class and identifying its k-nearest neighbors (KNN). It then creates new data points by interpolating between the selected data point and one of its neighbors, creating synthetic samples that lie along the line segments between them. This approach increases the size of the minority class in a more meaningful way, shifting the decision boundary without the overfitting risk that comes from simply duplicating data points.
 
 Let’s implement SMOTE to generate the new dataset as follows:
 
@@ -427,7 +429,7 @@ This gives us the following output:
 
 ![Confusion matrix of test set predictions after applying SMOTE]({{ site.baseurl }}/assets/images/posts/class-imbalance-in-machine-learning/confusion_matrix_smote.png)
 
-From the confusion matrix, we can see that both the true positive rate and the true negative rate have improved, as indicated by the values along the diagonal. This means the model is performing better in correctly identifying both fraudulent and non-fraudulent transactions. Now, let’s also take a closer look at other performance metrics to understand its overall performance.
+From the confusion matrix, we can see that both the true positive rate and the true negative rate have changed, as indicated by the values along the diagonal — this is the decision-boundary shift we mentioned at the start of the article, showing up at the default 0.5 threshold. Now, let’s also take a closer look at other performance metrics to understand its overall performance.
 
 ```
 

@@ -2,21 +2,21 @@
 layout: post
 title: "Dealing with Imbalanced Datasets in Machine Learning: Techniques and Best Practices"
 author: sole
-description: "Discover different methods to improve the performance of machine learning models trained on imbalanced datasets."
-excerpt: "Discover different methods to improve the performance of machine learning models trained on imbalanced datasets."
+description: "Discover the techniques used to handle imbalanced datasets in machine learning, what they actually do, and how they compare to adjusting the classification threshold."
+excerpt: "Discover the techniques used to handle imbalanced datasets in machine learning, what they actually do, and how they compare to adjusting the classification threshold."
 categories: [Imbalanced Data, Machine Learning]
 image: assets/images/posts/machine-learning-with-imbalanced-data/cover-7.gif
 ---
 
 Imbalanced datasets are a familiar challenge data scientists and machine learning practitioners face. When the distribution of classes in a dataset is skewed, with one or more classes having significantly fewer samples than others, it can lead to trained models that make biased predictions and show poor overall performance.
 
-But fear not, as various techniques and best practices can be employed to address this issue during preprocessing to create a more balanced dataset and hence improve model accuracy.
+But fear not, as various techniques and best practices can be employed to help us make cost-sensitive decisions when working with these datasets.
 
 This article will explore the following:
 
 - The nature of imbalanced data
 - The challenges of imbalanced datasets
-- How to improve model performance
+- How to make cost-sensitive decisions with imbalanced data
 - The use of undersampling
 - The use of oversampling
 - Cost-sensitive learning, and
@@ -31,6 +31,12 @@ For a quick summary of current practices as of 2024, check out this video:
 For practical Python examples of how to work with imbalanced data, check out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
 [![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg)](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
+
+## What Undersampling, Oversampling, SMOTE and Cost-Sensitive Learning Actually Do
+
+Before we go through these techniques one by one, it's worth being precise about what they do. Undersampling, oversampling, SMOTE, and cost-sensitive learning do not make a model better at discriminating between classes. What they actually do is shift the model's decision boundary so that, at the default classification threshold of 0.5, we make more cost-sensitive decisions — that is, we correctly flag a larger proportion of the minority class, which is usually the class we care about the most.
+
+Here's the important part: you can get this same effect by training the model on the original, unmodified data and simply adjusting the classification threshold afterward, without resampling anything or reweighting the loss function at all. We'll call this out again for each technique below.
 
 ## What is Imbalanced Data?
 
@@ -89,7 +95,7 @@ Considering the cost of misclassification errors when designing the model and se
 
 ## How to Handle Classification Problems in Imbalanced Data
 
-Dealing with imbalanced data ensures that machine learning models can effectively learn and generalize to new, unseen data. Here are some of the most effective techniques to handle imbalanced data and improve model performance.
+Dealing with imbalanced data ensures that machine learning models can effectively learn and generalize to new, unseen data. Here are some of the most effective techniques to handle imbalanced data and make cost-sensitive decisions.
 
 ### Choosing Correct Evaluation Metrics
 
@@ -133,7 +139,7 @@ For example, support vector machines (SVMs) include a cost parameter (class_weig
 
 Unfortunately, there is no silver bullet. A good approach is experimenting with different techniques and evaluating their performance and tradeoffs using appropriate metrics such as precision, recall, and F1 score. By selecting the proper method, you can ensure that your model is not biased towards the majority class and can effectively generalize to new, unseen data.
 
-We can try to improve our model’s performance by using sampling methods. Undersampling and oversampling balance the class distribution and provide a more representative dataset for the minority class. We could also implement [cost-sensitive learning](https://www.blog.trainindata.com/cost-sensitive-learning-for-imbalanced-data/), where we penalize harder the misclassification of the minority class. And finally, we can also use bespoke ensemble methods, specifically designed to work with imbalanced datasets.
+We can make more cost-sensitive decisions at the default threshold by using sampling methods. Undersampling and oversampling balance the class distribution and, in doing so, shift the decision boundary toward the minority class. We could also implement [cost-sensitive learning](https://www.blog.trainindata.com/cost-sensitive-learning-for-imbalanced-data/), where we penalize harder the misclassification of the minority class — mathematically, this also shifts the effective decision boundary during training. And finally, we can also use bespoke ensemble methods, specifically designed to work with imbalanced datasets.
 
 The following sections will overview undersampling, oversampling, cost-sensitive learning, and ensemble methods for imbalanced datasets.
 
@@ -189,7 +195,7 @@ Let’s assess the pros and cons of oversampling methodologies:
 ### Pros
 
 - Oversampling doesn’t lead to the loss of potentially critical data, as no samples are removed from the dataset.
-- Oversampling helps improve the performance of machine learning models by providing more training data for the minority class. This can lead to better generalization and increased accuracy in predicting the minority class.
+- Oversampling shifts the model's decision boundary toward the minority class, so at the default 0.5 threshold, more minority class examples get correctly flagged. You can achieve the same effect by training on the original data and adjusting the classification threshold instead.
 
 ### Cons
 
@@ -200,7 +206,7 @@ Let’s assess the pros and cons of oversampling methodologies:
 
 When handling imbalanced datasets, choosing between undersampling and oversampling can be challenging. Oversampling creates synthetic examples or duplicates the minority class, while undersampling eliminates examples from the majority class.
 
-Undersampling is a suitable option when dealing with large datasets that are challenging to analyze. By utilizing all rare class instances and randomly removing the majority class instances, the dataset can be transformed into a balanced one, with equal representation of both classes. This can help address the issue of imbalanced data and improve the model’s performance without overfitting.
+Undersampling is a suitable option when dealing with large datasets that are challenging to analyze. By utilizing all rare class instances and randomly removing the majority class instances, the dataset can be transformed into a balanced one, with equal representation of both classes. This shifts the decision boundary toward the minority class.
 
 Oversampling, on the other hand, can be useful when we have a limited amount of data. However, it’s crucial to be cautious when using oversampling, especially when the class imbalance is significant, as we will be introducing a lot of artificial data points or duplications.
 
@@ -259,7 +265,7 @@ One drawback of these methods is that they are less well-known; there are no ope
 
 ## Imbalanced-learn: The Open-Source Python Package for Working with Imbalanced Data
 
-[Imbalanced-learn](https://imbalanced-learn.org/stable/), or Imblearn, is an open-source Python library designed to help address class imbalance problems in machine learning. The library provides tools and algorithms for processing imbalanced datasets and improving model performance.
+[Imbalanced-learn](https://imbalanced-learn.org/stable/), or Imblearn, is an open-source Python library designed to help address class imbalance problems in machine learning. The library provides tools and algorithms for resampling imbalanced datasets and shifting the decision boundary toward the minority class.
 
 Imbalanced-learn offers a variety of oversampling and undersampling techniques, including:
 

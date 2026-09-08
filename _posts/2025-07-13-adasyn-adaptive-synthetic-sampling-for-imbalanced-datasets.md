@@ -2,8 +2,8 @@
 layout: post
 title: "ADASYN: Adaptive Synthetic Sampling for Imbalanced Datasets"
 author: shri
-description: "Find out why you should NOT use ADASYN to handle data imbalance, what the hype was, and what to do instead to boost model performance."
-excerpt: "Find out why you should NOT use ADASYN to handle data imbalance, what the hype was, and what to do instead to boost model performance."
+description: "Find out why you should NOT use ADASYN to handle data imbalance, what the hype was, and what to do instead to make cost-sensitive decisions."
+excerpt: "Find out why you should NOT use ADASYN to handle data imbalance, what the hype was, and what to do instead to make cost-sensitive decisions."
 categories: [Data Science, Imbalanced Data, Machine Learning]
 image: assets/images/posts/adasyn-adaptive-synthetic-sampling-for-imbalanced-datasets/adayasn_imbalced_datasets.jpg
 ---
@@ -12,7 +12,7 @@ In machine learning, data imbalance is common, and depending on the nature of th
 
 Machine learning models, such as XGBoost and LightGBM, generally perform well, including when trained with imbalanced datasets. Weaker learners like decision trees or support vector machines, on the other hand, can lead to biased models when trained on imbalanced datasets. These models will output accurate predictions for the majority class but poor ones for the minority class.
 
-When training weak learners, oversampling the minority class has been shown to help models better identify the decision boundaries and hence, enhance their performance. The most popular oversampling method is SMOTE, and you can learn more about [SMOTE’s advantages and limitations](https://www.blog.trainindata.com/smote-in-python-a-guide-to-balanced-datasets/) in our previous article. Here, we will explore another oversampling technique called ADASYN.
+When training weak learners, oversampling the minority class has been shown to shift the decision boundary at the default classification threshold, so more minority class examples get flagged — the same trade-off you'd get by adjusting the threshold on the original data. The most popular oversampling method is SMOTE, and you can learn more about [SMOTE’s advantages and limitations](https://www.blog.trainindata.com/smote-in-python-a-guide-to-balanced-datasets/) in our previous article. Here, we will explore another oversampling technique called ADASYN.
 
 This article will provide an insightful read on how ADASYN works. We’ll show how to implement ADASYN in Python. More importantly, we’ll discuss what we need to do **before** attempting any resampling method.
 
@@ -20,11 +20,13 @@ To master ADASYN these and other resampling methods, check out our book [Machine
 
 [![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg)](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
 
+**A quick note before we start:** ADASYN, like SMOTE and other resampling methods, does not make a model better at discriminating between classes. What it does is shift the model's decision boundary so that, at the default classification threshold of 0.5, we make more cost-sensitive decisions — that is, we correctly flag a larger proportion of the minority class, which is usually the class we care about the most. You can get this exact same effect by training on the original, unmodified data and simply adjusting the classification threshold afterward, without generating any synthetic samples at all. We'll come back to this point throughout the article.
+
 ## **What is ADASYN?**
 
 **ADASYN** (Adaptive Synthetic Sampling Approach for Imbalanced Learning) was proposed by Haibo He, Yang Bai and Edwardo A. Garcia in their 2008 article titled **“Learning from Imbalanced Data”**. It is a data augmentation technique designed to address the class imbalance problem.
 
-ADASYN is an extension of the Synthetic Minority Over-sampling Technique (SMOTE). SMOTE creates synthetic observations using all minority class examples as templates. ADASYN, instead, focuses on generating synthetic samples in areas where the minority class is hardest to learn, that is, where minority class is sparsely represented. Like this, ADASYN should enhance the classifier’s ability to better discern the boundaries between the minority class and the majority class examples, or at least, so the theory goes.
+ADASYN is an extension of the Synthetic Minority Over-sampling Technique (SMOTE). SMOTE creates synthetic observations using all minority class examples as templates. ADASYN, instead, focuses on generating synthetic samples in areas where the minority class is hardest to learn, that is, where minority class is sparsely represented. Like this, ADASYN should shift the decision boundary further towards the hardest-to-learn minority class examples, or at least, so the theory goes.
 
 ## **How Does ADASYN Work?**
 
@@ -77,7 +79,7 @@ This process ensures that synthetic samples are generated along the line between
 
 **Focused Sampling**: Unlike SMOTE which generates synthetic data evenly across the minority class, ADASYN prioritizes the generation of data in regions that are more challenging for classification. This is said to help to fine-tune the decision boundary between the majority and minority classes.
 
-**Improved Classification Performance**: By focusing on the most difficult-to-classify regions, ADASYN improves the model’s ability to learn from complex data points, leading to better generalization, especially for minority class instances.
+**Shifts the Decision Boundary Further:** By focusing on the most difficult-to-classify regions, ADASYN shifts the decision boundary more assertively toward the minority class than plain SMOTE — the same kind of trade-off achievable by tuning the classification threshold, just with a different emphasis on which minority class examples get prioritized.
 
 > Unsure whether SMOTE or ADASYN are the right methods for your project? Read my “[7 Takes on Working with Imbalanced Data](https://www.trainindata.com/p/7-takes-on-working-with-imbalanced-data)“, where I discuss 3 recent articles that change the conversation around resampling. It’s free.
 
@@ -379,9 +381,9 @@ Despite its advantages, ADASYN has some limitations:
 
 ## **Conclusion**
 
-ADASYN has been introduced as a powerful method for dealing with imbalanced datasets, especially when the minority class is complex and difficult to learn. By focusing on the most challenging areas of the minority class distribution, ADASYN enhances the model’s ability to generalize and improve performance, especially for weak learners.
+ADASYN was introduced as a way of dealing with imbalanced datasets, especially when the minority class is complex and difficult to learn, by focusing synthetic samples on the most challenging areas of the minority class distribution. But as we saw in Parts 4 and 5, that shift in the decision boundary is not unique to ADASYN — the same trade-off between recall and precision can be reached by tuning the classification threshold on a model trained on the original data, without generating any synthetic samples at all.
 
-However, our discussion emphasizes the importance of experimenting with different thresholds when dealing with imbalanced datasets, alongside the use of resampling methods. Adjusting the threshold can significantly impact key metrics like recall and precision, and should be considered a significant step before applying techniques like ADASYN. This combined approach ensures a more balanced and effective model performance, especially in critical applications such as fraud detection or disease prediction.
+So our recommendation is to try threshold tuning first. It's simpler, faster, and doesn't risk introducing unrealistic synthetic data. Only reach for ADASYN, SMOTE, or other resampling methods if threshold tuning genuinely isn't enough for your use case — and even then, test whether it actually helps on your specific dataset and model rather than assuming it will.
 
 ## **Additional Resources**
 

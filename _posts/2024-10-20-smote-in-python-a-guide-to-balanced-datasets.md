@@ -14,6 +14,8 @@ In many real-world scenarios, data is imbalanced, meaning that one class (usuall
 
 [![7 takes on working with imbalanced data, free booklet.]({{ site.baseurl }}/assets/images/posts/should-you-use-imbalanced-learn-in-2025/MLID-booklet-presentation.png)](https://www.trainindata.com/p/7-takes-on-working-with-imbalanced-data)
 
+**A quick note before we start:** SMOTE does not make a model better at discriminating between classes. What it does is shift the model's decision boundary so that, at the default classification threshold of 0.5, we make more cost-sensitive decisions — that is, we correctly flag a larger proportion of the minority class, which is usually the class we care about the most. You can achieve this exact same effect by training on the original, unmodified data and simply adjusting the classification threshold afterward, without generating any synthetic samples at all. We'll come back to this point throughout the article.
+
 ## Is a Balanced Dataset Important?
 
 In datasets with class imbalance, when machine learning algorithms can’t discern the classes well, they become biased towards predicting the majority class, while in general, we are mostly interested in predicting correctly the minority class. This is generally true for what we call “weak learners”, and that includes machine learning algorithms like support vector machines and decision trees.
@@ -286,16 +288,16 @@ plt.show()
 
 ### Overall Impact
 
-- **Improvement in Fraud Detection:** The model detects more fraudulent transactions after SMOTE, improving its ability to correctly identify fraud.
+- **More Fraud Caught at the Default Threshold:** The model flags more fraudulent transactions after SMOTE, because the decision boundary shifted toward the minority class — not because the model got better at telling fraud apart from legitimate transactions.
 - **Slight Trade-off:** There’s a small increase in false positives (legitimate transactions incorrectly flagged as fraud), but this is often acceptable in scenarios like fraud detection, where catching fraud is critical.
 
 Note that the classification report is also threshold dependent, so we could have achieved the same effect shown with SMOTE, by simply changing the classification threshold used to examine the model trained on the imbalanced dataset.
 
 ### Advantages of SMOTE
 
-1. **Improves Model Performance on the Minority Class:** By balancing the classes, the prediction model can focus on both classes and avoid being biased towards the majority class.
+1. **Shifts the Decision Boundary Toward the Minority Class:** By balancing the classes, the prediction model flags more of the minority class at the default threshold — the same trade-off you'd get by adjusting the classification threshold on the original, imbalanced data.
 2. **Avoids Overfitting:** Unlike random oversampling, where we duplicate existing minority samples, SMOTE generates synthetic samples. This helps avoid overfitting because the new samples are not exact copies of the original samples.
-3. **Works Well with weak Classifiers:** SMOTE can be combined with various machine learning algorithms (such as Random Forest, Logistic Regression, SVM) to improve their performance on imbalanced data.
+3. **Works Well with weak Classifiers:** SMOTE can be combined with various machine learning algorithms (such as Random Forest, Logistic Regression, SVM) and has been shown to have a bigger effect on threshold-dependent metrics for these weaker models than for strong classifiers like XGBoost.
 
 ### Limitations of SMOTE
 
@@ -305,7 +307,7 @@ Note that the classification report is also threshold dependent, so we could hav
 
 ### Conclusion
 
-In this article, we learned how SMOTE (Synthetic Minority Over-sampling Technique) helps address imbalanced datasets by generating synthetic samples for the minority class. By applying SMOTE, we improved the prediction model’s recall for detecting fraudulent transactions, making it better at identifying the minority class. This balance ensures fairer treatment of both classes in machine learning models. SMOTE can be a valuable tool for improving performance in imbalanced classification tasks, but it has limitations and it has been shown to be effective on very specific situations: when training weak learners and using mostly threshold dependent metrics with a default probability threshold of 0.5
+In this article, we learned how SMOTE (Synthetic Minority Over-sampling Technique) helps address imbalanced datasets by generating synthetic samples for the minority class. By applying SMOTE, we increased the prediction model’s recall for detecting fraudulent transactions at the default threshold — the same trade-off we could have gotten by adjusting the classification threshold on the model trained on the original data, without resampling anything. SMOTE can still be a useful, low-effort way to make cost-sensitive decisions without manually tuning a threshold, but it has limitations, and it has been shown to have the most noticeable effect in fairly specific situations: when training weak learners and evaluating with threshold-dependent metrics at the default probability threshold of 0.5.
 
 ### Other ways to work with imbalanced datasets
 

@@ -16,17 +16,19 @@ However, in certain real-world scenarios like fraud detection or healthcare, whe
 
 In the case of fraud detection, misclassifying a fraudulent transaction as legitimate can result in financial losses and damage to a company’s reputation. In healthcare, misclassifying a patient’s condition as non-critical or benign when it is actually severe can have detrimental effects on the individual’s health and well-being. Therefore, there are higher costs associated with these misclassifications, which emphasizes the importance of accurately identifying and classifying such instances.
 
-This is where cost-sensitive learning comes into play, allowing us to address the class imbalance problem and enhance the performance of classifiers by considering the varying costs associated with different types of misclassifications.
+This is where cost-sensitive learning comes into play, allowing us to address the class imbalance problem by considering the varying costs associated with different types of misclassifications.
 
 *To learn more about cost-sensitive learning and other learning techniques to tackle imbalanced data, check out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).*
 
 [![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg)](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
 
+**A quick note before we start:** cost-sensitive learning does not make a model better at discriminating between classes. What it does is shift the model's decision boundary during training, so that at the default classification threshold of 0.5, we make more cost-sensitive decisions — that is, we correctly flag a larger proportion of the minority class, which is usually the class we care about the most. You can achieve this same effect after training, on a model fit on the original, unweighted data, simply by adjusting the classification threshold instead of the cost/weight parameters. We'll come back to this point throughout the article.
+
 ## Understanding Cost-Sensitive Learning
 
 Cost-sensitive learning is a branch of machine learning that acknowledges the varying costs associated with misclassification errors in imbalanced datasets. It focuses on modifying learning algorithms optimization functions so that they minimize the overall cost of misclassification instead of the overall error rate.
 
-By assigning specific costs to different types of misclassifications, cost-sensitive learning methods allow the machine learning models to prioritize the minority class and achieve better performance in critical classification problems.
+By assigning specific costs to different types of misclassifications, cost-sensitive learning methods allow the machine learning models to prioritize the minority class, shifting the decision boundary so that more minority class examples are correctly flagged at the default threshold in critical classification problems.
 
 Then the question is, How do we derive the cost of misclassification for a particular classification task? And how do the algorithms incorporate the misclassification costs into their optimization functions?
 
@@ -173,7 +175,7 @@ run_Logit(X_train,
           class_weight=None)
 ```
 
-Below, we see the performance of a Logistic regression trained on an imbalanced dataset:
+Below, we see the performance of a Logistic regression trained on an imbalanced dataset. Note that we're using ROC-AUC here, which is a threshold-independent metric, so unlike accuracy, precision, or recall at 0.5, it isn't affected by the decision-boundary shift discussed at the start of this article. But this is a single train/test split with no standard deviation calculated, so we can't say whether any difference we see below is significant:
 
 ```
 Train set roc-auc: 0.9192043838780551
@@ -217,7 +219,7 @@ Train set roc-auc: 0.9617874072272288
 Test set roc-auc: 0.9445704525089607
 ```
 
-In both cases, we see that implementing cost-sensitive learning does improve the performance of the logistic regression.
+In both cases, the ROC-AUC of the logistic regression trained with costs is higher than that of the baseline model. But we didn't calculate the standard deviation of these metrics, so we can't say whether the difference is significant.
 
 In this example, we optimized the cost of a binary classification task. But we can do the same for multi-class classification. If we set the class_weight to “balanced,” we will be using the imbalance ratio of all classes as the cost. Alternatively, we can pass a dictionary with the cost associated with each class, as we did in the last code block.
 
@@ -280,7 +282,7 @@ run_Logit(X_train,
           sample_weight=np.where(y_train==1,99,1))
 ```
 
-We see that cost-sensitive learning improved the performance of the model:
+We see that the ROC-AUC is higher than that of the baseline model:
 
 ```
 
@@ -288,7 +290,7 @@ Train set roc-auc: 0.992609819428047
 Test set roc-auc: 0.9542450716845878
 ```
 
-The aim of this demo is to show you how to implement cost-sensitive learning using Scikit-learn. I kept it very simple, and I compared only the performance metric given by the ROC-AUC. You’d probably want to carefully select the metric that works best for your use case, and make plots instead of obtaining single values, like plotting a ROC curve and precision and recall curves.
+The aim of this demo is to show you how to implement cost-sensitive learning using Scikit-learn. I kept it very simple, and I compared only the performance metric given by the ROC-AUC, from a single train/test split, without checking whether the differences are statistically significant — so take these results as illustrative, not conclusive. You’d probably want to carefully select the metric that works best for your use case, calculate its standard deviation through cross-validation, and make plots instead of obtaining single values, like plotting a ROC curve and precision and recall curves.
 
 ## More on Cost sensitive learning
 
