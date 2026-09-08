@@ -206,7 +206,7 @@ Let’s assess the pros and cons of oversampling methodologies:
 
 When handling imbalanced datasets, choosing between undersampling and oversampling can be challenging. Oversampling creates synthetic examples or duplicates the minority class, while undersampling eliminates examples from the majority class.
 
-Undersampling is a suitable option when dealing with large datasets that are challenging to analyze. By utilizing all rare class instances and randomly removing the majority class instances, the dataset can be transformed into a balanced one, with equal representation of both classes. This shifts the decision boundary toward the minority class without the risk of overfitting that oversampling can introduce.
+Undersampling is a suitable option when dealing with large datasets that are challenging to analyze. By utilizing all rare class instances and randomly removing the majority class instances, the dataset can be transformed into a balanced one, with equal representation of both classes. This shifts the decision boundary toward the minority class.
 
 Oversampling, on the other hand, can be useful when we have a limited amount of data. However, it’s crucial to be cautious when using oversampling, especially when the class imbalance is significant, as we will be introducing a lot of artificial data points or duplications.
 
