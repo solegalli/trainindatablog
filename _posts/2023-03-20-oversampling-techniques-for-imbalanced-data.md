@@ -12,15 +12,17 @@ Data drives the world of machine learning and neural networks, yet data quality 
 
 Imbalanced datasets are those where one class has significantly fewer instances than the other(s), and they are a common occurrence in data science and data mining projects. Some examples include fraud detection and medical diagnosis datasets.
 
-Traditional classification algorithms can perform badly when trained on imbalanced datasets. Oversampling can be a useful way of overcoming the class imbalance and hence improving the model’s performance.
+Traditional classification algorithms can perform badly when trained on imbalanced datasets, in the sense that they tend to misclassify the minority class we usually care about most. Oversampling is one of the ways to make more cost-sensitive decisions at the default classification threshold in these situations.
 
-This article will discuss various oversampling techniques, highlighting their advantages and limitations. We will also show how to implement oversampling in Python before training machine learning models to achieve improved performance.
+This article will discuss various oversampling techniques, highlighting their advantages and limitations. We will also show how to implement oversampling in Python before training machine learning models.
 
 So, let’s dive in.
 
 > Discover the use of oversampling and undersampling through step-by-step tutorials, and implement them in Python, with our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
 [![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg)](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
+
+**A quick note before we start:** oversampling does not make a model better at discriminating between classes. What it does is shift the model's decision boundary so that, at the default classification threshold of 0.5, we make more cost-sensitive decisions — that is, we correctly flag a larger proportion of the minority class. You can achieve this exact same effect by training on the original, unmodified data and simply adjusting the classification threshold afterward, without oversampling anything at all. We'll come back to this point throughout the article.
 
 ## What is Oversampling?
 
@@ -36,7 +38,7 @@ In an imbalanced dataset, the majority classes dominate and the minority classes
 
 When working with imbalanced datasets, we are usually interested in classifying the minority classes correctly. Hence, the cost of false negatives (i.e., failing to detect the minority class) is much higher than that of false positives (i.e., wrongly identifying a sample as belonging to the minority class).
 
-Traditional machine learning models, like logistic regression and random forests, optimize for balanced metrics, and are naturally geared to working with balanced data. Oversampling can therefore help ensure that the classifier can identify the minority class accurately and minimize the cost of false negatives, by producing a balanced dataset.
+Traditional machine learning models, like logistic regression and random forests, optimize for balanced metrics, and are naturally geared to working with balanced data. Oversampling shifts the decision boundary toward the minority class by producing a balanced dataset, so at the default threshold, the classifier flags more of the minority class and reduces the cost of false negatives. The same trade-off between false negatives and false positives can be reached by training on the original data and adjusting the classification threshold instead.
 
 ### How Oversampling Differs from Undersampling
 
@@ -309,7 +311,7 @@ So you can notice that there are now new observations in between the original da
 
 ### Advantages of SMOTE
 
-SMOTE can generate new samples based on existing ones, which helps to add more information to the dataset to improve model performance.
+SMOTE can generate new samples based on existing ones, which helps shift the decision boundary toward the minority class without simply duplicating data points, unlike random oversampling.
 
 ### Limitations of SMOTE
 

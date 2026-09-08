@@ -18,6 +18,8 @@ For more information about undersampling and oversampling methods, and step-by-s
 
 [![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg)](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
 
+**A quick note before we start:** undersampling does not make a model better at discriminating between classes. What it does is shift the model's decision boundary so that, at the default classification threshold of 0.5, we make more cost-sensitive decisions — that is, we correctly flag a larger proportion of the minority class, which is usually the class we care about the most. You can achieve this exact same effect by training on the original, unmodified data and simply adjusting the classification threshold afterward, without undersampling anything at all. We'll come back to this point throughout the article.
+
 ## What is Undersampling?
 
 Undersampling is a technique that can reduce the size of the majority class in a dataset. It involves removing samples from the majority class until it matches the size of the minority class or until specific criteria are met.

@@ -16,17 +16,19 @@ However, in certain real-world scenarios like fraud detection or healthcare, whe
 
 In the case of fraud detection, misclassifying a fraudulent transaction as legitimate can result in financial losses and damage to a company’s reputation. In healthcare, misclassifying a patient’s condition as non-critical or benign when it is actually severe can have detrimental effects on the individual’s health and well-being. Therefore, there are higher costs associated with these misclassifications, which emphasizes the importance of accurately identifying and classifying such instances.
 
-This is where cost-sensitive learning comes into play, allowing us to address the class imbalance problem and enhance the performance of classifiers by considering the varying costs associated with different types of misclassifications.
+This is where cost-sensitive learning comes into play, allowing us to address the class imbalance problem by considering the varying costs associated with different types of misclassifications.
 
 *To learn more about cost-sensitive learning and other learning techniques to tackle imbalanced data, check out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).*
 
 [![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg)](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
 
+**A quick note before we start:** cost-sensitive learning does not make a model better at discriminating between classes. What it does is shift the model's decision boundary during training, so that at the default classification threshold of 0.5, we make more cost-sensitive decisions — that is, we correctly flag a larger proportion of the minority class, which is usually the class we care about the most. You can achieve this same effect after training, on a model fit on the original, unweighted data, simply by adjusting the classification threshold instead of the cost/weight parameters. We'll come back to this point throughout the article.
+
 ## Understanding Cost-Sensitive Learning
 
 Cost-sensitive learning is a branch of machine learning that acknowledges the varying costs associated with misclassification errors in imbalanced datasets. It focuses on modifying learning algorithms optimization functions so that they minimize the overall cost of misclassification instead of the overall error rate.
 
-By assigning specific costs to different types of misclassifications, cost-sensitive learning methods allow the machine learning models to prioritize the minority class and achieve better performance in critical classification problems.
+By assigning specific costs to different types of misclassifications, cost-sensitive learning methods allow the machine learning models to prioritize the minority class, shifting the decision boundary so that more minority class examples are correctly flagged at the default threshold in critical classification problems.
 
 Then the question is, How do we derive the cost of misclassification for a particular classification task? And how do the algorithms incorporate the misclassification costs into their optimization functions?
 
@@ -173,7 +175,7 @@ run_Logit(X_train,
           class_weight=None)
 ```
 
-Below, we see the performance of a Logistic regression trained on an imbalanced dataset:
+Below, we see the performance of a Logistic regression trained on an imbalanced dataset. Note that we're using ROC-AUC here, which is a threshold-independent metric — so any difference we see reflects an actual change in the model's discrimination ability for this specific dataset, not the decision-boundary-shift effect discussed at the start of this article, which only shows up in threshold-dependent metrics like accuracy, precision, or recall at 0.5:
 
 ```
 Train set roc-auc: 0.9192043838780551

@@ -20,6 +20,8 @@ But, are these methods and tools really effective to tackle imbalanced data? Tha
 
 [![7 takes on working with imbalanced data, free booklet.]({{ site.baseurl }}/assets/images/posts/should-you-use-imbalanced-learn-in-2025/MLID-booklet-presentation.png)](https://www.trainindata.com/p/7-takes-on-working-with-imbalanced-data)
 
+**The short answer, up front:** undersampling, oversampling, SMOTE, and cost-sensitive learning don't make a model better at discriminating between classes. What they do is shift the decision boundary so that, at the default classification threshold of 0.5, we make more cost-sensitive decisions — we correctly flag a larger proportion of the minority class, which is usually the class we care about most. You can get that exact same effect by training on the original, unmodified data and adjusting the classification threshold afterward, without touching imbalanced-learn at all. The rest of this article walks through the evidence for that claim.
+
 ## Imbalanced datasets – what are they?
 
 Imbalanced datasets—datasets where one class significantly outnumbers others—are a common occurrence in real-world applications, such as fraud detection or disease diagnosis, among others.
@@ -40,7 +42,7 @@ But… do these methods really work?
 
 ## The hype of SMOTE
 
-[SMOTE](https://www.blog.trainindata.com/smote-in-python-a-guide-to-balanced-datasets/) is a data generating method, said to create datapoints that look like those from the minority class. By adding more minority class-look like examples to the dataset, we remove the imbalance and hence, help the machine learning algorithms better identify the boundaries that separate the classes.
+[SMOTE](https://www.blog.trainindata.com/smote-in-python-a-guide-to-balanced-datasets/) is a data generating method, said to create datapoints that look like those from the minority class. By adding more minority class-look like examples to the dataset, we remove the imbalance and hence, shift the decision boundary toward the minority class — or so the story goes.
 
 In 2022, a scientific article came out, making a systematic comparison of the performance of various machine learning models, including weak and strong learners, trained to classify various imbalanced datasets, with and without the use of random oversampling and SMOTE.
 
@@ -162,7 +164,7 @@ Imbalanced-Learn offers several techniques for balancing datasets. The three pri
 
 #### 1. Oversampling
 
-Oversampling techniques increase the representation of the minority class by generating synthetic data points or duplicating existing samples. This method enhances the visibility of the minority class, reducing the likelihood of model bias.
+Oversampling techniques increase the representation of the minority class by generating synthetic data points or duplicating existing samples. This shifts the decision boundary toward the minority class, so at the default threshold, fewer of its examples get missed.
 
 **Random Oversampling**: This basic technique randomly duplicates instances of the minority class to balance the dataset. It’s simple to implement but can lead to overfitting, because we are in essence, duplicating data points.
 
@@ -292,7 +294,7 @@ In the following image, we compare the class distributions before and after unde
 
 ![Image comparing the distribution of the majority class before and after applying random undersampling with imbalanced learn.]({{ site.baseurl }}/assets/images/posts/should-you-use-imbalanced-learn-in-2025/random-undersampling-before-after-distribution.png)
 
-**Edited Nearest Neighbours (ENN)**: ENN is an undersampling method that removes instances in the majority class if their nearest neighbors belong to a different class. This technique improves model accuracy by focusing on samples near the decision boundary.
+**Edited Nearest Neighbours (ENN)**: ENN is an undersampling method that removes instances in the majority class if their nearest neighbors belong to a different class. This technique shifts the decision boundary by cleaning up majority class samples near it.
 
 Here’s how to implement it with imblearn:
 
@@ -341,7 +343,7 @@ After resampling, it’s essential to assess the effectiveness of the approach. 
 - **F1-Score**: The harmonic mean of precision and recall, balancing both metrics to provide a more reliable evaluation for imbalanced data.
 - **ROC-AUC**: The area under the ROC curve, which provides insight into the model’s sensitivity across different thresholds.
 
-Comparing these metrics before and after resampling allows for a clear understanding of how well the resampling techniques have improved the model’s performance on the minority class.
+Comparing these metrics before and after resampling allows for a clear understanding of how the decision boundary shifted at the default threshold — remember, the same shift can usually be achieved by tuning the threshold on the model trained on the original data.
 
 ### Integrating Imbalanced-Learn with Scikit-Learn and Beyond
 

@@ -36,11 +36,11 @@ Several factors influence how well a model’s predicted probabilities align wit
 - **Data Characteristics**:
   - Imbalanced datasets can lead to biased probability estimates.
   - Limited data may result in less reliable calibration.
-- **Resampling**: Techniques used to address class imbalance can distort probability estimates:
+- **Resampling**: Undersampling, oversampling, and SMOTE don't make a model better at discriminating between classes — they shift its decision boundary so more of the minority class gets flagged at the default 0.5 threshold, the same trade-off you'd get by tuning the threshold on the original data instead. That shift is exactly what distorts the probability estimates:
   - Oversampling may inflate minority class probabilities.
   - Undersampling might underestimate majority class probabilities.
 
-- **Cost-Sensitive Learning**: When different misclassification costs are assigned to different classes, it can skew probability estimates. The model may adjust its decision boundary to minimize overall cost, potentially leading to uncalibrated probabilities.
+- **Cost-Sensitive Learning**: When different misclassification costs are assigned to different classes, it can skew probability estimates. The model adjusts its decision boundary during training to minimize overall cost — the same effect you could get by calibrating and then adjusting the threshold on a model trained without cost weighting — which can lead to uncalibrated probabilities.
 
 Understanding these influences is crucial for developing models that provide reliable probability estimates in applications where prediction confidence is as important as overall prediction.
 
