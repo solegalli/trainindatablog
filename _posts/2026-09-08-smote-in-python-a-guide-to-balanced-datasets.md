@@ -10,7 +10,9 @@ image: assets/images/posts/smote-in-python-a-guide-to-balanced-datasets/blog_ban
 
 SMOTE (Synthetic Minority Over-sampling Technique) is often presented as a powerful tool for handling imbalanced data in machine learning. In this article, I’ll challenge that reputation and show why using SMOTE in machine learning pipelines may offer less benefit than you’ve been led to believe.
 
-SMOTE emerged when tree-based ensemble methods were still gaining traction. Since then, machine learning has changed considerably, with gradient boosting becoming a popular choice for tabular data. These models can often distinguish between classes effectively without synthetic oversampling. Yet the recommendation to use SMOTE has persisted, even when its benefits for the model and dataset at hand have not been established.
+To give you a bit of context, SMOTE emerged when tree-based ensemble methods were still gaining traction. Since then, machine learning has changed considerably, with gradient boosting becoming a popular choice for tabular data. These models can often distinguish between classes effectively without synthetic oversampling. Yet the recommendation to use SMOTE has persisted, even when its benefits for the model and dataset at hand have not been established.
+
+Let's debunk the myth.
 
 ## Imbalanced data
 
@@ -20,7 +22,6 @@ In most real-world scenarios, data is imbalanced, meaning that one class (usuall
 
 [![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg)](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
 
-**A quick note before we start:** SMOTE does not make a model better at discriminating between classes. What it does is shift the model's decision boundary so that, at the default classification threshold of 0.5, we make more cost-sensitive decisions — that is, we correctly flag a larger proportion of the minority class, which is usually the class we care about the most. You can achieve this exact same effect by training on the original, unmodified data and simply adjusting the classification threshold afterward, without generating any synthetic samples at all. We'll come back to this point throughout the article.
 
 ## Is a Balanced Dataset Important?
 
@@ -35,6 +36,8 @@ When training weak learners, if the classes are not well separated, increasing t
 SMOTE, which stands for Synthetic Minority Over-sampling Technique, was designed to increase the representation of the minority class in an imbalanced dataset. That makes SMOTE an oversampling method.
 
 SMOTE generates synthetic samples for the minority class to balance the dataset, so that we have an equal number of majority and minority class samples. Yes, SMOTE creates synthetic, that is, artificial new data points. It does that by interpolating between existing minority class examples. In other words, SMOTE creates new data points in between 2 samples of the minority class.
+
+> **A quick note before we start:** SMOTE does not make a model better at discriminating between classes. What it does is shift the model's decision boundary so that, at the default classification threshold of 0.5, we make more cost-sensitive decisions — that is, we correctly flag a larger proportion of the minority class, which is usually the class we care about the most. You can achieve this exact same effect by training on the original, unmodified data and simply adjusting the classification threshold afterward, without generating any synthetic samples at all. We'll come back to this point throughout the article.
 
 Now let's see how SMOTE actually works.
 
@@ -344,8 +347,10 @@ Now, let's loop over the datasets, and for each, obtain the ROC-AUC and its stan
 for dataset in datasets_ls:
 
     data = fetch_datasets()[dataset]
+    # stratify: these datasets have very few minority samples, so an
+    # unstratified split can easily leave an unrepresentative test set
     X_train, X_test, y_train, y_test = train_test_split(
-        data.data, data.target, test_size=0.3, random_state=0
+        data.data, data.target, test_size=0.3, random_state=0, stratify=data.target
     )
 
     scaler = MinMaxScaler().fit(X_train)
@@ -379,27 +384,27 @@ This is what we get:
 
 ```
 ecoli
-CV ROC-AUC (baseline): 0.9153 +/- 0.0258
-CV ROC-AUC (SMOTE):    0.9166 +/- 0.0277
-Test ROC-AUC (baseline): 0.9188 +/- 0.0060
-Test ROC-AUC (SMOTE):    0.9697 +/- 0.0054
+CV ROC-AUC (baseline): 0.9135 +/- 0.0160
+CV ROC-AUC (SMOTE):    0.9211 +/- 0.0241
+Test ROC-AUC (baseline): 0.9442 +/- 0.0096
+Test ROC-AUC (SMOTE):    0.9480 +/- 0.0109
 
 thyroid_sick
-CV ROC-AUC (baseline): 0.9591 +/- 0.0090
-CV ROC-AUC (SMOTE):    0.9425 +/- 0.0063
-Test ROC-AUC (baseline): 0.9430 +/- 0.0098
-Test ROC-AUC (SMOTE):    0.9426 +/- 0.0075
+CV ROC-AUC (baseline): 0.9507 +/- 0.0220
+CV ROC-AUC (SMOTE):    0.9318 +/- 0.0217
+Test ROC-AUC (baseline): 0.9612 +/- 0.0043
+Test ROC-AUC (SMOTE):    0.9310 +/- 0.0063
 
 arrhythmia
-CV ROC-AUC (baseline): 0.8765 +/- 0.0204
-CV ROC-AUC (SMOTE):    0.8140 +/- 0.0354
-Test ROC-AUC (baseline): 0.8382 +/- 0.0104
-Test ROC-AUC (SMOTE):    0.9286 +/- 0.0122
+CV ROC-AUC (baseline): 0.8923 +/- 0.0369
+CV ROC-AUC (SMOTE):    0.8604 +/- 0.0414
+Test ROC-AUC (baseline): 0.9274 +/- 0.0101
+Test ROC-AUC (SMOTE):    0.8426 +/- 0.0400
 ```
 
-On `ecoli`, cross-validation shows virtually no difference between the baseline and SMOTE (0.915 vs 0.917, both well within one standard error of each other), yet on the single held-out test set, SMOTE looks meaningfully better (0.970 vs 0.919, several standard errors apart). On `thyroid_sick`, cross-validation slightly favors the baseline, while the test set shows no difference at all. On `arrhythmia`, the two evaluations flatly disagree: cross-validation favors the baseline, while the test set makes SMOTE look clearly better.
+On `ecoli`, cross-validation and the test set agree: there’s no meaningful difference between the baseline and SMOTE, in either case (0.914 vs 0.921 in cross-validation, 0.944 vs 0.948 on the test set — well within one standard error of each other both times). On `thyroid_sick` and `arrhythmia`, both evaluations now point the same way too, with the baseline scoring somewhat higher than SMOTE: the gap in cross-validation is modest, within about one standard error, but the gap on the held-out test set is large enough to clearly exceed the standard error in both cases.
 
-This mismatch is the point. A bootstrap only tells us how stable a metric is on that one held-out test set — it says nothing about whether the underlying model is actually better. Cross-validation, which trains and evaluates on several independent splits of the training data, is the more trustworthy signal, and across all 3 datasets, it never shows SMOTE providing a clear, unambiguous improvement in ROC-AUC. In other words, we can't just assume SMOTE will help; what looks like an improvement in a single train/test split can easily be an artifact of that particular split rather than a genuine gain.
+Notice that we stratify the train-test split by the target. These datasets have as few as 25 to 35 minority-class examples in total, so an unstratified split can easily land on a test set that isn’t representative of the true class balance — and since cross-validation uses stratified folds by default, comparing it against an unstratified train-test split would be comparing apples to oranges. Once both evaluations are stratified the same way, they agree across all 3 datasets: SMOTE never delivers a clear improvement in ROC-AUC, and on 2 of the 3 datasets, it actually does slightly worse than the baseline. This is exactly why we can’t just assume SMOTE will help — we need to test it properly, on a like-for-like comparison, and be ready for the answer to be no.
 
 ### Advantages of SMOTE
 
