@@ -511,7 +511,7 @@ In machine learning, we often use multiple capping methods—Gaussian, IQR, MAD,
 
 - [Feature-engine documentation](https://feature-engine.trainindata.com/en/latest/).
 - TrainInData blog article: “[How to Detect Outliers in Python: A Comprehensive Guide](https://www.blog.trainindata.com/detect-outliers-in-python/)“.
-- Galli, Soledad (2024). [Python Feature Engineering Cookbook (3rd ed.)](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587). *Packt Publishing*.
+- Galli, Soledad (2024). [Python Feature Engineering Cookbook (3rd ed.)](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587). *Packt Publishing*. Also available on [Amazon](https://www.amazon.com/Python-Feature-Engineering-Cookbook-complete/dp/B0DBQDG7SG).
 - Dixon, W. J. (1960). Simplified estimation from censored normal samples. *Annals of Mathematical Statistics*, 31(2), 385-391.
 
 ## Further resources

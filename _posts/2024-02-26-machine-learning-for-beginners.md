@@ -253,9 +253,9 @@ This section caters to the machine learning courses available on the internet wh
   - [Mastering data preprocessing: Techniques and best practices – **Train in Data**](https://www.blog.trainindata.com/mastering-data-preprocessing-techniques/)
   - [A Comprehensive Guide to Data Preprocessing – **neptune.ai**](https://neptune.ai/blog/data-preprocessing-guide)
   - [Data Preprocessing Techniques – **scalablepath**](https://www.scalablepath.com/data-science/data-preprocessing-phase)
-  - [Python Feature Engineering Cookbook **– Packt**](https://www.packtpub.com/product/python-feature-engineering-cookbook-second-edition/9781804611302)
+  - [Python Feature Engineering Cookbook **– Packt**](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587) (also available on [Amazon](https://www.amazon.com/Python-Feature-Engineering-Cookbook-complete/dp/B0DBQDG7SG))
 
-[![Python Feature Engineering Cookbook book cover]({{ site.baseurl }}/assets/images/posts/machine-learning-for-beginners/PFEC2ED-1024x1024.png)](https://www.packtpub.com/product/python-feature-engineering-cookbook-second-edition/9781804611302)
+[![Python Feature Engineering Cookbook book cover]({{ site.baseurl }}/assets/images/posts/machine-learning-for-beginners/PFEC2ED-1024x1024.png)](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587)
 
 - Feature engineering is the process of creating new features or transforming existing features to improve the performance of machine learning models. Techniques such as [one-hot encoding](https://www.blog.trainindata.com/one-hot-encoding-categorical-variables/), feature scaling, and dimensionality reduction are used to extract relevant information from the data and enhance model accuracy.
 - ***Resources:***

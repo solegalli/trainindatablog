@@ -182,6 +182,6 @@ Palaniappan and Hong, Discretization of Continuous Valued Dimensions in OLAP Dat
 ## More resources
 
 - [Feature Engineering for Machine Learning](https://www.trainindata.com/p/feature-engineering-for-machine-learning) — Online course
-- [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587)
+- [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587) (also available on [Amazon](https://www.amazon.com/Python-Feature-Engineering-Cookbook-complete/dp/B0DBQDG7SG))
 - [Scikit-learn documentation](https://scikit-learn.org/stable/auto_examples/preprocessing/plot_discretization_classification.html)
 - [Feature-engine documentation](https://feature-engine.trainindata.com/en/latest/api_doc/discretisation/index.html)

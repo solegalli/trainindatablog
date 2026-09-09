@@ -202,7 +202,7 @@ The books by Soledad Galli, “Python Feature Engineering Cookbook” and “Fea
 
 ### **Unleashing the Power of Data with “Python Feature Engineering Cookbook”**
 
-In the realm of machine learning, ensuring the quality of input data through predictive data analytics and statistical learning is paramount. “[Python Feature Engineering Cookbook](https://www.packtpub.com/product/python-feature-engineering-cookbook-second-edition/9781804611302), 2nd Edition” by Soledad Galli stands as an indispensable resource for those aspiring to elevate their machine learning models.
+In the realm of machine learning, ensuring the quality of input data through predictive data analytics and statistical learning is paramount. “[Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587) (also available on [Amazon](https://www.amazon.com/Python-Feature-Engineering-Cookbook-complete/dp/B0DBQDG7SG)), 3rd Edition” by Soledad Galli stands as an indispensable resource for those aspiring to elevate their machine learning models.
 
 This book offers over 70 Python recipes that cover the transformation and creation of features from tabular, text, time series and transactional data. This book thereby ensures your models are built on a foundation of robust and meaningful data.
 
@@ -210,7 +210,7 @@ From addressing challenges like missing data and categorical variables to harnes
 
 This book is a comprehensive guide for data scientists and machine learning engineers who seek to apply the principles of statistical learning and predictive analytics to enhance model accuracy and performance.
 
-[![Python Feature Engineering Cookbook book cover]({{ site.baseurl }}/assets/images/posts/machine-learning-for-beginners/PFEC2ED-1024x1024.png)](https://www.packtpub.com/product/python-feature-engineering-cookbook-second-edition/9781804611302)
+[![Python Feature Engineering Cookbook book cover]({{ site.baseurl }}/assets/images/posts/machine-learning-for-beginners/PFEC2ED-1024x1024.png)](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587)
 
 ### **Mastering Feature Selection with “Feature Selection in Machine Learning”**
 

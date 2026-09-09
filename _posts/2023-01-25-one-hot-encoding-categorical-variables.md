@@ -18,7 +18,7 @@ There are many categorical encoding strategies, like ordinal encoding (sometimes
 
 In this article, we will discuss one hot encoding and its variations. So let’s get started!
 
-*For tutorials and step by step code implementations on other categorical encoding methods, visit our course [Feature engineering for machine learning](https://www.trainindata.com/p/feature-engineering-for-machine-learning) or check out our book [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587).*
+*For tutorials and step by step code implementations on other categorical encoding methods, visit our course [Feature engineering for machine learning](https://www.trainindata.com/p/feature-engineering-for-machine-learning) or check out our book [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587) (also available on [Amazon](https://www.amazon.com/Python-Feature-Engineering-Cookbook-complete/dp/B0DBQDG7SG)).*
 
 [![Feature Engineering for Machine Learning course]({{ site.baseurl }}/assets/images/posts/feature-scaling-in-machine-learning/feature-engineering-machine-learning-course-1024x576.jpg)](https://www.trainindata.com/p/feature-engineering-for-machine-learning)
 
@@ -531,7 +531,7 @@ And that’s it! We’ve now covered one hot encoding with a lot of detail!
 If you want to learn more about categorical encoding and how to carry it out in Python, check out our course and book:
 
 - course: [Feature Engineering for Machine Learning](https://www.trainindata.com/p/feature-engineering-for-machine-learning)
-- book: [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587)
+- book: [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587) (also available on [Amazon](https://www.amazon.com/Python-Feature-Engineering-Cookbook-complete/dp/B0DBQDG7SG))
 
 [![Python Feature Engineering Cookbook book cover]({{ site.baseurl }}/assets/images/posts/machine-learning-for-beginners/PFEC2ED-1024x1024.png)](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587)
 
