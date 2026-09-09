@@ -189,29 +189,49 @@ In the following plot, we see that `MedInc` is the most important feature:
 
 ### Local explanations
 
-Next, let’s see how to obtain local explanations. We will use the package `treeinterpreter`.
+Next, let’s see how to obtain local explanations. We will use the package `eli5`. Unlike some other local explanation tools, `eli5` explains one prediction at a time, so we need to call it separately for each observation we’re interested in.
 
-First, we obtain the individual explanations for each one of the observations in the test set, and then, we plot the explanations for the **first observation** in the test set:
-
-```
-from treeinterpreter import treeinterpreter as ti
-```
+Let’s obtain and plot the explanation for the **first observation** in the test set:
 
 ```
-prediction, bias, contributions = ti.predict(rf, X_test)
+import eli5
 ```
 
 ```
-pd.Series(contributions[0], index=X_train.columns).plot.bar()
+explanation = eli5.explain_prediction(rf, X_test.iloc[0])
+explanation_df = eli5.format_as_dataframe(explanation)
+```
+
+```
+explanation_df[explanation_df["feature"] != "<BIAS>"].set_index("feature")["weight"].plot.bar()
 plt.axhline(y=0, color='r', linestyle='-')
-plt.ylabel("Feature importance")
-plt.title("Local explanations")
+plt.ylabel("Feature contribution")
+plt.title("Local explanations - observation 1")
 plt.show()
 ```
 
 In the following plot, we see that `MedInc` increases the price a bit for this house, but it’s average occupancy takes the price down a lot.
 
 **![Local explanations extracted from random forests for 1 observation. Local explanations help with interpretability in machine learning at a sample level.]({{ site.baseurl }}/assets/images/posts/machine-learning-interpretability/rf-local-explanations.png)**
+
+Let’s now do the same for the **second observation** in the test set, following the same 2 steps:
+
+```
+explanation = eli5.explain_prediction(rf, X_test.iloc[1])
+explanation_df = eli5.format_as_dataframe(explanation)
+```
+
+```
+explanation_df[explanation_df["feature"] != "<BIAS>"].set_index("feature")["weight"].plot.bar()
+plt.axhline(y=0, color='r', linestyle='-')
+plt.ylabel("Feature contribution")
+plt.title("Local explanations - observation 2")
+plt.show()
+```
+
+For this second house, `MedInc` now makes the largest, positive contribution, while `AveOccup` again pulls the prediction down, showing how the feature contributions can vary considerably from one observation to the next.
+
+**![Local explanations extracted from random forests for a second observation.]({{ site.baseurl }}/assets/images/posts/machine-learning-interpretability/rf-local-explanations-2.png)**
 
 ### Partial dependence plots
 
@@ -224,7 +244,7 @@ fig, ax = plt.subplots(figsize=(15, 10))
 ax.set_title("Partial Dependence Plots")
 
 PartialDependenceDisplay.from_estimator(
-    estimator=model,
+    estimator=rf,
     X=X_test,
     features=(0, 5, 2, 3), # the features to plot
     random_state=5,
@@ -245,13 +265,14 @@ If instead, we set the parameter `kind` to `‘individual’`, we create ICE plo
 fig, ax = plt.subplots(figsize=(15, 10))
 ax.set_title("ICE Plots")
 
- PartialDependenceDisplay.from_estimator(
-    estimator=model,
+PartialDependenceDisplay.from_estimator(
+    estimator=rf,
     X=X_test,
     features=(0, 5, 2, 3), # the features to plot
-    kind = "individual",
+    kind="individual",
     random_state=5,
-     ax=ax, )
+    ax=ax,
+)
 plt.show()
 ```
 
