@@ -8,6 +8,12 @@ categories: [Data Science, Imbalanced Data, Machine Learning]
 image: assets/images/posts/smote-in-python-a-guide-to-balanced-datasets/blog_banner.png
 ---
 
+SMOTE (Synthetic Minority Over-sampling Technique) is often presented as a powerful tool for handling imbalanced data in machine learning. In this article, I’ll challenge that reputation and show why SMOTE may offer less benefit than you’ve been led to believe.
+
+SMOTE emerged when tree-based ensemble methods were still gaining traction. Since then, machine learning has changed considerably, with gradient boosting becoming a popular choice for tabular data. These models can often distinguish between classes effectively without synthetic oversampling. Yet the recommendation to use SMOTE has persisted, even when its benefits for the model and dataset at hand have not been established.
+
+## Imbalanced data
+
 In most real-world scenarios, data is imbalanced, meaning that one class (usually called the majority class) has many more samples than the other one (the minority class). Although you will read a lot that class imbalance makes it difficult for algorithms to classify the classes correctly, that is not necessarily the case. In fact, if the classes are well separated, that is, there is a clear separation boundary among them, the algorithms will work just fine. But when the class separability is not that clear, then things start getting difficult.
 
 > For more details, check out my book [Imbalanced Data: Myths, Mistakes and Modern Solutions.](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
@@ -296,6 +302,105 @@ plt.show()
 
 Note that the classification report is also threshold dependent, so we could have achieved the same effect shown with SMOTE, by simply changing the classification threshold used to examine the model trained on the imbalanced dataset.
 
+### Does SMOTE Reliably Improve ROC-AUC Across Datasets?
+
+So far, we evaluated SMOTE on a single dataset, using metrics that depend on the classification threshold. Let's instead check whether SMOTE improves ROC-AUC — a threshold-independent metric — on 3 different, real-world imbalanced datasets: `ecoli`, `thyroid_sick`, and `arrhythmia`.
+
+This time, we'll also quantify our uncertainty, so that we can tell whether any difference we see is likely real or just noise. We'll use cross-validation to get the ROC-AUC and its standard error on the training set, and bootstrapping to get the ROC-AUC and its standard error on the test set. We'll keep the bootstrapping to just 5 samples, to keep the demo quick.
+
+Let's make the imports:
+
+```
+import numpy as np
+
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import roc_auc_score
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.utils import resample
+
+from imblearn.datasets import fetch_datasets
+from imblearn.over_sampling import SMOTE
+from imblearn.pipeline import Pipeline as ImbPipeline
+```
+
+SMOTE must only be fit on the training data used within each cross-validation fold, so we combine it with the classifier in an imbalanced-learn pipeline, which resamples the data only during training:
+
+```
+datasets_ls = ['ecoli', 'thyroid_sick', 'arrhythmia']
+
+def bootstrap_roc_auc(model, X_test, y_test, n_boots=5):
+    scores = []
+    for i in range(n_boots):
+        X_bs, y_bs = resample(X_test, y_test, random_state=i)
+        pred = model.predict_proba(X_bs)[:, 1]
+        scores.append(roc_auc_score(y_bs, pred))
+    return np.mean(scores), np.std(scores) / np.sqrt(n_boots)
+```
+
+Now, let's loop over the datasets, and for each, obtain the ROC-AUC and its standard error with 5-fold cross-validation on the train set, and with 5 bootstrap samples on the test set:
+
+```
+for dataset in datasets_ls:
+
+    data = fetch_datasets()[dataset]
+    X_train, X_test, y_train, y_test = train_test_split(
+        data.data, data.target, test_size=0.3, random_state=0
+    )
+
+    scaler = MinMaxScaler().fit(X_train)
+    X_train = scaler.transform(X_train)
+    X_test = scaler.transform(X_test)
+
+    rf = RandomForestClassifier(n_estimators=100, random_state=39, max_depth=2, n_jobs=4)
+    smote_pipe = ImbPipeline([
+        ('smote', SMOTE(random_state=0)),
+        ('rf', RandomForestClassifier(n_estimators=100, random_state=39, max_depth=2, n_jobs=4)),
+    ])
+
+    cv_baseline = cross_val_score(rf, X_train, y_train, cv=5, scoring='roc_auc')
+    cv_smote = cross_val_score(smote_pipe, X_train, y_train, cv=5, scoring='roc_auc')
+
+    rf.fit(X_train, y_train)
+    smote_pipe.fit(X_train, y_train)
+
+    test_baseline_mean, test_baseline_se = bootstrap_roc_auc(rf, X_test, y_test)
+    test_smote_mean, test_smote_se = bootstrap_roc_auc(smote_pipe, X_test, y_test)
+
+    print(dataset)
+    print(f"CV ROC-AUC (baseline): {cv_baseline.mean():.4f} +/- {cv_baseline.std()/np.sqrt(5):.4f}")
+    print(f"CV ROC-AUC (SMOTE):    {cv_smote.mean():.4f} +/- {cv_smote.std()/np.sqrt(5):.4f}")
+    print(f"Test ROC-AUC (baseline): {test_baseline_mean:.4f} +/- {test_baseline_se:.4f}")
+    print(f"Test ROC-AUC (SMOTE):    {test_smote_mean:.4f} +/- {test_smote_se:.4f}")
+    print()
+```
+
+This is what we get:
+
+```
+ecoli
+CV ROC-AUC (baseline): 0.9153 +/- 0.0258
+CV ROC-AUC (SMOTE):    0.9166 +/- 0.0277
+Test ROC-AUC (baseline): 0.9188 +/- 0.0060
+Test ROC-AUC (SMOTE):    0.9697 +/- 0.0054
+
+thyroid_sick
+CV ROC-AUC (baseline): 0.9591 +/- 0.0090
+CV ROC-AUC (SMOTE):    0.9425 +/- 0.0063
+Test ROC-AUC (baseline): 0.9430 +/- 0.0098
+Test ROC-AUC (SMOTE):    0.9426 +/- 0.0075
+
+arrhythmia
+CV ROC-AUC (baseline): 0.8765 +/- 0.0204
+CV ROC-AUC (SMOTE):    0.8140 +/- 0.0354
+Test ROC-AUC (baseline): 0.8382 +/- 0.0104
+Test ROC-AUC (SMOTE):    0.9286 +/- 0.0122
+```
+
+On `ecoli`, cross-validation shows virtually no difference between the baseline and SMOTE (0.915 vs 0.917, both well within one standard error of each other), yet on the single held-out test set, SMOTE looks meaningfully better (0.970 vs 0.919, several standard errors apart). On `thyroid_sick`, cross-validation slightly favors the baseline, while the test set shows no difference at all. On `arrhythmia`, the two evaluations flatly disagree: cross-validation favors the baseline, while the test set makes SMOTE look clearly better.
+
+This mismatch is the point. A bootstrap only tells us how stable a metric is on that one held-out test set — it says nothing about whether the underlying model is actually better. Cross-validation, which trains and evaluates on several independent splits of the training data, is the more trustworthy signal, and across all 3 datasets, it never shows SMOTE providing a clear, unambiguous improvement in ROC-AUC. In other words, we can't just assume SMOTE will help; what looks like an improvement in a single train/test split can easily be an artifact of that particular split rather than a genuine gain.
+
 ### Advantages of SMOTE
 
 1. **Shifts the Decision Boundary Toward the Minority Class:** By balancing the classes, the prediction model flags more of the minority class at the default threshold — the same trade-off you'd get by adjusting the classification threshold on the original, imbalanced data.
@@ -307,6 +412,8 @@ Note that the classification report is also threshold dependent, so we could hav
 1. **Synthetic Samples May Not Always Be Meaningful:** SMOTE generates new data points based on linear interpolation between existing points. If the feature space has complex relationships, the synthetic samples might not represent realistic or meaningful data.
 2. **Overlapping Classes:** If the boundary between classes is unclear (i.e., if some minority class points are too close to the majority class points), SMOTE might generate synthetic samples that actually belong to the majority class region, leading to misclassification. To address this issue we can use variations of SMOTE, such as Borderline SMOTE or ADASYN.
 3. **Not Suitable for Categorical Data:** SMOTE works by interpolating numerical features. It doesn’t handle categorical data well. Variations of SMOTE, such as SMOTE-NC (for Nominal and Continuous data), have been developed to address this issue.
+4. **Computational Cost:** SMOTE relies on the k-nearest neighbors algorithm to find neighbors for each minority sample, which doesn't scale well to large datasets and can become slow when there are many minority observations.
+5. **Sensitivity to the Choice of k:** The number of neighbors (`k_neighbors`) used to generate synthetic samples can noticeably affect the quality of the synthetic data. Tuning it with cross-validation adds to the computational cost, since it means running the nearest-neighbors search repeatedly.
 
 ### Conclusion
 
@@ -317,5 +424,11 @@ In this article, we learned how SMOTE (Synthetic Minority Over-sampling Techniqu
 Within the realm of data resampling, we discussed SMOTE which is an oversampling method, the alternative is to use [undersampling](https://www.blog.trainindata.com/undersampling-techniques-for-imbalanced-data/) methods to remove excessive number of majority examples.
 
 To steer away from rebalancing, we could simply use [cost-sensitive learning](https://www.blog.trainindata.com/cost-sensitive-learning-for-imbalanced-data/), or specific ensemble methods that have been designed for imbalanced datasets, like BalancingCascade or Balanced random forests.
+
+### Citations
+
+- N. V. Chawla, K. W. Bowyer, L. O. Hall, W. P. Kegelmeyer, “[SMOTE: synthetic minority over-sampling technique](https://arxiv.org/abs/1106.1813),” Journal of artificial intelligence research, 321-357, 2002.
+- H. Han, W. Wen-Yuan, M. Bing-Huan, “Borderline-SMOTE: a new over-sampling method in imbalanced data sets learning,” Advances in intelligent computing, 878-887, 2005.
+- He, Haibo, Yang Bai, Edwardo A. Garcia, and Shutao Li. “ADASYN: Adaptive synthetic sampling approach for imbalanced learning,” In IEEE International Joint Conference on Neural Networks (IEEE World Congress on Computational Intelligence), pp. 1322-1328, 2008.
 
 

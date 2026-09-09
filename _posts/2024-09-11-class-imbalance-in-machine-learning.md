@@ -376,7 +376,7 @@ If adjusting probability thresholds or specifying class weights don’t resolve 
 
 Undersampling is suitable when we have huge datasets. By removing observations from the majority class, we can speed up training of the model. For smaller datasets, undersampling risks loss of information.
 
-Oversampling has also its sets of problems. Random oversampling simply duplicates data points. To avoid this, methods that “create” data points similar to those of the minority class, have been suggested to shift the decision boundary further towards the minority class. The classical method to create synthetic data is [**SMOTE**](https://www.blog.trainindata.com/overcoming-class-imbalance-with-smote/) (**S**ynthetic **M**inority **O**ver-sampling **TE**chnique).
+Oversampling has also its sets of problems. Random oversampling simply duplicates data points. To avoid this, methods that “create” data points similar to those of the minority class, have been suggested to shift the decision boundary further towards the minority class. The classical method to create synthetic data is [**SMOTE**](https://www.blog.trainindata.com/smote-in-python-a-guide-to-balanced-datasets/) (**S**ynthetic **M**inority **O**ver-sampling **TE**chnique).
 
 Imblearn is a Python package that supports many over- and undersampling methods for class imbalance. Whether we [should still be using imbalanced-learn](https://www.blog.trainindata.com/should-you-use-imbalanced-learn-in-2025/) is becoming a subject of heated debate.
 
