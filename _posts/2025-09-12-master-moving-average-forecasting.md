@@ -180,7 +180,7 @@ df.set_index("month", inplace=True)
 df["SMA_3"] = df["sales"].rolling(window=3).mean()
 
 # --- Simple Exponential Smoothing (statsmodels) ---
-ses_model = SimpleExpSmoothing(df["sales"])
+ses_model = SimpleExpSmoothing(df["sales"], initialization_method="estimated")
 ses_fit = ses_model.fit(optimized=True)   # lets statsmodels choose optimal alpha
 df["SES_fitted"] = ses_fit.fittedvalues
 
@@ -231,7 +231,7 @@ exog = y.shift(1).rolling(window=window_ma, min_periods=1).mean().to_frame(name=
 exog = exog.bfill()  # avoid chained assignment / deprecated fillna(method="bfill")
 
 # forecaster using 5 lags + MA exogenous feature
-forecaster = ForecasterRecursive(regressor=RandomForestRegressor(n_estimators=100, random_state=42), lags=5)
+forecaster = ForecasterRecursive(estimator=RandomForestRegressor(n_estimators=100, random_state=42), lags=5)
 forecaster.fit(y=y, exog=exog)
 
 # forecast 10 steps using repeated last MA value for exog
@@ -366,7 +366,7 @@ df = pd.DataFrame({"sales": sales})
 ```
 # moving-average exog (shifted by 1 to avoid leakage)
 window_ma = 5
-exog = y.shift(1).rolling(window=window_ma, min_periods=1).mean().to_frame(name=f"ma_{window_ma}")
+exog = df["sales"].shift(1).rolling(window=window_ma, min_periods=1).mean().to_frame(name=f"ma_{window_ma}")
 exog = exog.bfill() # avoid chained assignment / deprecated fillna(method="bfill")
 
 # --- create train/test split so we have true values to evaluate ---
@@ -379,7 +379,7 @@ test_exog = exog.iloc[-test_size:].copy()
 
 # --- ForecasterRecursive with RandomForest ---
 forecaster = ForecasterRecursive(
-regressor=RandomForestRegressor(n_estimators=100, random_state=42),
+estimator=RandomForestRegressor(n_estimators=100, random_state=42),
 lags=5
 )
 

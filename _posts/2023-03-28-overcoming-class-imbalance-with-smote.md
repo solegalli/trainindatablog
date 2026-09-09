@@ -192,24 +192,21 @@ Now we create a dictionary with the transformers for the oversampling:
 ```
 oversampler_dict = {
     'smote': SMOTE(
-        sampling_strategy='auto'
+        sampling_strategy='auto',
         random_state=0,
-        k_neighbors=5,
-        n_jobs=4),
+        k_neighbors=5),
 
     'adasyn': ADASYN(
         sampling_strategy='auto',
         random_state=0,
-        n_neighbors=5,
-        n_jobs=4),
+        n_neighbors=5),
 
     'border': BorderlineSMOTE(
         sampling_strategy='auto',
         random_state=0,
         k_neighbors=5,
         m_neighbors=10,
-        kind='borderline-1',
-        n_jobs=4),
+        kind='borderline-1'),
 }
 ```
 

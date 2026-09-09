@@ -205,15 +205,15 @@ Let’s make a function to load the data:
 
 ```
 def load_data():
-# URLS for dataset via UCI
-train_data_url='https://archive.ics.uci.edu/ml/machine-learning-databases/madelon/MADELON/madelon_train.data'
-train_label_url='https://archive.ics.uci.edu/ml/machine-learning-databases/madelon/MADELON/madelon_train.labels'
+    # URLS for dataset via UCI
+    train_data_url='https://archive.ics.uci.edu/ml/machine-learning-databases/madelon/MADELON/madelon_train.data'
+    train_label_url='https://archive.ics.uci.edu/ml/machine-learning-databases/madelon/MADELON/madelon_train.labels'
 
-X_data = pd.read_csv(train_data_url, sep=" ", header=None)
-y_data = pd.read_csv(train_label_url, sep=" ", header=None)
-data = X_data.loc[:, :499]
-data['target'] = y_data[0]
-return data
+    X_data = pd.read_csv(train_data_url, sep=" ", header=None)
+    y_data = pd.read_csv(train_label_url, sep=" ", header=None)
+    data = X_data.loc[:, :499]
+    data['target'] = y_data[0]
+    return data
 ```
 
 Now, let’s load the data into a dataframe:
@@ -247,7 +247,7 @@ n_jobs=-1,
 class_weight=None,
 max_depth=3,
 random_state=0,
-))
+)
 ```
 
 Note, that I do not set the number of trees for the forest. That’s because the Python implementation can find an optimal number of trees that maximizes the probability of examining every feature in the dataset at least once.
@@ -266,7 +266,7 @@ two_step=True,
 max_iter=20,
 verbose=2,
 random_state=0,
-))
+)
 ```
 
 There are a number of important parameters in this implementation:

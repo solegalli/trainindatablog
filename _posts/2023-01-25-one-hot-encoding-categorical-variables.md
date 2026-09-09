@@ -79,7 +79,7 @@ df.fillna("Missing", inplace=True)
 
 usecols=['sex', 'embarked', 'cabin', 'pclass', 'sibsp', 'parch', 'survived']
 
-df[usefols].head()
+df[usecols].head()
 ```
 
 Below we see a view of the original dataset:
@@ -126,7 +126,7 @@ from sklearn.preprocessing import OneHotEncoder
 Let’s set up the transformer to encode into k-1 binary variables and return a dataframe:
 
 ```
-encoder = OneHotEncoder(drop=”first”, sparse=False)
+encoder = OneHotEncoder(drop="first", sparse_output=False)
 ```
 
 We need to set `sparse` to `False`, so that the encoder returns and array instead of a sparse matrix. This is also necessary if we want to return dataframes as outputs.
@@ -151,9 +151,9 @@ X_train_t = ohe.transform(X_train)
 X_test_t = ohe.transform(X_test)
 
 X_train_t.head()
+```
 
 ![Dataframe containing one hot encoded variables after applying sklearn's transformation]({{ site.baseurl }}/assets/images/posts/one-hot-encoding-categorical-variables/sklearn-ohe-1024x102.png)
-```
 
 The binary vectors corresponding to the one hot encoded variable are shown to the left of the dataframe. After that, the column transformer appended the original numerical variables, that were not transformed.
 
@@ -241,15 +241,23 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 ```
 
-Let’s load the credit approval dataset (for guidelines to prepare the data check this [github repo](https://github.com/solegalli/Python-Feature-Engineering-Cookbook-Second-Edition/blob/main/ch02-categorical-encoding/donwload-prepare-store-credit-approval-dataset.ipynb):
+Let’s load the [credit approval dataset](https://archive.ics.uci.edu/dataset/27/credit+approval) from the UCI Machine Learning Repository:
 
 ```
-data = pd.read_csv(“credit_approval_uci.csv”)
+from ucimlrepo import fetch_ucirepo
 
+credit_approval = fetch_ucirepo(id=27)
+data = credit_approval.data.features
+data["target"] = credit_approval.data.targets["A16"].map({"+": 1, "-": 0})
+
+numeric_vars = data.select_dtypes(exclude="object").columns.drop("target")
+categorical_vars = data.select_dtypes(include="object").columns
+data[numeric_vars] = data[numeric_vars].fillna(0)
+data[categorical_vars] = data[categorical_vars].fillna("Missing")
 
 X_train, X_test, y_train, y_test = train_test_split(
-    data.drop(labels=[“target”], axis=1),
-    data[“target”],
+    data.drop(labels=["target"], axis=1),
+    data["target"],
     test_size=0.3,
     random_state=0,
 )
@@ -258,7 +266,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 Let’s inspect the unique categories of the A6 variable:
 
 ```
-X_train[“A6”].unique()
+X_train["A6"].unique()
 ```
 
 The unique values of A6 are displayed in the following output:
@@ -304,7 +312,7 @@ Let’s set up the encoder to create binary variables for some categories in 2 o
 encoder = OneHotEncoder(
     categories=[["aa", "cc", "ff"], ['ff', 'dd', 'bb']],
     handle_unknown="ignore",
-    sparse=False,
+    sparse_output=False,
 )
 ```
 
@@ -410,11 +418,20 @@ from feature_engine.encoding import OneHotEncoder
 Let’s load the dataset and divide into train and test sets:
 
 ```
-data = pd.read_csv(“credit_approval_uci.csv”)
+from ucimlrepo import fetch_ucirepo
+
+credit_approval = fetch_ucirepo(id=27)
+data = credit_approval.data.features
+data["target"] = credit_approval.data.targets["A16"].map({"+": 1, "-": 0})
+
+numeric_vars = data.select_dtypes(exclude="object").columns.drop("target")
+categorical_vars = data.select_dtypes(include="object").columns
+data[numeric_vars] = data[numeric_vars].fillna(0)
+data[categorical_vars] = data[categorical_vars].fillna("Missing")
 
 X_train, X_test, y_train, y_test = train_test_split(
-    data.drop(labels=[“target”], axis=1),
-    data[“target”],
+    data.drop(labels=["target"], axis=1),
+    data["target"],
     test_size=0.3,
     random_state=0,
 )
@@ -423,7 +440,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 Let’s inspect the unique categories of the A6 variable:
 
 ```
-X_train[“A6”].unique()
+X_train["A6"].unique()
 ```
 
 The unique values of A6 are displayed in the following output:
@@ -435,7 +452,7 @@ array(['c', 'q', 'w', 'ff', 'm', 'i', 'e', 'cc', 'x', 'd', 'k', 'j', 'Missing, '
 Let’s count the number of observations per category of A6, sort them in decreasing order, and then display the five most frequent categories:
 
 ```
-X_train[“A6”].value_counts().sort_values(ascending=False).head(5)
+X_train["A6"].value_counts().sort_values(ascending=False).head(5)
 ```
 
 We can see the five most frequent categories and the number of observations per category in the output of the previous step:

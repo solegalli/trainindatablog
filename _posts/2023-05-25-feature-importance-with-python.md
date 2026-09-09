@@ -59,12 +59,14 @@ from yellowbrick.model_selection import FeatureImportances
 Now, we load the house price data set as a dataframe. To follow best practices, we split the data into train and test. The importance of the features should be assessed only using the training data, so if we select features based on it, we have a completely naive test set for a fair evaluation.
 
 ```
+from sklearn.datasets import fetch_openml
+
 variables = [
 'YearRemodAdd', 'LotArea', 'SalePrice', 'WoodDeckSF', 'LowQualFinSF',
 'FullBath', '2ndFlrSF', 'KitchenAbvGr', 'TotalBsmtSF', 'YearBuilt'
 ]
 
-data = pd.read_csv('houseprice.csv', usecols=variables)
+data = fetch_openml(name='house_prices', as_frame=True).frame[variables]
 
 X_train, X_test, y_train, y_test = train_test_split(
     data.drop(labels=['SalePrice'], axis=1),

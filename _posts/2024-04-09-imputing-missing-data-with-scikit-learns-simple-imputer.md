@@ -60,20 +60,32 @@ from sklearn.impute import SimpleImputer
 from sklearn.compose import ColumnTransformer
 ```
 
-Let’s load the [credit approval dataset](https://archive.ics.uci.edu/dataset/27/credit+approval) from the UCI machine learning repository that I already downloaded and prepared elsewhere, and separate it into a training and a testing set:
+Let’s load the [credit approval dataset](https://archive.ics.uci.edu/dataset/27/credit+approval) directly from the UCI Machine Learning Repository, and separate it into a training and a testing set:
 
 ```
-data = pd.read_csv("credit_approval_uci.csv")
+from ucimlrepo import fetch_ucirepo
+import random
+import numpy as np
+
+credit_approval = fetch_ucirepo(id=27)
+data = credit_approval.data.features
+data["target"] = credit_approval.data.targets["A16"].map({"+": 1, "-": 0})
+
+# reproduce the missing values injected in the original prepared dataset
+random.seed(9001)
+for i, var in enumerate(["A3", "A8", "A9", "A10"]):
+    idx = list(set(random.randint(i, len(data)) for _ in range(100)))
+    data.loc[idx, var] = np.nan
 
 X_train, X_test, y_train, y_test = train_test_split(
 
-    data.drop("target", axis=1),
+    data.drop("target", axis=1),
 
-    data["target"],
+    data["target"],
 
-    test_size=0.3,
+    test_size=0.3,
 
-    random_state=0,
+    random_state=0,
 
 )
 
@@ -105,11 +117,11 @@ To restrict the imputation to the numerical variables, we need the ColumnTransfo
 ```
 ct = ColumnTransformer(
 
-    [("imputer",imputer, numeric_vars)],
+    [("imputer",imputer, numeric_vars)],
 
-    remainder="passthrough"
+    remainder="passthrough"
 
-    ) .set_output(transform="pandas")
+    ) .set_output(transform="pandas")
 ```
 
 Scikit-learn can return numpy arrays, pandas dataframes or polar frames, depending on how we set out the transform output. By default, it returns numpy arrays. But here, we set it up to return pandas dataframes.
@@ -129,7 +141,7 @@ ct.named_transformers_.imputer.statistics_
 The previous command returns the median values per variable:
 
 ```
-array([ 28.835,   2.75 ,   1.   ,   0.   , 160.   ,   6.   ])
+array([ 28.835,   2.75 ,   1.   ,   0.   , 160.   ,   6.   ])
 ```
 
 Let’s replace missing values with the median:
@@ -198,17 +210,29 @@ from sklearn.compose import ColumnTransformer
 Let’s load the credit risk dataset and split it into train and test:
 
 ```
-data = pd.read_csv("credit_approval_uci.csv")
+from ucimlrepo import fetch_ucirepo
+import random
+import numpy as np
+
+credit_approval = fetch_ucirepo(id=27)
+data = credit_approval.data.features
+data["target"] = credit_approval.data.targets["A16"].map({"+": 1, "-": 0})
+
+# reproduce the missing values injected in the original prepared dataset
+random.seed(9001)
+for i, var in enumerate(["A3", "A8", "A9", "A10"]):
+    idx = list(set(random.randint(i, len(data)) for _ in range(100)))
+    data.loc[idx, var] = np.nan
 
 X_train, X_test, y_train, y_test = train_test_split(
 
-    data.drop("target", axis=1),
+    data.drop("target", axis=1),
 
-    data["target"],
+    data["target"],
 
-    test_size=0.3,
+    test_size=0.3,
 
-    random_state=0,
+    random_state=0,
 
 )
 ```
@@ -218,7 +242,7 @@ Let’s capture the categorical variable names in a list:
 ```
 categorical_vars = X_train.select_dtypes(
 
-    include="O").columns.to_list()
+    include="O").columns.to_list()
 ```
 
 Let’s set up the simple imputer to find the most frequent category:
@@ -232,11 +256,11 @@ Let’s restrict the imputation to the categorical variables:
 ```
 ct = ColumnTransformer(
 
-    [("imputer",imputer, categorical_vars)],
+    [("imputer",imputer, categorical_vars)],
 
-    remainder="passthrough"
+    remainder="passthrough"
 
-    ).set_output(transform=”pandas”)
+    ).set_output(transform="pandas")
 ```
 
 Now, we fit the imputer to the train set so that it learns the most frequent values:
@@ -288,17 +312,29 @@ from sklearn.impute import SimpleImputer
 Let’s load the dataset and split it into a training and a testing set:
 
 ```
-data = pd.read_csv("credit_approval_uci.csv")
+from ucimlrepo import fetch_ucirepo
+import random
+import numpy as np
+
+credit_approval = fetch_ucirepo(id=27)
+data = credit_approval.data.features
+data["target"] = credit_approval.data.targets["A16"].map({"+": 1, "-": 0})
+
+# reproduce the missing values injected in the original prepared dataset
+random.seed(9001)
+for i, var in enumerate(["A3", "A8", "A9", "A10"]):
+    idx = list(set(random.randint(i, len(data)) for _ in range(100)))
+    data.loc[idx, var] = np.nan
 
 X_train, X_test, y_train, y_test = train_test_split(
 
-    data.drop("target", axis=1),
+    data.drop("target", axis=1),
 
-    data["target"],
+    data["target"],
 
-    test_size=0.3,
+    test_size=0.3,
 
-    random_state=0,
+    random_state=0,
 
 )
 ```
@@ -308,9 +344,9 @@ We’ll use **99** for the imputation because it is bigger than the maximum valu
 ```
 imputer = SimpleImputer(
 
-    strategy='constant', fill_value=99
+    strategy='constant', fill_value=99
 
-    )
+    )
 ```
 
 Let’s fit the imputer to a slice of the train set containing the variables to impute:
@@ -324,7 +360,7 @@ Now, we replace the missing values with **99** in the desired variables:
 ```
 X_train_t[["A2", "A3", "A8", "A11"]] = imputer.transform(
 
-    X_train[["A2", "A3", "A8", "A11"]]
+    X_train[["A2", "A3", "A8", "A11"]]
 
 )
 
@@ -360,17 +396,29 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 
 
-data = pd.read_csv("credit_approval_uci.csv")
+from ucimlrepo import fetch_ucirepo
+import random
+import numpy as np
+
+credit_approval = fetch_ucirepo(id=27)
+data = credit_approval.data.features
+data["target"] = credit_approval.data.targets["A16"].map({"+": 1, "-": 0})
+
+# reproduce the missing values injected in the original prepared dataset
+random.seed(9001)
+for i, var in enumerate(["A3", "A8", "A9", "A10"]):
+    idx = list(set(random.randint(i, len(data)) for _ in range(100)))
+    data.loc[idx, var] = np.nan
 
 X_train, X_test, y_train, y_test = train_test_split(
 
-    data.drop("target", axis=1),
+    data.drop("target", axis=1),
 
-    data["target"],
+    data["target"],
 
-    test_size=0.3,
+    test_size=0.3,
 
-    random_state=0,
+    random_state=0,
 
 )
 ```
@@ -382,11 +430,11 @@ We first make a list with the names of the numerical and categorical variables:
 ```
 numvars = X_train.select_dtypes(
 
-    exclude="O").columns.to_list()
+    exclude="O").columns.to_list()
 
 catvars = X_train.select_dtypes(
 
-    include="O").columns.to_list()
+    include="O").columns.to_list()
 ```
 
 We set up a pipeline to perform mean and frequent category imputation while marking the missing data:
@@ -394,13 +442,13 @@ We set up a pipeline to perform mean and frequent category imputation while mark
 ```
 pipe = ColumnTransformer([
 
-   ("num_imputer", SimpleImputer(
+   ("num_imputer", SimpleImputer(
 
-         strategy="mean", add_indicator=True), numvars),
+         strategy="mean", add_indicator=True), numvars),
 
-   ("cat_imputer", SimpleImputer(
+   ("cat_imputer", SimpleImputer(
 
-         strategy="most_frequent", add_indicator=True), catvars),
+         strategy="most_frequent", add_indicator=True), catvars),
 
 ]).set_output(transform="pandas")
 ```

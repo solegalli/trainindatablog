@@ -116,7 +116,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 from sklearn.datasets import load_breast_cancer
-from sklearn.feature_selection import SelectKBest
+from sklearn.feature_selection import SelectKBest, f_classif
 from sklearn.model_selection import train_test_split
 
 # load dataset

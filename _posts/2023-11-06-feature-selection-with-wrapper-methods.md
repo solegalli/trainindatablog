@@ -375,7 +375,7 @@ With `fit()` we trigger the search:
 ```
 sfs = SFS(
     estimator = RandomForestRegressor(n_estimators=5, random_state=10),
-    n_features_to_select="auto"
+    n_features_to_select="auto",
     tol=0.001,
     direction='backward',
     scoring='r2',

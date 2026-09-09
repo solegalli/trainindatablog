@@ -321,9 +321,9 @@ import pandas as pd
 from sklearn.linear_model import Lasso
 from sklearn.multioutput import MultiOutputRegressor
 from sklearn.preprocessing import MinMaxScaler
-from sklearn.pipeline import ScikitPipeline
+from sklearn.pipeline import Pipeline as ScikitPipeline
 
-from skforecast.ForecasterAutoreg import ForecasterAutoreg
+from skforecast.recursive import ForecasterRecursive
 
 from feature_engine.timeseries.forecasting import (
     LagFeatures,
@@ -349,7 +349,7 @@ Let’s proceed by loading the data and resampling it to hourly intervals instea
 
 ```
 
-url = "<https://raw.githubusercontent.com/tidyverts/tsibbledata/master/data-raw/vic_elec/VIC2015/demand.csv>"
+url = "https://raw.githubusercontent.com/tidyverts/tsibbledata/master/data-raw/vic_elec/VIC2015/demand.csv"
 df = pd.read_csv(url)
 
 df.drop(columns=["Industrial"], inplace=True)
@@ -360,7 +360,7 @@ df["date"] = df["Date"].apply(
 )
 
 # Create a timestamp from the integer Period representing 30 minute intervals
-df["date_time"] = df["date"] + \\
+df["date_time"] = df["date"] + \
     pd.to_timedelta((df["Period"] - 1) * 30, unit="m")
 
 df.dropna(inplace=True)
@@ -441,8 +441,8 @@ Transforming our data into lag features can be time-consuming and complex, but w
 In the following example, we will extract lag features from the previous 1, 24, and 144 hours of each observation.
 
 ```
-forecaster = ForecasterAutoreg(
-    regressor=model,              # the machine learning model
+forecaster = ForecasterRecursive(
+    estimator=model,              # the machine learning model
     lags=[1, 24, 6*24],           # the lag features to create
     transformer_exog=datetime_f,  # to get the datetime features
     forecaster_id="recursive"
@@ -567,10 +567,10 @@ dropna = DropMissingData()
 
 # transformation pipeline
 pipe = Pipeline(
-
+    [
         ("lagf", lagf),
         ("winf", winf),
-        "dropna", dropna),
+        ("dropna", dropna),
     ]
 ).set_output(transform="pandas")
 

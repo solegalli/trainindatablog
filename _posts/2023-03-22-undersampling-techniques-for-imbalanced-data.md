@@ -98,7 +98,7 @@ X, y = make_classification(n_samples=1000,
                        n_redundant=0,
                        n_clusters_per_class=1,
                        weights=[0.99],
-                       class_sep=2
+                       class_sep=2,
                        random_state=1)
 
 X = pd.DataFrame(X, columns =['varA', 'varB'])
@@ -111,7 +111,7 @@ Let’s now make a scatter plot to visualize the class distribution:
 sns.scatterplot(
     data=X, x="varA", y="varB", hue=y
 )
-plt.title('Separation: 2'))
+plt.title('Separation: 2')
 plt.show()
 ```
 

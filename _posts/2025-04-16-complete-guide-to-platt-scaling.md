@@ -75,7 +75,8 @@ Let’s see how to implement Platt scaling in Python using the scikit-learn libr
 The first step is to import all the necessary libraries and modules as shown in the snippet below.
 
 ```
-import numpy as np import pandas as pd
+import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.datasets import make_classification
 ```
@@ -130,6 +131,8 @@ Next, let’s train a Random Forest classification model on the training data wi
 
 ```
 # Train a Random Forests
+from sklearn.ensemble import RandomForestClassifier
+
 rf = RandomForestClassifier(
     n_estimators=100,
     random_state=0,
@@ -212,8 +215,6 @@ Let’s fit a sigmoid classifier to the Random Forest model we trained previousl
 ```
 # Sigmoid calibration
 clf_sigmoid = CalibratedClassifierCV(rf, cv=5, method='sigmoid')
-calibrated_model = CalibratedClassifierCV(
-    base_estimator, method='sigmoid', cv=5)
 ```
 
 ### **4. Plot the Calibration curve after Platt scaling**

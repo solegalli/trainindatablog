@@ -152,6 +152,8 @@ The transformer DropHighPSIFeatures takes a dataframe, typically the training se
 We can create an instance of the transformer as follows:
 
 ```
+from feature_engine.selection import DropHighPSIFeatures
+
 transformer = DropHighPSIFeatures(split_frac=0.6)
 ```
 
@@ -201,12 +203,12 @@ We can do this as follows with Feature-engine:
 
 ```
 transformer = DropHighPSIFeatures(
-   cut_off=[‘portfolio_2’, ‘portfolio_3’],
-   split_col=’A13', # the categorical variable with the portfolios
-   strategy = ‘equal_width’, # the intervals are equidistant
+   cut_off=['portfolio_2', 'portfolio_3'],
+   split_col='A13', # the categorical variable with the portfolios
+   strategy = 'equal_width', # the intervals are equidistant
    bins=5, # the number of intervals to sort the numerical values
    threshold=0.1,
-   missing_values=’ignore’,
+   missing_values='ignore',
 )
 ```
 
@@ -248,8 +250,8 @@ In this case, the distribution of all the numerical variables between the lower 
 We can go ahead and plot the cumulative distributions in what constituted the reference or expected data and the test or actual data. The `DropHighPSIFeatures` stores the value that was used to separate the data in its `cut_off_` attribute. We can use this attribute to split the training data manually, and then plot the cumulative distribution of a variable, say A3, in each data set:
 
 ```
-tmp = X_train[‘A13’].isin(
-    transformer.cut_off_)sns.ecdfplot(data=X_train, x=’A3', hue=tmp,
+tmp = X_train['A13'].isin(
+    transformer.cut_off_)sns.ecdfplot(data=X_train, x='A3', hue=tmp,
     )
 ```
 
@@ -274,12 +276,12 @@ If we have a datetime variable in our data, we can split the data based on time 
 
 ```
 transformer = DropHighPSIFeatures(
-   cut_off = pd.to_datetime(‘2018–12–14’), # the cut_off date
-   split_col=’date’, # the date variable
-   strategy = ‘equal_frequency’,
+   cut_off = pd.to_datetime('2018–12–14'), # the cut_off date
+   split_col='date', # the date variable
+   strategy = 'equal_frequency',
    bins=8,
    threshold=0.1,
-   missing_values=’ignore’,
+   missing_values='ignore',
 )
 ```
 
@@ -320,8 +322,8 @@ Which results in:
 To assess the value of the PSI for each feature against its cumulative distribution, we can use the cut_off_ value to manually split the data into the reference and test sets, and then plot the cumulative distribution of one variable:
 
 ```
-tmp = X_train[‘A13’].isin(
-    transformer.cut_off_)sns.ecdfplot(data=X_train, x=’A3', hue=tmp)
+tmp = X_train['A13'].isin(
+    transformer.cut_off_)sns.ecdfplot(data=X_train, x='A3', hue=tmp)
 ```
 
 ![Cumulative distribution with moderate PSI]({{ site.baseurl }}/assets/images/posts/population-stability-index-and-feature-selection-python/6-1024x710.png)
@@ -331,7 +333,7 @@ We can see that there is a change in the cumulative distribution before and afte
 For comparison, we can plot a variable with a low PSI:
 
 ```
-sns.ecdfplot(data=X_train, x=’A14', hue=tmp)
+sns.ecdfplot(data=X_train, x='A14', hue=tmp)
 ```
 
 ![Cumulative distributions showing low PSI]({{ site.baseurl }}/assets/images/posts/population-stability-index-and-feature-selection-python/7-1-1024x706.png)

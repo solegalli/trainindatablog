@@ -147,11 +147,11 @@ from feature_engine.outliers import OutlierTrimmer
 from sklearn.model_selection import train_test_split
 
 # Loading the California Housing Dataset
-c = fetch_california_housing()
+california_housing = fetch_california_housing()
 data = pd.DataFrame(california_housing.data, columns=california_housing.feature_names)
 
 # Adding the target column (median house value)
-data['MedianHousePrice'] = california_housing.target
+data['MedHouseVal'] = california_housing.target
 
 # Rounding off every value to 2 decimal places for easy view.
 data = data.round(2)

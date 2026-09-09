@@ -62,6 +62,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
+from sklearn.datasets import fetch_openml
 ```
 
 Now, we load the house prices dataset. We will use a subset of variables to avoid complicating the demo with feature engineering:
@@ -79,7 +80,7 @@ variables = ['MSSubClass', 'LotArea', 'OverallQual', 'OverallCond',
 ```
 
 ```
-data = pd.read_csv('houseprice.csv', usecols=variables)
+data = fetch_openml(name='house_prices', as_frame=True).frame[variables]
 ```
 
 Next, we separate the dataset into a training data set and a testing data set:
@@ -245,10 +246,11 @@ sel = SelectFromModel(
     perm,
     threshold=0.01, # select features above this value
     prefit=True,
-).set_output(transform="pandas")
+)
 
-X_train_t = sel.transform(X_train)
-X_test_t = sel.transform(X_test)
+selected_vars = X_train.columns[sel.get_support()]
+X_train_t = pd.DataFrame(sel.transform(X_train), columns=selected_vars, index=X_train.index)
+X_test_t = pd.DataFrame(sel.transform(X_test), columns=selected_vars, index=X_test.index)
 ```
 
 With `X_train_t.head()` we see the final dataset, that contains only 6 of the original features.

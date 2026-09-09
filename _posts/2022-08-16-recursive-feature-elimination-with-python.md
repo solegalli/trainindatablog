@@ -69,7 +69,7 @@ from sklearn.datasets import load_breast_cancer
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 
-import sklearn.feature_selection.RFE as RFE
+from sklearn.feature_selection import RFE
 ```
 
 Let’s load the dataset and separate it into a training and testing set:
