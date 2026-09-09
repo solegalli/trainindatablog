@@ -2,8 +2,8 @@
 layout: post
 title: "SMOTE in Python and whether you should still use it in 2026"
 author: sole
-description: "Learn how to implement SMOTE in Python and whether you should still be using it to work with imbalanced datasets in 2025."
-excerpt: "Learn how to implement SMOTE in Python and whether you should still be using it to work with imbalanced datasets in 2025."
+description: "Learn how to implement SMOTE in Python and whether you should still be using it to work with imbalanced datasets in 2026."
+excerpt: "Learn how to implement SMOTE in Python and whether you should still be using it to work with imbalanced datasets in 2026."
 categories: [Data Science, Imbalanced Data, Machine Learning]
 image: assets/images/posts/smote-in-python-a-guide-to-balanced-datasets/blog_banner.png
 ---
@@ -18,19 +18,19 @@ In most real-world scenarios, data is imbalanced, meaning that one class (usuall
 
 ## Is a Balanced Dataset Important?
 
-In datasets with class imbalance, when machine learning algorithms can’t discern the classes well, they become biased towards predicting the majority class, while in general, we are mostly interested in predicting correctly the minority class. This is generally true for what we call “weak learners”, and that includes machine learning algorithms like support vector machines and decision trees.
+In datasets with class imbalance, when machine learning algorithms can’t discern the classes well, they become biased toward predicting the majority class, while, in general, we are mostly interested in correctly predicting the minority class. This is generally true for what we call “weak learners”, and that includes machine learning algorithms like support vector machines and decision trees.
 
-More powerful machine learning models, like gradient boosting machines, including xbgoost and lightGBMs, tend to work equally well in balanced and imbalanced datasets. So, when training these models, there isn’t really a need to balance the data.
+More powerful machine learning models, like gradient boosting machines, including XGBoost and LightGBM, tend to work equally well in balanced and imbalanced datasets. So, when training these models, there isn’t really a need to balance the data.
 
 When training weak learners, if the classes are not well separated, increasing the number of samples of the minority class, might help the model find proper boundaries and increase its performance. Or at least, that was the story that led to the design of SMOTE.
 
 ## SMOTE
 
-SMOTE, which stands for Synthetic Minority Oversampling TEchnique was designed to increase the representation of the minority class in an imbalanced dataset. That makes SMOTE an oversampling method.
+SMOTE, which stands for Synthetic Minority Over-sampling Technique, was designed to increase the representation of the minority class in an imbalanced dataset. That makes SMOTE an oversampling method.
 
-SMOTE generates synthetic samples for the minority class to balance the dataset, so that we have equal number of majority and minority class samples. Yes, SMOTE creates synthetic, that is, artificial new data points. It does that by interpolating between existing minority class examples. In other words, SMOTE creates new data points in between 2 samples of the minority class.
+SMOTE generates synthetic samples for the minority class to balance the dataset, so that we have an equal number of majority and minority class samples. Yes, SMOTE creates synthetic, that is, artificial new data points. It does that by interpolating between existing minority class examples. In other words, SMOTE creates new data points in between 2 samples of the minority class.
 
-Now lets see how SMOTE actually works.
+Now let's see how SMOTE actually works.
 
 ### Step 1: Finding the Nearest Neighbors
 
@@ -125,7 +125,7 @@ In the following image we see the number of observations for each class:
 
 ### Data preprocessing
 
-Lets split the data into features (X) and target (y), and after that, into training set and test set. To do this, we will utilize scikit-learn:
+Let's split the data into features (X) and target (y), and after that, into training set and test set. To do this, we will utilize scikit-learn:
 
 ```
 from sklearn.model_selection import train_test_split
@@ -143,7 +143,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 ### Train a Classifier on the Imbalanced Dataset
 
-Now, lets train a classification model on the imbalanced dataset and evaluate its performance. We’ll use a Random Forest classifier:
+Now, let's train a classification model on the imbalanced dataset and evaluate its performance. We’ll use a Random Forest classifier:
 
 ```
 from sklearn.ensemble import RandomForestClassifier
@@ -161,7 +161,7 @@ print("Classification Report (Before SMOTE):")
 print(classification_report(y_test, y_pred))
 ```
 
-The following figure shows the classification report of the random forests trained with the imbalanced dataset. For the majority class, the precision, recall and the F1 score is 1.00. However, for the minority class, we see the recall is 0.76.
+The following figure shows the classification report of the random forest classifier trained with the imbalanced dataset. For the majority class, the precision, recall and the F1 score is 1.00. However, for the minority class, we see the recall is 0.76.
 
 ![Classification report pf the trained model before applying smote on the dataset ]({{ site.baseurl }}/assets/images/posts/smote-in-python-a-guide-to-balanced-datasets/classificationrep_before_smote.png)
 
@@ -171,7 +171,7 @@ We see that the model performs better on the majority class compared to the mino
 
 We will use the Python open-source library [imbalanced-learn](https://imbalanced-learn.org/stable/) to apply SMOTE. With SMOTE, we aim to create synthetic samples for the minority class and balance the dataset.
 
-With imbalance-learn, we have the flexibility to adjust the number of minority class samples that we want to create, by modifying the **sampling_strategy** parameter, which specifies the desired ratio of the minority class relative to the majority class. It can have a float value from 0 to 1.
+With imbalanced-learn, we have the flexibility to adjust the number of minority class samples that we want to create, by modifying the **sampling_strategy** parameter, which specifies the desired ratio of the minority class relative to the majority class. It can have a float value from 0 to 1.
 
 For example, a value of 0.5 means the minority class will have half as many samples as the majority class after resampling. By default its value is set to 1, which means that the minority class will have the same number of samples as the majority class after the oversampling.
 
@@ -187,13 +187,13 @@ X_resampled, y_resampled = smote.fit_resample(
 print(pd.Series(y_resampled).value_counts())
 ```
 
-In the following figure, we can see that both classes have equal number of samples, i.e. 199020, after applying SMOTE.
+In the following figure, we can see that both classes have an equal number of samples, i.e. 199020, after applying SMOTE.
 
-![Figure showing equal number of samples for both classes ]({{ site.baseurl }}/assets/images/posts/smote-in-python-a-guide-to-balanced-datasets/alanced_data_distribution.png)
+![Figure showing an equal number of samples for both classes ]({{ site.baseurl }}/assets/images/posts/smote-in-python-a-guide-to-balanced-datasets/alanced_data_distribution.png)
 
 ### Train the Classifier on the SMOTE-Augmented Dataset
 
-We’ll train a Random Forest classifier using the SMOTE-balanced training data so that we can analyse the difference.
+We’ll train a Random Forest classifier using the SMOTE-balanced training data so that we can analyze the difference.
 
 ```
 # Train the classifier on the SMOTE-balanced dataset
@@ -219,7 +219,7 @@ Do you notice something wrong with how I evaluated the effectiveness of SMOTE? E
 
 Since SMOTE generates synthetic samples, it might seem like it improves the model’s performance. But if we don’t carefully choose the right threshold for classifying the minority class, the perceived improvements could be exaggerated.
 
-Instead of relying on the default threshold (0.5), you can adjust the threshold based on the specific use case. For example, if missing a minority class prediction is very costly like in our fraud detection example, we may want to lower the threshold to capture more instances of the minority class, and that would increase the value of recall, at the expense of precision of course. But that was the case with SMOTE anyways. There is always a trade-off between these metrics.
+Instead of relying on the default threshold (0.5), you can adjust the threshold based on the specific use case. For example, if missing a minority class prediction is very costly like in our fraud detection example, we may want to lower the threshold to capture more instances of the minority class, and that would increase the value of recall, at the expense of precision of course. That is exactly the trade-off we saw with SMOTE as well. There is always a trade-off between these metrics.
 
 For a thorough discussion on whether SMOTE works, check out our [YouTube video](https://www.youtube.com/watch?v=blcOOheXNoQ) (and **subscribe** to stay up to date!):
 
@@ -229,7 +229,7 @@ If you prefer reading, then check out our [imbalanced datasets](https://www.blog
 
 ### Comparing the classification reports
 
-The comparison between the Classification Reports (before and after SMOTE) highlights the improvement in performance on the minority class after applying SMOTE:
+The comparison between the Classification Reports (before and after SMOTE) shows that SMOTE makes the model better at identifying the minority class at the default threshold of 0.5:
 
 **Before SMOTE:**
 
@@ -245,13 +245,13 @@ In this case, while precision is high, the recall is lower (0.76), indicating th
 - Recall (Class 1 – Fraudulent): 0.80
 - F1-Score (Class 1 – Fraudulent): 0.83
 
-After applying SMOTE, the recall has improved from 0.76 to 0.80, meaning the model is now better at detecting more fraudulent transactions. There is a slight decrease in precision, but the overall F1-score is balanced.
+After applying SMOTE, the recall has improved from 0.76 to 0.80, meaning the model can now detect more fraudulent transactions at the default threshold of 0.5. There is a slight decrease in precision, but the overall F1-score is balanced.
 
-SMOTE has helped the model better identify the minority class (fraudulent transactions), increasing its ability to detect fraud cases. This is how the success of SMOTE was proclaimed for years. And don’t get me wrong, it does work, under very specific circumstances. But we could have achieved the same effect by lowering the decision threshold used to classify an observation as a member of the minority class, and we would have obtained a very similar effect.
+SMOTE has helped the model better identify the minority class (fraudulent transactions) **at the default threshold of 0.5**, increasing its ability to detect fraud cases (at this particular cut-off point). This is how the success of SMOTE was proclaimed for years. And don’t get me wrong, it does work, under very specific circumstances. But we could have achieved the same effect by lowering the decision threshold used to classify an observation as a member of the minority class, and we would have obtained a very similar effect.
 
 ### Bottom Line
 
-- When working with imbalanced datasets, try to use strong classifiers like xgboost and lightGBMs.
+- When working with imbalanced datasets, try to use strong classifiers like XGBoost and LightGBM.
 - Always adjust the probability threshold used to classify an observation as a member of the minority class.
 - Even small changes in recall or precision can be meaningful, especially in imbalanced domains like fraud detection, where each percentage point translates into catching more fraud.
 - SMOTE is useful, but it’s probably not your first line of action when working with imbalanced datasets.
@@ -260,7 +260,7 @@ SMOTE has helped the model better identify the minority class (fraudulent transa
 
 For the sake of the discussion, let’s continue comparing the performance of the models trained with and without data rebalancing through SMOTE.
 
-Now lets display the confusion matrix for both models, i.e. those trained before applying SMOTE and after applying SMOTE:
+Now let's display the confusion matrix for both models, i.e. those trained before applying SMOTE and after applying SMOTE:
 
 ```
 from sklearn.metrics import confusion_matrix
@@ -300,12 +300,12 @@ Note that the classification report is also threshold dependent, so we could hav
 
 1. **Shifts the Decision Boundary Toward the Minority Class:** By balancing the classes, the prediction model flags more of the minority class at the default threshold — the same trade-off you'd get by adjusting the classification threshold on the original, imbalanced data.
 2. **Avoids Overfitting:** Unlike random oversampling, where we duplicate existing minority samples, SMOTE generates synthetic samples. This helps avoid overfitting because the new samples are not exact copies of the original samples.
-3. **Works Well with weak Classifiers:** SMOTE can be combined with various machine learning algorithms (such as Random Forest, Logistic Regression, SVM) and has been shown to have a bigger effect on threshold-dependent metrics for these weaker models than for strong classifiers like XGBoost.
+3. **Works Well with Weak Classifiers:** SMOTE can be combined with various machine learning algorithms (such as Random Forest, Logistic Regression, SVM) and has been shown to have a bigger effect on threshold-dependent metrics for these weaker models than for strong classifiers like XGBoost.
 
 ### Limitations of SMOTE
 
 1. **Synthetic Samples May Not Always Be Meaningful:** SMOTE generates new data points based on linear interpolation between existing points. If the feature space has complex relationships, the synthetic samples might not represent realistic or meaningful data.
-2. **Overlapping Classes:** If the boundary between classes is unclear (i.e., if some minority class points are too close to the majority class points), SMOTE might generate synthetic samples that actually belong to the majority class region, leading to misclassification. To address this issue we can use variations of SMOTE, such as Borderline SMOTE or Adasyn.
+2. **Overlapping Classes:** If the boundary between classes is unclear (i.e., if some minority class points are too close to the majority class points), SMOTE might generate synthetic samples that actually belong to the majority class region, leading to misclassification. To address this issue we can use variations of SMOTE, such as Borderline SMOTE or ADASYN.
 3. **Not Suitable for Categorical Data:** SMOTE works by interpolating numerical features. It doesn’t handle categorical data well. Variations of SMOTE, such as SMOTE-NC (for Nominal and Continuous data), have been developed to address this issue.
 
 ### Conclusion
