@@ -8,7 +8,7 @@ categories: [Data Science, Imbalanced Data, Machine Learning]
 image: assets/images/posts/smote-in-python-a-guide-to-balanced-datasets/blog_banner.png
 ---
 
-SMOTE (Synthetic Minority Over-sampling Technique) is often presented as a powerful tool for handling imbalanced data in machine learning. In this article, I’ll challenge that reputation and show why SMOTE may offer less benefit than you’ve been led to believe.
+SMOTE (Synthetic Minority Over-sampling Technique) is often presented as a powerful tool for handling imbalanced data in machine learning. In this article, I’ll challenge that reputation and show why using SMOTE in machine learning pipelines may offer less benefit than you’ve been led to believe.
 
 SMOTE emerged when tree-based ensemble methods were still gaining traction. Since then, machine learning has changed considerably, with gradient boosting becoming a popular choice for tabular data. These models can often distinguish between classes effectively without synthetic oversampling. Yet the recommendation to use SMOTE has persisted, even when its benefits for the model and dataset at hand have not been established.
 
@@ -30,7 +30,7 @@ More powerful machine learning models, like gradient boosting machines, includin
 
 When training weak learners, if the classes are not well separated, increasing the number of samples of the minority class, might help the model find proper boundaries and increase its performance. Or at least, that was the story that led to the design of SMOTE.
 
-## SMOTE
+## SMOTE in Machine Learning
 
 SMOTE, which stands for Synthetic Minority Over-sampling Technique, was designed to increase the representation of the minority class in an imbalanced dataset. That makes SMOTE an oversampling method.
 
@@ -260,7 +260,7 @@ SMOTE has helped the model better identify the minority class (fraudulent transa
 - When working with imbalanced datasets, try to use strong classifiers like XGBoost and LightGBM.
 - Always adjust the probability threshold used to classify an observation as a member of the minority class.
 - Even small changes in recall or precision can be meaningful, especially in imbalanced domains like fraud detection, where each percentage point translates into catching more fraud.
-- SMOTE is useful, but it’s probably not your first line of action when working with imbalanced datasets.
+- SMOTE in machine learning is useful, but it’s probably not your first line of action when working with imbalanced datasets.
 
 ### Displaying the Confusion Matrices
 
@@ -421,7 +421,7 @@ In this article, we learned how SMOTE (Synthetic Minority Over-sampling Techniqu
 
 ### Other ways to work with imbalanced datasets
 
-Within the realm of data resampling, we discussed SMOTE which is an oversampling method, the alternative is to use [undersampling](https://www.blog.trainindata.com/undersampling-techniques-for-imbalanced-data/) methods to remove excessive number of majority examples.
+Within the realm of data resampling, we discussed SMOTE in machine learning, which is an oversampling method, the alternative is to use [undersampling](https://www.blog.trainindata.com/undersampling-techniques-for-imbalanced-data/) methods to remove excessive number of majority examples.
 
 To steer away from rebalancing, we could simply use [cost-sensitive learning](https://www.blog.trainindata.com/cost-sensitive-learning-for-imbalanced-data/), or specific ensemble methods that have been designed for imbalanced datasets, like BalancingCascade or Balanced random forests.
 
