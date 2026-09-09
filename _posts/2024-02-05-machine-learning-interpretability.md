@@ -189,7 +189,7 @@ In the following plot, we see that `MedInc` is the most important feature:
 
 ### Local explanations
 
-Next, let’s see how to obtain local explanations. We will use the package `eli5`. Unlike some other local explanation tools, `eli5` explains one prediction at a time, so we need to call it separately for each observation we’re interested in.
+Next, let’s see how to obtain local explanations. We will use the package `eli5`. `eli5` explains one prediction at a time, so we need to call it separately for each observation we’re interested in.
 
 Let’s obtain and plot the explanation for the **first observation** in the test set:
 
