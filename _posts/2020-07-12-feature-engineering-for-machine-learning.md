@@ -185,7 +185,7 @@ Feature selection, on the other hand, refers to the process of selecting the bes
 
 There are many feature selection algorithms that help us select the most predictive subset of features. I discuss these techniques in a separate article.
 
-*For more information, including code examples, about feature selection, check out our book [Feature Selection in Machine Learning with Python](https://leanpub.com/feature-selection-in-machine-learning/) or our course [Feature Selection in Machine Learning](https://www.trainindata.com/p/feature-selection-for-machine-learning).*
+*For more information, including code examples, about feature selection, check out our book [Feature Selection in Machine Learning with Python](https://www.trainindata.com/p/feature-selection-in-machine-learning-book) or our course [Feature Selection in Machine Learning](https://www.trainindata.com/p/feature-selection-for-machine-learning).*
 
 [![Feature Selection for Machine Learning, online course.]({{ site.baseurl }}/assets/images/posts/feature-selection-with-filter-methods/feature-selection-course-1024x576.png)](https://www.trainindata.com/p/feature-selection-for-machine-learning)
 
