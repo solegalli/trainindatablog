@@ -1,18 +1,18 @@
 ---
 layout: post
-title: "SMOTE in Python and whether you should still use it in 2025"
-author: noor
+title: "SMOTE in Python and whether you should still use it in 2026"
+author: sole
 description: "Learn how to implement SMOTE in Python and whether you should still be using it to work with imbalanced datasets in 2025."
 excerpt: "Learn how to implement SMOTE in Python and whether you should still be using it to work with imbalanced datasets in 2025."
 categories: [Data Science, Imbalanced Data, Machine Learning]
 image: assets/images/posts/smote-in-python-a-guide-to-balanced-datasets/blog_banner.png
 ---
 
-In many real-world scenarios, data is imbalanced, meaning that one class (usually called the majority class) has many more samples than the other one (the minority class). Although you will read a lot that class imbalance makes it difficult for algorithms to classify the classes correctly, that is not necessarily the case. In fact, if the classes are well separated, that is, there is a clear separation boundary among them, the algorithms will work just fine. But when the class separability is not that clear, then things start getting difficult.
+In most real-world scenarios, data is imbalanced, meaning that one class (usually called the majority class) has many more samples than the other one (the minority class). Although you will read a lot that class imbalance makes it difficult for algorithms to classify the classes correctly, that is not necessarily the case. In fact, if the classes are well separated, that is, there is a clear separation boundary among them, the algorithms will work just fine. But when the class separability is not that clear, then things start getting difficult.
 
-> Read our “[7 takes on working with Imbalanced Data](https://www.trainindata.com/p/7-takes-on-working-with-imbalanced-data)“, were we discuss 3 recent articles that change the conversation about resampling and SMOTE. It’s **free**.
+> For more details, check out my book [Imbalanced Data: Myths, Mistakes and Modern Solutions.](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
 
-[![7 takes on working with imbalanced data, free booklet.]({{ site.baseurl }}/assets/images/posts/should-you-use-imbalanced-learn-in-2025/MLID-booklet-presentation.png)](https://www.trainindata.com/p/7-takes-on-working-with-imbalanced-data)
+[![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg)](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
 
 **A quick note before we start:** SMOTE does not make a model better at discriminating between classes. What it does is shift the model's decision boundary so that, at the default classification threshold of 0.5, we make more cost-sensitive decisions — that is, we correctly flag a larger proportion of the minority class, which is usually the class we care about the most. You can achieve this exact same effect by training on the original, unmodified data and simply adjusting the classification threshold afterward, without generating any synthetic samples at all. We'll come back to this point throughout the article.
 
@@ -22,7 +22,7 @@ In datasets with class imbalance, when machine learning algorithms can’t disce
 
 More powerful machine learning models, like gradient boosting machines, including xbgoost and lightGBMs, tend to work equally well in balanced and imbalanced datasets. So, when training these models, there isn’t really a need to balance the data.
 
-When training weak learners, including random forests, if the classes are not well separated, increasing the number of samples of the minority class, might help the model find proper boundaries and increase its performance. Or at least, that was the story that led to the design of SMOTE.
+When training weak learners, if the classes are not well separated, increasing the number of samples of the minority class, might help the model find proper boundaries and increase its performance. Or at least, that was the story that led to the design of SMOTE.
 
 ## SMOTE
 
@@ -72,7 +72,7 @@ SMOTE might generate a synthetic example by taking a random value between these 
 
 - (Age: 27.5, Income: $32,500)
 
-> For detailed explanations on how SMOTE works and how to apply SMOTE in Python, check out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
+> For detailed explanations on how SMOTE works and how to apply SMOTE in Python, check out our book [Imbalanced Data: Myths, Mistakes and Modern Solutions](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
 ### STEP 3: Repeat Until the Dataset is Balanced
 
@@ -287,7 +287,7 @@ plt.show()
 
 ![Confusion matrix after applying SMOTE]({{ site.baseurl }}/assets/images/posts/smote-in-python-a-guide-to-balanced-datasets/CM_after_Smote.png)
 
-> Want to know how to correctly evaluate your imbalanced datasets? Check out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book) – clear explanations, practical python implementations.
+> Want to know how to correctly evaluate your imbalanced datasets? Check out our book [Imbalanced Data: Myths, Mistakes and Modern Solutions](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book) – clear explanations, practical python implementations.
 
 ### Overall Impact
 
@@ -318,6 +318,4 @@ Within the realm of data resampling, we discussed SMOTE which is an oversampling
 
 To steer away from rebalancing, we could simply use [cost-sensitive learning](https://www.blog.trainindata.com/cost-sensitive-learning-for-imbalanced-data/), or specific ensemble methods that have been designed for imbalanced datasets, like BalancingCascade or Balanced random forests.
 
-For more details, check out our book [Machine Learning with Imbalanced Data.](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
 
-[![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg)](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
