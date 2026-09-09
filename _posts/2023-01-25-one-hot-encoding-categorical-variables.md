@@ -248,9 +248,11 @@ from ucimlrepo import fetch_ucirepo
 
 credit_approval = fetch_ucirepo(id=27)
 data = credit_approval.data.features
-data["target"] = credit_approval.data.targets["A16"]
+data["target"] = credit_approval.data.targets["A16"].map({"+": 1, "-": 0})
 
+numeric_vars = data.select_dtypes(exclude="object").columns.drop("target")
 categorical_vars = data.select_dtypes(include="object").columns
+data[numeric_vars] = data[numeric_vars].fillna(0)
 data[categorical_vars] = data[categorical_vars].fillna("Missing")
 
 X_train, X_test, y_train, y_test = train_test_split(
@@ -420,9 +422,11 @@ from ucimlrepo import fetch_ucirepo
 
 credit_approval = fetch_ucirepo(id=27)
 data = credit_approval.data.features
-data["target"] = credit_approval.data.targets["A16"]
+data["target"] = credit_approval.data.targets["A16"].map({"+": 1, "-": 0})
 
+numeric_vars = data.select_dtypes(exclude="object").columns.drop("target")
 categorical_vars = data.select_dtypes(include="object").columns
+data[numeric_vars] = data[numeric_vars].fillna(0)
 data[categorical_vars] = data[categorical_vars].fillna("Missing")
 
 X_train, X_test, y_train, y_test = train_test_split(

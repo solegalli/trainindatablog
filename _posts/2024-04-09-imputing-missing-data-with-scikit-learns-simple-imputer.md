@@ -64,10 +64,18 @@ Let’s load the [credit approval dataset](https://archive.ics.uci.edu/dataset/2
 
 ```
 from ucimlrepo import fetch_ucirepo
+import random
+import numpy as np
 
 credit_approval = fetch_ucirepo(id=27)
 data = credit_approval.data.features
-data["target"] = credit_approval.data.targets["A16"]
+data["target"] = credit_approval.data.targets["A16"].map({"+": 1, "-": 0})
+
+# reproduce the missing values injected in the original prepared dataset
+random.seed(9001)
+for i, var in enumerate(["A3", "A8", "A9", "A10"]):
+    idx = list(set(random.randint(i, len(data)) for _ in range(100)))
+    data.loc[idx, var] = np.nan
 
 X_train, X_test, y_train, y_test = train_test_split(
 
@@ -203,10 +211,18 @@ Let’s load the credit risk dataset and split it into train and test:
 
 ```
 from ucimlrepo import fetch_ucirepo
+import random
+import numpy as np
 
 credit_approval = fetch_ucirepo(id=27)
 data = credit_approval.data.features
-data["target"] = credit_approval.data.targets["A16"]
+data["target"] = credit_approval.data.targets["A16"].map({"+": 1, "-": 0})
+
+# reproduce the missing values injected in the original prepared dataset
+random.seed(9001)
+for i, var in enumerate(["A3", "A8", "A9", "A10"]):
+    idx = list(set(random.randint(i, len(data)) for _ in range(100)))
+    data.loc[idx, var] = np.nan
 
 X_train, X_test, y_train, y_test = train_test_split(
 
@@ -297,10 +313,18 @@ Let’s load the dataset and split it into a training and a testing set:
 
 ```
 from ucimlrepo import fetch_ucirepo
+import random
+import numpy as np
 
 credit_approval = fetch_ucirepo(id=27)
 data = credit_approval.data.features
-data["target"] = credit_approval.data.targets["A16"]
+data["target"] = credit_approval.data.targets["A16"].map({"+": 1, "-": 0})
+
+# reproduce the missing values injected in the original prepared dataset
+random.seed(9001)
+for i, var in enumerate(["A3", "A8", "A9", "A10"]):
+    idx = list(set(random.randint(i, len(data)) for _ in range(100)))
+    data.loc[idx, var] = np.nan
 
 X_train, X_test, y_train, y_test = train_test_split(
 
@@ -373,10 +397,18 @@ from sklearn.pipeline import Pipeline
 
 
 from ucimlrepo import fetch_ucirepo
+import random
+import numpy as np
 
 credit_approval = fetch_ucirepo(id=27)
 data = credit_approval.data.features
-data["target"] = credit_approval.data.targets["A16"]
+data["target"] = credit_approval.data.targets["A16"].map({"+": 1, "-": 0})
+
+# reproduce the missing values injected in the original prepared dataset
+random.seed(9001)
+for i, var in enumerate(["A3", "A8", "A9", "A10"]):
+    idx = list(set(random.randint(i, len(data)) for _ in range(100)))
+    data.loc[idx, var] = np.nan
 
 X_train, X_test, y_train, y_test = train_test_split(
 
