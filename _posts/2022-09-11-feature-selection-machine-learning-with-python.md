@@ -30,7 +30,7 @@ By reducing the number of features, we can improve the performance of the machin
 
 Feature selection methods have been traditionally grouped into [filter methods](https://www.blog.trainindata.com/feature-selection-with-filter-methods/), [wrapper methods](https://www.blog.trainindata.com/feature-selection-with-wrapper-methods/), and [embedded methods](https://www.blog.trainindata.com/feature-selection-with-embedded-methods/).
 
-[![Diagram showing the 3 umbrella groups of feature selection methods: filter, wrapper and embedded methods]({{ site.baseurl }}/assets/images/posts/feature-selection-machine-learning-with-python/ch1-fig3.png)](https://leanpub.com/feature-selection-in-machine-learning/) Image taken from Feature Selection in Machine Learning with Python
+[![Diagram showing the 3 umbrella groups of feature selection methods: filter, wrapper and embedded methods]({{ site.baseurl }}/assets/images/posts/feature-selection-machine-learning-with-python/ch1-fig3.png)](https://www.trainindata.com/p/feature-selection-in-machine-learning-book) Image taken from Feature Selection in Machine Learning with Python
 
 Filter methods select the best features based on the feature characteristics, ignoring their interaction with the machine learning model. They rank the features and then select the top-ranking ones. Ranking methods normally use statistical tests like chi-square, ANOVA, correlation, and mutual information.
 
