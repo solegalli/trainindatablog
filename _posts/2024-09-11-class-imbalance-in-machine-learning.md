@@ -65,7 +65,7 @@ In the above examples, the frequency of the **minority class,** which is most of
 
 ## Challenges with Imbalanced Datasets
 
-To understand the challenges posed by using imblanced datasets, let’s walk through an example related to credit card fraud detection. We’ll use a dataset that can be downloaded from [Kaggle](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud/data).
+To understand the challenges posed by using imblanced datasets, let’s walk through an example related to credit card fraud detection. We’ll use the [credit card fraud dataset](https://www.openml.org/search?type=data&id=1597) from OpenML, originally published by [Kaggle](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud/data).
 
 We’ll start by training a machine learning model without data preprocessing to handle the class imbalance.
 
@@ -78,13 +78,15 @@ import seaborn as sns
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, precision_score, recall_score, confusion_matrix
+from sklearn.datasets import fetch_openml
 from imblearn.over_sampling import SMOTE
 ```
 
 Before training our classifier, let’s do some basic data analysis:
 
 ```
-df = pd.read_csv('creditcard.csv')
+df = fetch_openml(name='creditcard', version=1, as_frame=True).frame
+df['Class'] = df['Class'].astype(int)
 print(df.shape)
 print(df.columns)
 ```
@@ -92,15 +94,15 @@ print(df.columns)
 In the following output, we see the size of the dataset and the name of the variables:
 
 ```
-(284807, 31)
+(284807, 30)
 
-Index(['Time', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'V7', 'V8', 'V9', 'V10',
+Index(['V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'V7', 'V8', 'V9', 'V10',
 'V11', 'V12', 'V13', 'V14', 'V15', 'V16', 'V17', 'V18', 'V19', 'V20',
 'V21', 'V22', 'V23', 'V24', 'V25', 'V26', 'V27', 'V28', 'Amount',
 'Class'],       dtype='object')
 ```
 
-The dataset consists of 284807 rows and 31 columns, meaning there are 284807 data points and 31 features (out of which 28 features i.e., V1 to V28 are anonymized). The ‘Class’ variable is the target feature that specifies whether or not the given data point (presumably a credit card transaction) is either fraud (denoted as class value ‘1’) or non-fraud (denoted as class value ‘0’).
+The dataset consists of 284807 rows and 30 columns, meaning there are 284807 data points and 30 features (out of which 28 features i.e., V1 to V28 are anonymized). The ‘Class’ variable is the target feature that specifies whether or not the given data point (presumably a credit card transaction) is either fraud (denoted as class value ‘1’) or non-fraud (denoted as class value ‘0’).
 
 Let’s look at the distribution of the ‘Class’ variable.
 

@@ -60,10 +60,14 @@ from sklearn.impute import SimpleImputer
 from sklearn.compose import ColumnTransformer
 ```
 
-Let’s load the [credit approval dataset](https://archive.ics.uci.edu/dataset/27/credit+approval) from the UCI machine learning repository that I already downloaded and prepared elsewhere, and separate it into a training and a testing set:
+Let’s load the [credit approval dataset](https://archive.ics.uci.edu/dataset/27/credit+approval) directly from the UCI Machine Learning Repository, and separate it into a training and a testing set:
 
 ```
-data = pd.read_csv("credit_approval_uci.csv")
+from ucimlrepo import fetch_ucirepo
+
+credit_approval = fetch_ucirepo(id=27)
+data = credit_approval.data.features
+data["target"] = credit_approval.data.targets["A16"]
 
 X_train, X_test, y_train, y_test = train_test_split(
 
@@ -198,7 +202,11 @@ from sklearn.compose import ColumnTransformer
 Let’s load the credit risk dataset and split it into train and test:
 
 ```
-data = pd.read_csv("credit_approval_uci.csv")
+from ucimlrepo import fetch_ucirepo
+
+credit_approval = fetch_ucirepo(id=27)
+data = credit_approval.data.features
+data["target"] = credit_approval.data.targets["A16"]
 
 X_train, X_test, y_train, y_test = train_test_split(
 
@@ -288,7 +296,11 @@ from sklearn.impute import SimpleImputer
 Let’s load the dataset and split it into a training and a testing set:
 
 ```
-data = pd.read_csv("credit_approval_uci.csv")
+from ucimlrepo import fetch_ucirepo
+
+credit_approval = fetch_ucirepo(id=27)
+data = credit_approval.data.features
+data["target"] = credit_approval.data.targets["A16"]
 
 X_train, X_test, y_train, y_test = train_test_split(
 
@@ -360,7 +372,11 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 
 
-data = pd.read_csv("credit_approval_uci.csv")
+from ucimlrepo import fetch_ucirepo
+
+credit_approval = fetch_ucirepo(id=27)
+data = credit_approval.data.features
+data["target"] = credit_approval.data.targets["A16"]
 
 X_train, X_test, y_train, y_test = train_test_split(
 

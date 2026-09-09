@@ -52,16 +52,19 @@ from sklearn.model_selection import train_test_split
 from sklearn.impute import KNNImputer
 ```
 
-Let’s load the [credit approval dataset](https://github.com/PacktPublishing/Python-Feature-Engineering-Cookbook-Third-Edition/blob/main/ch01-missing-data-imputation/credit_approval_uci.csv) that we prepared for the third edition of our [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587).
+Let’s load the [credit approval dataset](https://archive.ics.uci.edu/dataset/27/credit+approval) directly from the UCI Machine Learning Repository.
 
 [![Python Feature Engineering Cookbook book cover]({{ site.baseurl }}/assets/images/posts/detect-outliers-in-python/PFEC2ED.png)](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587)
 
 ```
+from ucimlrepo import fetch_ucirepo
+
 variables = ["A2", "A3", "A8", "A11", "A14", "A15", "target"]
 
-data = pd.read_csv("credit_approval_uci.csv",
-
-    usecols=variables)
+credit_approval = fetch_ucirepo(id=27)
+data = credit_approval.data.features
+data["target"] = credit_approval.data.targets["A16"]
+data = data[variables]
 ```
 
 Let’s divide the dataset into a training set and a test set:

@@ -100,7 +100,7 @@ For this demo, we will be using SMOTE for binary classification, though it can a
 
 ### Download and Load the Dataset
 
-You can directly download the dataset from [Kaggle](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud?resource=download). It consists of numerical features representing credit card transactions. This dataset is highly imbalanced, with the majority of transactions being legitimate and only a small fraction being fraudulent. For this binary classification problem we have:
+We’ll use the [credit card fraud dataset](https://www.openml.org/search?type=data&id=1597) from OpenML, originally published on [Kaggle](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud?resource=download). It consists of numerical features representing credit card transactions. This dataset is highly imbalanced, with the majority of transactions being legitimate and only a small fraction being fraudulent. For this binary classification problem we have:
 
 - The majority class (label 0) represents legitimate transactions.
 - The minority class (label 1) represents fraudulent transactions.
@@ -109,9 +109,11 @@ Let’s go ahead and load the dataset:
 
 ```
 import pandas as pd
+from sklearn.datasets import fetch_openml
 
 # Load the dataset as pandas dataframe
-df = pd.read_csv('creditcard.csv')
+df = fetch_openml(name='creditcard', version=1, as_frame=True).frame
+df['Class'] = df['Class'].astype(int)
 
 # Display the class distribution
 print(df['Class'].value_counts())
@@ -202,7 +204,8 @@ clf_smote.fit(X_resampled, y_resampled)
 y_pred_smote = clf_smote.predict(X_test)
 
 # Evaluate the model
-print("Classification Report (After SMOTE):")print(
+print("Classification Report (After SMOTE):")
+print(
     classification_report(y_test, y_pred_smote))
 ```
 

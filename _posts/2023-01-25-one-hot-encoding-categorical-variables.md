@@ -241,11 +241,17 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 ```
 
-Let’s load the credit approval dataset (for guidelines to prepare the data check this [github repo](https://github.com/solegalli/Python-Feature-Engineering-Cookbook-Second-Edition/blob/main/ch02-categorical-encoding/donwload-prepare-store-credit-approval-dataset.ipynb):
+Let’s load the [credit approval dataset](https://archive.ics.uci.edu/dataset/27/credit+approval) from the UCI Machine Learning Repository:
 
 ```
-data = pd.read_csv("credit_approval_uci.csv")
+from ucimlrepo import fetch_ucirepo
 
+credit_approval = fetch_ucirepo(id=27)
+data = credit_approval.data.features
+data["target"] = credit_approval.data.targets["A16"]
+
+categorical_vars = data.select_dtypes(include="object").columns
+data[categorical_vars] = data[categorical_vars].fillna("Missing")
 
 X_train, X_test, y_train, y_test = train_test_split(
     data.drop(labels=["target"], axis=1),
@@ -410,7 +416,14 @@ from feature_engine.encoding import OneHotEncoder
 Let’s load the dataset and divide into train and test sets:
 
 ```
-data = pd.read_csv("credit_approval_uci.csv")
+from ucimlrepo import fetch_ucirepo
+
+credit_approval = fetch_ucirepo(id=27)
+data = credit_approval.data.features
+data["target"] = credit_approval.data.targets["A16"]
+
+categorical_vars = data.select_dtypes(include="object").columns
+data[categorical_vars] = data[categorical_vars].fillna("Missing")
 
 X_train, X_test, y_train, y_test = train_test_split(
     data.drop(labels=["target"], axis=1),

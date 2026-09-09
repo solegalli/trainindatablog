@@ -146,7 +146,7 @@ Here’s why a Precision-Recall curve is useful:
 
 ## **Implementation of PR curve**
 
-Let’s plot the precision-recall curve for a diabetes prediction dataset and logistic regression. For this example, I used the diabetes dataset which is available on [Kaggle](https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset).
+Let’s plot the precision-recall curve for a diabetes prediction dataset and logistic regression. For this example, I used the [Pima Indians Diabetes dataset](https://www.openml.org/search?type=data&id=37), also available on [Kaggle](https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset).
 
 ### **Step 1: Loading necessary libraries**
 
@@ -166,6 +166,7 @@ from sklearn.metrics import (
     classification_report,
     confusion_matrix,
 )
+from sklearn.datasets import fetch_openml
 ```
 
 ### **Step 2: Preparing the data**
@@ -183,8 +184,13 @@ Once we have defined X and y, we split the dataset into **training** and **testi
 Finally, we scale the features to standardize the data, which ensures that each feature contributes equally to the model. [Feature scaling](https://www.blog.trainindata.com/feature-scaling-in-machine-learning/) or standardization is a prerequisite for logistic regression and consists of transforming the data to have a mean of 0 and a standard deviation of 1.
 
 ```
-# I downloaded the dataset from Kaggle and stored it in a csv file:
-df = pd.read_csv("diabetes.csv")
+# Load the dataset and rename the columns to their original names
+df = fetch_openml(name="diabetes", version=1, as_frame=True).frame
+df.columns = [
+    "Pregnancies", "Glucose", "BloodPressure", "SkinThickness", "Insulin",
+    "BMI", "DiabetesPedigreeFunction", "Age", "Outcome",
+]
+df["Outcome"] = (df["Outcome"] == "tested_positive").astype(int)
 
 # Create feature matrix and target
 X = df.drop('Outcome', axis=1)  # Features

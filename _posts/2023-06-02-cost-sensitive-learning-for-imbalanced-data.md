@@ -102,12 +102,16 @@ import pandas as pd
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import roc_auc_score
 from sklearn.model_selection import train_test_split
+from imblearn.datasets import fetch_datasets
 ```
 
 Next, we will load a dataset:
 
 ```
-data = pd.read_csv('../kdd2004.csv').sample(10000)
+protein_homology = fetch_datasets()['protein_homo']
+data = pd.DataFrame(protein_homology.data)
+data['target'] = protein_homology.target
+data = data.sample(10000)
 ```
 
 We find the fraction of observations in each of the two classes in the target variable:
