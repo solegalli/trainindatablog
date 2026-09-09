@@ -106,9 +106,9 @@ Now we have a balanced dataset.
 
 ## Implementing SMOTE in Python
 
-Let’s take a look at how we can implement the SMOTE algorithm in Python. For this demo, we will use a dataset from Kaggle. We will first train a classifier on the imbalanced dataset to have the baseline performance, and then train it on a balanced dataset created by applying SMOTE. We will then compare the performance of both models and draw conclusions about SMOTE.
+Let’s take a look at how we can implement the SMOTE algorithm in Python. We will first train a classifier on the imbalanced dataset to have the baseline performance, and then train it on a balanced dataset created by applying SMOTE. We will then compare the performance of both models and draw conclusions about SMOTE.
 
-For this demo, we will use SMOTE for binary classification, though it can also be applied to multi-class problems.
+> For this demo, we will use SMOTE for binary classification, though it can also be applied to multi-class problems.
 
 ### Load the Dataset
 
@@ -185,7 +185,7 @@ We will use the Python open-source library [imbalanced-learn](https://imbalanced
 
 With imbalanced-learn, we have the flexibility to adjust the number of minority class samples that we want to create, by modifying the **sampling_strategy** parameter, which specifies the desired ratio of the minority class relative to the majority class. It can have a float value from 0 to 1.
 
-For example, a value of 0.5 means the minority class will have half as many samples as the majority class after resampling. By default its value is set to 1, which means that the minority class will have the same number of samples as the majority class after the oversampling.
+For example, a value of 0.5 means the minority class will have half as many samples as the majority class after resampling. By default its value is set to `"auto"`, which means that the minority class will have the same number of samples as the majority class after the oversampling.
 
 ```
 from imblearn.over_sampling import SMOTE
@@ -229,13 +229,13 @@ The following figure shows the classification report of the model trained with t
 
 Do you notice something wrong with how I evaluated the effectiveness of SMOTE?
 
-Precision, recall, and F1-score are metrics that depend on the threshold, and here I am using the default classification threshold of 0.5, which is not suitable for imbalanced datasets, not at least, if we care most about the minority class. In fact, if we changed the threshold, we’d see different values for these metrics.
+Precision, recall, and F1-score are metrics that depend on the threshold, and here I am using the default classification threshold of 0.5, which is not suitable for imbalanced datasets. Not at least, if we care most about the minority class. In fact, if we changed the threshold, we’d see different values for these metrics.
 
 Since SMOTE generates synthetic samples, it might seem like it improves the model’s performance. But if we don’t carefully choose the right threshold for classifying the minority class, the perceived improvements could be exaggerated.
 
-Instead of relying on the default threshold (0.5), we can adjust the threshold based on the specific use case. For example, if missing a minority class prediction is very costly like in our fraud detection example, we may want to lower the threshold to capture more instances of the minority class, and that would increase the value of recall (at the expense of precision, of course). That is exactly the trade-off we saw with SMOTE as well. There is always a trade-off between these metrics.
+Instead of relying on the default threshold (0.5), we can adjust the threshold based on the specific use case. For example, if missing a minority class prediction is very costly like in our fraud detection example, we may want to lower the threshold to capture more instances of the minority class, and that would increase the value of recall (at the expense of precision, of course). That is exactly the trade-off we saw with SMOTE as well.
 
-For a thorough discussion on whether SMOTE works, check out our [YouTube video](https://www.youtube.com/watch?v=blcOOheXNoQ) (and **subscribe** to stay up to date!):
+For a thorough discussion on the value of SMOTE, check out our [YouTube video](https://www.youtube.com/watch?v=blcOOheXNoQ) (and **subscribe** to stay up to date!):
 
 <div class="video-embed"><iframe src="https://www.youtube.com/embed/blcOOheXNoQ?feature=oembed" title="Working with Imbalanced Data in 2024 - Machine Learning with Imbalanced Data" width="560" height="315" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
 
@@ -297,7 +297,7 @@ Classification Report (Original data, tuned threshold):
 weighted avg       1.00      1.00      1.00     85443
 ```
 
-The best threshold, 0.444, is close to the default of 0.5. For the minority class, precision, recall and F1 are 0.95, 0.78 and 0.86. Compare that to SMOTE's 0.87, 0.80 and 0.83. Adjusting the threshold on the original model gets almost the same recall as SMOTE, 0.78 versus 0.80, with clearly better precision, 0.95 versus 0.87, and a better F1 score, 0.86 versus 0.83.
+The best threshold, 0.444, lower than 0.5. For the minority class, precision, recall and F1 are 0.95, 0.78 and 0.86. Compare that to SMOTE's 0.87, 0.80 and 0.83. Adjusting the threshold on the original model gets almost the same recall as SMOTE, 0.78 versus 0.80. If we take the threshold a little lower, we'll match the precision obtained by SMOTE (try it out!).
 
 In other words, we did not need any synthetic data at all. Training the model once on the original, imbalanced data, and then choosing a better threshold, got us a comparable, and on this dataset an even better, trade-off between precision and recall than SMOTE did.
 
@@ -356,17 +356,21 @@ for dataset in datasets_ls:
     # stratify: these datasets have very few minority samples, so an
     # unstratified split can easily leave an unrepresentative test set
     X_train, X_test, y_train, y_test = train_test_split(
-        data.data, data.target, test_size=0.3, random_state=0, stratify=data.target
+        data.data, data.target, 
+        test_size=0.3, random_state=0, 
+        stratify=data.target
     )
 
     baseline_pipe = Pipeline([
         ('scaler', MinMaxScaler()),
-        ('rf', RandomForestClassifier(n_estimators=100, random_state=39, max_depth=2, n_jobs=4)),
+        ('rf', RandomForestClassifier(n_estimators=100, 
+            random_state=39, max_depth=2, n_jobs=4)),
     ])
     smote_pipe = ImbPipeline([
         ('scaler', MinMaxScaler()),
         ('smote', SMOTE(random_state=0)),
-        ('rf', RandomForestClassifier(n_estimators=100, random_state=39, max_depth=2, n_jobs=4)),
+        ('rf', RandomForestClassifier(n_estimators=100, 
+            random_state=39, max_depth=2, n_jobs=4)),
     ])
 
     cv_baseline = cross_val_score(baseline_pipe, X_train, y_train, cv=5, scoring='roc_auc')
@@ -408,30 +412,27 @@ Test ROC-AUC (baseline): 0.9274 +/- 0.0226
 Test ROC-AUC (SMOTE):    0.8426 +/- 0.0894
 ```
 
-Two things are worth calling out about how we get here. First, we stratify the train-test split by the target: these datasets have as few as 25 to 35 minority-class examples in total, so an unstratified split can easily land on a test set that isn’t representative of the true class balance, and since cross-validation uses stratified folds by default, comparing it against an unstratified train-test split would be comparing apples to oranges. Second, the bootstrap standard error is just the standard deviation of the 5 bootstrap ROC-AUC values, not that value divided by the square root of 5: we're not estimating the precision of an average here, we're using the spread of the resamples as a direct estimate of how much the ROC-AUC itself would vary on a different sample.
+On `ecoli`, cross-validation and the test set agree: there’s no meaningful difference between the baseline and SMOTE, in either case (0.914 vs 0.921 in cross-validation, 0.944 vs 0.948 on the test set, well within one standard error of each other both times). On `thyroid_sick`, both evaluations point the same way, with the baseline scoring somewhat higher than SMOTE, though the gap is modest relative to the standard error in both cases. On `arrhythmia`, cross-validation again shows no clear difference, and while the test set numbers still favor the baseline by a wide margin, the standard error on the SMOTE estimate is now large enough (driven by there being only 8 minority examples in that test set) that we can't call this a significant difference either.
 
-With that, on `ecoli`, cross-validation and the test set agree: there’s no meaningful difference between the baseline and SMOTE, in either case (0.914 vs 0.921 in cross-validation, 0.944 vs 0.948 on the test set, well within one standard error of each other both times). On `thyroid_sick`, both evaluations point the same way, with the baseline scoring somewhat higher than SMOTE, though the gap is modest relative to the standard error in both cases. On `arrhythmia`, cross-validation again shows no clear difference, and while the test set numbers still favor the baseline by a wide margin, the standard error on the SMOTE estimate is now large enough (driven by there being only 8 minority examples in that test set) that we can't call this a significant difference either.
-
-In other words, once we evaluate this properly, with a fair train-test comparison and a standard error that isn't artificially shrunk, we find no convincing evidence that SMOTE improves ROC-AUC on any of these 3 datasets. This is exactly why we can’t just assume SMOTE will help, we need to test it properly, and be ready for the answer to be no.
+In other words, once we evaluate this properly, we find no convincing evidence that SMOTE improves ROC-AUC on any of these 3 datasets.
 
 
 ## Bottom Line
 
-- When working with imbalanced datasets, try to use strong classifiers like XGBoost and LightGBM.
+- When working with imbalanced datasets, use strong classifiers like XGBoost and LightGBM.
 - Always adjust the probability threshold used to classify an observation as a member of the minority class.
-- Even small changes in recall or precision can be meaningful, especially in imbalanced domains like fraud detection, where each percentage point translates into catching more fraud.
-- SMOTE in machine learning is useful, but it’s probably not your first line of action when working with imbalanced datasets.
+- Always determine the metrics with their standard deviation to corroborate that the differences you see are significant.
 
 ## What SMOTE Really Does in Machine Learning
 
 1. **Shifts the Decision Boundary Toward the Minority Class:** By balancing the classes, the prediction model flags more of the minority class at the default threshold, the same trade-off you'd get by adjusting the classification threshold on the original, imbalanced data.
 2. **Avoids Data Duplication:** Unlike random oversampling, where we duplicate existing minority samples, SMOTE generates synthetic samples. This helps avoid overfitting because the new samples are not exact copies of the original samples.
-3. **Might Improve Discrimination Ability of Weak Classifiers:** SMOTE can be combined with various machine learning algorithms (such as Random Forest, Logistic Regression, SVM) and has been shown to have a bigger effect on threshold-dependent metrics for these weaker models than for strong classifiers like XGBoost.
+3. **Might Improve Discrimination Ability of Weak Classifiers:** SMOTE can be combined with some machine learning algorithms (such as decision trees or SVM) and has been shown to have a bigger effect on threshold-dependent metrics for these weaker models than for strong classifiers like XGBoost.
 
 ## Limitations of SMOTE in Machine Learning
 
 1. **Synthetic Samples May Not Always Be Meaningful:** SMOTE generates new data points based on linear interpolation between existing points. If the feature space has complex relationships, the synthetic samples might not represent realistic or meaningful data.
-2. **Overlapping Classes:** If the boundary between classes is unclear (i.e., if some minority class points are too close to the majority class points), SMOTE might generate synthetic samples that actually belong to the majority class region, leading to misclassification. To address this issue we can use variations of SMOTE, such as Borderline SMOTE or ADASYN.
+2. **Overlapping Classes:** If the boundary between classes is unclear (i.e., if some minority class points are too close to the majority class points), SMOTE might generate synthetic samples that actually belong to the majority class region, leading to misclassification. To address this issue we can use variations of SMOTE, such as Borderline SMOTE or ADASYN, although only if you are using weaker classifiers.
 3. **Not Suitable for Categorical Data:** SMOTE works by interpolating numerical features. It doesn’t handle categorical data well. Variations of SMOTE, such as SMOTE-NC (for Nominal and Continuous data), have been developed to address this issue.
 4. **Computational Cost:** SMOTE relies on the k-nearest neighbors algorithm to find neighbors for each minority sample, which doesn't scale well to large datasets and can become slow when there are many minority observations.
 5. **Sensitivity to the Choice of k:** The number of neighbors (`k_neighbors`) used to generate synthetic samples can noticeably affect the quality of the synthetic data. Tuning it with cross-validation adds to the computational cost, since it means running the nearest-neighbors search repeatedly.
@@ -439,7 +440,7 @@ In other words, once we evaluate this properly, with a fair train-test compariso
 
 ## Other Ways to Work with Imbalanced Datasets
 
-Within the realm of data resampling, we discussed SMOTE in machine learning, which is an oversampling method, the alternative is to use [undersampling](https://www.blog.trainindata.com/undersampling-techniques-for-imbalanced-data/) methods to remove excessive number of majority examples. However, [undersampling does not improve model performance](https://tech.trainindata.com/posts/undersampling-does-not-improve-model-performance), contrary to popular belief.
+Among data resampling methods, we discussed SMOTE in machine learning, which is an oversampling method. The alternative is to use [undersampling](https://www.blog.trainindata.com/undersampling-techniques-for-imbalanced-data/) methods to remove excessive number of majority examples. However, [undersampling does not improve model performance](https://tech.trainindata.com/posts/undersampling-does-not-improve-model-performance), contrary to popular belief.
 
 To avoid rebalancing, we could use [cost-sensitive learning](https://www.blog.trainindata.com/cost-sensitive-learning-for-imbalanced-data/). But be aware that [class weights are also designed to shift the decision boundary](https://tech.trainindata.com/posts/class-weights-do-not-improve-model-performance), rather than improving model performance.
 
@@ -447,6 +448,7 @@ To avoid rebalancing, we could use [cost-sensitive learning](https://www.blog.tr
 
 - N. V. Chawla, K. W. Bowyer, L. O. Hall, W. P. Kegelmeyer, “[SMOTE: synthetic minority over-sampling technique](https://arxiv.org/abs/1106.1813),” Journal of artificial intelligence research, 321-357, 2002.
 - Y. Elor, H. Averbuch-Elor, “[To SMOTE, or not to SMOTE?](https://arxiv.org/html/2201.08528v3)” arXiv:2201.08528, 2022.
-- Galli. 2026. Undersampling experiments. https://github.com/solegalli/resampling-experiments
+- Galli. 2026. [Undersampling experiments Code Repository](https://github.com/solegalli/resampling-experiments).
+- Galli. 2026 [Imbalanced Data: Myths, Mistakes and Modern Solutions](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 - H. Han, W. Wen-Yuan, M. Bing-Huan, “Borderline-SMOTE: a new over-sampling method in imbalanced data sets learning,” Advances in intelligent computing, 878-887, 2005.
 - He, Haibo, Yang Bai, Edwardo A. Garcia, and Shutao Li. “ADASYN: Adaptive synthetic sampling approach for imbalanced learning,” In IEEE International Joint Conference on Neural Networks (IEEE World Congress on Computational Intelligence), pp. 1322-1328, 2008.
