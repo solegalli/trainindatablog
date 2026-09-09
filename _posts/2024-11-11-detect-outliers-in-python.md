@@ -281,7 +281,7 @@ The following is the output of the previous code:
 
 `Number of outliers detected by IQR method: 679`
 
-> Want to have these code recipes packed nicely in a book? Check out our [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587).
+> Want to have these code recipes packed nicely in a book? Check out our [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587) (also available on [Amazon](https://www.amazon.com/Python-Feature-Engineering-Cookbook-complete/dp/B0DBQDG7SG)).
 
 Statistical techniques are robust and provide a solid foundation for identifying outliers. However, in complex datasets where multiple variables interact, more sophisticated approaches like algorithmic techniques for outlier detection are often used.
 
@@ -445,7 +445,7 @@ And that’s a wrap!
 
 ## More resources to detect outliers in Python
 
-For more details and Python code to detect and remove or cap outliers, check out our [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587):
+For more details and Python code to detect and remove or cap outliers, check out our [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587) (also available on [Amazon](https://www.amazon.com/Python-Feature-Engineering-Cookbook-complete/dp/B0DBQDG7SG)):
 
 [![Python Feature Engineering Cookbook book cover]({{ site.baseurl }}/assets/images/posts/detect-outliers-in-python/PFEC2ED.png)](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587)
 

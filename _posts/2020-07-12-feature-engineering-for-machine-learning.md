@@ -24,7 +24,7 @@ In this article, we will answer the following questions:
 - What are the main feature engineering techniques?
 - How can we do feature engineering with Python?
 
-*If you want to know more about feature engineering in machine learning, check out our [Course Feature Engineering for Machine Learning](https://www.trainindata.com/p/feature-engineering-for-machine-learning) and our [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587).*
+*If you want to know more about feature engineering in machine learning, check out our [Course Feature Engineering for Machine Learning](https://www.trainindata.com/p/feature-engineering-for-machine-learning) and our [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587) (also available on [Amazon](https://www.amazon.com/Python-Feature-Engineering-Cookbook-complete/dp/B0DBQDG7SG)).*
 
 [![Feature Engineering for Machine Learning course]({{ site.baseurl }}/assets/images/posts/feature-scaling-in-machine-learning/feature-engineering-machine-learning-course-1024x576.jpg)](https://www.trainindata.com/p/feature-engineering-for-machine-learning)
 
@@ -209,4 +209,4 @@ Tsfresh offers automates feature creation from time series, in particular, for t
 
 ## Additional resources
 
-For more details about these and other feature engineering approaches and plenty of Python code, check out our course [Feature Engineering for Machine Learning](https://www.trainindata.com/p/feature-engineering-for-machine-learning) and our [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587).
+For more details about these and other feature engineering approaches and plenty of Python code, check out our course [Feature Engineering for Machine Learning](https://www.trainindata.com/p/feature-engineering-for-machine-learning) and our [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587) (also available on [Amazon](https://www.amazon.com/Python-Feature-Engineering-Cookbook-complete/dp/B0DBQDG7SG)).

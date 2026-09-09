@@ -16,7 +16,7 @@ Binning data, sometimes also referred to as bucketing, is also useful in data sc
 
 In this tutorial, we’ll look into binning data in Python using the `cut` and `qcut` functions from the open-source library pandas. We will discuss three basic types of binning: arbitrary binning, equal-frequency binning, and equal-width binning.
 
-To to help you master data binning and many other data transformation techniques in Python check out the [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587) and [Feature Engineering for Machine Learning course](https://www.trainindata.com/p/feature-engineering-for-machine-learning).
+To to help you master data binning and many other data transformation techniques in Python check out the [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587) (also available on [Amazon](https://www.amazon.com/Python-Feature-Engineering-Cookbook-complete/dp/B0DBQDG7SG)) and [Feature Engineering for Machine Learning course](https://www.trainindata.com/p/feature-engineering-for-machine-learning).
 
 [![Feature Engineering for Machine Learning course]({{ site.baseurl }}/assets/images/posts/feature-scaling-in-machine-learning/feature-engineering-machine-learning-course-1024x576.jpg)](https://www.trainindata.com/p/feature-engineering-for-machine-learning)
 
@@ -368,6 +368,6 @@ Binning is a powerful data preprocessing technique that can aid in the extractio
 
 For more details into data discretization, check our dedicated [article](https://www.blog.trainindata.com/data-discretization-in-machine-learning/).
 
-The [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587) and [Feature Engineering for Machine Learning course](https://www.trainindata.com/p/feature-engineering-for-machine-learning) are two excellent resources to help you master data binning and many other data transformation techniques in Python.
+The [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587) (also available on [Amazon](https://www.amazon.com/Python-Feature-Engineering-Cookbook-complete/dp/B0DBQDG7SG)) and [Feature Engineering for Machine Learning course](https://www.trainindata.com/p/feature-engineering-for-machine-learning) are two excellent resources to help you master data binning and many other data transformation techniques in Python.
 
 [![Python Feature Engineering Cookbook book cover]({{ site.baseurl }}/assets/images/posts/machine-learning-for-beginners/PFEC2ED-1024x1024.png)](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587)

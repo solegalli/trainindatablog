@@ -66,7 +66,7 @@ On the other side, there are also limitations that we have to address:
 
 If you want to apply MICE with R, you can use the mice package. In Python, we have Scikit-learn’s `IterativeImputer`, which comes with some limitations.
 
-To learn more about MICE and other imputation methods, check out our [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587).
+To learn more about MICE and other imputation methods, check out our [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587) (also available on [Amazon](https://www.amazon.com/Python-Feature-Engineering-Cookbook-complete/dp/B0DBQDG7SG)).
 
 [![Python Feature Engineering Cookbook book cover]({{ site.baseurl }}/assets/images/posts/detect-outliers-in-python/PFEC2ED.png)](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587)
 
@@ -288,5 +288,5 @@ MICE tries to preserve the original variable distribution and the relationship o
 If you want to learn more about mice imputation or other missing value imputation methods, check out the following hands-on resources:
 
 - [Feature engineering for machine learning course](https://www.trainindata.com/p/feature-engineering-for-machine-learning)
-- [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587)
+- [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587) (also available on [Amazon](https://www.amazon.com/Python-Feature-Engineering-Cookbook-complete/dp/B0DBQDG7SG))
 - [Feature engineering for time series forecasting course](https://www.trainindata.com/p/feature-engineering-for-forecasting)

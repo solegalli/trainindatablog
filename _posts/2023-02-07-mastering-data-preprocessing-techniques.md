@@ -188,4 +188,4 @@ Data preprocessing is a fundamental step in the data science process, and it can
 
 From dealing with missing values, transforming variables, and extracting features to integrating datasets and automating the process with Python, it is important to consider each step in the preprocessing phase carefully.
 
-Check out the [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587) for over 70 detailed step-by-step tutorials on building machine learning models.
+Check out the [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587) (also available on [Amazon](https://www.amazon.com/Python-Feature-Engineering-Cookbook-complete/dp/B0DBQDG7SG)) for over 70 detailed step-by-step tutorials on building machine learning models.

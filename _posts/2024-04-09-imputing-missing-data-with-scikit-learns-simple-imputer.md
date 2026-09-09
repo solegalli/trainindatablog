@@ -36,7 +36,7 @@ Additional univariate imputation methods not supported by scikit-learn include [
 
 We can also replace missing values using multivariate imputation. With these methods, we consider more than one variable in the dataset to find the best estimates for the nan values. We can use regression to find these estimates, by using Scikit-learn’s iterative imputer in combination with any regression algorithm. And we can also use nearest neighbours to find the best nan replacements, with sklearn’s knn imputer.
 
-For more details regarding how these and other data preprocessing tools from sklearn work, check out our course [Feature Engineering for Machine Learning](https://www.trainindata.com/p/feature-engineering-for-machine-learning) or our [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587).
+For more details regarding how these and other data preprocessing tools from sklearn work, check out our course [Feature Engineering for Machine Learning](https://www.trainindata.com/p/feature-engineering-for-machine-learning) or our [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587) (also available on [Amazon](https://www.amazon.com/Python-Feature-Engineering-Cookbook-complete/dp/B0DBQDG7SG)).
 
 [![Feature Engineering for Machine Learning course]({{ site.baseurl }}/assets/images/posts/winsorization-handling-outliers-in-machine-learning/feature-engineering-machine-learning-course.jpg)](https://www.trainindata.com/p/feature-engineering-for-machine-learning)
 
@@ -475,4 +475,4 @@ As an alternative, explore Feature-engine. Feature-engine supports the same univ
 
 [![Python Feature Engineering Cookbook book cover]({{ site.baseurl }}/assets/images/posts/detect-outliers-in-python/PFEC2ED.png)](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587)
 
-For more details regarding how these and other data preprocessing tools from sklearn work, check out our course [Feature Engineering for Machine Learning](https://www.trainindata.com/p/feature-engineering-for-machine-learning) or our [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587).
+For more details regarding how these and other data preprocessing tools from sklearn work, check out our course [Feature Engineering for Machine Learning](https://www.trainindata.com/p/feature-engineering-for-machine-learning) or our [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587) (also available on [Amazon](https://www.amazon.com/Python-Feature-Engineering-Cookbook-complete/dp/B0DBQDG7SG)).

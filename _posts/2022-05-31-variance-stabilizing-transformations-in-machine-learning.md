@@ -283,7 +283,7 @@ I also highlight the differences between Numpy, scipy.stats, Scikit-learn and Fe
 For more information on variable transformation and variance stabilizing transformation, check the following resources:
 
 - [Feature Engineering for Machine Learning](https://www.courses.trainindata.com/p/feature-engineering-for-machine-learning) – Online course
-- [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587)
+- [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587) (also available on [Amazon](https://www.amazon.com/Python-Feature-Engineering-Cookbook-complete/dp/B0DBQDG7SG))
 - [Scikit-learn documentation](https://scikit-learn.org/stable/modules/preprocessing.html#mapping-to-a-gaussian-distribution)
 - [Feature-engine documentation](https://feature-engine.readthedocs.io/en/latest/user_guide/transformation/index.html)
 - [Transformations: an introduction](https://www.stata.com/users/njc/topichlp/transint.hlp)

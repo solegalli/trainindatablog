@@ -56,7 +56,7 @@ When the data is missing completely at random (MCAR), univariate methods provide
 
 Having said this, the imputation method is often chosen based on the model we want to train, as certain models make assumptions about the input variables, or require certain distributions, which univariate methods may distort. On the flip side, multivariate methods add complexity and computational cost to the machine learning pipeline, as we train a model, to fill in the missing data, so that we can finally train the model we are interested in.
 
-Learn more about univariate imputation in our [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587).
+Learn more about univariate imputation in our [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587) (also available on [Amazon](https://www.amazon.com/Python-Feature-Engineering-Cookbook-complete/dp/B0DBQDG7SG)).
 
 [![Python Feature Engineering Cookbook book cover]({{ site.baseurl }}/assets/images/posts/detect-outliers-in-python/PFEC2ED.png)](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587)
 
@@ -347,5 +347,5 @@ Dealing with missing data is one of the most common tasks for data scientists wo
 ## Resources
 
 - [Feature engineering for machine learning course](https://www.trainindata.com/p/feature-engineering-for-machine-learning)
-- [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587)
+- [Python Feature Engineering Cookbook](https://www.packtpub.com/en-us/product/python-feature-engineering-cookbook-9781835883587) (also available on [Amazon](https://www.amazon.com/Python-Feature-Engineering-Cookbook-complete/dp/B0DBQDG7SG))
 - [Feature engineering for time series forecasting course](https://www.trainindata.com/p/feature-engineering-for-forecasting)
