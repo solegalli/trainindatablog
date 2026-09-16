@@ -24,6 +24,7 @@ Posts by other authors may follow a different voice; do not use them as a style 
 
 - Keep paragraphs to 3 sentences or fewer. When a paragraph runs longer, split it into more paragraphs rather than trimming content.
 - Use headings generously. More `##`/`###` breaks improve readability, even for sections that feel short.
+- Headings should contain the post's target keywords as much as possible, not just generic labels. Repeating a core keyword phrase (e.g. "ROC curve vs PR curve") across multiple headings in the same section is fine and expected for SEO, even if it reads as repetitive to a human skimming the table of contents.
 
 ## Sentence style
 
