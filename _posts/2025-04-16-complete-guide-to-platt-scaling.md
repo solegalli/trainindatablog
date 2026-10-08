@@ -1,268 +1,295 @@
 ---
 layout: post
 title: "The Complete Guide to Platt Scaling"
-author: shri
+author: sole
 description: "Learn about calibration in machine learning using Platt scaling. Find out how it works and how to apply it in Python using Scikit-learn."
 excerpt: "Learn about calibration in machine learning using Platt scaling. Find out how it works and how to apply it in Python using Scikit-learn."
 categories: [Data Science, Imbalanced Data, Machine Learning]
 image: assets/images/posts/complete-guide-to-platt-scaling/Platt-scaling-banner.jpg
+math: true
 ---
 
-Platt scaling is a calibration technique used to convert the raw outputs of classification machine learning models into true probabilities. True probabilities accurately reflect the chance of an event occurring.
+Platt scaling is a calibration technique that converts the raw outputs of a classification model into calibrated probabilities. Calibrated probabilities reflect how often an event actually occurs: among all the cases where the model predicts 70%, the event should happen about 70% of the time.
 
-Machine learning models are widely used for decision-making in various fields like banking, healthcare, insurance policy claims, and more. The outputs of many algorithms, like Support Vector Machine (SVM), decision trees, and neural networks, are not directly interpretable as probabilities.
+Machine learning models are widely used for decision-making in fields like banking, healthcare and insurance. Some models, like support vector machines (SVMs), return scores that are not probabilities at all, while others, like random forests or naive Bayes, return probabilities that are often over or underconfident.
 
-Platt scaling is a technique that can convert the model outputs or scores into well-calibrated probabilities between 0 and 1. In this article, we’ll understand the need for calibration and how Platt scaling works, along with hands-on examples in Python.
+Platt scaling maps those outputs to well-calibrated probabilities between 0 and 1. In this article, we'll discuss why calibration matters and how Platt scaling works, and then apply it in Python with scikit-learn.
 
-> To master probability calibration, check out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
-
-## **Why Is Calibration Essential in Machine Learning?**
-
-In machine learning, [probability calibration](https://www.blog.trainindata.com/probability-calibration-in-machine-learning/) is the process of adjusting a model’s predictions to align with the actual likelihood of events. “Actual likelihood of events” refers to how often the event occurs in real life. For example, when a model predicts a 30% chance of rain, it really does rain 30% of the time — not more, not less.
-
-Let’s take a look at why calibration is crucial in data science projects:
-
-### **1. Reliable Probability Estimates:**
-
-Classification models like XGBoost and SVM output probability estimates, which represent how confident the model is in its prediction. However, these probability estimates can be unreliable as the model could be overconfident or underconfident based on training data, fine-tuning, etc. Directly using the model outputs without adjusting them can lead to poor decision-making.
-
-For example, let’s consider a classification model trained to predict if a patient is positive for tuberculosis (TB) based on lung CT scans. The model is overconfident and predicts an 80% chance of a patient having TB, while the actual chance is only 50%. The doctor may recommend aggressive treatment options, leading to increased stress and medical costs. With this example, we can see how using uncalibrated model outputs can cause adverse impacts.
-
-### **2. Handling** [**Imbalanced Datasets:**](https://www.blog.trainindata.com/class-imbalance-in-machine-learning/)
-
-If a dataset is skewed towards one class or category, classifier models may often produce biased probabilities. For example, consider a fraud detection dataset with 85% genuine transactions and 15% fraud. Models trained on this data tend to favor the majority class and may predict ‘non-fraud’ with overconfidence.
-
-We can use calibration techniques like Platt scaling or Isotonic Regression to adjust the model scores and correct for the skewness in classification tasks.
-
-To master probability recalibration, check out our book on how to [work with imbalanced datasets](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
+To master probability calibration, check out my book [Imbalanced Data: Myths, Mistakes and Modern Solutions](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
 [![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg)](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
 
-### **3. Enhanced Model Interpretability**[**:**](https://www.blog.trainindata.com/class-imbalance-in-machine-learning/)
+## Why Is Calibration Essential in Machine Learning?
 
-When the model results represent the actual likelihood of events, it increases interpretability and trust among the stakeholders. This is crucial for highly regulated industries like finance and healthcare.
+In machine learning, [probability calibration](https://www.blog.trainindata.com/probability-calibration-in-machine-learning/) is the process of adjusting a model's predictions so that they match the actual likelihood of events. For example, when a model predicts a 30% chance of rain, it should rain on about 30% of those days.
 
-### **4. Easier to benchmark and compare performance**[**:**](https://www.blog.trainindata.com/class-imbalance-in-machine-learning/)
+Let's take a look at why calibration is important in data science projects.
 
-In data science projects, we often need to compare various models to choose the most efficient option. If one model is overconfident while the other is underconfident, we cannot compare them against the same metrics. Calibration helps us standardize model outputs and makes it easier to compare performance, select score thresholds, and more.
+### Reliable Probability Estimates
 
-## **What is Platt scaling?**
+Many classifiers rank observations well but return probabilities that are too extreme or too timid. Using those outputs directly as probabilities can lead to poor decisions.
 
-**Platt scaling** is a **probability calibration technique** that trains a logistic regression model with the classifier’s scores as the input and the actual dependent variable as the output, to learn the relation between them.
+For example, consider a model that predicts whether a patient has tuberculosis (TB) from lung CT scans. If the model is overconfident and predicts an 80% chance of TB when the real chance is 50%, the doctor may recommend aggressive treatment, causing unnecessary stress and medical costs.
 
-Researchers originally developed Platt scaling to transform the outputs of SVMs (Support Vector Machines). An SVM is a large-margin classifier algorithm that separates data into different classes using a hyperplane. The algorithm bases its output scores on the distance from the margin — the farther a data point is from the margin, the more confident the prediction. However, these scores do not map well to probabilities, so Platt scaling was introduced to address this issue. Since then, it has been extended to various classifier models like XGBoost, Random Forest, and neural networks.
+### Calibration and Imbalanced Data
 
-Though Platt scaling was originally designed for binary classifiers, it can also be used for multi-class classification problems using the OVR (One vs Rest) technique. The sklearn Python library provides a `CalibratedClassifierCV` function that automatically takes care of this when you are training a calibration model. We’ll cover how to use it in the later sections.
+A common belief is that models trained on [imbalanced datasets](https://www.blog.trainindata.com/class-imbalance-in-machine-learning/) return biased probabilities. In fact, a well-calibrated model trained on data with 5% fraud should predict low probabilities of fraud for most transactions, because fraud is rare.
 
-## **How does Platt scaling work?**
+What breaks calibration is changing the class balance during training, with resampling methods like [SMOTE](https://www.blog.trainindata.com/smote-in-python-a-guide-to-balanced-datasets/) or with class weights. These make the model overestimate the probability of the minority class, and we then need Platt scaling or isotonic regression to bring the probabilities back in line.
 
-Let’s understand how Platt scaling works step-by-step:
+The best approach is to avoid distorting the probabilities in the first place, as we discuss in our article on [machine learning with imbalanced data](https://www.blog.trainindata.com/machine-learning-with-imbalanced-data/).
 
-1. First, we use the trained base classification model to score the validation dataset. The validation dataset should not be used during training to prevent data leakage. Let’s consider the scores of the model as f(x) and the actual class label as y.
+### Interpretability and Trust
 
-2. Next, we train a logistic regression model using the model’s scores `f(x)` as the input and the actual labels `y` as the target:
+When the model's outputs represent the actual likelihood of events, stakeholders can understand and trust them. This is crucial in highly regulated industries like finance and healthcare.
 
-![Platt Scaling Formula]({{ site.baseurl }}/assets/images/posts/complete-guide-to-platt-scaling/Platt_scaling_formula.png)
+### Decisions Based on Probabilities
 
-During training, the parameters A and B will be learnt through **maximum likelihood estimation** (usually by minimizing log loss).
+Calibration does not change how well a model ranks observations, so metrics like the ROC-AUC stay the same. It matters whenever we use the probabilities themselves: to estimate risk, to calculate expected costs, to compare models with probability-based metrics like the Brier score or the log loss, or to choose a decision threshold.
 
-3. Now, the logistic regression model has learned how to **map its raw scores to actual probabilities** based on the patterns. This mapping can be applied to all the new predictions of the classifier model.
+## What Is Platt Scaling?
 
-## **Implement Platt scaling in Python**
+Platt scaling is a probability calibration technique that trains a logistic regression with the classifier's scores as input and the true class as target, to learn how to turn the scores into probabilities.
 
-Let’s see how to implement Platt scaling in Python using the scikit-learn library.
+John Platt originally proposed it in 1999 to transform the outputs of SVMs into probabilities. An SVM separates the classes with a hyperplane, and its score is the signed distance of each observation to that hyperplane: the farther away, the more confident the prediction.
 
-The first step is to import all the necessary libraries and modules as shown in the snippet below.
+These distances are not probabilities, so Platt proposed passing them through a sigmoid function. Since then, Platt scaling has been applied to many other classifiers, like random forests, gradient boosting machines and neural networks.
+
+Platt scaling was designed for binary classification, but it can also be used for multiclass problems with the one-vs-rest approach. Scikit-learn's `CalibratedClassifierCV` takes care of this automatically, fitting one sigmoid per class and normalizing the probabilities so that they add up to 1.
+
+## How Does Platt Scaling Work?
+
+Platt scaling works in three steps:
+
+1. We train the classifier on a training set, and use it to score a separate calibration set. Let's call the score of each observation $$f(x)$$ and its true class $$y$$.
+
+2. We fit a logistic regression with the scores $$f(x)$$ as the only input and the true labels $$y$$ as the target:
+
+    $$
+    P(y = 1 \mid x) = \frac{1}{1 + \exp\left(A f(x) + B\right)}
+    $$
+
+    The parameters $$A$$ and $$B$$ are learned by maximum likelihood, that is, by minimizing the log loss on the calibration set. $$A$$ is usually negative, so that higher scores lead to higher probabilities.
+
+3. We use the fitted sigmoid to transform the scores of any new observation into calibrated probabilities.
+
+The calibration set must be different from the training set. If we fit the sigmoid on the data used to train the classifier, the scores will look more reliable than they are, and the calibration will be biased.
+
+Platt also suggested a small correction to avoid overfitting: instead of using 0 and 1 as targets, the logistic regression uses values slightly above 0 and slightly below 1, which depend on the number of observations in each class. Scikit-learn applies this correction automatically.
+
+## Implementing Platt Scaling in Python
+
+Let's see how to implement Platt scaling in Python with scikit-learn.
+
+### Creating the Training, Calibration and Test Sets
+
+We start by importing the libraries:
 
 ```
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from sklearn.calibration import CalibratedClassifierCV, CalibrationDisplay
 from sklearn.datasets import make_classification
-```
-
-**1. Create Training & Testing sets**
-
-For this example, let’s create a synthetic dataset for binary classification and train a Random Forest Classifier. We’ll use the `make_classification`  utility to generate a random dataset by providing the number of samples and class balance.
-
-```
-def create_dataset(weights):
-
-    # returns arrays
-    X, y = make_classification(
-        n_samples=100000,
-        n_features=20,
-        n_informative=2,
-        n_redundant=10,
-        n_clusters_per_class=1,
-        weights=[weights], # to balance (or not) the classes
-        class_sep= 0.8, # how separated the classes are
-        random_state=42)
-
-    # transform arrays into pandas df and series
-    X = pd.DataFrame(X)
-    y = pd.Series(y)
-
-    return X, y
-```
-
-```
-X, y = create_dataset(weights=0.5)
-
-```
-
-For this example, I have generated a well-balanced dataset by providing a weight ratio of 0.5.
-
-Now, let’s split the dataset into training sets and testing sets through random shuffling using the `train_test_split` function. The `test_size` parameter controls the size of the testing dataset (30% in our example):
-
-```
-from sklearn.model_selection import train_test_split
-
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.3, random_state=0)
-
-X_train.shape, X_test.shape
-
-```
-
-### **2. Train a Random Forest model and plot a calibration curve**
-
-Next, let’s train a Random Forest classification model on the training data with basic parameters, like 100 trees and depth of 2:
-
-```
-# Train a Random Forests
 from sklearn.ensemble import RandomForestClassifier
-
-rf = RandomForestClassifier(
-    n_estimators=100,
-    random_state=0,
-    max_depth=2
-).fit(X_train, y_train)
-
+from sklearn.frozen import FrozenEstimator
+from sklearn.metrics import brier_score_loss, roc_auc_score
+from sklearn.model_selection import train_test_split
 ```
 
-Now, we’ll use the trained model to score the test dataset as shown below. The scores obtained here will be the raw model output.
+For this example, we create a synthetic dataset for binary classification with `make_classification`, with 50,000 observations and roughly the same number of observations in each class:
 
 ```
-# score the test set
-probs = rf.predict_proba(X_test)[:, 1]
-
+X, y = make_classification(
+    n_samples=50000,
+    n_features=20,
+    n_informative=10,
+    n_redundant=5,
+    class_sep=0.8,
+    random_state=42,
+)
 ```
 
-Scikit-learn provides the `calibration_curve` function, which helps us check whether a model’s predicted probabilities are well calibrated. If they aren’t, we can apply Platt scaling or other calibration techniques to adjust them.
-
-The `calibration_curve` function compares the predicted probabilities with the actual outcomes and returns data we can use to plot a calibration curve — a graph that shows how closely the predicted probabilities match the true likelihood of an event.
-
-Let’s go ahead and plot the curve for our model:
+We need three datasets: one to train the classifier, one to fit Platt scaling, and one to evaluate the result. We split the data into 60% for training, and 20% each for calibration and testing:
 
 ```
-from sklearn.calibration import calibration_curve, CalibratedClassifierCV
+X_train, X_tmp, y_train, y_tmp = train_test_split(
+    X, y, test_size=0.4, random_state=0)
 
-def plot_calibration_curve(y_true, probs, bins, strategy):
+X_cal, X_test, y_cal, y_test = train_test_split(
+    X_tmp, y_tmp, test_size=0.5, random_state=0)
+```
 
-    fraction_of_positives, mean_predicted_value = calibration_curve(
-        y_true, probs, n_bins=bins, strategy=strategy)
+### Training a Random Forest and Plotting a Calibration Curve
 
-    max_val = max(mean_predicted_value)
-    plt.figure(figsize=(8,10))
-    plt.subplot(2, 1, 1)
-    plt.plot(mean_predicted_value, fraction_of_positives, label='Random Forests')
-    plt.plot(
-        np.linspace(0, max_val, bins),
-        np.linspace(0, max_val, bins),
-        linestyle='--',
-        color='red',
-        label='Perfect calibration'
-    )
-    plt.xlabel('Probability Predictions')
-    plt.ylabel('Fraction of positive examples')
-    plt.title('Calibration Curve')
-    plt.legend(loc='upper left')
-    plt.subplot(2, 1, 2)
-    plt.hist(probs, range=(0, 1), bins=bins, density=True, stacked=True, alpha=0.3)
-    plt.show()
+Next, we train a random forest with 100 trees on the training set, and obtain the probabilities for the test set:
 
-plot_calibration_curve(y_test, probs, bins=8, strategy='uniform')
+```
+rf = RandomForestClassifier(n_estimators=100, random_state=0, n_jobs=-1)
+rf.fit(X_train, y_train)
 
+probs_rf = rf.predict_proba(X_test)[:, 1]
+```
+
+To check whether these probabilities are calibrated, we plot a calibration curve with scikit-learn's `CalibrationDisplay`. It sorts the predictions into bins, and for each bin, plots the average predicted probability against the fraction of observations that actually belong to the positive class:
+
+```
+fig, ax = plt.subplots(figsize=(6, 6))
+CalibrationDisplay.from_predictions(
+    y_test, probs_rf, n_bins=10, name="Random forest", ax=ax,
+)
+ax.set_title("Calibration curve: random forest")
+plt.show()
 ```
 
 The previous code returns the following plot:
 
-![Random Forest Model's Calibration Curve]({{ site.baseurl }}/assets/images/posts/complete-guide-to-platt-scaling/RandomForest_Calibration_Curve-1024x587.png)
+![Calibration curve of a random forest. The curve has an S shape: below the diagonal for low probabilities and above it for high probabilities, showing that the random forest is underconfident.]({{ site.baseurl }}/assets/images/posts/complete-guide-to-platt-scaling/random-forest-calibration-curve.png)
 
-In the previous plot, the blue curve represents the calibration curve of the Random Forest, where the probability predictions represent the model’s predictions, and the “Fraction of positive examples”  indicates the actual proportion of positive samples in each bin of predicted probabilities.
+The dotted diagonal shows a perfectly calibrated model, where the predicted probabilities match the fraction of positives. The random forest's curve has an S shape: when it predicts a probability of about 0.25, only 9% of those observations are positive, and when it predicts about 0.65, 84% of them are.
 
-Look at the graph when the Probability prediction is 0.4, then, check out that the fraction of positive examples is approximately 0.8. This means that the model predicted a 40% chance of positive class for samples in that bin, but in reality, **80% were positive**.
-
-The model is underperforming in this region. The red dotted line indicates a perfectly calibrated model’s curve, where the model’s predictions are the same as the fraction of positive examples.
-
-The **current Random Forest model is uncalibrated**, as its curve is highly deviant from the ideal calibration line.
+In other words, the random forest is underconfident: it pushes its predictions toward the middle of the range. This is typical of random forests, because averaging the votes of many trees rarely produces probabilities close to 0 or 1.
 
 > Advance your data science and machine learning skills with our [comprehensive expert led courses](https://www.trainindata.com/courses).
 
 [![Advance your data science and machine learning skills with our comprehensive and expert led courses.]({{ site.baseurl }}/assets/images/posts/complete-guide-to-platt-scaling/Rectangle-7.png)](https://www.trainindata.com/courses)
 
-### **3. Apply Platt scaling**
+### Applying Platt Scaling With CalibratedClassifierCV
 
-Let’s apply Platt scaling using the `CalibratedClassifierCV` function of sklearn to calibrate the probabilities. This function requires 3 input parameters:
+To apply Platt scaling, we use scikit-learn's `CalibratedClassifierCV` with these parameters:
 
-- `base_estimator:` The base classifier you already trained (the Random Forest Classifier in our example)
-- `cv=5:`Cross-validation strategy for calibration. It’s recommended to use 5-fold cross-validation to avoid overfitting during calibration.
-- `method:` This parameter denotes the calibration method to use. We can use `'sigmoid'` for Platt scaling) or `'isotonic'` for non-parametric methods (more on this later).
+- `estimator`: the classifier to calibrate, the random forest in our example.
+- `method`: the calibration method, `"sigmoid"` for Platt scaling or `"isotonic"` for isotonic regression.
+- `cv`: how to obtain the data for calibration. We don't need it here, because we will calibrate a model that is already trained.
 
-Let’s fit a sigmoid classifier to the Random Forest model we trained previously:
-
-```
-# Sigmoid calibration
-clf_sigmoid = CalibratedClassifierCV(rf, cv=5, method='sigmoid')
-```
-
-### **4. Plot the Calibration curve after Platt scaling**
-
-Now, let’s use the calibrated model to score the test dataset again:
+Our random forest is already trained, so we wrap it in `FrozenEstimator`. This tells scikit-learn to use the model as it is, and to only fit the sigmoid, using the calibration set:
 
 ```
-clf_sigmoid.fit(X_test, y_test)
-prob_sigmoid = clf_sigmoid.predict_proba(X_test)[:, 1]
+platt = CalibratedClassifierCV(FrozenEstimator(rf), method="sigmoid")
+platt.fit(X_cal, y_cal)
+
+probs_platt = platt.predict_proba(X_test)[:, 1]
 ```
 
-Now, let’s plot the new calibration curve after applying Platt scaling:
+The calibrated probabilities are those of the test set, which neither the random forest nor the sigmoid has seen during training.
+
+### Plotting the Calibration Curve After Platt Scaling
+
+Now, let's plot the calibration curves before and after Platt scaling:
 
 ```
-plot_calibration_curve(y_test, prob_sigmoid, bins=8, strategy='uniform')
+fig, ax = plt.subplots(figsize=(6, 6))
+CalibrationDisplay.from_predictions(
+    y_test, probs_rf, n_bins=10, name="Random forest", ax=ax,
+)
+CalibrationDisplay.from_predictions(
+    y_test, probs_platt, n_bins=10, name="Random forest + Platt scaling", ax=ax,
+)
+ax.set_title("Calibration curve after Platt scaling")
+plt.show()
 ```
 
-![Calibration Curve after Platt scaling]({{ site.baseurl }}/assets/images/posts/complete-guide-to-platt-scaling/Platt_scaling_Calibration_Curve-1024x543.png)
+In the following plot, we see that after Platt scaling, the calibration curve, in orange, follows the diagonal much more closely:
 
-In the previous plot, the calibration curve (blue)  is more aligned with the reference line than what we had seen previously. Hence, the probability distribution is significantly more aligned with the actual outputs using the calibrated classifier.
+![Calibration curves of a random forest before and after Platt scaling. After Platt scaling, the curve follows the diagonal closely.]({{ site.baseurl }}/assets/images/posts/complete-guide-to-platt-scaling/platt-scaling-calibration-curve.png)
 
-This concludes our example use case of Platt scaling on Random Forest. Similarly, we can apply a sigmoid classifier to the outputs of other decision tree models like XGBoost or use it with SVM models.
+The S-shaped distortion of the random forest is exactly the kind of error a sigmoid can correct, which is why Platt scaling works so well here.
 
-## **Other Calibration Methods**
+### Evaluating Platt Scaling
 
-In addition to Platt scaling, data scientists commonly use other calibration methods like Isotonic Regression, Beta Calibration, and Temperature Scaling. Isotonic Regression fits a non-parametric function, offering more flexibility, though it requires more effort to train. Temperature Scaling works best for neural network models and integrates smoothly with frameworks like PyTorch. The following table compares different calibration methods based on factors such as flexibility and risk of overfitting.
+Let's compare the probabilities before and after Platt scaling with two metrics. The Brier score measures the mean squared difference between the predicted probabilities and the true outcomes, so lower is better, while the ROC-AUC measures how well the model ranks the observations.
 
-![Table comparing the advantages and limitations of various probability calibration methods.]({{ site.baseurl }}/assets/images/posts/complete-guide-to-platt-scaling/Table-Probability-calibration-methods-comparison-1.png)
+We also calibrate the random forest with isotonic regression, to compare both methods:
 
-### **Advantages and limitations of Platt Scaling**
+```
+iso = CalibratedClassifierCV(FrozenEstimator(rf), method="isotonic")
+iso.fit(X_cal, y_cal)
+probs_iso = iso.predict_proba(X_test)[:, 1]
 
-Platt scaling has many advantages over other methods, such as:
+pd.DataFrame({
+    "Brier score": [
+        brier_score_loss(y_test, p) for p in (probs_rf, probs_platt, probs_iso)
+    ],
+    "ROC-AUC": [
+        roc_auc_score(y_test, p) for p in (probs_rf, probs_platt, probs_iso)
+    ],
+}, index=["Random forest", "Platt scaling", "Isotonic regression"]).round(3)
+```
 
-- Best suited for smaller-sized datasets due to the low risk of overfitting
-- It uses a sigmoid function and has low  training complexity
-- Easy to interpret
+In the following output, we see the Brier score and ROC-AUC of each model:
 
-It also faces certain limitations:
+```
+                     Brier score  ROC-AUC
+Random forest              0.055    0.984
+Platt scaling              0.044    0.984
+Isotonic regression        0.044    0.983
+```
 
-- Limited flexibility: As Platt scaling is a parametric model, it may not be able to handle more complex probability mappings like non-monotonic trends.
-- It can be slower and less accurate with multi-class problems compared to beta or temperature scaling methods
+Platt scaling reduces the Brier score from 0.055 to 0.044, while the ROC-AUC stays the same, because the sigmoid preserves the order of the observations. Isotonic regression reaches the same Brier score, but Platt scaling does it with only two parameters.
 
-To learn additional calibration methods, check out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
+When the distortion does not follow a sigmoid shape, for example when the probabilities jump abruptly, isotonic regression usually does a better job. We cover it in our guide to [isotonic regression](https://www.blog.trainindata.com/isotonic-regression/).
 
-## **Conclusion**
+### Platt Scaling With Cross-validation
 
-Platt scaling is a simple and effective calibration technique for binary classification tasks like fraud detection, disease prediction, or sports forecasting. It can take raw, uninterpretable scores as input, like those from SVMs, and provide probabilistic outputs.
+If we don't have enough data for a separate calibration set, we can let `CalibratedClassifierCV` handle the split with cross-validation. In this case, we pass an untrained classifier, and fit it on the combined training and calibration data:
 
-Calibrated models help data scientists make more accurate risk management and decision-making.
+```
+X_train_full = np.vstack([X_train, X_cal])
+y_train_full = np.concatenate([y_train, y_cal])
 
-***Enjoyed our blog? Why not joining our*** [***newsletter***](https://www.trainindata.com/p/data-bites)***?* Join thousands of data scientists who get a single, powerful tip delivered every Monday. Our “Bite-Sized”** [**newsletter**](https://www.trainindata.com/p/data-bites) **cuts through the noise, giving you one actionable insight into a critical tool, emerging trend, or under-the-radar resource.** [**Subscribe now**](https://www.trainindata.com/p/data-bites) **and consistently learn what matters, without the overwhelm.**
+platt_cv = CalibratedClassifierCV(
+    RandomForestClassifier(n_estimators=100, random_state=0, n_jobs=-1),
+    method="sigmoid",
+    cv=5,
+)
+platt_cv.fit(X_train_full, y_train_full)
+
+probs_cv = platt_cv.predict_proba(X_test)[:, 1]
+print(f"Brier score: {brier_score_loss(y_test, probs_cv):.3f}")
+```
+
+With `cv=5`, scikit-learn trains a random forest on 4 folds and fits the sigmoid on the remaining fold, 5 times, and averages the probabilities of the 5 calibrated models. In the following output, we see that the result is similar to that of the dedicated calibration set:
+
+```
+Brier score: 0.043
+```
+
+## Other Calibration Methods
+
+In addition to Platt scaling, data scientists commonly use isotonic regression, beta calibration and temperature scaling. The following table compares them:
+
+| Method | Type | Parameters | Overfitting risk | Best for |
+| --- | --- | --- | --- | --- |
+| Platt scaling | Parametric, sigmoid | 2 | Low | Sigmoid-shaped distortions, SVMs, small calibration sets |
+| Isotonic regression | Non-parametric, step function | One per step | High on small datasets | Any monotonic distortion, large calibration sets |
+| Beta calibration | Parametric, beta family | 3 | Low | Distortions that a sigmoid cannot fit |
+| Temperature scaling | Parametric | 1 | Very low | Multiclass neural networks |
+{: .table .table-bordered .table-sm style="font-size: 0.85rem;"}
+
+Isotonic regression is the most flexible, and it is fast to train, but it needs more data to avoid overfitting. Temperature scaling divides the outputs of a neural network by a single value before the softmax, which makes it simple and popular in deep learning.
+
+### Advantages of Platt Scaling
+
+- It works well with small calibration sets, because it has only two parameters and is hard to overfit.
+- It is fast to train and to apply.
+- It is easy to interpret, since it is a logistic regression with a single input.
+- It preserves the ranking of the observations, so metrics like the ROC-AUC don't change.
+
+### Limitations of Platt Scaling
+
+- It can only correct sigmoid-shaped distortions. If the miscalibration has a different shape, isotonic regression or beta calibration usually work better.
+- It was designed for binary classification. For multiclass problems, it relies on the one-vs-rest approach, while temperature scaling handles all classes at once.
+
+To learn about other calibration methods, check out my book [Imbalanced Data: Myths, Mistakes and Modern Solutions](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
+
+## Conclusion
+
+Platt scaling is a simple and effective calibration technique for binary classification tasks like fraud detection, disease prediction or sports forecasting. It turns raw scores, like those of SVMs, or miscalibrated probabilities, like those of random forests, into probabilities we can trust.
+
+Remember to fit it on data the classifier has not seen, and to check the calibration curve afterward. Calibrated probabilities help data scientists estimate risk and make better decisions.
+
+## Additional Resources
+
+- Niculescu-Mizil and Caruana. 2005. [Predicting Good Probabilities With Supervised Learning](https://doi.org/10.1145/1102351.1102430). Proceedings of the 22nd International Conference on Machine Learning.
+- Scikit-learn documentation: [CalibratedClassifierCV](https://scikit-learn.org/stable/modules/generated/sklearn.calibration.CalibratedClassifierCV.html).
+
