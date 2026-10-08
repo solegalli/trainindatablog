@@ -14,7 +14,12 @@
 <!-- custom CSS - Remove this if you don't use it or choose to customize the stylesheet with sass-->
 <link href="{{ '/assets/css/custom.css' | relative_url }}" rel="stylesheet">
 <!-- custom CSS end-->
-    
+
+{% if page.math %}
+<!-- MathJax, enabled per post with `math: true` in the front matter -->
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+{% endif %}
+
 {% if jekyll.environment == "production" %}
 <!-- Plausible Analytics -->
 <script defer data-domain="blog.trainindata.com" src="https://plausible.io/js/script.js"></script>
