@@ -6,6 +6,11 @@
 $green:   #08a057 !default;
 $blue:    #3d61fd !default;
 $brand-orange: #f0750b !default;
+$brand-navy: #19194e !default;
+
+// inline code and code blocks in the brand navy
+$code-color: $brand-navy;
+$pre-color: $brand-navy;
 
 @import 'bootstrap/bootstrap';
 

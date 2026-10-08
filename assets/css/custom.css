@@ -4,3 +4,9 @@ Just customize your theme here.
 ================================================== */
 
 body {}
+/* Let wide MathJax formulas scroll on narrow screens */
+mjx-container[display="true"] {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}
