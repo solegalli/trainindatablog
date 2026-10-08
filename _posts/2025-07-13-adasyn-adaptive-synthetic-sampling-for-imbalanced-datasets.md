@@ -1,388 +1,344 @@
 ---
 layout: post
 title: "ADASYN: Adaptive Synthetic Sampling for Imbalanced Datasets"
-author: shri
+author: sole
 description: "Find out why you should NOT use ADASYN to handle data imbalance, what the hype was, and what to do instead to make cost-sensitive decisions."
 excerpt: "Find out why you should NOT use ADASYN to handle data imbalance, what the hype was, and what to do instead to make cost-sensitive decisions."
 categories: [Data Science, Imbalanced Data, Machine Learning]
 image: assets/images/posts/adasyn-adaptive-synthetic-sampling-for-imbalanced-datasets/adayasn_imbalced_datasets.jpg
+math: true
 ---
 
-In machine learning, data imbalance is common, and depending on the nature of the data and the machine learning model, it may affect model performance. ADASYN is an oversampling method that has been proposed as a solution to the problem of imbalanced data. But does this problem really exist?
+ADASYN is an oversampling method that creates synthetic examples of the minority class to balance an imbalanced dataset. It was proposed as an improvement over SMOTE, generating more synthetic data where the minority class is hardest to learn.
 
-Machine learning models, such as XGBoost and LightGBM, generally perform well, including when trained with imbalanced datasets. Weaker learners like decision trees or support vector machines, on the other hand, can lead to biased models when trained on imbalanced datasets. These models will output accurate predictions for the majority class but poor ones for the minority class.
+Here is the catch. ADASYN leaves the model's ability to tell the classes apart unchanged. All it does is shift the decision boundary, so that at the default threshold of 0.5 the model flags more observations as the minority class.
 
-When training weak learners, oversampling the minority class has been shown to shift the decision boundary at the default classification threshold, so more minority class examples get flagged — the same trade-off you'd get by adjusting the threshold on the original data. The most popular oversampling method is SMOTE, and you can learn more about [SMOTE’s advantages and limitations](https://www.blog.trainindata.com/smote-in-python-a-guide-to-balanced-datasets/) in our previous article. Here, we will explore another oversampling technique called ADASYN.
+We can get the same effect by training the model on the original data and lowering the classification threshold, without generating a single synthetic example. In this article, we'll show this with Python code.
 
-This article will provide an insightful read on how ADASYN works. We’ll show how to implement ADASYN in Python. More importantly, we’ll discuss what we need to do **before** attempting any resampling method.
+We'll cover:
 
-To master ADASYN these and other resampling methods, check out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
+- What ADASYN is and how the algorithm works
+- How ADASYN compares with SMOTE
+- How to apply ADASYN in Python with imbalanced-learn
+- Why moving the threshold gives the same result
+- The limitations of ADASYN
+
+For a modern take on how to work with imbalanced data, check out my book [Imbalanced Data: Myths, Mistakes and Modern Solutions](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
 
 [![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg)](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
 
-**A quick note before we start:** ADASYN, like SMOTE and other resampling methods, does not make a model better at discriminating between classes. What it does is shift the model's decision boundary so that, at the default classification threshold of 0.5, we make more cost-sensitive decisions — that is, we correctly flag a larger proportion of the minority class, which is usually the class we care about the most. You can get this exact same effect by training on the original, unmodified data and simply adjusting the classification threshold afterward, without generating any synthetic samples at all. We'll come back to this point throughout the article.
+## What Is ADASYN?
 
-## **What is ADASYN?**
+ADASYN, short for Adaptive Synthetic Sampling, was proposed by Haibo He, Yang Bai, Edwardo A. Garcia and Shutao Li in their 2008 article ["ADASYN: Adaptive Synthetic Sampling Approach for Imbalanced Learning"](https://ieeexplore.ieee.org/document/4633969). It is an oversampling technique designed to address class imbalance.
 
-**ADASYN** (Adaptive Synthetic Sampling Approach for Imbalanced Learning) was proposed by Haibo He, Yang Bai and Edwardo A. Garcia in their 2008 article titled **“Learning from Imbalanced Data”**. It is a data augmentation technique designed to address the class imbalance problem.
+ADASYN is an extension of [SMOTE](https://www.blog.trainindata.com/smote-in-python-a-guide-to-balanced-datasets/), the Synthetic Minority Over-sampling Technique. SMOTE uses every minority class example as a template for new synthetic data with the same probability.
 
-ADASYN is an extension of the Synthetic Minority Over-sampling Technique (SMOTE). SMOTE creates synthetic observations using all minority class examples as templates. ADASYN, instead, focuses on generating synthetic samples in areas where the minority class is hardest to learn, that is, where minority class is sparsely represented. Like this, ADASYN should shift the decision boundary further towards the hardest-to-learn minority class examples, or at least, so the theory goes.
+ADASYN, instead, creates more synthetic examples around the minority observations that are surrounded by the majority class, which are the hardest to classify. The idea is to push the decision boundary further toward those difficult examples.
 
-## **How Does ADASYN Work?**
+## How Does ADASYN Work?
 
-The ADASYN algorithm relies on k-nearest neighbors (k-NN) to identify regions in the feature space where the minority class is underrepresented. Below is a step-by-step outline of how ADASYN works:
+ADASYN relies on k-nearest neighbors to find out how difficult each minority example is to learn, and then decides how many synthetic examples to create around each one. Let's go through the algorithm step by step.
 
-### **1. Compute the Class Imbalance**
+### Step 1: Calculate the Number of Synthetic Examples
 
-ADASYN first calculates the degree of imbalance in the dataset. This is the ratio between the number of majority and minority class samples.
+ADASYN starts by measuring the degree of imbalance, the ratio between the number of minority and majority examples. If the imbalance is larger than a tolerated level, it calculates the total number of synthetic examples to generate:
 
-The following image illustrates class imbalance, where yellow dots represent the majority class, while green and purple dots represent the minority class.
+$$
+G = (m_l - m_s) \times \beta
+$$
 
-![Figure showing distribution of an imbalanced dataset]({{ site.baseurl }}/assets/images/posts/adasyn-adaptive-synthetic-sampling-for-imbalanced-datasets/adasyn_class_imbalance_image.png)
+Here, $$m_l$$ and $$m_s$$ are the number of majority and minority examples, and $$\beta$$ is a value between 0 and 1. With $$\beta = 1$$, which is the default in imbalanced-learn, the resampled dataset ends up fully balanced.
 
-Imbalanced dataset class distribution
+The following image shows an imbalanced dataset with two classes, which we'll use to illustrate the remaining steps:
 
-### **2. Identify Difficult-to-Learn Instances**
+![Imbalanced dataset with two classes. The majority class is shown in navy and the minority class in orange.]({{ site.baseurl }}/assets/images/posts/adasyn-adaptive-synthetic-sampling-for-imbalanced-datasets/adasyn-imbalanced-dataset.png)
 
-For each minority class sample, ADASYN finds the number of nearest neighbors that belong to the majority class. A higher number of closest neighbors from the majority class suggests that the instance is harder to classify correctly.
+### Step 2: Identify the Hard-to-Learn Minority Examples
 
-The dots circled in red are perfect examples of difficult to learn instances, because they are surrounded by a higher number of majority class instances.
+For each minority example $$x_i$$, ADASYN finds its K nearest neighbors in the whole dataset and counts how many of them belong to the majority class, $$\Delta_i$$. The ratio $$r_i = \Delta_i / K$$ tells us how hard the example is to learn.
 
-![Figure showing datapoints that will be difficult to train]({{ site.baseurl }}/assets/images/posts/adasyn-adaptive-synthetic-sampling-for-imbalanced-datasets/adasyn_datapoints_example.png)
+A minority example surrounded by other minority examples has a ratio of 0, and one surrounded only by majority examples has a ratio of 1. In the following image, the darker and larger the dot, the higher the ratio, and the circled examples have mostly majority class neighbors:
 
-### **3. Compute Sampling Distribution**
+![Minority class examples colored by the fraction of majority class examples among their 5 nearest neighbors. The circled examples, located where the classes overlap, are the hardest to learn.]({{ site.baseurl }}/assets/images/posts/adasyn-adaptive-synthetic-sampling-for-imbalanced-datasets/adasyn-hard-to-learn-minority-examples.png)
 
-ADASYN calculates the weight for each minority class instance based on the ratio of majority class neighbors in its local neighborhood. Specifically, for each minority sample *xi​*, the weight *wi*​ is computed as the number of majority class samples among its k-nearest neighbors, divided by k (the total number of neighbors considered).
+### Step 3: Compute the Sampling Distribution
 
-This ratio reflects the local imbalance around *xi*​. The weights are then normalized so that they sum to 1, forming a probability distribution. Harder-to-learn instances (those with more majority class neighbors) receive higher weights, ensuring that more synthetic samples are generated in their vicinity.
+ADASYN normalizes the ratios so that they add up to 1, and then multiplies them by G to obtain the number of synthetic examples to create around each minority example:
 
-In mathematical terms:
+$$
+\hat{r}_i = \frac{r_i}{\sum_j r_j}, \qquad g_i = \hat{r}_i \times G
+$$
 
-- Let *ri* be the number of majority class samples among the k-nearest neighbors of *xi*​.
-- The weight *wi* is calculated as wi=ri /k​​.
-- The weights are normalized as wi′=wi / ∑wj​​, where j varies from 1 to the total number of minority class samples.
+Examples with more majority class neighbors get more synthetic data. Examples surrounded only by the minority class get none.
 
-This normalized weight wi′​ determines the proportion of synthetic samples to be generated for each minority instance.
+### Step 4: Generate the Synthetic Examples
 
-### **4. Balance the Dataset**
+For each minority example $$x_i$$, ADASYN creates $$g_i$$ synthetic examples. Each time, it picks one of the nearest neighbors of $$x_i$$ from the minority class, $$x_{zi}$$, and interpolates between the two:
 
-For each minority class instance *xi​*, ADASYN generates synthetic samples based on its normalized weight *wi′*​. The number of synthetic samples to be created for *xi​* is proportional to *wi′​*. To create a new synthetic sample:
+$$
+x_{new} = x_i + \lambda \, (x_{zi} - x_i)
+$$
 
-- Randomly select one of the k-nearest neighbors of *xi​*, denoted as *xzi​*.
-- Compute the difference vector between *xzi​* and *xi*: diff=xzi−xi​.
-- Multiply this difference vector by a random number λ between 0 and 1: .
-- Add this scaled difference vector to *xi* to create the new synthetic sample: *xnew=xi+lambda diff​*
+where $$\lambda$$ is a random number between 0 and 1. The new example lies on the line between $$x_i$$ and its neighbor, as we see in the following image:
 
-This process ensures that synthetic samples are generated along the line between *xi​* and its neighbors, focusing more on regions where minority class instances are sparse or harder to classify. The result is an adaptive oversampling technique that improves class balance by emphasizing difficult-to-learn areas.
+![Synthetic minority class examples created by ADASYN. Most of them fall in the region where the minority and majority classes overlap.]({{ site.baseurl }}/assets/images/posts/adasyn-adaptive-synthetic-sampling-for-imbalanced-datasets/adasyn-synthetic-samples.png)
 
-## **Advantages of ADASYN**
+Notice how many synthetic examples land in the region where the two classes overlap, right among the majority class. That is ADASYN working as designed, and it is also the source of its problems, as we'll see later.
 
-**Focused Sampling**: Unlike SMOTE which generates synthetic data evenly across the minority class, ADASYN prioritizes the generation of data in regions that are more challenging for classification. This is said to help to fine-tune the decision boundary between the majority and minority classes.
+## ADASYN vs SMOTE
 
-**Shifts the Decision Boundary Further:** By focusing on the most difficult-to-classify regions, ADASYN shifts the decision boundary more assertively toward the minority class than plain SMOTE — the same kind of trade-off achievable by tuning the classification threshold, just with a different emphasis on which minority class examples get prioritized.
+ADASYN and SMOTE create synthetic data in the same way, by interpolating between a minority example and one of its minority neighbors. They differ in how they choose which examples to use as templates:
 
-> Unsure whether SMOTE or ADASYN are the right methods for your project? Read my “[7 Takes on Working with Imbalanced Data](https://www.trainindata.com/p/7-takes-on-working-with-imbalanced-data)“, where I discuss 3 recent articles that change the conversation around resampling. It’s free.
+- **SMOTE** picks every minority example with the same probability, so synthetic data spreads across the whole minority class.
+- **ADASYN** picks minority examples in proportion to the number of majority class neighbors they have, so synthetic data concentrates where the classes overlap.
+
+As a result, ADASYN pushes the decision boundary further into the majority class than SMOTE. Neither method gives the model new information to separate the classes, because the synthetic examples are combinations of the data we already have.
+
+> Unsure whether SMOTE or ADASYN are the right methods for your project? Read my free booklet "[7 Takes on Working with Imbalanced Data](https://www.trainindata.com/p/7-takes-on-working-with-imbalanced-data)", where I discuss 3 recent articles that change the conversation around resampling.
 
 [![7 takes on working with imbalanced data, free booklet.]({{ site.baseurl }}/assets/images/posts/should-you-use-imbalanced-learn-in-2025/MLID-booklet-presentation.png)](https://www.trainindata.com/p/7-takes-on-working-with-imbalanced-data)
 
-## **ADASYN in Python**
+## ADASYN in Python With Imbalanced-learn
 
-This section demonstrates how to handle an imbalanced dataset, specifically the **Thyroid Sick dataset** (which can be imported from imbalanced learn), by using **ADASYN** to oversample the minority class.
+Let's see ADASYN in action. We'll use the thyroid sick dataset from imbalanced-learn, where the goal is to predict whether a patient is sick.
 
-### **Part 1: Importing Libraries and Data Preparation**
+### Loading the Imbalanced Dataset
 
-The first step is to import the required libraries to fetch the dataset, build classification models, and apply ADASYN.
+Let's import the libraries:
 
 ```
-# Import required libraries
 import numpy as np
-
+import pandas as pd
 from imblearn.datasets import fetch_datasets
 from imblearn.over_sampling import ADASYN
-
-from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import classification_report, precision_score, recall_score, roc_auc_score, precision_recall_curve
+from sklearn.metrics import precision_score, recall_score, roc_auc_score
+from sklearn.model_selection import TunedThresholdClassifierCV, train_test_split
 ```
 
-Now let’s load the dataset from `imblearn.datasets`. This dataset consists of a binary classification problem, where the target (y) indicates if a patient is sick (minority class) or healthy (majority class). In this case, the target (y) has value of -1 for negative class and 1 for the positive class (that is, the minority class). We’ll convert this to the 0 and 1 binary format.
-
-As a preprocessing step, the dataset is split into training and testing sets using `train_test_split`. Setting `stratify=y` ensures that the function preserves the proportions of each class in the target variable `y` across both the training and test sets.
+Now, we load the dataset. In the original data, the target takes the value 1 for sick patients and -1 for healthy ones, so we convert it to 1 and 0:
 
 ```
-# Load an imbalanced dataset
-data = fetch_datasets()['thyroid_sick']
-X, y = data.data, data.target
+data = fetch_datasets(filter_data=("thyroid_sick",))["thyroid_sick"]
+X = data.data
+y = (data.target == 1).astype(int)
 
-# Convert to binary classification: Class 1 = positive, others = negative
-y = (y == 1).astype(int)
-
-# Split the dataset into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42, stratify=y)
+print("Class counts:", np.bincount(y))
 ```
 
-Let’s check the distribution of the classes both before and after splitting the dataset.
+The output shows the number of healthy patients, class 0, and sick patients, class 1:
 
 ```
-
-# Original class distribution
-unique, counts = np.unique(y, return_counts=True)
-print("Original class distribution:")
-for label, count in zip(unique, counts):
-    print(f"Class {label}: {count} samples")
-
-# Distribution in train/test sets
-train_unique, train_counts = np.unique(y_train, return_counts=True)
-test_unique, test_counts = np.unique(y_test, return_counts=True)
-
-print("\nTrain set class distribution:")
-for label, count in zip(train_unique, train_counts):
-    print(f"Class {label}: {count} samples")
-
-print("\nTest set class distribution:")
-for label, count in zip(test_unique, test_counts):
-    print(f"Class {label}: {count} samples")
+Class counts: [3541  231]
 ```
 
-The output:
-
-`Original class distribution:
-Class 0: 3541 samples
-Class 1: 231 samples`
-
-`Train set class distribution:
-Class 0: 2656 samples
-Class 1: 173 samples`
-
-`Test set class distribution:
-Class 0: 885 samples
-Class 1: 58 samples`
-
-We can see that the dataset is highly imbalanced, with the minority class present only in 6% of the observations in the dataset.
-
-### **Part 2: Baseline Model on the Imbalanced Dataset**
-
-Now, let’s train a **Random Forest classifier** using the original dataset, which is imbalanced. We’ll use the trained model to generate predictions on the test dataset we set aside. We’ll evaluate the performance on the test set by computing metrics like Recall and ROC-AUC score.
+Only 231 of the 3,772 patients are sick, about 6% of the dataset. Next, we split the data into a training set and a test set, keeping the class proportions in both with `stratify=y`:
 
 ```
-# Train Random Forest
-model = RandomForestClassifier(random_state=42)
-model.fit(X_train, y_train)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=42, stratify=y,
+)
 
-# Predictions and probabilities
-y_proba = model.predict_proba(X_test)[:, 1]
-y_pred = (y_proba >= 0.5).astype(int)
-
-# Metrics
-precision = precision_score(y_test, y_pred)
-recall = recall_score(y_test, y_pred)
-roc_auc = roc_auc_score(y_test, y_proba)
-
-print(f"Precision: {precision:.4f}")
-print(f"Recall:    {recall:.4f}")
-print(f"ROC AUC:   {roc_auc:.4f}")
+print("Train:", np.bincount(y_train))
+print("Test: ", np.bincount(y_test))
 ```
 
-The output:
-
-`Precision: 0.9273`
-
-`Recall: 0.8793`
-
-`ROC AUC: 0.9980`
-
-From the output, we can see that the Recall is 87.9%. The ‘Recall’ metric measures how many of all sick patients were identified by the model, which is around 87.9%. This indicates the model is **missing about 12% of the sick cases** (false negatives).
-
-The ROC-AUC score is a measure of the Area Under the ROC Curve, which represents how well the model can **separate “sick” from “not sick”** across all possible thresholds. It is common for imbalanced datasets to see high ROC-AUC values.
-
-### **Part 3:** Apply ADASYN to the Training Set
-
-Next, let’s apply the ADASYN method to balance the dataset and train another random forest model using the balanced training set to see if there is any improvement in precision and recall for the minority class. We can apply ADASYN using the function we imported from the imblearn Python library.
+In the following output, we see that both sets keep the original proportion of sick patients:
 
 ```
-# Apply ADASYN on the training set
-adasyn = ADASYN(random_state=42)
-X_resampled, y_resampled = adasyn.fit_resample(X_train, y_train)
-
+Train: [2478  162]
+Test:  [1063   69]
 ```
 
-```
-print("\nOriginal training class distribution:")
-for cls, count in zip(train_unique, train_counts):
-    print(f"Class {cls}: {count} samples")
-```
+### Training a Baseline Model on the Imbalanced Data
 
-The output:
+We'll evaluate several models in the same way, so let's write a small function that returns the precision and recall at a given threshold, and the ROC-AUC:
 
 ```
-Original training class distribution:
-Class 0: 2656 samples
-Class 1: 173 samples
+def evaluate(model, X_test, y_test, threshold=0.5):
+    proba = model.predict_proba(X_test)[:, 1]
+    pred = (proba >= threshold).astype(int)
+    print(f"Precision: {precision_score(y_test, pred):.3f}")
+    print(f"Recall:    {recall_score(y_test, pred):.3f}")
+    print(f"ROC-AUC:   {roc_auc_score(y_test, proba):.3f}")
 ```
 
-Let’s check how the class distribution has changed after applying ADASYN in the training dataset.
+Precision tells us how many of the patients flagged as sick are actually sick, and recall how many of the sick patients the model finds. You can learn more about these metrics in our article on [the confusion matrix, precision and recall](https://www.blog.trainindata.com/confusion-matrix-precision-and-recall/).
+
+Now, we train a random forest on the original, imbalanced training set:
 
 ```
-# Show new distribution after ADASYN
-unique_res, counts_res = np.unique(y_resampled, return_counts=True)
-print("\nTraining class distribution after ADASYN:")
-for cls, count in zip(unique_res, counts_res):
-    print(f"Class {cls}: {count} samples")
-```
-
-The output:
-
-Training class distribution after ADASYN:
-
-`Class 0: 2656 samples`
-
-`Class 1: 2657 samples`
-
-We can see that the resampled dataset has almost a 50-50 class distribution. Let’s use this balanced training dataset to train a random forest model and evaluate its performance through the ROC-AUC, precision and recall metrics on the test set (which contains the original distribution, and this is key).
-
-```
-
-# Train Random Forest on resampled data
-model = RandomForestClassifier(random_state=42)
-model.fit(X_resampled, y_resampled)
-
-# Predict and evaluate
-y_proba = model.predict_proba(X_test)[:, 1]
-y_pred = (y_proba >= 0.5).astype(int)
-
-precision = precision_score(y_test, y_pred)
-recall = recall_score(y_test, y_pred)
-roc_auc = roc_auc_score(y_test, y_proba)
-
-print(f"Precision: {precision:.4f}")
-print(f"Recall:    {recall:.4f}")
-print(f"ROC AUC:   {roc_auc:.4f}")
-```
-
-The output:
-
-`Precision: 0.8833`
-
-`Recall: 0.9138`
-
-`ROC AUC: 0.9979`
-
-The Recall has improved from 87% to 91% after balancing the dataset using ADASYN, capturing more sick patients. In the use cases of ML algorithms in healthcare, avoiding false negatives is more critical, as patients should not be denied early treatment. So, in this scenario, ADASYN has shown a positive effect.
-
-But wait a sec…
-
-### **Part 4:** Optimizing the Threshold instead of Oversampling
-
-In the previous section, we saw that oversampling helped improve Recall on the imbalanced dataset. But, is oversampling always essential?
-
-To evaluate machine learning model performance, we often use threshold-dependent metrics. By default, scikit-learn uses 0.5 to determine which observations belong to the minority class. However, 0.5 is hardly a good threshold when working with imbalanced data and can lead to a bad assessment of the performance of the model.
-
-In this section, let’s tune the classification threshold to better evaluate our model’s performance on imbalanced data. Instead of relying on the default threshold of 0.5, let’s evaluate multiple thresholds by calculating precision and recall at each probability cut-point using `precision_recall_curve()` function from scikit-learn. We can use the predicted probabilities from the baseline model to pass as input to the precision_recall_curve().
-
-```
-# Get predicted probabilities from the original imbalanced model
-y_scores = model.predict_proba(X_test)[:, 1]  # model is from Section 1
-
-# Use precision-recall curve to find best threshold
-precisions, recalls, thresholds = precision_recall_curve(y_test, y_scores)
-
-# Calculate F1 scores and get threshold that gives max F1
-f1_scores = 2 * (precisions * recalls) / (precisions + recalls + 1e-6)
-best_idx = np.argmax(f1_scores)
-best_threshold = thresholds[best_idx]
-
-# Apply new threshold
-y_pred_tuned = (y_scores >= best_threshold).astype(int)
-
-# Recalculate precision and recall
-precision_tuned = precision_score(y_test, y_pred_tuned)
-recall_tuned = recall_score(y_test, y_pred_tuned)
-f1_tuned = f1_scores[best_idx]
-
-print(f"\nBest threshold by F1: {best_threshold:.4f}")
-print(f"Precision at best threshold: {precision_tuned:.4f}")
-print(f"Recall at best threshold:    {recall_tuned:.4f}")
-print(f"F1-Score at best threshold:  {f1_tuned:.4f}")
-```
-
-The output:
-
-`Best Threshold by F1: 0.4500`
-
-`Precision at Best Threshold: 0.9153`
-
-`Recall at Best Threshold: 0.9310`
-
-`F1-Score at Best Threshold: 0.9231`
-
-The best threshold identified here is 0.45, at which both precision and recall are balanced. The Recall is 93%, which is better than 91% we got by applying the oversampling technique while also not reducing precision a lot.
-
-Hence, instead of applying techniques like SMOTE or ADASYN to balance the dataset, adjusting the decision threshold is a simpler step that almost always leads to better results. This adjustment makes the model more effective without the added complexity of resampling.
-
-### **Part 5:** Automatic Threshold Tuning using Sklearn
-
-Instead of manually tuning the decision threshold, as we did in the previous section, we can also use the `TunedThresholdClassifierCV` from `scikit-learn` to automate the process. This tool wraps any base classifier and tunes the threshold during cross-validation to maximize a selected scoring metric, such as Recall or F1-score.
-
-In this section, let’s train a random forest on the original imbalanced dataset and use the `TunedThresholdClassifierCV` to find the optimal threshold.
-
-```
-from sklearn.model_selection import TunedThresholdClassifierCV
-
-# Initialize the base classifier
 base_model = RandomForestClassifier(random_state=42)
+base_model.fit(X_train, y_train)
 
-# Wrap with TunedThresholdClassifierCV to auto-tune threshold using F1-score
-tuned_model = TunedThresholdClassifierCV(estimator=base_model, scoring='f1', cv=5)
+evaluate(base_model, X_test, y_test)
+```
 
-# Fit on original (imbalanced) training data
+These are the precision, recall and ROC-AUC of the baseline model on the test set:
+
+```
+Precision: 0.937
+Recall:    0.855
+ROC-AUC:   0.998
+```
+
+At the default threshold of 0.5, the model finds 85.5% of the sick patients, so it misses about 14% of them. In healthcare, missing a sick patient is usually worse than a false alarm, so we'd like a higher recall.
+
+### Oversampling the Training Set With ADASYN
+
+Let's apply ADASYN to the training set. We never resample the test set, because it must reflect the real class distribution:
+
+```
+adasyn = ADASYN(random_state=42)
+X_res, y_res = adasyn.fit_resample(X_train, y_train)
+
+print("After ADASYN:", np.bincount(y_res))
+```
+
+In the following output, we see the number of observations in each class after ADASYN:
+
+```
+After ADASYN: [2478 2512]
+```
+
+The resampled training set is now roughly balanced. ADASYN produces approximately, but not exactly, the same number of examples in each class, because it rounds the number of synthetic examples per minority observation.
+
+### Training a Model on the ADASYN Data
+
+We train a second random forest on the resampled data, and evaluate it on the same test set:
+
+```
+adasyn_model = RandomForestClassifier(random_state=42)
+adasyn_model.fit(X_res, y_res)
+
+evaluate(adasyn_model, X_test, y_test)
+```
+
+And these are the metrics of the model trained on the ADASYN data:
+
+```
+Precision: 0.875
+Recall:    0.913
+ROC-AUC:   0.998
+```
+
+The recall went up from 0.855 to 0.913, and the precision went down from 0.937 to 0.875. The model now flags more patients as sick, catching more of the sick ones at the cost of more false alarms.
+
+Now look at the ROC-AUC, which stayed at 0.998. The ROC-AUC measures how well the model ranks sick patients above healthy ones across all thresholds, so ADASYN left the model's ability to separate the classes untouched and only moved the point where the model says "sick."
+
+## Moving the Threshold Instead of Oversampling
+
+If ADASYN only moves the decision boundary, we should be able to get the same result by moving the threshold of the model trained on the original data. Let's check.
+
+### ADASYN Gives the Same Trade-off as a Lower Threshold
+
+We take the probabilities of the baseline model, the one trained without ADASYN, and calculate precision and recall at several thresholds:
+
+```
+proba_base = base_model.predict_proba(X_test)[:, 1]
+
+rows = []
+for t in [0.5, 0.45, 0.4, 0.35, 0.3]:
+    pred = (proba_base >= t).astype(int)
+    rows.append({
+        "threshold": t,
+        "precision": precision_score(y_test, pred),
+        "recall": recall_score(y_test, pred),
+    })
+
+print(pd.DataFrame(rows).round(3).to_string(index=False))
+```
+
+In the following table, we see the precision and recall of the baseline model at each threshold:
+
+```
+ threshold  precision  recall
+      0.50      0.937   0.855
+      0.45      0.897   0.884
+      0.40      0.887   0.913
+      0.35      0.833   0.942
+      0.30      0.786   0.957
+```
+
+At a threshold of 0.4, the model trained on the original data reaches exactly the same recall as the ADASYN model, 0.913, with a slightly higher precision, 0.887 instead of 0.875. We got the ADASYN result without creating any synthetic data.
+
+The table also shows the full precision-recall trade-off. By moving the threshold, we can choose any balance between finding sick patients and raising false alarms, which is much more flexible than resampling. We discuss this trade-off in depth in our article on [precision-recall curves](https://www.blog.trainindata.com/precision-recall-curves/).
+
+### Tuning the Threshold With TunedThresholdClassifierCV
+
+In the previous table, we looked at the test set to compare the two approaches. To choose a threshold in practice, we must use the training data only, otherwise our evaluation will be too optimistic.
+
+Scikit-learn's [`TunedThresholdClassifierCV`](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TunedThresholdClassifierCV.html) does this for us. It finds the threshold that maximizes a metric with cross-validation on the training set, and then applies it when we call `predict()`:
+
+```
+tuned_model = TunedThresholdClassifierCV(
+    estimator=RandomForestClassifier(random_state=42),
+    scoring="f1",
+    cv=5,
+)
 tuned_model.fit(X_train, y_train)
 
-# Predict on test set
-y_pred_auto = tuned_model.predict(X_test)                  # Label predictions (threshold tuned)
-y_proba_auto = tuned_model.predict_proba(X_test)[:, 1]     # Probability predictions
+print(f"Best threshold: {tuned_model.best_threshold_:.2f}")
 
-# Evaluate metrics
-precision_auto = precision_score(y_test, y_pred_auto)
-recall_auto = recall_score(y_test, y_pred_auto)
-roc_auc_auto = roc_auc_score(y_test, y_proba_auto)
-
-# Print results
-print(f"Precision (auto): {precision_auto:.4f}")
-print(f"Recall (auto):    {recall_auto:.4f}")
-print(f"ROC AUC:          {roc_auc_auto:.4f}")
+pred = tuned_model.predict(X_test)
+print(f"Precision: {precision_score(y_test, pred):.3f}")
+print(f"Recall:    {recall_score(y_test, pred):.3f}")
 ```
 
+The output shows the threshold found with cross-validation, followed by the precision and recall on the test set:
+
 ```
-Precision (auto): 0.8852
- Recall (auto):    0.9310
- ROC AUC:          0.9980
+Best threshold: 0.32
+Precision: 0.793
+Recall:    0.942
 ```
 
-We can observe that recall is 93%, the same or better than the results from manual threshold tuning and oversampling methods. Without applying any oversampling like ADASYN, the model has achieved a well-balanced trade-off between precision and recall. Hence, fine-tuning thresholds can be a simpler way to achieve better results without oversampling whenever possible.
+The tuned model finds 94% of the sick patients, more than the ADASYN model, at a lower precision. Here we maximized the F1 score, but we can pass any metric to `scoring`, including a custom one that reflects the real cost of each error, which leads to [cost-sensitive](https://www.blog.trainindata.com/cost-sensitive-learning-for-imbalanced-data/) decisions.
 
-### **ADASYN vs SMOTE**
+### ADASYN Also Distorts the Predicted Probabilities
 
-While ADASYN is closely related to SMOTE, let’s see what the differences are between them:
+There is one more reason to prefer moving the threshold. When we train on balanced data, the model learns that half of the observations are positive, so it overestimates the probability of the minority class:
 
-- **Adaptive Nature**: SMOTE generates synthetic samples uniformly, which can lead to over-representation of certain regions in the feature space. ADASYN, on the other hand, adaptively generates more samples in regions where the minority class is underrepresented, leading to a better learning process.
-- **Focus on Minority-Class Complexity**: ADASYN emphasizes generating samples where the minority class is hardest to classify, making it particularly effective when the minority class has complex patterns or overlaps significantly with the majority class. For more information, you can check this article on [SMOTE](https://www.blog.trainindata.com/smote-in-python-a-guide-to-balanced-datasets/).
+```
+proba_adasyn = adasyn_model.predict_proba(X_test)[:, 1]
 
-### **Challenges and Limitations**
+print(f"Fraction of sick patients:       {y_test.mean():.3f}")
+print(f"Mean probability, original data: {proba_base.mean():.3f}")
+print(f"Mean probability, ADASYN data:   {proba_adasyn.mean():.3f}")
+```
 
-Despite its advantages, ADASYN has some limitations:
+In the following output, we compare the real fraction of sick patients with the average probability predicted by each model:
 
-- **Synthetic Data Quality**: The synthetic samples generated may not always capture the true underlying distribution of the minority class, especially if the minority class itself is not well-represented or contains noise.
-- **Risk of Overfitting**: While ADASYN mitigates overfitting compared to traditional oversampling methods, there is still a risk that the model may overfit to the synthetic data, especially if too many samples are generated in a small region of the feature space.
-- **Computational Complexity**: ADASYN requires calculating k-nearest neighbors, which can be computationally expensive for large datasets. This can become a bottleneck when dealing with high-dimensional data.
+```
+Fraction of sick patients:       0.061
+Mean probability, original data: 0.067
+Mean probability, ADASYN data:   0.078
+```
 
-## **Conclusion**
+The model trained on the original data predicts, on average, a probability close to the real fraction of sick patients. The ADASYN model overestimates it, and the effect is usually much stronger with weaker models.
 
-ADASYN was introduced as a way of dealing with imbalanced datasets, especially when the minority class is complex and difficult to learn, by focusing synthetic samples on the most challenging areas of the minority class distribution. But as we saw in Parts 4 and 5, that shift in the decision boundary is not unique to ADASYN — the same trade-off between recall and precision can be reached by tuning the classification threshold on a model trained on the original data, without generating any synthetic samples at all.
+If we need probabilities we can trust, for example to estimate risk, resampling forces us to recalibrate the model afterward. We explain why in our article on [probability calibration](https://www.blog.trainindata.com/probability-calibration-in-machine-learning/).
 
-So our recommendation is to try threshold tuning first. It's simpler, faster, and doesn't risk introducing unrealistic synthetic data. Only reach for ADASYN, SMOTE, or other resampling methods if threshold tuning genuinely isn't enough for your use case — and even then, test whether it actually helps on your specific dataset and model rather than assuming it will.
+## Limitations of ADASYN
 
-## **Additional Resources**
+To sum up, these are the main drawbacks of ADASYN:
 
-To learn more about Adasyn, check the paper published in the 2008 IEEE International Joint Conference on Neural Networks (IEEE World Congress on Computational Intelligence), [here](https://ieeexplore.ieee.org/document/4633969).
+- **It does not improve discrimination:** synthetic examples are interpolations of existing data, so the model learns nothing new about how to separate the classes. As we saw, the ROC-AUC stays the same.
+- **It amplifies noise:** a minority example surrounded only by majority examples gets the highest weight, even when it is an outlier or a labeling error. ADASYN then fills the majority class region with synthetic data based on it.
+- **It creates unrealistic data:** interpolating between examples can create combinations of feature values that don't exist in reality, especially with categorical or discrete variables.
+- **It distorts probabilities:** models trained on resampled data overestimate the probability of the minority class.
+- **It adds computation:** ADASYN needs nearest neighbor searches, which become slow with large and high-dimensional datasets, and it makes the training set bigger.
 
-To learn more about Working with Imbalanced Data, what modeling techniques are used in the industry to solve data imbalance, and much more, check out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
+## Conclusion
+
+ADASYN was introduced to deal with imbalanced datasets by focusing synthetic data on the hardest-to-learn minority examples. In practice, it shifts the decision boundary toward the minority class, which is the same trade-off between precision and recall that we get by lowering the classification threshold.
+
+So, our recommendation is to avoid synthetic data generation. Train a strong model, like gradient boosting or a random forest, on the original data.
+
+This is simpler and faster, it keeps the predicted probabilities meaningful, and it lets you move along the whole precision-recall trade-off instead of being stuck with the point that resampling gives you. For more on this, check out our article on [machine learning with imbalanced data](https://www.blog.trainindata.com/machine-learning-with-imbalanced-data/).
+
+## Additional Resources
+
+- The original ADASYN paper, published at the 2008 IEEE International Joint Conference on Neural Networks: [ADASYN: Adaptive Synthetic Sampling Approach for Imbalanced Learning](https://ieeexplore.ieee.org/document/4633969).
+
+To learn more about working with imbalanced data, the techniques used in industry, and much more, check out my book [Imbalanced Data: Myths, Mistakes and Modern Solutions](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
