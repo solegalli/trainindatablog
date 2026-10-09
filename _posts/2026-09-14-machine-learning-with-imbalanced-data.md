@@ -49,7 +49,7 @@ The degree of imbalance can vary significantly and may be caused by a naturally 
 
 Binary imbalanced data refers to datasets with only two classes: one class has a majority of samples and the other a minority.
 
-In binary classification tasks, imbalanced datasets occur when one class has significantly fewer samples than another (e.g., 80% of samples belong to Class A while only 20% belong to Class B). This phenomenon is also known as “class imbalance.”
+In binary classification tasks, imbalanced datasets occur when one class has significantly fewer samples than another (e.g., 80% of samples belong to Class A while only 20% belong to Class B). This phenomenon is also known as [class imbalance](https://www.blog.trainindata.com/class-imbalance-in-machine-learning/), where we also discuss how to measure it with the imbalance ratio.
 
 On the other hand, multiclass classification involves three or more classes, where one or more classes may have significantly fewer samples than others.
 
@@ -83,6 +83,8 @@ Separability can be assessed directly: an ROC-AUC close to 1 indicates the class
 ### Choosing the Wrong Model
 
 Model choice affects imbalanced classification more than the imbalance ratio itself. Simpler models, like logistic regression or a single decision tree, struggle when the minority class follows a complex, non-linear pattern, while more flexible models, like random forests and gradient boosting machines, can often separate the classes effectively.
+
+In our article on [class imbalance](https://www.blog.trainindata.com/class-imbalance-in-machine-learning/), we show with a fraud detection experiment that what looked like a class imbalance problem was in fact a poorly configured model.
 
 ### Misleading Evaluation Metrics
 
