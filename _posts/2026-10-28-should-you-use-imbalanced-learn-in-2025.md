@@ -5,7 +5,7 @@ author: sole
 description: "I discuss the latest evidence on undersampling, SMOTE and resampling ensembles for imbalanced data, and whether imbalanced-learn (imblearn) is still useful."
 excerpt: "I discuss the latest evidence on undersampling, SMOTE and resampling ensembles for imbalanced data, and whether imbalanced-learn (imblearn) is still useful."
 categories: [Data Preprocessing, Imbalanced Data]
-image: assets/images/posts/should-you-use-imbalanced-learn-in-2025/imbalance-learn-2025.png
+image: assets/images/posts/should-you-use-imbalanced-learn-in-2025/should-you-use-imblearn-in-2026-cover.png
 ---
 
 Imbalanced-learn, or imblearn, is a Python open-source library that supports methods that have long been proposed as effective to tackle alleged poor performance of machine learning models trained using imbalanced datasets.

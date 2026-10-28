@@ -5,7 +5,7 @@ author: sole
 description: "What undersampling is, how random undersampling, NearMiss, Tomek links, ENN and other undersampling techniques work in Python with imblearn, and what the evidence says about whether they help."
 excerpt: "Undersampling is one of the most popular fixes for imbalanced data. I review the evidence on whether it works, and show how to apply each undersampling technique in Python with imblearn."
 categories: [Imbalanced Data, Machine Learning]
-image: assets/images/posts/undersampling-techniques-for-imbalanced-data/cover_undersampling.png
+image: assets/images/posts/undersampling-techniques-for-imbalanced-data/does-undersampling-help-cover.png
 ---
 
 Undersampling is one of the most popular techniques to tackle imbalanced data. The idea is simple: if one class has many more observations than the other, we remove observations from the larger class until the class distribution is more balanced.
