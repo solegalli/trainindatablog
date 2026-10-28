@@ -12,7 +12,9 @@ In data science and machine learning, the accuracy of a classifier’s predictio
 
 In this article, we’ll explore probability calibration, why it matters, and how to implement it in Python using scikit-learn.
 
-> Master probability calibration with our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book) – in-depth explanations, practical Python implementations, all calibration methods covered.
+> Master probability calibration with chapter 3 of our book [Imbalanced Data: Myths, Mistakes and Modern Solutions](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book): in-depth explanations, practical Python implementations, and all calibration methods covered.
+>
+> [![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg){: width="240"}](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
 
 ## What is a Calibrated Probability?
 
@@ -44,7 +46,9 @@ Several factors influence how well a model’s predicted probabilities align wit
 
 Understanding these influences is crucial for developing models that provide reliable probability estimates in applications where prediction confidence is as important as overall prediction.
 
-> With imbalanced datasets calibrating probabilities is hard. Discover how to do it and what to take into account with our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
+> With imbalanced datasets, calibrating probabilities is hard. Discover how to do it and what to take into account with our book [Imbalanced Data: Myths, Mistakes and Modern Solutions](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book).
+>
+> [![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg){: width="240"}](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
 
 ## Why is Probability Calibration Important?
 
@@ -116,7 +120,9 @@ Where `y_i` is the true label (0 or 1), `p_i` is the predicted probability, and 
 
 The calibration curve, also known as the reliability diagram, plots the mean predicted probability against the true fraction of positive samples. A perfectly calibrated model would follow the diagonal line, where the x-axis represents the model’s predicted probabilities while the y-axis shows the actual proportion of positive samples for each probability bin.
 
-> Did you know that over- or undersampling the training set might distort the calibration of a classifier beyond repair? We discuss a recent article that covers this topic in our free booklet “[7 Takes on Working with Imbalanced Data](https://www.trainindata.com/p/7-takes-on-working-with-imbalanced-data)“. Check it out.
+> Did you know that over- or undersampling the training set, or using class weights, distorts the calibration of a classifier? In chapter 3 of our book [Imbalanced Data: Myths, Mistakes and Modern Solutions](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book), we show what breaks probability calibration, and how to assess calibration reliably when the classes are imbalanced.
+>
+> [![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg){: width="240"}](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
 
 ## Implementing Probability Calibration in Python
 
@@ -315,6 +321,6 @@ The next time you work on a classification problem, consider including probabili
 
 ## Additional resources
 
-Master probability calibration with out our book [Machine Learning with Imbalanced Data](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book):
+Master probability calibration with our book [Imbalanced Data: Myths, Mistakes and Modern Solutions](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book):
 
 [![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg)](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
