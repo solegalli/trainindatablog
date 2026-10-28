@@ -160,6 +160,8 @@ What about ensembles that undersample the data while building each tree, like Ea
 In my experiments, these resampling ensembles never consistently beat random forests or gradient boosting machines trained on the original data, and they returned poorly calibrated probabilities. I discuss these results in more detail in [Should You Use Imbalanced-Learn in 2026?](https://www.blog.trainindata.com/should-you-use-imbalanced-learn-in-2025/).
 
 > In chapter 5 of my book [Imbalanced Data: Myths, Mistakes and Modern Solutions](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book), I review the original studies behind each undersampling method, the modern studies with strong classifiers, and the full results of these experiments.
+>
+> [![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg){: width="240"}](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
 
 ## So, Does Undersampling Work?
 
@@ -190,7 +192,11 @@ I walk you through this approach in my guide to [machine learning with imbalance
 
 Having said this, if for some reason you need to make decisions at the default threshold of 0.5, class weights are a better option than undersampling. They produce the same shift in the decision boundary without discarding data.
 
-Even better, if you know the real costs of each type of error for your business, for example, how much a missed fraudulent transaction costs compared to a false alarm, then cost-sensitive learning is the way to go. In chapter 4 of my book [Imbalanced Data: Myths, Mistakes and Modern Solutions](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book), I discuss everything you need to know about cost-sensitive learning for imbalanced data.
+Even better, if you know the real costs of each type of error for your business, for example, how much a missed fraudulent transaction costs compared to a false alarm, then cost-sensitive learning is the way to go.
+
+> In chapter 4 of my book [Imbalanced Data: Myths, Mistakes and Modern Solutions](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book), I discuss everything you need to know about cost-sensitive learning for imbalanced data, from the cost matrix and the optimal threshold to class weights and instance-dependent costs.
+>
+> [![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg){: width="240"}](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
 
 ## Undersampling in Python with Imblearn
 
@@ -201,6 +207,10 @@ All the undersampling methods discussed in this article are available in the ope
 You will still come across undersampling in plenty of legacy code, older tutorials and Kaggle notebooks. And imblearn is a handy tool if you want to run your own experiments, and confirm that undersampling does not improve the performance of your models.
 
 So, in the rest of this article, I'll show you how each undersampling technique works in Python. Treat these demos as a reference to understand and maintain existing code, or to run your own comparisons, rather than as a recommendation to undersample your data.
+
+> If you do need to undersample, chapter 5 of my book [Imbalanced Data: Myths, Mistakes and Modern Solutions](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book) shows you how to set up an undersampling pipeline correctly, and how to undersample once and reuse the data to tune and compare several models, which saves a lot of time with slow cleaning methods.
+>
+> [![Imbalanced Data: Myths, Mistakes and Modern Solutions - book by Soledad Galli]({{ site.baseurl }}/assets/images/imbalanced-data-book-cover.jpg){: width="240"}](https://www.trainindata.com/p/imbalanced-data-myths-mistakes-solutions-book)
 
 ### Creating an Imbalanced Dataset
 
